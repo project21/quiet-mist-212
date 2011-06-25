@@ -5,7 +5,12 @@ gem 'rails', '3.0.7'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
+if RUBY_PLATFORM =~ /mingw/
+gem 'sqlite3'
+else
 gem 'pg'
+end
+
 gem 'devise','1.1rc0'
 gem "rake", "0.8.7"
 gem "foreigner"
