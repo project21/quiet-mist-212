@@ -1,0 +1,244 @@
+body {
+  background-color: #fff;
+  font-family: Verdana, Helvetica, Arial;
+  font-size: 12px;
+}
+.registration{
+ font-size: 14px;
+  position : absolute;
+  right:200px;
+  top :50px;
+  width : 24%;
+  padding : 3px;	
+}
+
+.headerline{
+margin-top:2px;	
+width:1370px;
+border-top:solid #aaaaaa 1px;	
+}
+.line_separator{	
+	margin-top:7px;	
+	width:240px;
+    border-top:solid #e6e6e6 1px;	
+	}
+a.classlink{color:#0000FF;}
+.classlink a:hover{
+  color:#3b5998; 
+  text-decoration:underline; 
+}
+.classlink a:link{color:#3b5998; text-decoration:none;}
+.classlink a:visited{color:#3b5998; text-decoration:none;}
+.round {
+  -moz-border-radius:    10px;
+  -webkit-border-radius: 10px;
+  border-radius:         10px;
+}
+.menu_item{
+   	zoom: 1;
+   width:179px;
+   border-bottom: 1px solid white;
+   padding: 2px;
+   text-decoration: none;	
+   }  
+ .menu_item:hover{
+     background-color: #EFF2F7;
+   text-decoration: none;	
+    }
+#left{
+  position : absolute;
+  left : 100px;
+  width : 24%;
+  margin-left : 45px;
+  margin-top : 10px;
+  padding : 3px;
+}
+a.full_name {
+font-weight:bold;
+float:left;
+}
+a.full_name:visited {
+color:#3b5998; 
+text-decoration:none; 
+}
+a.full_name:hover {
+color:#3b5998; 
+text-decoration:underline; 
+}
+.titleline{margin-top:1px;	width:120px; border-top:solid #aaaaaa 1px;}
+.booktitle{color:#6f6fff;}
+.reserve{color:red;font-size:11px;}
+.deletebook a:link {
+color:#808080; 
+text-decoration:none; 
+}
+.listbook{list-style-type:none;margin-left:-40px; }
+.deletebook{font-weight:400;font-size:11px;} 
+.deletebook  a:visited {
+color:blue; 
+text-decoration:none; 
+}
+.deletebook  a:hover {
+color:#3b5998; 
+text-decoration:underline; 
+}
+.addbookbutto{color:#CF0000}
+.addbookbutton{
+    width:auto;
+    margin:10px 0 0 2px;
+    padding:1px 2px 1px 2px;
+    color:white;
+    background-color:#0080ff;
+    outline:none;
+    border:1px solid #006600;
+    font-weight:400;
+    }
+ .lightline{margin-top:1px;	width:400px; border-top:dotted #aaaaaa 1px;}   
+.searchbutton{
+	padding:2px 3px 2px 3px;
+    color:white;
+    background-color: #3299CC;
+    outline:none;
+    border:1px solid #006600;
+    font-weight:bold
+
+}
+.headerbox{
+	margin-top:20px;
+	margin-left:140px; 
+}
+.sign_up_button{
+  width:auto;
+ margin:10px 0 0 2px;
+
+    padding:3px 4px 3px 4px;
+
+    color:white;
+
+    background-color:#0080ff;
+
+    outline:none;
+
+    border:1px solid #006600;
+
+    font-weight:bold;	
+}
+
+#right{
+  position : absolute;
+  right:200px;
+  top :100px;
+  width : 24%;
+  padding : 3px;
+
+}
+.needhelp {
+	margin-top:40px;
+	float:left;
+	text-decoration:none;
+	padding-right:3px;
+	padding-left:3px;
+	font: 12px Tahoma;
+	font-weight:bold;
+	color:#3b5998;
+	
+}
+.needhelp a:hover{
+	color:#3b5998; 
+  text-decoration:underline; 
+}
+.needhelp a:link{color:#3b5998; text-decoration:none;}
+.needhelp a:visited{color:#3b5998; text-decoration:none;}
+#center {
+  margin-top:10px;
+  width: 33%;
+  margin-left: 500px;
+  
+  
+}
+.homecontainerline{	
+width:220px;
+border-top:solid #aaaaaa 1px;
+}
+a img {
+  border: none;
+}
+
+a {
+  color: #0000FF;
+}
+
+.clear {
+  clear: both;
+  height: 0;
+  overflow: hidden;
+}
+
+#container {
+  width: 75%;
+  margin: 0 auto;
+  background-color: #FFF;
+  padding: 20px 40px;
+  border: solid 1px black;
+  margin-top: 20px;
+}
+
+#flash_notice, #flash_error, #flash_alert {
+  clear: both;
+  padding: 5px 8px;
+  margin: 10px 0;
+  width: 400px;
+}
+
+#flash_notice {
+  background-color: #CFC;
+  border: solid 1px #6C6;
+}
+
+#flash_error, #flash_alert {
+  background-color: #FCC;
+  border: solid 1px #C66;
+}
+
+.fieldWithErrors {
+  display: inline;
+}
+
+#errorExplanation {
+  width: 400px;
+  border: 2px solid #CF0000;
+  padding: 0px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#errorExplanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: 0;
+  background-color: #c00;
+  color: #fff;
+}
+
+#errorExplanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 8px;
+}
+
+#errorExplanation ul {
+  margin: 2px 24px;
+}
+
+#errorExplanation ul li {
+  font-size: 12px;
+  list-style: disc;
+}
+
+#user_nav {
+  float: right;
+  font-size: 12px;
+}

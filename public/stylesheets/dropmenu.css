@@ -1,0 +1,24 @@
+CSS
+.DMDropDownMenu#menu1 { margin: 10px 40px 10px 40px;
+   background:#0000ff; float:none;
+}
+                          
+.DMDropDownMenu#menu1 a { display:block; float: left;
+  background: #EFF2F7;  padding: 5px 37px 5px 38px; color: #3299CC;
+  text-decoration: none; font: 12px Tahoma;font-weight:bolder;
+}
+
+.DMDropDownMenu#menu1 a.mouseover { background: White; color: Navy;
+}
+                          
+.DMDropDownMenu#menu1 div a { float: none;
+  padding: 4px 20px 4px 20px; margin: 5px;
+  border: solid 0px Blue; position: relative;
+}
+
+.DMDropDownMenu#menu1 div { background: white;
+  padding: 5px; border: solid Black;
+  border-width: 0px 0px 0px 0px; margin: 0px;
+  visibility: hidden; position: absolute;
+  overflow: hidden; white-space: nowrap;
+}
