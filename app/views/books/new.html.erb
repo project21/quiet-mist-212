@@ -1,8 +1,10 @@
 <h1>Book#new</h1>
-<p>Find me in app/views/book/index.html.erb</p>
- <%= form_for(@book) do |f|%>
-  <%=f.text_field :title%>
-  <%=f.text_field :author%>
-  <%=f.submit%>
-<%end%>
 
+<%= form_for(@book) do |f| %>
+<table>	
+<tr><td> <label>Title:</label></td> <td><%= f.text_field :title %></td><tr>
+<tr><td><label>Author:</label></td> <td><%= f.text_field :author %></td> </tr>
+<tr><td><label>Edition:</label></td><td><%= f.text_field :edition %><td/></tr>
+</table>
+<p><%= f.submit "Add"%> 
+<%end%>

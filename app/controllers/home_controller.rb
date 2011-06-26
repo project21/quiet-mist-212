@@ -1,22 +1,24 @@
 class HomeController < ApplicationController
-  #kip_before_filter    :authenticate_user! 
-  #efore_filter :homenticate_user! 
-
   def index
-    @books=current_user.books
-    
-  end
-
-  def show
+ #@books = current_user.books.all
+   @books=Book.all
   end
   
-  def welcome
+def show
+   
+end
   
+  def edit
   end
+def welcome
+  
+end
 
-protected
-
-  def authenticate_user!
+def skip
+   redirect_to '/home/index'
+end
+ 
+ def authenticate_user!
     unless user_signed_in?
       redirect_to new_registration_path(:user)
       return  false

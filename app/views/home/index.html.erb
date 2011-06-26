@@ -1,19 +1,75 @@
-<h1>Home#index</h1>
+<div class="headerbox">
+	  	<table>	<tr>
+<td width="63%"><div id="menu1"  class="DMDropDownMenu">
+			<a href="#">Home</a>
+                      </div>
+	<div id="menu1"  class="DMDropDownMenu">
+		
+      <a href="#">Profile</a>
+        <div>
+    <a href="#">Edit Profile</a>
+    <a href="#">View Profile</a>
+    </div> 
+	</div>
+			 <div id="menu1"  class="DMDropDownMenu">
+			 <a href="http://127.0.0.1:8000/School/myschool.htm">MySchool</a>
+			 <div> <a href="#">school open board</a>  <a href="#">School buddies</a> </div>
+			 </div>
+			 
+			 <div id="menu1"  class="DMDropDownMenu">
+			 <a href="#">Account</a>
+			     <div>
+                 <a href="#">Account settings</a>
+                 <a href="#">Help center</a>
+				  <%= link_to "Sign out", destroy_user_session_path %>
+                 </div>
+			</div> </td>
+			
+<td>	<span>
+<input type="text" class="searchfield" id="search" size="38"/>
+<button type="button" class="searchbutton"/>Search</button></span></td>
+</tr></table>
+<div class="headerline"></div>
 <div id="user_nav">
-  <% if user_signed_in? %>
-    Signed in as <%= current_user.email %>. Not you?
+
+<% if user_signed_in? %>
+    Signed in as <%= current_user.email %> Not you?
     <%= link_to "Sign out", destroy_user_session_path %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
   <% end %>
 </div>
-<p>welcome to the new generation</p>
-<p>Find me in app/views/home/index.html.erb</p>
-<%=link_to 'add a book',new_book_path%>
-<ul>
-<% @books.each do |b|%>
-<li><%= b.title %></li>
-<li><%= b.author %></li>
-<%end%>
-</ul>
+		</div>	
+
+<div id="left">
+ <%= link_to "Edit classes", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> <br/>
+ <%= link_to "Edit Strong in", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> <br/>
+ <%= link_to "Edit weak in",{:class=>"classlink"}%> <br/>
+<div class="line_separator"></div>
+<%=link_to image_tag('message.png',:border=>0)+"Messages",{:controller=>"books",:action=>"new"},{:class=>"menu_item"}%>
+<div class="line_separator"></div>
+<div style="margin-top:5px;" ><b>My Books</b></div>
+ <div class="titleline"></div>
+<ul class="listbook" >
+ <% @books.each do |b|%>
+ <li> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</li>
+ <%end%>
+ </ul>
+<p><%= button_to "Add a Book",{:controller=>"books",:action=>"new"},{:class=>"addbookbutton round"} %></p>
+<div class="line_separator"></div>
+
+<div class="heading">My School buddies</div>
+ <div class="titleline"></div>
+</div>
+
+<div id="center">
+<div class="heading"> Students you may connect with <div>
+<div class="homecontainerline"></div><br/>
+</div>
+
+<div id="right">
+<%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%>
+</div>
+
+
 

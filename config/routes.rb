@@ -1,21 +1,25 @@
 Campus::Application.routes.draw do
-  get "skill/index"
-  get "skill/create"
-  get "skill/edit"
-  get "skill/delete"
+  
 
+  get "book/index"
+
+  get "book/edit"
+
+  get "book/new"
   get "home/index"
-  get "home/show"
-  match "home/welcome"=>'home#welcome'
-
-  
-  match "books/new" =>'books#new'
-  devise_for :users,:controllers=> {:registrations=> 'registrations'}
-  
-  resources :homes,:welcome
+  get "home/edit"
+  get "home/skip"
+match '/books/new' =>"books#new"
+match "home/welcome"=>'home#welcome'
+match "home/skip"=>'home#skip'
+  devise_for :users,:controllers=> {:registrations=> 'registrations' }
+  resources :homes
   resources :books
+      
+ root :to=> "home#index"
 
-  root :to => "home#index"
+ #root :to=> "devise/registrations#new"
+ #match 'users/sign_out' => 'devise#new'
   # The priority is based upon order of creation:
   # first created -> highest priority.
 
