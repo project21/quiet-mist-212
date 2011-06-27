@@ -29,7 +29,7 @@ gem "foreigner"
 # gem 'capistrano'
 
 group :development, :test do
-  gem 'ruby-debug19', :require => 'ruby-debug'
+#  gem 'ruby-debug19', :require => 'ruby-debug'
 end
 
 group :test do
