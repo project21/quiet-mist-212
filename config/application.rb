@@ -38,5 +38,8 @@ module Campus
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # enable the Rails 3.1 asset pipeline
+    config.assets.enabled = true
   end
 end
