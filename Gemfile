@@ -2,6 +2,13 @@ source 'http://rubygems.org'
 
 gem 'rails', '3.1.0.rc4'
 
+# asset pipeline helpers
+gem 'sass-rails', "~> 3.1.0.rc"
+gem 'coffee-script'
+gem 'uglifier'
+
+gem 'jquery-rails'
+
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
@@ -21,9 +28,14 @@ gem "foreigner"
 # Deploy with Capistrano
 # gem 'capistrano'
 
-# To use debugger (ruby-debug for Ruby 1.8.7+, ruby-debug19 for Ruby 1.9.2+)
-# gem 'ruby-debug'
-# gem 'ruby-debug19', :require => 'ruby-debug'
+group :development, :test do
+  gem 'ruby-debug19', :require => 'ruby-debug'
+end
+
+group :test do
+  gem 'rspec-rails'
+  gem 'capybara'
+end
 
 # Bundle the extra gems:
 # gem 'bj'
