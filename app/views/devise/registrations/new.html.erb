@@ -1,40 +1,18 @@
 <h2>Sign up</h2>
-<%= form_for(resource_name, resource, :url => registration_path(resource_name)) do |f| %>
-  <%= f.error_messages %>
-<div class="registration">
-<table>
-  
-  <tr><td><label>First name</label></td>
-  <td><%= f.text_field :firstname %></td></tr>
 
-<tr><td><label>Last name</label></td>
-  <td><%= f.text_field :lastname %></td></tr>
+<%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
+  <%= devise_error_messages! %>
 
-<tr><td><%= f.label :school %></td>
-  <td><%= f.text_field :school %></td></tr>
+  <p><%= f.label :email %><br />
+  <%= f.email_field :email %></p>
 
-<tr><td> <label>Major</label></td>
-  <td><%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]])) %></td></tr>
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
 
-  
-<tr><td><label>Email</label></td>
-  <td><%= f.text_field :email %></td></tr>
+  <p><%= f.label :password_confirmation %><br />
+  <%= f.password_field :password_confirmation %></p>
 
-   <tr><td><%= f.label :password %></td>
-  <td><%= f.password_field :password %></td></tr>
-
-   <tr><td><%= f.label :password_confirmation %></td>
-  <td><%= f.password_field :password_confirmation %></td></tr>
-
-<tr><td><label>Sex</label></td>
- <td><%= select_tag(:sex_id, options_for_select([['Male',1 ],['Female',2]])) %></td></tr>
-
-<tr><td><label>Zipcode</label></td>
-  <td><%= f.text_field :zipcode %></td></tr>
-
-</table>
-  <p><%= f.submit "Sign up",:class=>"sign_up_button" %></p>
+  <p><%= f.submit "Sign up" %></p>
 <% end %>
 
 <%= render :partial => "devise/shared/links" %>
-</div>
