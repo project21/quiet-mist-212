@@ -4,21 +4,31 @@
 // // It's not advisable to add code directly here, but if you do, it'll appear at the bottom of the
 // // the compiled file.
 // //
-// //= require jquery
-// //= require jquery_ujs
-// //= require_tree .
+//= require "jquery"
+//= require "underscore"
+//= require "backbone"
+//= require_tree .
 
-// Place your application-specific JavaScript functions and classes here
-// This file is automatically included by javascript_include_tag :defaults
 jQuery.ajaxSetup({ 
   'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
-})
+});
 
-$(document).ready( function(){
-$('.bookform').submit(function() {
+$(function(){
+  $('.bookform').submit(function() {
     $.post(this.action, $(this).serialize(), null, "script");
     return false;
  });
-
-	
 });
+
+/* a better way to start backbone ?
+var App = {
+    Views: {},
+    Controllers: {},
+    init: function() {
+        new App.Controllers.Documents();
+        Backbone.history.start();
+    }
+};
+
+$(function() { App.init(); });
+*/
