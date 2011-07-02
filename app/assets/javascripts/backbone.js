@@ -1,4 +1,4 @@
-//     Backbone.js 0.5.0-pre
+//     Backbone.js 0.5.0
 //     (c) 2010 Jeremy Ashkenas, DocumentCloud Inc.
 //     Backbone may be freely distributed under the MIT license.
 //     For all details and documentation:
@@ -25,7 +25,7 @@
   }
 
   // Current version of the library. Keep in sync with `package.json`.
-  Backbone.VERSION = '0.5.0-pre';
+  Backbone.VERSION = '0.5.0';
 
   // Require Underscore, if we're on the server, and it's not already present.
   var _ = root._;
@@ -143,7 +143,7 @@
     this._changed = false;
     this._previousAttributes = _.clone(this.attributes);
     if (options && options.collection) this.collection = options.collection;
-    this.initialize(attributes, options);
+    this.initialize.apply(this, arguments);
   };
 
   // Attach all inheritable methods to the Model prototype.
@@ -253,18 +253,19 @@
     // to silence it.
     clear : function(options) {
       options || (options = {});
+      var attr;
       var old = this.attributes;
 
       // Run validation.
       var validObj = {};
-      for (var attr in old) validObj[attr] = void 0;
+      for (attr in old) validObj[attr] = void 0;
       if (!options.silent && this.validate && !this._performValidation(validObj, options)) return false;
 
       this.attributes = {};
       this._escapedAttributes = {};
       this._changed = true;
       if (!options.silent) {
-        for (var attr in old) {
+        for (attr in old) {
           this.trigger('change:' + attr, this, void 0, options);
         }
         this.change(options);
@@ -339,10 +340,9 @@
       return new this.constructor(this);
     },
 
-    // A model is new if it has never been saved to the server, and has a negative
-    // ID.
+    // A model is new if it has never been saved to the server, and lacks an id.
     isNew : function() {
-      return !this.id;
+      return this.id == null;
     },
 
     // Call this method to manually fire a `change` event for this model.
@@ -420,7 +420,7 @@
     _.bindAll(this, '_onModelEvent', '_removeReference');
     this._reset();
     if (models) this.reset(models, {silent: true});
-    this.initialize(models, options);
+    this.initialize.apply(this, arguments);
   };
 
   // Define the Collection's inheritable methods.
@@ -555,7 +555,7 @@
       return _(this.models).chain();
     },
 
-    // Reset all internal state. Called when the collection is refreshed.
+    // Reset all internal state. Called when the collection is reset.
     _reset : function(options) {
       this.length = 0;
       this.models = [];
@@ -567,8 +567,8 @@
     _prepareModel: function(model, options) {
       if (!(model instanceof Backbone.Model)) {
         var attrs = model;
-        model = new this.model(null, {collection: this});
-        if (!model.set(attrs, options)) model = false;
+        model = new this.model(attrs, {collection: this});
+        if (model.validate && !model._performValidation(attrs, options)) model = false;
       } else if (!model.collection) {
         model.collection = this;
       }
@@ -582,7 +582,7 @@
       options || (options = {});
       model = this._prepareModel(model, options);
       if (!model) return false;
-      var already = this.getByCid(model);
+      var already = this.getByCid(model) || this.get(model);
       if (already) throw new Error(["Can't add the same model to a set twice", already.id]);
       this._byId[model.id] = model;
       this._byCid[model.cid] = model;
@@ -659,7 +659,7 @@
     options || (options = {});
     if (options.routes) this.routes = options.routes;
     this._bindRoutes();
-    this.initialize(options);
+    this.initialize.apply(this, arguments);
   };
 
   // Cached regular expressions for matching named param parts and splatted
@@ -691,17 +691,9 @@
       }, this));
     },
 
-    // Simple proxy to `Backbone.history` to save a fragment into the history,
-    // without triggering routes.
-    saveLocation : function(fragment) {
-      Backbone.history.saveLocation(fragment);
-    },
-
-    // Simple proxy to `Backbone.history` to both save a fragment into the
-    // history and to then load the route at that fragment.
-    setLocation : function(fragment) {
-      Backbone.history.saveLocation(fragment);
-      Backbone.history.loadUrl(fragment);
+    // Simple proxy to `Backbone.history` to save a fragment into the history.
+    navigate : function(fragment, triggerRoute) {
+      Backbone.history.navigate(fragment, triggerRoute);
     },
 
     // Bind all defined routes to `Backbone.history`. We have to reverse the
@@ -792,7 +784,7 @@
       var oldIE             = (isExplorer.exec(navigator.userAgent.toLowerCase()) && (!docMode || docMode <= 7));
       if (oldIE) {
         this.iframe = $('<iframe src="javascript:0" tabindex="-1" />').hide().appendTo('body')[0].contentWindow;
-        this.saveLocation(fragment);
+        this.navigate(fragment);
       }
 
       // Depending on whether we're using pushState or hashes, and whether
@@ -810,9 +802,12 @@
       this.fragment = fragment;
       historyStarted = true;
       var started = this.loadUrl() || this.loadUrl(window.location.hash);
-      if (this._wantsPushState && !this._hasPushState && window.location.pathname != this.options.root) {
+      var atRoot  = window.location.pathname == this.options.root;
+      if (this._wantsPushState && !this._hasPushState && !atRoot) {
         this.fragment = this.getFragment(null, true);
         window.location = this.options.root + '#' + this.fragment;
+      } else if (this._wantsPushState && this._hasPushState && atRoot && window.location.hash) {
+        this.navigate(window.location.hash);
       } else {
         return started;
       }
@@ -830,7 +825,7 @@
       var current = this.getFragment();
       if (current == this.fragment && this.iframe) current = this.getFragment(this.iframe.location.hash);
       if (current == this.fragment || current == decodeURIComponent(this.fragment)) return false;
-      if (this.iframe) this.saveLocation(current);
+      if (this.iframe) this.navigate(current);
       this.loadUrl() || this.loadUrl(window.location.hash);
     },
 
@@ -851,7 +846,7 @@
     // Save a fragment into the hash history. You are responsible for properly
     // URL-encoding the fragment in advance. This does not trigger
     // a `hashchange` event.
-    saveLocation : function(fragment) {
+    navigate : function(fragment, triggerRoute) {
       fragment = (fragment || '').replace(hashStrip, '');
       if (this.fragment == fragment || this.fragment == decodeURIComponent(fragment)) return;
       if (this._hasPushState) {
@@ -866,6 +861,7 @@
           this.iframe.location.hash = fragment;
         }
       }
+      if (triggerRoute) this.loadUrl(fragment);
     }
 
   });
@@ -880,7 +876,7 @@
     this._configure(options || {});
     this._ensureElement();
     this.delegateEvents();
-    this.initialize(options);
+    this.initialize.apply(this, arguments);
   };
 
   // Element lookup, scoped to DOM elements within the current view.
@@ -953,10 +949,11 @@
       if (!(events || (events = this.events))) return;
       $(this.el).unbind('.delegateEvents' + this.cid);
       for (var key in events) {
-        var methodName = events[key];
+        var method = this[events[key]];
+        if (!method) throw new Error('Event "' + events[key] + '" does not exist');
         var match = key.match(eventSplitter);
         var eventName = match[1], selector = match[2];
-        var method = _.bind(this[methodName], this);
+        method = _.bind(method, this);
         eventName += '.delegateEvents' + this.cid;
         if (selector === '') {
           $(this.el).bind(eventName, method);
@@ -1130,7 +1127,7 @@
 
   // Throw an error when a URL is needed, and none is supplied.
   var urlError = function() {
-    throw new Error("A 'url' property or function must be specified");
+    throw new Error('A "url" property or function must be specified');
   };
 
   // Wrap an optional error callback with a fallback error event.
