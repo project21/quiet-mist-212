@@ -14,10 +14,12 @@ gem 'jquery-rails'
 # Bundle edge Rails instead:
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
-if RUBY_PLATFORM =~ /mingw/
-gem 'sqlite3'
-else
-gem 'pg'
+platform :mswin, :mingw do
+  gem 'sqlite3'
+end
+
+platform :ruby,  do
+  gem 'pg'
 end
 
 gem 'devise'

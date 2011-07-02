@@ -34,7 +34,7 @@ BookView = Backbone.View.extend(
 )
 
 BooksAppView = Backbone.View.extend(
-  el: $("#bapp")
+  el: $("#book-app")
   model: Book
   collection: Books
 
