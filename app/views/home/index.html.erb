@@ -1,39 +1,57 @@
 <div class="headerbox">
-	  	<table>	<tr>
-<td width="63%"><div id="menu1"  class="DMDropDownMenu">
-			<a href="#">Home</a>
-                      </div>
-	<div id="menu1"  class="DMDropDownMenu">
-		
-      <a href="#">Profile</a>
-        <div>
-    <a href="#">Edit Profile</a>
-    <a href="#">View Profile</a>
-    </div> 
-	</div>
-			 <div id="menu1"  class="DMDropDownMenu">
-			 <a href="#">MySchool</a>
-			 <div> <a href="#">school open board</a>  <a href="#">School buddies</a> </div>
-			 </div>
-			 
-			 <div id="menu1"  class="DMDropDownMenu">
-			 <a href="#">Account</a>
-			     <div>
-                 <a href="#">Account settings</a>
-                 <a href="#">Help center</a>
-				  <%= link_to "Sign out", destroy_user_session_path %>
-                 </div>
-			</div> </td>
+	  	
+<ul id="css3menu1" class="topmenu">
+
+	<li class="topfirst"><a href="#" title="Home" style="height:18px;line-height:18px;">Home</a></li>
+
+	<li class="topmenu"><a href="#" title="Profile" style="height:18px;line-height:18px;"><span>Profile</span></a>
+
+	<ul>
+
+		<li><a href="#" title="Edit Profile ">Edit Profile </a></li>
+
+		<li><a href="#" title="View profile">View profile</a></li>
+
+	</ul>
+
+
+
+	</li>
+
+	<li class="topmenu"><a href="#" title="My school" style="height:18px;line-height:18px;">My school</a></li>
+
+	<li class="toplast"><a href="#" title="Account" style="height:18px;line-height:18px;"><span>Account</span></a>
+
+	<ul>
+
+		<li><a href="#" title="Account settings">Account settings</a></li>
+
+		<li><a href="#" title="Sign out">Sign out</a></li>
+
+	</ul>
+
+
+
+	</li>
+
+</ul>
+
+
+
+
+
+<p style="display:none"><a href="http://css3menu.com/">CSS3 input Type Button Css3Menu.com</a></p>
+</td>
 			
-<td>	<span>
-<input type="text" class="searchfield" id="search" size="38"/>
-<button type="button" class="searchbutton"/>Search</button></span></td>
-</tr></table>
+	<span>
+<input type="text" class="searchfield" id="search" size="50"/>
+<button type="button" class="searchbutton"/>Search</button></span>
+
 <div class="headerline"></div>
 <div id="user_nav">
 
 <% if user_signed_in? %>
-    Signed in as <%= current_user.email %> Not you?
+    Signed in as <%= current_user.firstname %> Not you?
     <%= link_to "Sign out", destroy_user_session_path %>
   <% else %>
     <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
@@ -42,9 +60,10 @@
 		</div>	
 
 <div id="left">
+ <%= current_user.firstname %> <br/>
  <%= link_to "Edit classes", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> <br/>
- <%= link_to "Edit Strong in", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> <br/>
- <%= link_to "Edit weak in",{:class=>"classlink"}%> <br/>
+ <%= link_to "Edit Strengths", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> <br/>
+ <%= link_to "Edit weakness",{:class=>"classlink"}%> <br/>
 <div class="line_separator"></div>
 <a href="/assets/message.png" border="0">Messages</a>
 <div class="line_separator"></div>
@@ -62,13 +81,21 @@
  <div class="titleline"></div>
 </div>
 
-<div id="center">
+<div id="right">
 <div class="heading"> Students you may connect with <div>
 <div class="homecontainerline"></div><br/>
 </div>
 
-<div id="right">
+<div id="center">
+<div class="list-items">
+<%=link_to 'General',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%>
 <%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%>
+<%=link_to 'status',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
+
+</div>
+<%=render 'generalfield'%>
+<div id="post"></div>
+
 </div>
 
 

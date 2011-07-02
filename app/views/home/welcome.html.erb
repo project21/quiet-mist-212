@@ -1,3 +1,5 @@
-<p>Edit info</p>
+<h2>Welcome, <%=current_user.firstname%></h2>
+<h2>Edit info</h2>
 
-<p><%= button_to "Skip",{:controller=>"home",:action=>"skip"},{:class=>"addbookbutton"} %></p>
+<%=render 'editform'%>
+<p><%= button_to "save and continue",{:controller=>"home",:action=>"skip"},{:class=>"savebutton"} %></p>

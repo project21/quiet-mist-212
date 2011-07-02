@@ -19,7 +19,6 @@ class BooksController < ApplicationController
   def create
     #@book=current_user.books.build(params[:book])
     @book=Book.new(params[:book])
-    
     if @book.save
       render :json => @book, :status => :created,
     else
@@ -27,14 +26,15 @@ class BooksController < ApplicationController
     end
     # if @book.save
      #redirect_to '/home/index'
-   
-    #  else
-     #render :action=>'new'
+     else
+     render :action=>'new'
      #@book.save
      #respond_to do |format|  
-    # format.js
+    # forma
  # end
   end
+
+ 
 
   def show
     @book = Book.find(params[:id])

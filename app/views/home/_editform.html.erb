@@ -1,0 +1,53 @@
+<%=form_for :users do |f|%>
+<fieldset>
+<legend>Basic details</legend>
+<%= f.label :school %>
+  <%= f.text_field :school,:size=>"45",:class=>"round" %><br/>
+ <label>Major</label>
+  <%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]]),:class=>"round") %><br/>
+<%= f.label :year %>
+ <%= f.text_field :year,:size=>"45",:class=>"round" %><br/>
+<%= f.label :HighSchool %>
+ <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
+</fieldset>
+
+
+<%=fields_for :books do |b|%>
+<fieldset>
+<legend>Add Books</legend>
+<label>Title:</label><%= b.text_field :title,:size=>"45",:class=>"round" %><br/>
+<label>Author:</label><%= b.text_field :author,:size=>"45",:class=>"round"  %><br/>
+<label>Edition:</label><%= b.text_field :edition,:size=>"45",:class=>"round"  %><br/>
+</fieldset>
+<%end%>
+
+
+<%=fields_for :courses do |c|%>
+<fieldset>
+<legend>Your current classes</legend>
+<label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
+<label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round"  %><br/>
+<label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round"  %><br/>
+<%end%>
+</fieldset>
+
+<%=fields_for :strengths do |s|%>
+<fieldset>
+<legend>subjects you are strong in</legend>
+<label>Subject:</label></td> <td><%= s.text_field :subject,:size=>"45",:class=>"round" %><br/>
+<label>Topic:</label></td> <td><%= s.text_field :topic,:size=>"45",:class=>"round"  %><br/>
+<label>Details:</label></td><td><%= s.text_area :details,:rows=>"3",:class=>"round"  %><br/>
+</fieldset>
+<%end%>
+
+<%=fields_for :weakenesses do |w|%>
+<fieldset>
+<legend>Subjects you are weak in</legend>
+<label>Subject:</label><%= w.text_field :subject,:size=>"45",:class=>"round" %><br/>
+<label>Topic:</label><%= w.text_field :topic,:size=>"45",:class=>"round"  %><br/>
+<label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
+</fieldset>
+<%end%>
+<%end%>
+
+  

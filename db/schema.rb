@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110627000849) do
+ActiveRecord::Schema.define(:version => 20110701050222) do
 
   create_table "book_ownerships", :force => true do |t|
     t.integer  "book_id"
@@ -27,10 +27,48 @@ ActiveRecord::Schema.define(:version => 20110627000849) do
     t.string   "edition"
   end
 
+  create_table "class_takens", :force => true do |t|
+    t.string   "class_name"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "courses", :force => true do |t|
+    t.string   "subject"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "posts", :force => true do |t|
+    t.text     "content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "professions", :force => true do |t|
+    t.string   "title"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "replies", :force => true do |t|
+    t.text     "reply_content"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "skills", :force => true do |t|
     t.string   "subject"
     t.string   "topic"
     t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "strengths", :force => true do |t|
+    t.string   "subject"
+    t.string   "topic"
+    t.text     "details"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -55,9 +93,18 @@ ActiveRecord::Schema.define(:version => 20110627000849) do
     t.string   "major"
     t.string   "sex"
     t.integer  "zipcode"
+    t.string   "highschool"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
   add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
+
+  create_table "weaknesses", :force => true do |t|
+    t.string   "subject"
+    t.string   "topic"
+    t.text     "details"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
 end
