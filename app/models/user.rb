@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
   has_many :books, :through => :book_ownerships
   has_many :strong_ins
   has_many :weak_ins
-  has_and_belongs_to_many :courses
+  #has_and_belongs_to_many :courses
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
   devise :database_authenticatable, :registerable,

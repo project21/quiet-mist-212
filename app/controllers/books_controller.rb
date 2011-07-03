@@ -2,6 +2,10 @@ class BooksController < ApplicationController
   
   def index
     @book ||= Book.new
+
+    if request.xhr?
+      render :json => Book.all and return
+    end
   end
 
   def edit
@@ -13,8 +17,12 @@ class BooksController < ApplicationController
   end
 
   def create
-    @book=current_user.books.build(params[:book])
+    #@book=current_user.books.build(params[:book])
+    @book=Book.new(params[:book])
     
+    if @book.save then head :ok else
+      render :json => {:errors => @book.errors}
+    end
     # if @book.save
      #redirect_to '/home/index'
    
@@ -29,6 +37,4 @@ class BooksController < ApplicationController
   def show
     @book = Book.find(params[:id])
   end
-
- 
 end

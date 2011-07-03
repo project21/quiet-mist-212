@@ -10,15 +10,17 @@
 //= require_tree .
 
 jQuery.ajaxSetup({ 
-  'beforeSend': function(xhr) {xhr.setRequestHeader("Accept", "text/javascript")}
+  'beforeSend': function(xhr) {
+    xhr.setRequestHeader("Accept", "text/javascript")
+  }
 });
 
-$(function(){
-  $('.bookform').submit(function() {
-    $.post(this.action, $(this).serialize(), null, "script");
-    return false;
- });
-});
+
+function form_to_json(e){
+  e.preventDefault();
+  return $(e.currentTarget).toObject({rails: true});
+}
+
 
 /* a better way to start backbone ?
 var App = {
