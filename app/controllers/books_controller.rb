@@ -20,8 +20,10 @@ class BooksController < ApplicationController
     #@book=current_user.books.build(params[:book])
     @book=Book.new(params[:book])
     
-    if @book.save then head :ok else
-      render :json => {:errors => @book.errors}
+    if @book.save
+      render :json => @book, :status => :created,
+    else
+      render :json => @book.errors, :status => :unprocessable_entity
     end
     # if @book.save
      #redirect_to '/home/index'

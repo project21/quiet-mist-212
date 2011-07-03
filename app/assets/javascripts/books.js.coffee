@@ -1,37 +1,40 @@
+_.extend Backbone.Model.prototype,
+  toJSON : ->
+    csrfName = $("meta[name='csrf-param']").attr('content')
+    csrfValue = $("meta[name='csrf-token']").attr('content')
+    object = {}
+    object[csrfName] = csrfValue
+    object[@model_name] =
+       _.clone(@attributes)
+    object
+
 Book = Backbone.Model.extend(
   url: -> if @id then '/books/' + @id else '/books'
+  model_name: 'book'
 )
 
 BookCollection = Backbone.Collection.extend(
   model : Book
   url: '/books'
-  first_editions: -> filter((book) -> book['edition'] == '1')
 )
 
-window.Books = BookCollection.new
+window.Books = new BookCollection
 
 BookView = Backbone.View.extend(
   tagName:  "tr"
   
-  createBook: (e) ->
-    e.preventDefault()
-    collection.create($(e.current_target).serializeObject())
-    @model
-
   initialize: ->
+    @model.view = this
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
-    @model.view = this
     @template = _.template('''
-        <tr>
-          <td><%= title %></td>
-          <td><%= edition %></td>
-          <td><%= author %></td>
-        </tr>
+      <td><%= title %></td>
+      <td><%= edition %></td>
+      <td><%= author %></td>
     ''')
 
   render: ->
-    $(@el).html(@template(@model.toJSON()))
+    $(@el).html(@template(@model.attributes))
     this
 )
 
@@ -42,15 +45,25 @@ BooksAppView = Backbone.View.extend({
     'submit form': "save"
 
   save: (e) ->
-    # msg = @model.isNew() ? 'Successfully created!' : "Saved!"
-    this.model.save(form_to_json(e))
+    # this.model.save()
+    book = new Books.model(form_to_json(e)['book'])
+    book.save()
+    Books.add(book)
 
   initialize: ->
-    _.bindAll(this, 'render')
-    this.model.bind('change', this.render)
-    this.render()
+    _.bindAll(this, 'addOne', 'addAll')
+    Books.bind('add', this.addOne)
+    Books.bind('reset', this.addAll)
+    Books.fetch()
+
+  addOne: (book) ->
+    view = new BookView({model: book})
+    this.$("#books-table").append(view.render().el)
+
+  addAll: ->
+    Books.each(this.addOne)
 })
 
 $(->
-  window.BooksApp = new BooksAppView( model : new Book )
+  window.BooksApp = new BooksAppView
 )
