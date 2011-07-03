@@ -24,13 +24,12 @@ end
 
 gem 'devise'
 gem 'omniauth'
-#gem "rake", "0.8.7"
 gem "foreigner"
+
+gem 'simple_form'
+#gem "rake", "0.8.7"
 # Use unicorn as the web server
 # gem 'unicorn'
-
-# Deploy with Capistrano
-# gem 'capistrano'
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
