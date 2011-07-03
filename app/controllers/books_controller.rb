@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   
   def index
+    @book ||= Book.new
   end
 
   def edit
@@ -23,11 +24,11 @@ class BooksController < ApplicationController
      #respond_to do |format|  
     # format.js
  # end
- end
+  end
 
-def show
+  def show
     @book = Book.find(params[:id])
-   end
+  end
 
  
 end

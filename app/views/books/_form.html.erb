@@ -1,8 +1,6 @@
-<%= form_for(@book || Book.new) do |f| %>
-<table>	
-<tr><td> <label>Title:</label></td> <td><%= f.text_field :title %></td><tr>
-<tr><td><label>Author:</label></td> <td><%= f.text_field :author %></td> </tr>
-<tr><td><label>Edition:</label></td><td><%= f.text_field :edition %><td/></tr>
-</table>
-<p><%= f.submit "Add"%> 
+<%= simple_form_for(@book) do |f| %>
+  <%= f.input :title %>
+  <%= f.input :author %>
+  <%= f.input :edition %>
+  <%= f.submit "Add"%> 
 <%end%>
