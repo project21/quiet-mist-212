@@ -12,31 +12,32 @@
 	 */
 	$.fn.toObject = function(options)
 	{
-        settings = {
-            mode: 'first', // what to convert: 'all' or 'first' matched node
-            delimiter: ".",
-            rails : false,
-            skipEmpty: true,
-            nodeCallback: null
-        };
+		var result = [],
+			settings = {
+				mode: 'first', // what to convert: 'all' or 'first' matched node
+				delimiter: ".",
+				skipEmpty: true,
+				nodeCallback: null
+			};
 
-		if (options) {
+		if (options)
+		{
 			$.extend(settings, options);
 		}
 
-        var toObject = function(context){
-          return form2object(context, settings.delimiter, settings.skipEmpty, settings.nodeCallback, settings.rails);
-        }
-
-		switch(settings.mode) {
+		switch(settings.mode)
+		{
 			case 'first':
-				return toObject(this.get(0));
+				return form2object(this.get(0), settings.delimiter, settings.skipEmpty, settings.nodeCallback);
 				break;
 			case 'all':
-				return this.map(function(){ return toObject(this) });
+				this.each(function(){
+					result.push(form2object(this, settings.delimiter, settings.skipEmpty, settings.nodeCallback));
+				});
+				return result;
 				break;
 			case 'combine':
-				return this.each(function(){ toObject(Array.prototype.slice.call(this)) });
+				return form2object(Array.prototype.slice.call(this), settings.delimiter, settings.skipEmpty, settings.nodeCallback);
 				break;
 		}
 	}
