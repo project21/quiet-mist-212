@@ -1,4 +1,3 @@
-<%=render 'header'%>	
 <div id="left">
 
  <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
@@ -30,30 +29,3 @@
 </div>
 
 </div>
-
-<div id="right">
-<div class="right-side-box">
-<h4>Students you may connect with</h4>
-</div>
-
-<div class="right-side-box">
-<h4>Students you went to highschool with</h4>
-</div>
-</div>
-
-<div id="center">
-<div class="container">
-<div class="list-items">
-<%=link_to 'Pick your status',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%>
-<%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
-
-
-</div>
-<%=render 'generalfield'%>
-<div id="post"></div>
-</div>
-
-</div>
-<%=render 'homefooter'%>
-
-

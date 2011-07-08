@@ -1,0 +1,18 @@
+<%=render 'header'%>
+<%=render 'leftsection'%>
+
+<div class="setting-wrapper">
+<h2 style="text-align:center">Account settings</h2>
+<div class="setting-line"></div>
+
+<h4>Privacy </h4>
+ <div class="setting-dotted-line"></div>
+<h4>Notifications</h4>
+<div class="setting-dotted-line"></div>
+<h4>Account termination</h4>
+<%= button_to "Delete Account",{:controller=>"books",:action=>"new"},{:class=>"delete-account-button"} %>
+ <div class="setting-dotted-line"></div>
+</div>
+
+<%=render 'homefooter'%>
+

@@ -1,0 +1,23 @@
+ <div class="header-wraper">
+<%= image_tag("machinelogo.jpg", :alt => "camp",:class=>"logo") %>&nbsp;
+<ul id="css3menu1" class="topmenu">
+    <li class="topfirst"><%=link_to 'Home',:controller=>"home",:action=>"index"%></li>
+    <li class="topmenu"><a href="#" title="Profile" style="height:18px;line-height:18px;"><span>Profile</span></a>
+        <ul>
+            <li><%=link_to 'Edit Profile',:controller=>"home",:action=>"edit"%></li>
+            <li><%=link_to 'View profile',:controller=>"home",:action=>"show"%></li>
+        </ul>
+    </li>
+    <li class="toplast"><a href="#" title="Account" style="height:18px;line- height:18px;"><span>Account</span></a>
+        <ul>
+            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"index"%></li>
+            <li><%= link_to "Sign out", destroy_user_session_path %></li>
+        </ul>
+    </li>
+</ul>            
+	
+	
+<input type="text" class="searchfield" id="search" size="50"/>
+<button type="button" class="searchbutton"/>Search</button>
+</div>
+<div class="headerline"></div>

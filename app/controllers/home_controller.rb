@@ -5,7 +5,7 @@ class HomeController < ApplicationController
   end
   
 def show
-   
+   @books=Book.all
 end
   
   def edit

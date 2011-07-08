@@ -1,0 +1,8 @@
+<span class="result-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
+<ul class="listbook" >
+ <% @books.each do |b|%>
+ <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> </span></li>
+ <%end%>
+ </ul>
+<span class="fade">went to</span>
+<div class="dotted_line_divider"></div>

@@ -1,10 +1,11 @@
 
-
+<div style="margin-left:55px;"><%= image_tag("machinelogo.jpg", :alt => "camp",:class=>"logo") %></div>
+<div class="headerline"></div>
 <%= form_for(resource, :as => resource_name, :url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
   <div class="registration">
-<h2>Sign up</h2>
+<h2 Style="margin-top:70px;">Sign up</h2>
 <table>
   
   <tr><td><label>First name</label></td>
@@ -39,4 +40,6 @@
   <p><%= f.submit "Sign up",:class=>"sign_up_button" %></p>
 <% end %>
 
-<%= render :partial => "devise/shared/links" %>
+<%= render :partial => "devise/shared/links" %></div>
+<div class="footerline"></div>
+<%=render 'footer'%>

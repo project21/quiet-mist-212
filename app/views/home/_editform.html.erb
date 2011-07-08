@@ -1,13 +1,14 @@
+<div style="margin-left:140px;">
 <%=form_for :users do |f|%>
 <fieldset>
 <legend>Basic details</legend>
-<%= f.label :school %>
-  <%= f.text_field :school,:size=>"45",:class=>"round" %><br/>
+<%= f.label :school %><span style="color:red;margin-right:2px;">*</span>
+  <%= select_tag(:school, options_for_select([['Choose your school',1 ],['Sierra Community college',2],['Sacramento state University',2]]),:class=>"round") %><br/>
  <label>Major</label>
-  <%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]]),:class=>"round") %><br/>
+  <%= select_tag(:major, options_for_select([['undeclared',1 ],['Computer Science',2]]),:class=>"round") %><br/>
 <%= f.label :year %>
- <%= f.text_field :year,:size=>"45",:class=>"round" %><br/>
-<%= f.label :HighSchool %>
+  <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
+<%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
  <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
 </fieldset>
 
@@ -48,6 +49,16 @@
 <label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
 </fieldset>
 <%end%>
+
+<%=fields_for :class_takens do |c|%>
+<fieldset>
+<legend>Classes taken in the past</legend>
+<label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %><br/>
+<label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
+<label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
+<%end%>
+</fieldset>
+
 <%end%>
 
-  
+  </div>

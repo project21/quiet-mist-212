@@ -1,0 +1,16 @@
+<div class="inbox-wrapper">
+<h2>Book reserve</h2>
+<div class="inbox-divider"></div>
+<span style="color:#00AFF0;font-size:12px;">Inbox</span>
+<div class="inbox-bar"></div>
+<div class="inbox-content">
+<span>reserved</span>
+<span class="booktitle"> <%= @books.title   %> </span>by  <%= @books.author %>&nbsp; <%=b.edition %>&nbsp;edition
+&nbsp;<span>for</span>&nbsp;<span><%=@price%></span>
+<%=button_to'Decline',{:controller=>"books",:action=>"new"},{:class=>"declinebutton"}%>&nbsp;<%=button_to'Accept offer',{:controller=>"books",:action=>"new"},{:class=>"acceptbutton"}%>
+<span style="color:#808080;font-size:11px;">Time</span>
+<div class="dotted_line_divider">
+
+</div>
+
+</div>

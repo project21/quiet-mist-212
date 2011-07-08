@@ -1,6 +1,14 @@
 Campus::Application.routes.draw do
   
 
+  get "setting/index"
+
+  get "setting/privacy"
+
+  get "setting/notification"
+
+  get "setting/destroy"
+
   get "book/index"
 
   get "book/edit"
@@ -9,6 +17,8 @@ Campus::Application.routes.draw do
   get "home/index"
   get "home/edit"
   get "home/skip"
+  get "home/show"
+  
 match '/books/new' =>"books#new"
 match "home/welcome"=>'home#welcome'
 match "home/skip"=>'home#skip'
