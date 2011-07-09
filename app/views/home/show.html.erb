@@ -15,6 +15,27 @@
 </div>
 
 <div class="side-box">
+<div id="book-app">
+  <table id="books-table">
+    <caption>
+      <h4>My books</h4>
+    </caption>
+    <thead>
+      <tr>
+        <th>Book</th>
+        <th>Edition</th>
+        <th>Author</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div style="display:none;">
+    <%= render 'books/form' %>
+  </div>
+  <p><%= button_to "Add a Book", {:controller=>"books",:action=>"new"}, {:class=>"addbookbutton"} %>
+  </p>
+</div>
 <h4>My books</h4>
 <ul class="listbook" >
  <% @books.each do |b|%>
@@ -22,7 +43,6 @@
 <div class="line_separator"></div>
  <%end%>
  </ul>
-<p><%= button_to "Add a Book",{:controller=>"books",:action=>"new"},{:class=>"addbookbutton"} %></p>
 </div>
 
 <div class="side-box">

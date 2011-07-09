@@ -28,7 +28,7 @@ BookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td><%= title %></td>
+      <td><span class="booktitle"><%= title %></span></td>
       <td><%= edition %></td>
       <td><%= author %></td>
     ''')
@@ -41,11 +41,10 @@ BookView = Backbone.View.extend(
 BooksAppView = Backbone.View.extend({
   el: "#book-app"
 
-  events: # $('form').submit(save)
+  events:
     'submit form': "save"
 
   save: (e) ->
-    # this.model.save()
     book = new Books.model(form_to_json(e)['book'])
     book.save()
     e.currentTarget.reset()
