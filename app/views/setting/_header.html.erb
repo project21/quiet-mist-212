@@ -10,7 +10,7 @@
     </li>
     <li class="toplast"><a href="#" title="Account" style="height:18px;line- height:18px;"><span>Account</span></a>
         <ul>
-            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"index"%></li>
+            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"show"%></li>
             <li><%= link_to "Sign out", destroy_user_session_path %></li>
         </ul>
     </li>

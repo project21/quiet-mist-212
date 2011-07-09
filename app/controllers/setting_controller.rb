@@ -5,11 +5,7 @@ class SettingController < ApplicationController
   def notification
   end
 
-  def destroy
-  end
-
-  def index
+  def show
     @books=Book.all
   end
-
 end

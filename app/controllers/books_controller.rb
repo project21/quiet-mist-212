@@ -24,14 +24,6 @@ class BooksController < ApplicationController
     else
       render :json => @book.errors, :status => :unprocessable_entity
     end
-    # if @book.save
-     #redirect_to '/home/index'
-     else
-     render :action=>'new'
-     #@book.save
-     #respond_to do |format|  
-    # forma
- # end
   end
 
  

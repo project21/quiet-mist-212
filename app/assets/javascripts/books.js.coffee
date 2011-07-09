@@ -48,6 +48,7 @@ BooksAppView = Backbone.View.extend({
     # this.model.save()
     book = new Books.model(form_to_json(e)['book'])
     book.save()
+    e.currentTarget.reset()
     Books.add(book)
 
   initialize: ->
