@@ -8,8 +8,7 @@ class BooksController < ApplicationController
     end
   end
 
-  def edit
-  end
+  def edit; end
 
   def new
     @book = Book.new
@@ -25,8 +24,6 @@ class BooksController < ApplicationController
       render :json => @book.errors, :status => :unprocessable_entity
     end
   end
-
- 
 
   def show
     @book = Book.find(params[:id])

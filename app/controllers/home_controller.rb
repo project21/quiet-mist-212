@@ -1,10 +1,10 @@
 class HomeController < ApplicationController
-  def index
+  def show
     #@books = current_user.books.all
     @books=Book.all
   end
   
-  def show
+  def profile
     @books=Book.all
   end
   

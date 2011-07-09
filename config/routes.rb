@@ -6,15 +6,14 @@ Campus::Application.routes.draw do
   end
 
   namespace :home do
-    get "index"
-    get "edit"
     get "show"
+    get "edit"
+    get "profile"
     get "welcome"
   end
   
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
   resources :books
 
-      
-  root :to=> "home#index"
+  root :to=> "home#show"
 end
