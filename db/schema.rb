@@ -10,13 +10,18 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110701050222) do
+ActiveRecord::Schema.define(:version => 20110710005703) do
 
   create_table "book_ownerships", :force => true do |t|
-    t.integer  "book_id"
-    t.integer  "user_id"
+    t.integer  "book_id",                                                    :null => false
+    t.integer  "user_id",                                                    :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "integer"
+    t.integer  "reserver_id"
+    t.decimal  "offer",       :precision => 5, :scale => 2, :default => 0.0
+    t.datetime "offered_at"
+    t.datetime "accepted_at"
   end
 
   create_table "books", :force => true do |t|
