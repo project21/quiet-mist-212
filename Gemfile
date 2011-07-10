@@ -3,6 +3,7 @@ source 'http://rubygems.org'
 gem 'yajl-ruby'
 
 gem 'rails', '3.1.0.rc4'
+gem 'therubyracer'
 
 # asset pipeline helpers
 gem 'sass-rails', "~> 3.1.0.rc"
@@ -22,7 +23,7 @@ platform :ruby,  do
   gem 'pg'
 end
 
-gem 'devise'
+gem 'devise', '1.4.2'
 gem 'omniauth'
 gem "foreigner"
 
