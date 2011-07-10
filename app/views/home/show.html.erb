@@ -30,6 +30,10 @@
 <ul class="listbook" >
  <% @books.each do |b|%>
     <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
+   <%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
+   <div class="line_separator"></div>
+   <%=link_to image_tag("message.png")+'Requests',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%>
+    <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
     <%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
     <div class="line_separator"></div>
     <%=link_to image_tag("message.png")+'Requests',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%>
