@@ -1,11 +1,11 @@
 class HomeController < ApplicationController
   def show
     #@books = current_user.books.all
-    @books=Book.all
+    @books=current_user.books
   end
   
   def profile
-    @books=Book.all
+    @books=current_user.books
   end
   
   def edit

@@ -7,13 +7,11 @@
         <td>Author</td>
       </tr>
     </thead>
-
     <tbody></tbody>
-
   </table>
 
-<p></p>
-
-  <%= render 'form' %>
-
+  <div id="new-book-form" >
+    <%= render 'books/form' %>
+  </div>
+  <%= button_to "Add a Book", {:controller=>"books",:action=>"new"}, {:class=>"addbookbutton"} %>
 </div>

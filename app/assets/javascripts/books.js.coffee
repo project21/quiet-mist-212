@@ -42,7 +42,7 @@ BooksAppView = Backbone.View.extend({
   el: "#book-app"
 
   events:
-    'submit form': "save"
+    'submit #new_book': "save"
 
   save: (e) ->
     book = new Books.model(form_to_json(e)['book'])
@@ -58,6 +58,7 @@ BooksAppView = Backbone.View.extend({
 
   addOne: (book) ->
     view = new BookView({model: book})
+    # TODO: add class if it is reserved
     this.$("#books-table").append(view.render().el)
 
   addAll: ->
@@ -66,4 +67,10 @@ BooksAppView = Backbone.View.extend({
 
 $(->
   window.BooksApp = new BooksAppView
+  # jquery ui screws up event bindings, see:
+  # https://groups.google.com/group/backbonejs/browse_thread/thread/fa9d2969608e59d7
+  $('.addbookbutton').live('click', (e)->
+    e.preventDefault()
+    $('#new-book-form').dialog()
+  )
 )
