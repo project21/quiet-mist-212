@@ -1,0 +1,51 @@
+<%=render 'header'%>
+
+<div class="profile-wrapper">
+<div id="profile-left">
+<div class="left-bar-separator">
+<div class="proline_separator"></div>
+<%=button_to 'Connect',{:controller=>"books",:action=>"new"},{:class=>"connectbutton"}%><%=button_to 'Message me',{:controller=>"books",:action=>"new"},{:class=>"messagebutton"}%>
+<div class="proline_separator"></div>
+<div class="details-title" >Details</div>
+<span style="color:#808080;font-weight:bold;">Highschool:</span>
+ <div class="lightline"></div>
+<span style="color:#808080;font-weight:bold;">Possible professions:</span>
+<div class="lightline"></div>
+<span style="color:#808080;font-weight:bold;">Year:</span>
+ <div class="lightline"></div>
+
+</div>
+</div>
+
+<div class="middle">
+<div class="bar-separator" ></div>
+<div class="main-bar-separator"></div>
+</div>
+
+<div id="profile-center">
+<span class="profile-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
+<span class="schoolname"><%=current_user.school%></span><br/>
+<span class="major"><%=current_user.major%></span>
+<div class="line_divider"></div>
+<div class="profile-titles">Books</div>
+<ul class="listbook" >
+ <% @books.each do |b|%>
+ <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
+<%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
+<div class="line_separator"></div>
+ <%end%>
+ </ul>
+<div class="dotted_line_divider"></div>
+<div class="profile-titles">Strengths</div>
+<span class="subject"></span><span class="topic"></span><span class="knowledgedetails"></span>
+<div class="dotted_line_divider"></div>
+<div class="profile-titles">Weaknesses</div>
+<span class="subject"></span><span class="topic"></span><span class="knowledgedetails"></span>
+<div class="dotted_line_divider"></div>
+<div class="profile-titles">Classes taken in the past</div>
+<span class="past-classes"></span>
+<div class="dotted_line_divider"></div>
+</div>
+
+</div>
+<%=render 'footer'%>

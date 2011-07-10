@@ -41,5 +41,9 @@ module Campus
 
     # enable the Rails 3.1 asset pipeline
     config.assets.enabled = true
+
+    config.generators do |g|
+      g.fixture_replacement :machinist
+    end
   end
 end

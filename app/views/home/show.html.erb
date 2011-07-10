@@ -7,11 +7,11 @@
 <%=button_to 'Connect',{:controller=>"books",:action=>"new"},{:class=>"connectbutton"}%><%=button_to 'Message me',{:controller=>"books",:action=>"new"},{:class=>"messagebutton"}%>
 <div class="proline_separator"></div>
 <div class="details-title" >Details</div>
-<span style="color:#808080;font-weight:bold;">Highschool:</span>
+<span style="color:#808080;font-weight:bold;margin-left:40px;">Highschool:</span>
  <div class="lightline"></div>
-<span style="color:#808080;font-weight:bold;">Possible professions:</span>
+<span style="color:#808080;font-weight:bold;margin-left:40px;">Possible professions:</span>
 <div class="lightline"></div>
-<span style="color:#808080;font-weight:bold;">Year:</span>
+<span style="color:#808080;font-weight:bold;margin-left:40px;">Year:</span>
  <div class="lightline"></div>
 </div>
 </div>
@@ -22,28 +22,62 @@
 </div>
 
 <div id="profile-center">
-<span class="profile-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
-<span class="schoolname"><%=current_user.school%></span><br/>
+<span class="profile-name"><%= current_user.firstname %>&nbsp;<%=current_user.lastname%></span><br/>
+<span class="schoolname"><%= current_user.school %></span><br/>
 <span class="major"><%=current_user.major%></span>
 <div class="line_divider"></div>
 <div class="profile-titles">Books</div>
 <ul class="listbook" >
  <% @books.each do |b|%>
- <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
-<%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
-<div class="line_separator"></div>
- <%end%>
- </ul>
-<div class="dotted_line_divider"></div>
-<div class="profile-titles">Strengths</div>
-<span class="subject"></span><span class="topic"></span><span class="knowledgedetails"></span>
-<div class="dotted_line_divider"></div>
-<div class="profile-titles">Weaknesses</div>
-<span class="subject"></span><span class="topic"></span><span class="knowledgedetails"></span>
-<div class="dotted_line_divider"></div>
-<div class="profile-titles">Classes taken in the past</div>
-<span class="past-classes"></span>
-<div class="dotted_line_divider"></div>
+    <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
+   <%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
+   <div class="line_separator"></div>
+   <%=link_to image_tag("message.png")+'Requests',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%>
+    <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
+    <%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
+    <div class="line_separator"></div>
+    <%=link_to image_tag("message.png")+'Requests',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%>
+  <%end%>
+</div>
+
+<div class="side-box">
+  <%= render 'books/index' %>
+
+  <h4>My books</h4>
+  <ul class="listbook" >
+  <% @books.each do |b|%>
+    <li><span class="booktitle"> <%= b.title   %> </span>by <%= b.author %> <%=b.edition %>&nbsp;edition</li>
+    <div class="line_separator"></div>
+  <%end%>
+  </ul>
+  </div>
+
+  <div class="side-box">
+    <h4>My School buddies</h4>
+  </div>
+
+</div>
+
+<div id="right">
+<div class="right-side-box">
+<h4>Students you may connect with</h4>
+</div>
+
+<div class="right-side-box">
+<h4>Students you went to highschool with</h4>
+</div>
+</div>
+
+<div id="center">
+<div class="container">
+<div class="list-items">
+<%=link_to 'Pick your status',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%>
+<%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
+
+
+</div>
+<%=render 'generalfield'%>
+<div id="post"></div>
 </div>
 
 </div>

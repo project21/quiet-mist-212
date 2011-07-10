@@ -19,14 +19,14 @@ body {
   padding : 3px;	
 }
 
-.header-wraper{margin-left: 125px;margin-top: 15px;}
+.header-wraper{margin-top: 15px;}
 .logo{height:140px;width:160px;float:left;margin-top:-50px;}
 .titleline{margin-top:1px;	width:60px; border-top:solid #aaaaaa 1px;}
 .headerline{
 clear: both;	
 margin-left: 0px;	
 margin-top:0px;	
-width:1660px;
+width:1000px;
 border-top:solid #aaaaaa 1px;	
 }
 .footerline{	
@@ -73,14 +73,13 @@ a.classlink{color:#0000FF;}
     }
 #left{
   position : absolute;
-  left : 100px;
   width : 24%;
-  margin-left : 45px;
   margin-top : 10px;
   padding : 3px;
 }
 
 .searchfield{
+  position:absolute;
 -moz-border-radius:5px;
 -webkit-border-radius:5px;
  border-radius:5px;
@@ -161,6 +160,8 @@ text-decoration:underline;
     }
  
 .searchbutton{
+  margin-left:440px;
+  position:absolute;
 	padding:5px 9px 5px 9px;
     color:white;
     background-color: #00AFF0;
@@ -223,7 +224,7 @@ text-decoration:none;
 
 #right{
   position : absolute;
-  right:-660px;
+  right:-740px;
   top :0px;
   width : 24%;
 }
@@ -265,7 +266,7 @@ margin-top: 0px;
 margin-top:3px;	
 border:1px solid #dedede;	
 display:block;
-width:600px;
+width:550px;
 height:800px;
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
@@ -415,10 +416,8 @@ legend {
 }
 /*profile styling*/
 #profile-left{
-  position : absolute;
-  left : 100px;
   width : 34%;
-  margin-left : 45px;
+  margin-left : -20px;
   margin-top : 10px;
   
 }
@@ -444,7 +443,7 @@ legend {
  -webkit-border-radius:5px;
  border-radius:5px;		
 }
- .lightline{margin-top:1px;	width:400px; border-top:dotted #aaaaaa 1px;}  
+ .lightline{margin-left:40px;margin-top:1px;	width:400px; border-top:dotted #aaaaaa 1px;}  
 .proline_separator{	
 	clear:both;
 	margin-left:40px;
@@ -455,7 +454,7 @@ legend {
 	}
 #profile-center {
   position : absolute;
-  left:570px;
+  left:450px;
   width:25%;
   top:110px;
 }
@@ -496,22 +495,18 @@ height:550px;
 -webkit-box-shadow:-2px -2px 3px #000;
 -moz-box-shadow:-2px -2px  3px #000;	
 }
-.left-bar-separator{
-position:absolute;		
-margin-top:5px;	
-border-left:solid #dedede 1px;
-height:700px; 
+
 
 	
 }
 .profile-wrapper{	
 margin-top:5px;	
-margin-left:125px;
+margin-left:25px;
 border-right: solid #808080 1px;
 height:800px;
 border-top: solid #808080 1px;
 border-bottom:  solid #808080 1px;
-width:60%;
+width:110%;
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
 border-radius:5px;
@@ -520,7 +515,7 @@ border-radius:5px;
 }
 .middle{
 position :absolute;
-  left:555px;
+  left:435px;
   top:110px;	
 }
 .line_divider{	
@@ -540,6 +535,7 @@ position :absolute;
 	margin-top:10px;
 }
 .details-title{
+  margin-left:40px;
 	text-align:center;
 	padding:3px;
 	background-color:#00AFF0;

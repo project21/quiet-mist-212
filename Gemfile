@@ -11,8 +11,6 @@ gem 'uglifier'
 
 gem 'jquery-rails'
 gem 'rake', '0.8.7'
-# Bundle edge Rails instead:
-# gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 platform :mswin, :mingw do
   gem 'sqlite3'
@@ -22,12 +20,11 @@ platform :ruby,  do
   gem 'pg'
 end
 
-gem 'devise'
+gem 'devise', '1.4.2'
 gem 'omniauth'
 gem "foreigner"
 
 gem 'simple_form'
-#gem "rake", "0.8.7"
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -38,16 +35,5 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'machinist', '>= 2.0.0.beta2'
 end
-
-# Bundle the extra gems:
-# gem 'bj'
-# gem 'nokogiri'
-# gem 'aws-s3', :require => 'aws/s3'
-
-# Bundle gems for the local environment. Make sure to
-# put test-only gems in this group so their generators
-# and rake tasks are available in development mode:
-# group :development, :test do
-#   gem 'webrat'
-# end
