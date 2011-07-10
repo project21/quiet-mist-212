@@ -1,40 +1,24 @@
 class BooksController < ApplicationController
+  respond_to :json
   
   def index
-    @book ||= Book.new
-
-    if request.xhr?
-      render :json => Book.all and return
-    end
+    respond_with current_user.books
   end
 
-  def edit
-  end
+  def edit; end
 
-  def new
-    @book = Book.new
-  # redirect_to :controller=>"home" ,:action=>"index"
-  end
+  #def new; end
+  #def destroy; end
 
   def create
-    #@book=current_user.books.build(params[:book])
-    @book=Book.new(params[:book])
+    @book = Book.new(params[:book])
     if @book.save
+      BookOwnership.create!(:user => current_user, :book => @book)
       render :json => @book, :status => :created,
     else
       render :json => @book.errors, :status => :unprocessable_entity
     end
-    # if @book.save
-     #redirect_to '/home/index'
-     else
-     render :action=>'new'
-     #@book.save
-     #respond_to do |format|  
-    # forma
- # end
   end
-
- 
 
   def show
     @book = Book.find(params[:id])
