@@ -14,7 +14,7 @@ class BooksController < ApplicationController
     @book = Book.new(params[:book])
     if @book.save
       BookOwnership.create!(:user => current_user, :book => @book)
-      render :json => @book, :status => :created,
+      render :json => @book, :status => :created
     else
       render :json => @book.errors, :status => :unprocessable_entity
     end
