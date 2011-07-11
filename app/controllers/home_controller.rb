@@ -11,6 +11,10 @@ class HomeController < ApplicationController
   def edit
   end
 
+def setting
+  
+end
+  
   def welcome
   end
 

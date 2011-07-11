@@ -2,20 +2,19 @@
 
 <div class="profile-wrapper">
 <div id="profile-left">
-<div class="left-bar-separator">
+<div class="left-bar-separator"></div>
 <div class="proline_separator"></div>
 <%=button_to 'Connect',{:controller=>"books",:action=>"new"},{:class=>"connectbutton"}%><%=button_to 'Message me',{:controller=>"books",:action=>"new"},{:class=>"messagebutton"}%>
 <div class="proline_separator"></div>
 <div class="details-title" >Details</div>
-<span style="color:#808080;font-weight:bold;">Highschool:</span>
+<span style="color:#808080;font-weight:bold;margin-left:7%;">Highschool:</span>
  <div class="lightline"></div>
-<span style="color:#808080;font-weight:bold;">Possible professions:</span>
+<span style="color:#808080;font-weight:bold;margin-left:7%;">Possible professions:</span>
 <div class="lightline"></div>
-<span style="color:#808080;font-weight:bold;">Year:</span>
+<span style="color:#808080;font-weight:bold;margin-left:7%;">Year:</span>
  <div class="lightline"></div>
+</div>
 
-</div>
-</div>
 
 <div class="middle">
 <div class="bar-separator" ></div>
@@ -46,6 +45,5 @@
 <span class="past-classes"></span>
 <div class="dotted_line_divider"></div>
 </div>
-
 </div>
 <%=render 'footer'%>

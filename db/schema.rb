@@ -17,7 +17,6 @@ ActiveRecord::Schema.define(:version => 20110710005703) do
     t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "integer"
     t.integer  "reserver_id"
     t.string   "condition",                                           :default => "used", :null => false
     t.text     "condition_description"
