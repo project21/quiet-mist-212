@@ -13,13 +13,15 @@
 ActiveRecord::Schema.define(:version => 20110710005703) do
 
   create_table "book_ownerships", :force => true do |t|
-    t.integer  "book_id",                                                    :null => false
-    t.integer  "user_id",                                                    :null => false
+    t.integer  "book_id",                                                                 :null => false
+    t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "integer"
     t.integer  "reserver_id"
-    t.decimal  "offer",       :precision => 5, :scale => 2, :default => 0.0
+    t.string   "condition",                                           :default => "used", :null => false
+    t.text     "condition_description"
+    t.decimal  "offer",                 :precision => 5, :scale => 2, :default => 0.0
     t.datetime "offered_at"
     t.datetime "accepted_at"
   end

@@ -16,7 +16,7 @@ platform :mswin, :mingw do
   gem 'sqlite3'
 end
 
-platform :ruby,  do
+platform :ruby do
   gem 'pg'
 end
 
@@ -25,6 +25,8 @@ gem 'omniauth'
 gem "foreigner"
 
 gem 'simple_form'
+gem 'enumerated_attribute'
+
 # Use unicorn as the web server
 # gem 'unicorn'
 
@@ -35,5 +37,7 @@ end
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
+  gem 'database_cleaner'
   gem 'machinist', '>= 2.0.0.beta2'
+  gem 'rr'
 end
