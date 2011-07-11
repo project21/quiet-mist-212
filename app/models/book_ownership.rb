@@ -1,4 +1,6 @@
 class BookOwnership < ActiveRecord::Base
+  enumerated_attribute :condition, %w(new like_new ^used)
+
   belongs_to :user
   belongs_to :book
 
@@ -8,46 +10,53 @@ class BookOwnership < ActiveRecord::Base
   validates_presence_of :reserver_id, :if => :offer?
   validates_presence_of :offer, :if => :reserver_id?
 
+  before_save :validate_reserver, :if => :reserver_id?
+
+  def validate_reserver
+    if reserver_id == user_id
+      errors.add :reserver_id, "Cannot reserver your own book"
+      self.reserver_id = nil
+      return false
+    end
+  end
+
   def reserved?; !!reserver_id end
 
   def accepted?; !!accepted_at end
 
-  def offer! user, amount
+  def reserve! user, amount
     self.reserver = user
+    self.reserver_id = user.id
     self.offer = amount
     self.offered_at = Time.now
-    save!
+    save
   end
 
   def reject!
     if accepted?
       errors.add :base, "offer has already been accepted, now it must be canceled"
-    elsif !offered?
+    elsif !reserved?
       errors.add :base, "no offer has abeen made"
     else
-      update_attribute :reserver_id => nil
+      update_attributes :reserver_id => nil
     end
-  end
-
-  def offered?
-    !!offer && offered_at?
   end
 
   def accept!
     if accepted?
       errors.add :base, "offer has alread been accepted"
-    elsif !offered?
+    elsif !reserved?
       errors.add :base, "no offer has abeen made"
     else
-      update_attribute :accepted_at => Time.now
+      update_attributes :accepted_at => Time.now
     end
   end
 
   def cancel!
-    if accepted?
-      update_attribute :reserver_id => nil, :accepted_at => Time.now
-    elsif !offered?
+    if !reserved?
       errors.add :base, "no offer has abeen made"
+    elsif accepted?
+      update_attributes :reserver_id => nil, :accepted_at => nil
     else
       errors.add :base, "can only cancel an accepted offer"
     end

@@ -4,6 +4,8 @@ class AddBookReservation < ActiveRecord::Migration
       t.change :user_id, :integer, :null => false
       t.change :book_id, :integer, :null => false
       t.integer :reserver_id
+      t.string :condition, :null => false, :default => 'used'
+      t.text :condition_description
       t.decimal :offer, :precision => 5, :scale => 2, :default => 0
       t.datetime :offered_at
       t.datetime :accepted_at
@@ -11,6 +13,6 @@ class AddBookReservation < ActiveRecord::Migration
   end
 
   def self.down
-    remove_column :book_ownerships, :offer, :reserver_id, :offered_at, :accepted_at
+    remove_column :book_ownerships, :offer, :reserver_id, :offered_at, :accepted_at, :condition, :condition_description
   end
 end
