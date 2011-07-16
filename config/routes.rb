@@ -1,4 +1,6 @@
 Campus::Application.routes.draw do
+  get "landing_page/index"
+ 
   namespace :setting do
     get "show"
     get "privacy"

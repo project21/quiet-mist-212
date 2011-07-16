@@ -6,11 +6,11 @@
 <div class="inbox-content">
 
 <span></span>
-<span><b>Subject:</b></span>
-<span ></span>
-<%button_to 'Reply',{:controller=>"books",:action=>"new"},{:class=>"replybutton"} %>&nbsp;<%button_to 'Delete',{:controller=>"books",:action=>"new"},{:class=>"replybutton"} %>
+<span><b>Subject:</b></span><br/>
+<span >There is one simple truth about unit testing... it is much easy to start unit testing early on in your project. Unit testing becomes more difficult to implement as your application grows more complex.</span>
+<%= button_to 'Reply',{:controller=>"books",:action=>"new"},{:class=>"inbox-button"} %><%=button_to 'Delete',{:controller=>"books",:action=>"new"},{:class=>"inbox-button"} %><br/>
 <span style="color:#808080;font-size:11px;">Time</span>
-<div class="dotted_line_divider">
+<div class="inbox-dotted-line">
 
 </div>
 </div>

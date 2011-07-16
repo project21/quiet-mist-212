@@ -1,0 +1,35 @@
+
+<div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"landpagelogo") %></div>
+<div class="headerline"></div>
+
+<div class="land-background">
+
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+<div class="landing-text">The Social Academic Network<br/><div class="landheadline"></div>
+Makes learning & campus life easier and social!<br/>
+  COMING SOON!<br/>
+<span style="font-size:14px;color:#5F5F63;">Leave us your email and we will notify you as soon as we launch the first version!</span>
+</div>
+  <table><tr>
+ <td> <%= f.email_field :email,:class=>"roundlandfield",:placeholder => 'Enter your Email'  %></td>
+  <td><%= f.submit "Submit", :class=>"landpage-sign-button" %></td>
+</tr></table>
+<%end%>
+</div>
+
+<div class="arrow">
+<%=image_tag("forward2.png")%> <span style="margin-top:-40px;">Get to know students in your course stream and co-operate with them</span><br/>
+<%=image_tag("forward2.png")%> Let your classmates know what you are strugling with and get some help quick<br/>
+<%=image_tag("forward2.png")%>Borrow studying materials from seniors<br/>
+<%=image_tag("forward2.png")%>Don't buy textbook online anymore,Reserve from your fellow student in your campus<br/>
+<%=image_tag("forward2.png")%>Form a study group!<br/>
+</div>
+
+<div style="margin-left:85%;%">
+<%=link_to image_tag("fbook.png"),"https://www.facebook.com/pages/campusmachinecom-COMING-THIS-FALL/112152688879535?ref=hnav"%>
+<%=link_to image_tag("twitter.png"),"http://twitter.com/#!/campusmachine"%>
+</div>
+
+<div class="footerline"></div>
+<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
+

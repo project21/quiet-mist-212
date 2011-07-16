@@ -1,5 +1,6 @@
 
-<%=form_for :posts do |f|%>
+<%=form_for :posts, do |f|%>
 <%=f.text_field :content,:class=>"general-field round"%>
 <%=f.submit 'post',:class=>"postbutton"%>
 <%end%>
+

@@ -1,38 +1,46 @@
 <div style="margin-left:140px;">
+ <div id="progress"></div><label id="amount">0%</label> <br/>
+<div class="form-panel" id="user-form">
 <%=form_for :users do |f|%>
 <fieldset>
 <legend>Basic details</legend>
 <%= f.label :school %><span style="color:red;margin-right:2px;">*</span>
-  <%= select_tag(:school, options_for_select([['Choose your school',1 ],['Sierra Community college',2],['Sacramento state University',2]]),:class=>"round") %><br/>
+ <%= f.text_field :school,:size=>"45",:class=>"round",:id=>"school" %><br/>
  <label>Major</label>
   <%= select_tag(:major, options_for_select([['undeclared',1 ],['Computer Science',2]]),:class=>"round") %><br/>
 <%= f.label :year %>
   <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
 <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
  <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
+<%end%>
 </fieldset>
+</div>
 
-
-<%=fields_for :books do |b|%>
+<div class="form-panel ui-helper-hidden" >
+<%=form_for  :books do |b|%>
 <fieldset>
 <legend>Add Books</legend>
-<label>Title:</label><%= b.text_field :title,:size=>"45",:class=>"round" %><br/>
-<label>Author:</label><%= b.text_field :author,:size=>"45",:class=>"round"  %><br/>
-<label>Edition:</label><%= b.text_field :edition,:size=>"45",:class=>"round"  %><br/>
+<label>Title:</label><%= b.text_field :title,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
+<a href="#" id="addScnt">Add field</a>
+<div id="p_scents"></div>
+
 </fieldset>
 <%end%>
+</div>
 
-
-<%=fields_for :courses do |c|%>
+<div class="form-panel ui-helper-hidden" >
+<%=form_for :courses,:class=>"form-panel ui-helper-hidden" do |c|%>
 <fieldset>
 <legend>Your current classes</legend>
 <label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
-<label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round"  %><br/>
-<label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round"  %><br/>
+<a href="#" id="addcf">Add field</a>
+<div id="add-class-field"></div>
 <%end%>
 </fieldset>
+</div>
 
-<%=fields_for :strengths do |s|%>
+<div class="form-panel ui-helper-hidden" >
+<%=form_for :strengths,:class=>" ui-helper-hidden" do |s|%>
 <fieldset>
 <legend>subjects you are strong in</legend>
 <label>Subject:</label></td> <td><%= s.text_field :subject,:size=>"45",:class=>"round" %><br/>
@@ -40,8 +48,10 @@
 <label>Details:</label></td><td><%= s.text_area :details,:rows=>"3",:class=>"round"  %><br/>
 </fieldset>
 <%end%>
+</div>
 
-<%=fields_for :weakenesses do |w|%>
+<div class="form-panel ui-helper-hidden" >
+<%=form_for :weakenesses,:class=>" ui-helper-hidden" do |w|%>
 <fieldset>
 <legend>Subjects you are weak in</legend>
 <label>Subject:</label><%= w.text_field :subject,:size=>"45",:class=>"round" %><br/>
@@ -49,8 +59,10 @@
 <label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
 </fieldset>
 <%end%>
+</div>
 
-<%=fields_for :class_takens do |c|%>
+<div class="form-panel ui-helper-hidden" id="taken-classes">
+<%=form_for :class_takens,:class=>" ui-helper-hidden" do |c|%>
 <fieldset>
 <legend>Classes taken in the past</legend>
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %><br/>
@@ -58,7 +70,7 @@
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
 <%end%>
 </fieldset>
+</div>
 
-<%end%>
 
   </div>
