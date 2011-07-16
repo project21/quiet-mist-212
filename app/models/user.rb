@@ -1,10 +1,16 @@
 class User < ActiveRecord::Base
+  belongs_to :campus
+  has_many :posts
+
   has_many :book_ownerships
   has_many :books, :through => :book_ownerships
+
+
   has_many :strengths
   has_many :weaknesses
+
   #has_and_belongs_to_many :courses
- validates_presence_of :firstname, :lastname, :school
+  validates_presence_of :firstname, :lastname, :school
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable

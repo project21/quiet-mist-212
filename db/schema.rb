@@ -10,13 +10,14 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110710005703) do
+ActiveRecord::Schema.define(:version => 20110716220232) do
 
   create_table "book_ownerships", :force => true do |t|
     t.integer  "book_id",                                                                 :null => false
     t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "integer"
     t.integer  "reserver_id"
     t.string   "condition",                                           :default => "used", :null => false
     t.text     "condition_description"
@@ -33,6 +34,12 @@ ActiveRecord::Schema.define(:version => 20110710005703) do
     t.string   "edition"
   end
 
+  create_table "campuses", :force => true do |t|
+    t.string  "name"
+    t.integer "postal_code"
+    t.integer "location_id"
+  end
+
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"
     t.datetime "created_at"
@@ -43,12 +50,18 @@ ActiveRecord::Schema.define(:version => 20110710005703) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "campus_id"
   end
 
   create_table "posts", :force => true do |t|
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "user_id"
+    t.integer  "course_id"
+    t.string   "post_type"
+    t.integer  "post_type_id"
+    t.text     "content_data"
   end
 
   create_table "professions", :force => true do |t|
@@ -100,6 +113,7 @@ ActiveRecord::Schema.define(:version => 20110710005703) do
     t.string   "sex"
     t.integer  "zipcode"
     t.string   "highschool"
+    t.integer  "campus_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
