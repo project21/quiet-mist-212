@@ -1,5 +1,5 @@
 Campus::Application.routes.draw do
-  get "landing_page/index"
+  match "landing_page/index", :to => 'landing_page#index'
  
   namespace :setting do
     get "show"

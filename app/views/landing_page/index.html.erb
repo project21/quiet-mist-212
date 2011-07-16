@@ -4,8 +4,8 @@
 
 <div class="land-background">
 
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-<div class="landing-text">The Social Academic Network<br/><div class="landheadline"></div>
+  <%= form_for(User.new, :url => '/landing') do |f| %>
+<div class="landing-text">Your Campus Social Network<br/><div class="landheadline"></div>
 Makes learning & campus life easier and social!<br/>
   COMING SOON!<br/>
 <span style="font-size:14px;color:#5F5F63;">Leave us your email and we will notify you as soon as we launch the first version!</span>
@@ -18,10 +18,9 @@ Makes learning & campus life easier and social!<br/>
 </div>
 
 <div class="arrow">
-<%=image_tag("forward2.png")%> <span style="margin-top:-40px;">Get to know students in your course stream and co-operate with them</span><br/>
+<%=image_tag("forward2.png")%>Reserve textbooks from your fellow student in your campus<br/>
 <%=image_tag("forward2.png")%> Let your classmates know what you are strugling with and get some help quick<br/>
 <%=image_tag("forward2.png")%>Borrow studying materials from seniors<br/>
-<%=image_tag("forward2.png")%>Don't buy textbook online anymore,Reserve from your fellow student in your campus<br/>
 <%=image_tag("forward2.png")%>Form a study group!<br/>
 </div>
 
