@@ -30,6 +30,12 @@ Campus::Application.routes.draw do
     get "welcome"
   end
   
+  resources :book_ownerships do
+  end
+
+  namespace :books do
+    get 'search'
+  end
 
   root :to=> "home#show"
 end

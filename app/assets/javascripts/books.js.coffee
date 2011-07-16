@@ -8,17 +8,17 @@ _.extend Backbone.Model.prototype,
        _.clone(@attributes)
     object
 
-Book = Backbone.Model.extend(
-  url: -> if @id then '/books/' + @id else '/books'
+BookOwnership = Backbone.Model.extend(
+  url: -> if @id then '/book_ownerships/' + @id else '/book_ownerships'
   model_name: 'book'
 )
 
-BookCollection = Backbone.Collection.extend(
-  model : Book
-  url: '/books'
+BookOwnershipCollection = Backbone.Collection.extend(
+  model : BookOwnership
+  url: '/book_ownerships'
 )
 
-window.Books = new BookCollection
+window.Books = new BookOwnershipCollection
 
 BookView = Backbone.View.extend(
   tagName:  "tr"
