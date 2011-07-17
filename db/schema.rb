@@ -34,6 +34,12 @@ ActiveRecord::Schema.define(:version => 20110717020301) do
     t.string   "edition"
   end
 
+  create_table "campuses", :force => true do |t|
+    t.string  "name"
+    t.integer "postal_code"
+    t.integer "location_id"
+  end
+
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"
     t.datetime "created_at"

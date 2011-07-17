@@ -1,5 +1,5 @@
 class User < ActiveRecord::Base
-  belongs_to :campus
+  belongs_to :school
 
   has_many :posts
   has_many :user_courses
@@ -13,7 +13,8 @@ class User < ActiveRecord::Base
   has_many :weaknesses
 
   #has_and_belongs_to_many :courses
-  validates_presence_of :firstname, :lastname, :school
+  validates_presence_of :firstname, :lastname
+  validates_presence_of :school_id, :if => :registered?
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
