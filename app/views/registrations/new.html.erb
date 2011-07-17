@@ -16,9 +16,6 @@
 <tr><td><label>Last name</label></td>
   <td><%= f.text_field :lastname,:class=>"round" %></td></tr>
 
-<tr><td><%= f.label :school %></td>
-  <td><%= f.text_field :school,:class=>"round" %></td></tr>
-
 <tr><td> <label>Major</label></td>
   <td><%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]]),:class=>"round") %></td></tr>
 

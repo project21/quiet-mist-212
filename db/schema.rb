@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110717004747) do
+ActiveRecord::Schema.define(:version => 20110717020301) do
 
   create_table "book_ownerships", :force => true do |t|
     t.integer  "book_id",                                                                 :null => false
@@ -114,12 +114,12 @@ ActiveRecord::Schema.define(:version => 20110717004747) do
     t.datetime "updated_at"
     t.string   "firstname"
     t.string   "lastname"
-    t.string   "school"
     t.string   "major"
     t.string   "sex"
     t.integer  "zipcode"
     t.string   "highschool"
-    t.integer  "school_id",                                           :null => false
+    t.boolean  "registered"
+    t.integer  "school_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
