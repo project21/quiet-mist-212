@@ -7,6 +7,7 @@
 //= require "jquery"
 //= require "underscore"
 //= require "backbone"
+//= require "lib"
 //= require_tree .
 
 jQuery.ajaxSetup({ 
@@ -16,7 +17,9 @@ jQuery.ajaxSetup({
 });
 
 $(document).ready(function() {
+  /*
 	$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
+    */
 	
 	$(".addbook-field").hide();
 $('.addbookbutton').click(function(){
@@ -50,19 +53,6 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
 			   height:150,
 			   position:'center'
 			   });$('#suggest').dialog('open');}});
-
-
-function form_to_json(e){
-  e.preventDefault();
-  return $(e.currentTarget).toObject({rails: true});
-}
-
-$(".attach-text-box").hide();
-$('.attach-message').click(function(e){
-	{e.preventDefault(); 
-				if (!$(".attach-text-box").is(':visible')) 
-					$('.attach-text-box').show('fast');}
-});
 
 
 

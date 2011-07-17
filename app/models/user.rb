@@ -1,6 +1,9 @@
 class User < ActiveRecord::Base
   belongs_to :campus
+
   has_many :posts
+  has_many :user_courses
+  has_many :courses, :through => :user_courses
 
   has_many :book_ownerships
   has_many :books, :through => :book_ownerships

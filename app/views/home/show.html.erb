@@ -22,51 +22,56 @@
  </ul>
 <p><%= button_to "Add a Book",{:controller=>"books",:action=>"new"},{:class=>"addbookbutton"} %></p>
 <%= form_for(:book) do |f| %>
- <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook",:size=>"38"%>
- 
+  <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook",:size=>"38"%>
 <%end%>
 </div>
 
-<div class="side-box">
-<h4>My School buddies</h4>
-</div>
+    <div class="side-box">
+      <h4>My School buddies</h4>
+    </div>
 
-</div>
-</div>
+    </div>
+  </div>
 
-<div id="right">
-<div class="right-side-box">
-<h4>Students you may connect with</h4>
-</div>
+  <div id="right">
+    <div class="right-side-box">
+      <h4>Students you may connect with</h4>
+    </div>
 
-<div class="right-side-box">
-<h4>Students you went to highschool with</h4>
-</div>
-</div>
+    <div class="right-side-box">
+      <h4>Students you went to highschool with</h4>
+    </div>
+  </div>
 
 <div id="center">
+  <p id="suggest" ><b id="suggest">Are you sure about this?</b></p>
 
+  <div class="container" id="communication">
+    <div class="notification" id="inbox-partial"><%=render 'request'%></div>
+    <div class="notification" id="request-partial">hello</div>
 
-<div id="suggest" ><b>Are you sure about this?</b></div>
-<div class="container">
-<div class="notification" id="inbox-partial"><%=render 'request'%></div>
-<div class="notification" id="request-partial">hello</div>
+    <div style="position:relative;">
+      <%= select_tag(:school, options_for_select([
+             ['Pick your status',1 ],
+             ['I need a study guide',2],
+             ['I am looking for a textbook',3],
+             ['I need a study buddy',4],
+             ['I Want to form a study group',5],
+             ['I want to borrow a textbook',6],
+             ['Can anybody upload notes for me',7]
+      ]),:id=>"status") %>
 
-<div style="position:relative;">
-<%= select_tag(:school, options_for_select([['Pick your status',1 ],['I need a study guide',2],['I am looking for a textbook',3],['I need a study buddy',4],['I Want to form a study group',5],['I want to borrow a textbook',6],['Can anybody upload notes for me',7]]),:id=>"status") %>
+      <%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
 
-<%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
-<%=form_for :posts do |f|%>
-<%=f.text_field :content,:class=>"general-field round"%>
-<%=f.submit 'post',:class=>"postbutton"%>
-<%end%>
+      <%=form_for (Post.new) do |f|%>
+        <%=f.text_field :content,:class=>"general-field round"%>
+        <%=f.submit 'post',:class=>"postbutton"%>
+      <%end%>
 
-<div id="post"></div>
-<%=render 'post'%>
+      <table id="posts-table">
+        <tbody></tbody>
+      </table>
+    </div>
+
+  </div>
 </div>
-
-</div>
-</div>
-
-
-
