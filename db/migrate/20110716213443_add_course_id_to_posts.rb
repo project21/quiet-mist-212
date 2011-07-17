@@ -1,7 +1,7 @@
 class AddCourseIdToPosts < ActiveRecord::Migration
   def up
     change_table :posts do |t|
-      t.integer :user_id, :null => false
+      t.integer :user_id, :null => false,:default => 1
       t.integer :course_id
 
       t.string :post_type

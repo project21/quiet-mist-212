@@ -65,9 +65,14 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
     $("#amount").text($("#progress").progressbar("option", "value") + "%");  
   } });  
   //set click handler for next button  
-  $(".savebutton").click(function(e) {  
-  //stop form submission  
-  e.preventDefault();  
+  $(".savebutton").click(function() {  
+   var formToSubmit = $(this).serialize();
+    $.ajax({
+        url: $(this).attr('action'), 
+        data: formToSubmit,
+        dataType: "JSON" 
+          });
+      // return false; 
   //look at each panel  
   $(".form-panel").each(function() {  
     //if it's not the first panel enable the back button  

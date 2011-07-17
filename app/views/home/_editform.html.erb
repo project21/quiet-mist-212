@@ -12,8 +12,10 @@
   <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
 <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
  <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
-<%end%>
 </fieldset>
+<p><%= button_to "save and continue",{:class=>"savebutton"} %></p>
+<%end%>
+
 </div>
 
 <div class="form-panel ui-helper-hidden" >
@@ -25,6 +27,7 @@
 <div id="p_scents"></div>
 
 </fieldset>
+<p><%=f.submit  "save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -35,8 +38,10 @@
 <label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
 <a href="#" id="addcf">Add field</a>
 <div id="add-class-field"></div>
-<%end%>
 </fieldset>
+<p><%= f.submit  "save and continue",{:class=>"savebutton"} %></p>
+<%end%>
+
 </div>
 
 <div class="form-panel ui-helper-hidden" >
@@ -47,6 +52,7 @@
 <label>Topic:</label></td> <td><%= s.text_field :topic,:size=>"45",:class=>"round"  %><br/>
 <label>Details:</label></td><td><%= s.text_area :details,:rows=>"3",:class=>"round"  %><br/>
 </fieldset>
+<p><%= f.submit  "save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -58,6 +64,7 @@
 <label>Topic:</label><%= w.text_field :topic,:size=>"45",:class=>"round"  %><br/>
 <label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
 </fieldset>
+<p><%= f.submit  "save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -68,8 +75,10 @@
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %><br/>
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
-<%end%>
 </fieldset>
+<p><%= f.submit  "save and continue",{:class=>"savebutton"} %></p>
+<%end%>
+
 </div>
 
 

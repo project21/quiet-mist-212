@@ -1,4 +1,8 @@
 Campus::Application.routes.draw do
+  get "course/create"
+
+  get "school/create"
+
   match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }

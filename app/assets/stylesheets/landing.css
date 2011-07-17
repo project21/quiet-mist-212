@@ -3,7 +3,7 @@
 .land-background{
 width:1000px;	
 margin-top:10px;
-margin-left:18%;	
+margin-left:1%;	
 background:#00AFF0;
 padding:40px;
 -webkit-box-shadow:0px 10px 15px #000;
@@ -14,7 +14,7 @@ padding:40px;
  background-image:-webkit-gradient(linear,0% 50%,100% 50%,from(#00AFF0),to(#10285C) );
  background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#10285C );
 }
-.arrow{margin-left:18%;margin-top:10px;font-family: "Century Gothic";font-size:x-large}
+.arrow{margin-left:1%;margin-top:10px;font-family: "Century Gothic";font-size:x-large}
 .landpage-sign-button{
  margin-left: auto;
   margin-right: auto;
@@ -42,6 +42,6 @@ padding:40px;
  font-size:24px;
 }
 .landing-text{color:white;font-size:24px;font-family:"Bookshelf Symbol 7";  font-weight:bolder;}
-.landpagelogo{height:70px;width:160px;margin-left:15%;}
-.landheadline{border-top:solid white 2px;width:310px;}
+.landpagelogo{height:70px;width:160px;margin-left:1%;}
+.landheadline{border-top:solid white 2px;width:345px;}
 
