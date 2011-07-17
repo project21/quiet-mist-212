@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(:version => 20110717004747) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "school_id",  :null => false
   end
 
   create_table "posts", :force => true do |t|
@@ -67,6 +68,12 @@ ActiveRecord::Schema.define(:version => 20110717004747) do
     t.text     "reply_content"
     t.datetime "created_at"
     t.datetime "updated_at"
+  end
+
+  create_table "schools", :force => true do |t|
+    t.string  "name",        :null => false
+    t.integer "postal_code", :null => false
+    t.integer "location_id"
   end
 
   create_table "skills", :force => true do |t|
@@ -112,6 +119,7 @@ ActiveRecord::Schema.define(:version => 20110717004747) do
     t.string   "sex"
     t.integer  "zipcode"
     t.string   "highschool"
+    t.integer  "school_id",                                           :null => false
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
