@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   has_many :book_ownerships
   has_many :books, :through => :book_ownerships
 
+  has_many :authentications
 
   has_many :strengths
   has_many :weaknesses

@@ -1,4 +1,5 @@
 Campus::Application.routes.draw do
+  match '/auth/:provider/callback' => 'authentications#create'  
   match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
