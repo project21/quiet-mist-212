@@ -1,12 +1,12 @@
 Campus::Application.routes.draw do
-<<<<<<< HEAD
+
   get "course/create"
 
   get "school/create"
 
-=======
+
   match '/auth/:provider/callback' => 'authentications#create'  
->>>>>>> 239aa36ecbcd9622859598c6b302c0899178c864
+
   match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }

@@ -66,6 +66,7 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
   } });  
   //set click handler for next button  
   $(".savebutton").click(function() {  
+  	alert("helo");
    var formToSubmit = $(this).serialize();
     $.ajax({
         url: $(this).attr('action'), 

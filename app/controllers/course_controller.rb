@@ -1,5 +1,5 @@
 class CourseController < ApplicationController
-  def create
+  
 
 	respond_to :json
   def create
