@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :school
+  delegate :name, :to => :school, :prefix => true, :allow_nil => true
 
   has_many :posts
   has_many :user_courses
@@ -29,7 +30,7 @@ class User < ActiveRecord::Base
   end  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school,:major,:sex,:zipcode
+  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school_id,:major,:sex,:zipcode
   
   def full_name
     [current_user.firstname,current_user.lastname].join("")

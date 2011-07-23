@@ -34,10 +34,6 @@ class AuthenticationsController < ApplicationController
         redirect_to new_user_registration_url
       end  
     end
-  rescue
-    require 'ruby-debug';debugger
-    puts "OMG"
-    nil
   end  
     
   def destroy  

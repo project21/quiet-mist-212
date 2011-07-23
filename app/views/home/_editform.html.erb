@@ -1,19 +1,21 @@
 <div style="margin-left:140px;">
- <div id="progress"></div><label id="amount">0%</label> <br/>
-<div class="form-panel" id="user-form">
-<%=form_for :user,:url => '/users',:remote=>true do |f|%>
-<fieldset>
-<legend>Basic details</legend>
-<br/>
-<%= f.label :school %><span style="color:red;margin-right:2px;">*</span>
- <%= f.text_field :school,:size=>"45",:class=>"round",:id=>"school" %><br/>
- 
-</fieldset>
-<p><%= f.submit "save and continue",{:class=>"savebutton" }%></p>
+  <div id="progress"></div>
+  <label id="amount">0%</label>
+  <br/>
 
-<%end%>
-
-</div>
+  <div class="form-panel" id="user-form">
+    <fieldset>
+      <legend>Basic details</legend>
+      <%=form_for current_user, :url => '/users' do |f|%>
+        <br/>
+        <%= f.hidden_field :school_id, :id => 'school_id' %>
+        <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
+        <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
+        <br/>
+        <p><%= f.submit "save and continue",{:class=>"savebutton" }%></p>
+      <%end%>
+    </fieldset>
+  </div>
 
 <div class="form-panel ui-helper-hidden" >
 <%=form_for  :books do |b|%>
