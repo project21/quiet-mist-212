@@ -2,14 +2,16 @@
 <div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %></div>
 <div class="headerline"></div>
 </div>
+
 <%= form_for(resource, :as => resource_name ,:url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-
+<div style="margin-left:6%;margin-top:10px;">
+<%=link_to image_tag("fb_login_icon.gif",:class=>"fblogin") %><br/>
+<%=link_to image_tag("twitter_login.png",:class=>"fblogin") %><br/>
+</div>
   <div class="registration">
-<h2 Style="margin-top:70px;">Sign up</h2>
-
-<table>
-  
+<h2 >Sign up</h2>
+<table> 
   <tr><td><label>First name</label></td>
   <td><%= f.text_field :firstname,:class=>"round" %></td></tr>
 

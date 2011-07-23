@@ -1,19 +1,16 @@
 <div style="margin-left:140px;">
  <div id="progress"></div><label id="amount">0%</label> <br/>
 <div class="form-panel" id="user-form">
-<%=form_for :user,:url => '/users' do |f|%>
+<%=form_for :user,:url => '/users',:remote=>true do |f|%>
 <fieldset>
 <legend>Basic details</legend>
+<br/>
 <%= f.label :school %><span style="color:red;margin-right:2px;">*</span>
  <%= f.text_field :school,:size=>"45",:class=>"round",:id=>"school" %><br/>
- <label>Major</label>
-  <%= select_tag(:major, options_for_select([['undeclared',1 ],['Computer Science',2]]),:class=>"round") %><br/>
-<%= f.label :year %>
-  <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
-<%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
- <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
+ 
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton" }%></p>
+<p><%= f.submit "save and continue",{:class=>"savebutton" }%></p>
+
 <%end%>
 
 </div>
@@ -27,7 +24,7 @@
 <div id="p_scents"></div>
 
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton"} %>%></p>
+<p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -39,7 +36,7 @@
 <a href="#" id="addcf">Add field</a>
 <div id="add-class-field"></div>
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton"} %> %></p>
+<p><%= c.submit "save and continue",{:class=>"savebutton"} %> </p>
 <%end%>
 
 </div>
@@ -52,7 +49,7 @@
 <label>Topic:</label></td> <td><%= s.text_field :topic,:size=>"45",:class=>"round"  %><br/>
 <label>Details:</label></td><td><%= s.text_area :details,:rows=>"3",:class=>"round"  %><br/>
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton"} %></p>
+<p><%= s.submit "save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -64,7 +61,7 @@
 <label>Topic:</label><%= w.text_field :topic,:size=>"45",:class=>"round"  %><br/>
 <label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton"} %></p>
+<p><%= w.submit"save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 </div>
 
@@ -76,7 +73,7 @@
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
 <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
 </fieldset>
-<p><%= button_to "save and continue",{:class=>"savebutton"} %></p>
+<p><%= c.submit"save and continue",{:class=>"savebutton"} %></p>
 <%end%>
 
 </div>

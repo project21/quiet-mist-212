@@ -13,4 +13,5 @@ private
       @user.valid?  
     end  
   end 
+
 end

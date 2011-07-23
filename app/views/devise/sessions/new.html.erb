@@ -2,29 +2,45 @@
 <div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %></div>
 <div class="headerline"></div>
 </div>
-<div class="land-background">
-<div style="margin-left:55px;">
-<h2>Log in with facebook:</h2>
-<h2>Log in with your email:</h2>
 
+<div class="sign-background">
+<%=link_to image_tag("fb_login_icon.gif",:class=>"fblogin") %><br/>
+<div class="login-line"></div>
+<%=link_to image_tag("twitter_login.png",:class=>"fblogin") %><br/>
+<div class="login-line"></div>
+<button id="email-login-button">Log in with your email</button>
+<div class="login-line"></div>
+<div class="ui-helper-hidden" id="sign-in-form">
+<h3>Log in</h3>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <p><%= f.label :email%><br />
   <%= f.email_field :email,:class=>"round"  %></p>
+<div class="sign-in-dotted"></div>
   <p><%= f.label :password %><br />
   <%= f.password_field :password , :class=>"round"  %></p>
+<div class="sign-in-dotted"></div>
   <% if devise_mapping.rememberable? -%>
     <span><%= f.check_box :remember_me %> <%= f.label :remember_me %></span>
   <% end -%>
   <p><%= f.submit "Sign in", :class=>"sign_up_button" %></p>
 <% end %>
+
 <%= render :partial => "devise/shared/links" %>
-
 </div>
+<div class="login-bold-text">Makes learning & campus life easier and social!<br/>Get to know students in your Campus!<div class="login-headline"></div></div>
+<div style="position:absolute;left:15%;top:30%;">
 
-<div style="position:absolute;left:40%;top:15%;">
-<span class="landing-text">The Social Academic Network<br/><div class="landheadline"></div>
-Makes learning & campus life easier and social!<br/>
-</span>
+<ul class="login-bullets"><li><%=image_tag("bullets.png")%>
+<li> <h3>Sign up</h3> Sign in with your facebook account,<br/>twitter or sign up with your <br/> traditonal email</li>
+<li><%=image_tag("bullets.png")%></li><li> <h3>Pick your status</h3> Let your classmates know <br/> what you are strugling with<br/> or need help with,organize a <br/> study group and get some help </li>
+<li><%=image_tag("bullets.png")%></li><li><h3>Ask for materials</h3> Ask for studying materials<br/>  including textbooks from seniors</li>
+<li><%=image_tag("bullets.png")%></li><li><h3>Get responses</h3> Get alot of responses and help<br/> from your peers ,get connected <br/> and succeed</li>
+</ul>
 </div>
-
+<div style="margin-left:85%;margin-top:20%;">
+<%=link_to image_tag("fbook.png"),"https://www.facebook.com/pages/campusmachinecom-COMING-THIS-FALL/112152688879535?ref=hnav"%>
+<%=link_to image_tag("twitter.png"),"http://twitter.com/#!/campusmachine"%>
+</div>
+<div class="footerline"></div>
+<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
 

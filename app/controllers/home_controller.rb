@@ -18,6 +18,7 @@ def setting
 end
   
   def welcome
+    @school=School.all
   end
 
 protected

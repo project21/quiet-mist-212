@@ -17,18 +17,23 @@ jQuery.ajaxSetup({
 });
 
 $(document).ready(function() {
-  /*
-	$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
-    */
+$( '#general-field' ).elastic();
+//$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
+$('#email-login-button').click(function(){
+	if($('#sign-in-form').hasClass("ui-helper-hidden")){
+	$('#sign-in-form').removeClass('ui-helper-hidden');	}
+	else {$('#sign-in-form').addClass('ui-helper-hidden');  }
+	});    
 	
-	$(".addbook-field").hide();
+	
+$(".addbook-field").hide();
 $('.addbookbutton').click(function(){
 				if (!$(".addbook-field").is(':visible')) 
 					$('.addbook-field').show('fast');
 				else 
 					$('.addbook-field').hide('fast');
 	});
-	
+//$('#sign-in-form').removeClass('ui-helper-hidden');	
 	
 $('.notification').hide();		
  $('div.side-box span').click(function(e){
@@ -65,15 +70,17 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
     $("#amount").text($("#progress").progressbar("option", "value") + "%");  
   } });  
   //set click handler for next button  
-  $(".savebutton").click(function() {  
-  	alert("helo");
+  $(".savebutton").bind('click',function() {  
+  	$('form').submit(function() { 
    var formToSubmit = $(this).serialize();
     $.ajax({
         url: $(this).attr('action'), 
         data: formToSubmit,
         dataType: "JSON" 
           });
-      // return false; 
+     return false; 
+   });
+    // alert("helo");
   //look at each panel  
   $(".form-panel").each(function() {  
     //if it's not the first panel enable the back button  
@@ -177,7 +184,7 @@ var add_class = $('#add-class-field');
 "California State University, Sacramento, (Sacramento)",
 "California State University, San Bernardino, (San Bernardino)",
 "California State University, San Marcos, (San Marcos)",
-"California State University, Stanislaus, (Turlock)",
+"California State University, Stanislaus",
 "Humboldt State University, (Arcata)"]}); 
 
 });
