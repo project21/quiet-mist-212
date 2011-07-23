@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-  before_filter :registered!, :only => 'show'
+#  before_filter :registered!, :only => 'show'
 
   def show
     #@books = current_user.books.all

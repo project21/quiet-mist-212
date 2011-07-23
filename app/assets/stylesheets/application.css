@@ -18,7 +18,7 @@ background:#EAEFF0;
 font-size: 14px;
 margin-left:6%;
 top :15%;
-width : 29%;
+width : 42%;
 -moz-border-radius:    5px;
 -webkit-border-radius: 5px;
 border-radius:         5px;
@@ -201,8 +201,8 @@ text-decoration:underline;
     }
  
 .searchbutton{
-  margin-left:360px;
   position:absolute;
+  margin-left:45%;
 	padding:10px 20px 10px 20px;
     color:white;
     background-color: #00AFF0;
@@ -310,6 +310,7 @@ margin-top: 0px;
 .needhelp a:link{color:#3b5998; text-decoration:none;}
 .needhelp a:visited{color:#3b5998; text-decoration:none;}
 #center {
+  margin:auto;
  position:absolute;	
   left:24%;
   width:20%;
