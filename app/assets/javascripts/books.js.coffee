@@ -71,6 +71,5 @@ $(->
   # https://groups.google.com/group/backbonejs/browse_thread/thread/fa9d2969608e59d7
   $('.addbookbutton').live('click', (e)->
     e.preventDefault()
-    $('#new-book-form').dialog()
   )
 )
