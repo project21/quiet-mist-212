@@ -10,6 +10,9 @@ Campus::Application.routes.draw do
   match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
+  devise_scope :user do
+    match '/users/registered' => 'registrations#registered'
+  end
 
   resources :books
   resources :posts

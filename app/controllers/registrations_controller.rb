@@ -16,6 +16,11 @@ class RegistrationsController < Devise::RegistrationsController
     end
   end
 
+  def registered
+    current_user.register!
+    redirect_to '/home/show'
+  end
+
 private  
   def build_resource(*args)  
     super  
