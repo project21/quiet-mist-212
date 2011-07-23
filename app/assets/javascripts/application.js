@@ -69,23 +69,20 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
     //update amount label when value changes  
     $("#amount").text($("#progress").progressbar("option", "value") + "%");  
   } });  
+
   //set click handler for next button  
-  $(".savebutton").bind('click',function() {  
-  	$('form').submit(function() { 
-   var formToSubmit = $(this).serialize();
-    $.ajax({
+  $(".savebutton").closest('form').submit(function() { 
+     var formToSubmit = $(this).serialize();
+     $.ajax({
         url: $(this).attr('action'), 
         data: formToSubmit,
         dataType: "JSON",
         type: "POST"
           });
-     return false; 
-   });
-    // alert("helo");
   //look at each panel  
   $(".form-panel").each(function() {  
     //if it's not the first panel enable the back button  
-    ($(this).attr("id") != "panel1") ? null : $(".backbutton").attr("disabled", "");  
+    ($(this).attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
    
     //if the panel is visible fade it out  
     ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {  
@@ -93,8 +90,6 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
       //add hidden class and show the next panel  
       $(this).addClass("ui-helper-hidden").next().fadeIn("fast", function() {  
   
-        //if it's the last panel disable the next button  
-            ($(this).attr("id") != "taken-classes") ? null : $(".savebutton").attr("disabled", "");  
   
         //remove hidden class from new panel  
         $(this).removeClass("ui-helper-hidden");  
@@ -104,6 +99,8 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
       });  
       });  
     });  
+
+     return false; 
   });  
   
   $(".backbutton").click(function(e) {  
@@ -113,9 +110,6 @@ $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dia
   
   //look at each panel  
   $(".form-panel").each(function() {  
-  
-    //if it's not the last panel enable the next button  
-    ($(this).attr("id") != "taken-classes") ? null : $(".savebutton").attr("disabled", "");  
   
     //if the panel is visible fade it out  
     ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {  
