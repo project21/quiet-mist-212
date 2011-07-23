@@ -5,7 +5,7 @@ Campus::Application.routes.draw do
   get "school/create"
 
 
-  match '/auth/:provider/callback' => 'authentications#create'  
+  match '/users/auth/:provider/callback' => 'authentications#create'  
 
   match "landing_page/index", :to => 'landing_page#index'
 

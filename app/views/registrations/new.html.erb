@@ -1,14 +1,21 @@
 <div style="margin-top:15px;">
-<div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %></div>
-<div class="headerline"></div>
+  <div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %></div>
+  <div class="headerline"></div>
 </div>
 
 <%= form_for(resource, :as => resource_name ,:url => registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
-<div style="margin-left:6%;margin-top:10px;">
-<%=link_to image_tag("fb_login_icon.gif",:class=>"fblogin") %>
-<%=link_to image_tag("twitter_login.png",:class=>"fblogin") %>
-</div>
+
+
+  <div style="margin-left:6%;margin-top:10px;">
+    <a href="/users/auth/facebook">
+      <%= image_tag("fb_login_icon.gif",:class=>"fblogin") %>
+    </a>
+    <a href="/users/auth/twitter">
+      <%= image_tag("twitter_login.png",:class=>"fblogin") %>
+    </a>
+  </div>
+
   <div class="registration">
 <h2 >Sign up</h2>
 <table> 
@@ -22,8 +29,10 @@
   <td><%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]]),:class=>"round") %></td></tr>
 
   
-<tr><td><label>Email</label></td>
+<% if @user.email_required? %>  
+  <tr><td><label>Email</label></td>
   <td><%= f.text_field :email,:class=>"round" %></td></tr>
+<% end %>
 
 <% if @user.password_required? %>  
    <tr><td><%= f.label :password %></td>

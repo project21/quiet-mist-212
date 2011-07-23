@@ -1,5 +1,6 @@
 class User < ActiveRecord::Base
   belongs_to :school
+  delegate :name, :to => :school, :prefix => true, :allow_nil => true
 
   has_many :posts
   has_many :user_courses
@@ -22,25 +23,28 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  def password_required?  
+  def email_required?; password_required? end
+
+  def password_required?
     (authentications.empty? || !password.blank?) && super  
   end  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school,:major,:sex,:zipcode
+  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school_id,:major,:sex,:zipcode
   
   def full_name
     [current_user.firstname,current_user.lastname].join("")
   end
 
   def apply_omniauth(omniauth)  
-    self.email ||= omniauth['user_info']['email']
-    nick = omniauth['user_info']['nickname']
-    self.username ||= nick
-    case omniauth['provider']
-    when 'twitter'  then self.twitter_handle = nick
-    when 'facebook' then self.facebook_uid = omniauth['uid']
+    if email.blank?
+      # not sure if the extra part is needed or not
+      self.email ||= omniauth['user_info']['email'] || omniauth["extra"]["user_hash"]["email"]
     end
+
+    self.lastname  = omniauth['user_info']['last_name']  if lastname.blank?
+    self.firstname = omniauth['user_info']['first_name'] if firstname.blank?
+
     authentications.build(:provider => omniauth['provider'],
                           :uid => omniauth['uid'],
                           :token => omniauth['credentials']['token'],
@@ -52,6 +56,6 @@ class User < ActiveRecord::Base
     if a = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])  
       return a.user
     end
-    User.new.apply_omniauth omniauth
+    User.new.tap {|u| u.apply_omniauth omniauth }
   end
 end

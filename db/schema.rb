@@ -51,14 +51,14 @@ ActiveRecord::Schema.define(:version => 20110717214000) do
     t.string   "subject"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "school_id",  :default => 1, :null => false
+    t.integer  "school_id",  :null => false
   end
 
   create_table "posts", :force => true do |t|
     t.text     "content"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "user_id",      :default => 1, :null => false
+    t.integer  "user_id",      :null => false
     t.integer  "course_id"
     t.string   "post_type"
     t.integer  "post_type_id"
@@ -78,8 +78,8 @@ ActiveRecord::Schema.define(:version => 20110717214000) do
   end
 
   create_table "schools", :force => true do |t|
-    t.string  "name",        :default => "1", :null => false
-    t.integer "postal_code", :default => 1,   :null => false
+    t.string  "name",        :null => false
+    t.integer "postal_code", :null => false
     t.integer "location_id"
   end
 
@@ -100,15 +100,14 @@ ActiveRecord::Schema.define(:version => 20110717214000) do
   end
 
   create_table "user_courses", :force => true do |t|
-    t.integer "user_id",   :default => 1,    :null => false
-    t.integer "course_id", :default => 1,    :null => false
-    t.boolean "active",    :default => true, :null => false
+    t.integer "user_id",   :null => false
+    t.integer "course_id", :null => false
+    t.boolean "active",    :null => false
   end
 
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

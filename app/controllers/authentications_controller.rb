@@ -1,11 +1,13 @@
 class AuthenticationsController < ApplicationController  
+  skip_before_filter :authenticate_user!
+
   def index  
     @authentications = current_user.authentications if current_user  
   end  
 
   def create  
     omniauth = request.env["omniauth.auth"]  
-    user = YapUser.from_omniauth(omniauth)
+    user = User.from_omniauth(omniauth)
 
     if !user.new_record?
       user.save! if user.changed?
