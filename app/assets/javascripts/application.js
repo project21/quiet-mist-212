@@ -7,36 +7,43 @@
 //= require "jquery"
 //= require "underscore"
 //= require "backbone"
-//= require "lib"
+//= require "./lib"
 //= require_tree .
 
 jQuery.ajaxSetup({ 
-  'beforeSend': function(xhr) {
-    xhr.setRequestHeader("Accept", "text/javascript")
+  'beforeSend': function(xhr, settings) {
+    xhr.setRequestHeader("Accept", "application/json");
+    settings['dataType'] = "json";
+    settings['contentType'] = "application/json";
   }
 });
 
+
+// sign-in
 $(document).ready(function() {
-$( '#general-field' ).elastic();
-//$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
-$('#email-login-button').click(function(){
+  //$('#sign-in-form').removeClass('ui-helper-hidden');	
+  $('#email-login-button').click(function(){
 	if($('#sign-in-form').hasClass("ui-helper-hidden")){
 	$('#sign-in-form').removeClass('ui-helper-hidden');	}
 	else {$('#sign-in-form').addClass('ui-helper-hidden');  }
-	});    
-	
-	
-$(".addbook-field").hide();
-$('.addbookbutton').click(function(){
+  });    
+});
+
+// show
+$(document).ready(function() {
+
+  $( '#general-field' ).elastic();
+
+  $(".addbook-field").hide();
+  $('.addbookbutton').click(function(){
 				if (!$(".addbook-field").is(':visible')) 
 					$('.addbook-field').show('fast');
 				else 
 					$('.addbook-field').hide('fast');
 	});
-//$('#sign-in-form').removeClass('ui-helper-hidden');	
 	
-$('.notification').hide();		
- $('div.side-box span').click(function(e){
+  $('.notification').hide();		
+   $('div.side-box span').click(function(e){
  	   {e.preventDefault(); 
 		      switch( $(this).attr('id')){
 			  case "inbox":
@@ -48,23 +55,25 @@ $('.notification').hide();
 			  $('.notification').hide();	
 			   $('#request-partial').show();
 			    break;		
-}			    }	
-});
+  }			    }	
+  });
 
-$('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dialog({
+  $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dialog({
 			   autoOpen:false,
 			   buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("school added");$(this).dialog("close");} },
 			   width:340,
 			   height:150,
 			   position:'center'
-			   });$('#suggest').dialog('open');}});
+  });
 
+  $('#suggest').dialog('open');}});
 
+  //$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
+});
 
-
-//WELCOME PAGE
-
-//call progress bar constructor  
+// registration/ WELCOME PAGE
+$(document).ready(function() {
+  //call progress bar constructor  
   $("#progress").progressbar({ change: function() {  
     //update amount label when value changes  
     $("#amount").text($("#progress").progressbar("option", "value") + "%");  
