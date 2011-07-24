@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   #has_and_belongs_to_many :courses
   validates_presence_of :firstname, :lastname
   validates_presence_of :school_id, :if => :registered?
+  validates_uniqueness_of :email, :if => :email
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable

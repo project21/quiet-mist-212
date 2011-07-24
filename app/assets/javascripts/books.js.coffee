@@ -19,8 +19,12 @@ BookOwnershipCollection = Backbone.Collection.extend(
 )
 BookSearchCollection = Backbone.Collection.extend(
   model : Book
-  url: '/books'
   # no need for a url
+  search : (query) ->
+    $.getJSON('/books/search', query, (books) ->
+      $('#notifications-table').empty()
+      _.each(books, (b) -> SearchedBooks.add(b))
+    )
 )
 
 window.OwnedBooks = new BookOwnershipCollection
@@ -54,10 +58,7 @@ BooksAppView = Backbone.View.extend({
     e.preventDefault()
     query = $(e.currentTarget).serialize()
     if query.length > 0
-      $.getJSON('/books/search', query, (books) ->
-        _.each(books, (b) -> SearchedBooks.new(b))
-        $('#notifications-table').empty()
-      )
+      SearchedBooks.search(query)
 
     #book = new OwnedBooks.model(form_to_json(e)['book'])
     #book.save()
