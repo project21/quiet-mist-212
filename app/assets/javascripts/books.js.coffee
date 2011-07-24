@@ -19,12 +19,6 @@ BookOwnershipCollection = Backbone.Collection.extend(
 )
 BookSearchCollection = Backbone.Collection.extend(
   model : Book
-  # no need for a url
-  search : (query) ->
-    $.getJSON('/books/search', query, (books) ->
-      $('#notifications-table').empty()
-      _.each(books, (b) -> SearchedBooks.add(b))
-    )
 )
 
 window.OwnedBooks = new BookOwnershipCollection
@@ -49,35 +43,54 @@ BookView = Backbone.View.extend(
 )
 
 BooksAppView = Backbone.View.extend({
-  el: "#book-app"
+  el: "body"
 
   events:
-    'submit #new_book': "save"
+    'submit #new_book': "search"
 
-  save: (e) ->
+  search: (e) ->
     e.preventDefault()
     query = $(e.currentTarget).serialize()
     if query.length > 0
-      SearchedBooks.search(query)
+      # no need for a url
+      $.getJSON('/books/search', query, (books) ->
+        _(books).each( (book_attrs) ->
+          book = new SearchedBooks.model(book_attrs)
+          SearchedBooks.add(book)
+        )
+      )
 
-    #book = new OwnedBooks.model(form_to_json(e)['book'])
-    #book.save()
-    #e.currentTarget.reset()
-    #OwnedBooks.add(book)
+  save: (e) ->
+    book = new OwnedBooks.model(form_to_json(e)['book'])
+    book.save()
+    e.currentTarget.reset()
+    OwnedBooks.add(book)
+
+  addAllSearched: (books) ->
+    SearchedBooks.each(this.addSearched)
+
+  addSearched: (book) ->
+    view = new BookView({model: book})
+    this.$("#notifications-table").append(view.render().el)
 
   initialize: ->
-    _.bindAll(this, 'addOne', 'addAll')
-    OwnedBooks.bind('add', this.addOne)
-    OwnedBooks.bind('reset', this.addAll)
+    _.bindAll(this, 'addOwned', 'addAllOwned', 'addSearched', 'addAllSearched')
+    OwnedBooks.bind('add', this.addOwned)
+    OwnedBooks.bind('reset', this.addAllOwned)
+
+    SearchedBooks.bind('add', this.addSearched)
+    SearchedBooks.bind('reset', this.addAllSearched)
+
     OwnedBooks.fetch()
 
-  addOne: (book) ->
+  addOwned: (book) ->
     view = new BookView({model: book})
     # TODO: add class if it is reserved
     this.$("#books-table").append(view.render().el)
 
-  addAll: ->
-    OwnedBooks.each(this.addOne)
+  addAllOwned: ->
+    this.$("#books-table").empty()
+    OwnedBooks.each(this.addOwned)
 })
 
 $(->
