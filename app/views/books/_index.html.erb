@@ -6,7 +6,7 @@
   <div id="new-book-form" >
     <%= form_for Book.new do |f| %>
       <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook",:size=>"38"%>
+      <%= f.submit "Add/Reserve Book", {:class=>"addbookbutton"} %>
     <%end%>
   </div>
-  <%= button_to "Add a Book", {:controller=>"books",:action=>"new"}, {:class=>"addbookbutton"} %>
 </div>

@@ -7,18 +7,24 @@ _.extend Backbone.Model.prototype,
     object[@model_name] =
        _.clone(@attributes)
     object
+  url: -> '/' + @model_name  + (if @id then '' else '/' + @id)
 
-BookOwnership = Backbone.Model.extend(
-  url: -> if @id then '/book_ownerships/' + @id else '/book_ownerships'
-  model_name: 'book'
+Book = Backbone.Model.extend(
+  model_name: 'book_ownerships' # used for the url
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
-  model : BookOwnership
+  model : Book
   url: '/book_ownerships'
 )
+BookSearchCollection = Backbone.Collection.extend(
+  model : Book
+  url: '/books'
+  # no need for a url
+)
 
-window.Books = new BookOwnershipCollection
+window.OwnedBooks = new BookOwnershipCollection
+window.SearchedBooks = new BookSearchCollection
 
 BookView = Backbone.View.extend(
   tagName:  "tr"
@@ -45,16 +51,24 @@ BooksAppView = Backbone.View.extend({
     'submit #new_book': "save"
 
   save: (e) ->
-    book = new Books.model(form_to_json(e)['book'])
-    book.save()
-    e.currentTarget.reset()
-    Books.add(book)
+    e.preventDefault()
+    query = $(e.currentTarget).serialize()
+    if query.length > 0
+      $.getJSON('/books/search', query, (books) ->
+        _.each(books, (b) -> SearchedBooks.new(b))
+        $('#notifications-table').empty()
+      )
+
+    #book = new OwnedBooks.model(form_to_json(e)['book'])
+    #book.save()
+    #e.currentTarget.reset()
+    #OwnedBooks.add(book)
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
-    Books.bind('add', this.addOne)
-    Books.bind('reset', this.addAll)
-    Books.fetch()
+    OwnedBooks.bind('add', this.addOne)
+    OwnedBooks.bind('reset', this.addAll)
+    OwnedBooks.fetch()
 
   addOne: (book) ->
     view = new BookView({model: book})
@@ -62,14 +76,11 @@ BooksAppView = Backbone.View.extend({
     this.$("#books-table").append(view.render().el)
 
   addAll: ->
-    Books.each(this.addOne)
+    OwnedBooks.each(this.addOne)
 })
 
 $(->
   window.BooksApp = new BooksAppView
   # jquery ui screws up event bindings, see:
   # https://groups.google.com/group/backbonejs/browse_thread/thread/fa9d2969608e59d7
-  $('.addbookbutton').live('click', (e)->
-    e.preventDefault()
-  )
 )

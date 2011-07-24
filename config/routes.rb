@@ -14,7 +14,10 @@ Campus::Application.routes.draw do
     match '/users/registered' => 'registrations#registered'
   end
 
-  resources :books
+  resources :books do
+    collection { get 'search' }
+  end
+
   resources :posts
 
   namespace :setting do
@@ -31,10 +34,6 @@ Campus::Application.routes.draw do
   end
   
   resources :book_ownerships do
-  end
-
-  namespace :books do
-    get 'search'
   end
 
   root :to=> "home#show"
