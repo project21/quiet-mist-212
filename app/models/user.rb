@@ -17,6 +17,7 @@ class User < ActiveRecord::Base
   #has_and_belongs_to_many :courses
   validates_presence_of :firstname, :lastname
   validates_presence_of :school_id, :if => :registered?
+  validates_uniqueness_of :email, :if => :email
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
@@ -31,6 +32,11 @@ class User < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school_id,:major,:sex,:zipcode
+
+  def register!
+    self.registered = true
+    save!
+  end
   
   def full_name
     [current_user.firstname,current_user.lastname].join("")

@@ -12,26 +12,17 @@
 <span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%></span>
 
 
-<div class="side-box">
-<h4>My books</h4>
-<ul class="listbook" >
- <% @books.each do |b|%>
- <li><span class="booktitle"> <%= b.title   %> </span>by <%= b.author %> <%=b.edition %>&nbsp;edition</li>
-<div class="line_separator"></div>
- <%end%>
- </ul>
-<p><%= button_to "Add a Book",{:controller=>"books",:action=>"new"},{:class=>"addbookbutton"} %></p>
-<%= form_for(:book) do |f| %>
-  <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook",:size=>"38"%>
-<%end%>
-</div>
+    <div class="side-box">
+      <h4>My books</h4>
+      <%= render 'books/index' %>
+    </div>
 
     <div class="side-box">
       <h4>My School buddies</h4>
     </div>
 
-    </div>
   </div>
+</div>
 
   
 
@@ -39,9 +30,6 @@
   <p id="suggest" class="ui-helper-hidden"><b id="suggest">Are you sure about this?</b></p>
 
   <div class="container" id="communication">
-    <div class="notification" id="inbox-partial"><%=render 'request'%></div>
-    <div class="notification" id="request-partial">hello</div>
-
     <div style="position:relative;">
       <%= select_tag(:school, options_for_select([
              ['Pick your status',1 ],
@@ -65,5 +53,12 @@
       </table>
     </div>
 
+    <table id="notifications-table">
+      <tbody>
+        <tr>
+          <div class="notification" id="inbox-partial"><%=render 'request'%></div>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

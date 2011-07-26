@@ -3,14 +3,13 @@ class BookOwnership < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
+  validates_presence_of :user_id, :book_id
 
   belongs_to :reserver, :class_name => 'User'
-
-  validates_presence_of :user_id, :book_id
   validates_presence_of :reserver_id, :if => :offer?
   validates_presence_of :offer, :if => :reserver_id?
 
-  before_save :validate_reserver, :if => :reserver_id?
+  validate :validate_reserver, :if => :reserver_id?
 
   def validate_reserver
     if reserver_id == user_id

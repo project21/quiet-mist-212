@@ -29,11 +29,13 @@ gem "foreigner"
 gem 'simple_form'
 gem 'enumerated_attribute'
 
-# Use unicorn as the web server
-# gem 'unicorn'
+gem 'google-book', :require => 'google/book'
+gem 'api_smith'
+
 
 group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'unicorn', :platform => :ruby
 end
 
 group :test do

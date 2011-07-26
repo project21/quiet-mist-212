@@ -21,8 +21,8 @@ Book.blueprint do
 end
 
 BookOwnership.blueprint do
-  user_id { User.make!.id }
-  book_id { Book.make!.id }
+  user { User.make! }
+  book { Book.make! }
 end
 
 Course.blueprint do

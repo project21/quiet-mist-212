@@ -10,8 +10,14 @@ Campus::Application.routes.draw do
   match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
+  devise_scope :user do
+    match '/users/registered' => 'registrations#registered'
+  end
 
-  resources :books
+  resources :books do
+    collection { get 'search' }
+  end
+
   resources :posts
 
   namespace :setting do
@@ -27,6 +33,8 @@ Campus::Application.routes.draw do
     get "welcome"
   end
   
+  resources :book_ownerships do
+  end
 
   root :to=> "home#show"
 end
