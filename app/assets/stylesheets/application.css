@@ -10,7 +10,8 @@ body {
   font-family: Verdana, Helvetica, Arial;
   font-size: 12px;
   overflow:hidden;
- /* min-width: 650px;*/
+  width: 100%;
+  
 }
 .registration{
 position:absolute;	
@@ -18,7 +19,7 @@ background:#EAEFF0;
 font-size: 14px;
 margin-left:6%;
 top :15%;
-width : 29%;
+width : 42%;
 -moz-border-radius:    5px;
 -webkit-border-radius: 5px;
 border-radius:         5px;
@@ -78,11 +79,11 @@ a.classlink{color:#0000FF;}
    text-decoration: none;	
     }
 #left{
-  left:3%;	
+  left:3%;
   position :absolute;
   width : 340px;
   margin-top : 10px;
-  min-width:21%;
+  min-width:20%;
 }
 
 .searchfield{
@@ -201,8 +202,8 @@ text-decoration:underline;
     }
  
 .searchbutton{
-  margin-left:360px;
   position:absolute;
+  margin-left:45%;
 	padding:10px 20px 10px 20px;
     color:white;
     background-color: #00AFF0;
@@ -311,10 +312,10 @@ margin-top: 0px;
 .needhelp a:visited{color:#3b5998; text-decoration:none;}
 #center {
  position:absolute;	
-  left:24%;
+  left:38%;
   width:20%;
   margin-top:10px;
-  
+ 
 }
 .container{
 margin-top:3px;	

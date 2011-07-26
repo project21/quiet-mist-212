@@ -3,7 +3,7 @@ class BooksController < ApplicationController
   
   def search
     if bookp = params['book'] and search = bookp['title']
-      respond_with res Google::Book.search(search).map(&:hash)
+      respond_with Google::Book.search(search).map(&:hash)
     end
   end
 end

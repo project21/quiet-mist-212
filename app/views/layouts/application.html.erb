@@ -3,8 +3,10 @@
 <head>
   <title>Campus</title>
   <%= stylesheet_link_tag 'application', :debug => Rails.env.development? %>
-  <%= javascript_include_tag 'jquery-1.6', 'jquery.ui.selectmenu','application', :debug => Rails.env.development? %>
   <%= csrf_meta_tag %>
+
+  <% yield :head %>
+  <%= require_javascript *@javascript %>
 
   <script type="text/javascript">
   </script>
