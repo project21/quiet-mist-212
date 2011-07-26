@@ -10,7 +10,8 @@ body {
   font-family: Verdana, Helvetica, Arial;
   font-size: 12px;
   overflow:hidden;
- /* min-width: 650px;*/
+  width: 100%;
+  
 }
 .registration{
 position:absolute;	
@@ -78,11 +79,11 @@ a.classlink{color:#0000FF;}
    text-decoration: none;	
     }
 #left{
-  left:3%;	
+  left:3%;
   position :absolute;
   width : 340px;
   margin-top : 10px;
-  min-width:21%;
+  min-width:20%;
 }
 
 .searchfield{
@@ -310,12 +311,11 @@ margin-top: 0px;
 .needhelp a:link{color:#3b5998; text-decoration:none;}
 .needhelp a:visited{color:#3b5998; text-decoration:none;}
 #center {
-  margin:auto;
  position:absolute;	
-  left:24%;
+  left:38%;
   width:20%;
   margin-top:10px;
-  
+ 
 }
 .container{
 margin-top:3px;	
