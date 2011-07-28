@@ -19,7 +19,7 @@ position:absolute;
 background:#EAEFF0;	
 font-size: 14px;
 margin-left:6%;
-margin-top :5%;
+margin-top :1%;
 width :500px;
 -moz-border-radius:    5px;
 -webkit-border-radius: 5px;
@@ -47,7 +47,7 @@ border-top:solid #07A7D8 2px;
 .reg-footerline{clear:both;
 margin-left: 10%;
 margin-right:10%;
-margin-top:500px;	
+margin-top:475px;	
 width:80%;
 border-top:solid #07A7D8 2px;	
 
