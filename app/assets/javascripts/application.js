@@ -61,4 +61,11 @@ $(document).ready(function() {
   $('#suggest').dialog('open');}});
 
   //$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
+  
+  //sign in form
+   $('#email-login-button').click(function(){
+	if($('#sign-in-form').hasClass("ui-helper-hidden")){
+	$('#sign-in-form').removeClass('ui-helper-hidden');	}
+	else {$('#sign-in-form').addClass('ui-helper-hidden');  }
+  }); 
 });

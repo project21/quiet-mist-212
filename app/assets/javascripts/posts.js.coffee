@@ -37,7 +37,7 @@ PostView = Backbone.View.extend(
         <span class="post-content"><%= content %></span>
         <span class="post-response"></span>
 
-        <button> Reply </button>
+        <button class="responsebutton" id="reply"> Reply </button>
       </td>
     ''')
        # <button> <%= confirm %> </button>

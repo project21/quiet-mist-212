@@ -4,7 +4,7 @@ gem 'yajl-ruby'
 
 gem 'rails', '3.1.0.rc4'
 
-gem 'therubyracer'
+#gem 'therubyracer'
 
 # asset pipeline helpers
 gem 'sass-rails', "~> 3.1.0.rc"
