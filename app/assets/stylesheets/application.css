@@ -19,8 +19,8 @@ position:absolute;
 background:#EAEFF0;	
 font-size: 14px;
 margin-left:6%;
-top :15%;
-width : 42%;
+margin-top :5%;
+width :500px;
 -moz-border-radius:    5px;
 -webkit-border-radius: 5px;
 border-radius:         5px;
@@ -41,8 +41,24 @@ margin-left: 10%;
 margin-right:10%;	
 margin-top:3%;	
 width:80%;
-border-top:solid #07A7D8 2px;	
+border-top:solid #07A7D8 2px;
+
 }
+.reg-footerline{clear:both;
+margin-left: 10%;
+margin-right:10%;
+margin-top:500px;	
+width:80%;
+border-top:solid #07A7D8 2px;	
+
+}
+.reg-footer{margin-top:0%;
+margin-left:40%;		
+font-size:11px;
+list-style-type: none;
+text-decoration: none;	
+}
+.reg-footer li{float:left;	}
 .line_separator{	
 	margin-top:4px;	
 	margin-bottom:4px;
@@ -631,6 +647,7 @@ font-size:11px;
 list-style-type: none;
 text-decoration: none;
 }
+
 .footer li{float:left;	}
 .homefooter{
 position:absolute;	
