@@ -28,9 +28,9 @@
 
 <div id="center">
   <p id="suggest" class="ui-helper-hidden"><b id="suggest">Are you sure about this?</b></p>
-
+ <div class="notification" id="inbox-partial"><%=render 'request'%></div>
   <div class="container" id="communication">
-    <div style="position:relative;">
+   
       <%= select_tag(:school, options_for_select([
              ['Pick your status',1 ],
              ['I need a study guide',2],
@@ -52,14 +52,8 @@
       <table id="posts-table">
         <tbody></tbody>
       </table>
-    </div>
+    
 
-    <table id="notifications-table">
-      <tbody>
-        <tr>
-          <div class="notification" id="inbox-partial"><%=render 'request'%></div>
-        </tr>
-      </tbody>
-    </table>
+   
   </div>
 </div>
