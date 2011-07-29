@@ -5,9 +5,9 @@
  *= require_self
  *= require_tree . 
 */
-html{overflow:hidden;height:98%;
-  padding:0px;}
-body {overflow:hidden;
+html{height:98%;
+  padding:0px;width: 100%;}
+body {
   background-color: #fff;
   font-family: Verdana, Helvetica, Arial;
   font-size: 12px;
@@ -365,12 +365,12 @@ margin-top: 0px;
   float:left;
   width:20%;
   margin-top:10px;
-  height:98%;
+ height:96%;
 }
-.container{height:97%;/*min-height:700px;*/
+.container{
+height:96%;min-height:800px;
 margin-top:3px;	
 border:2px solid #dedede;	
-/*display:block;*/
 width:600px;
 
 -moz-border-radius:5px;
