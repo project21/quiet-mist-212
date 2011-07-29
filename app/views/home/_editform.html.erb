@@ -10,7 +10,8 @@
         <%= f.hidden_field :school_id, :id => 'school_id' %>
         <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
-        <%= f.submit "save and continue",{:class=>"savebutton" }%>
+      
+          <%= f.submit "save and continue",{:class=>"savebutton" }%>
       <%end%>
     </fieldset>
   </div>
@@ -21,10 +22,9 @@
     <label>Title:</label><%= b.text_field :title,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
     <a href="#" id="addScnt">Add field</a>
     <div id="p_scents"></div>
-
     <p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
     <%end%>
-  </fieldset>
+   </fieldset>
 
   <fieldset class="form-panel ui-helper-hidden" >
     <legend>Your current classes</legend>

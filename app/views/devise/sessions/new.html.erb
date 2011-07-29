@@ -10,6 +10,7 @@
 <div class="login-line"></div>
 <button id="email-login-button">Log in with your email</button>
 <div class="login-line"></div>
+
 <div class="ui-helper-hidden" id="sign-in-form">
 <h3>Log in</h3>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
@@ -24,12 +25,12 @@
   <% end -%>
   <p><%= f.submit "Sign in", :class=>"sign_up_button" %></p>
 <% end %>
-
 <%= render :partial => "devise/shared/links" %>
 </div>
-<div class="login-bold-text">Makes learning & campus life easier and social!<br/>Get to know students in your Campus!<div class="login-headline"></div></div>
-<div style="position:absolute;left:15%;top:30%;">
 
+<div class="login-bold-text">Makes learning & campus life easier and social!<br/>Get to know students in your Campus!<div class="login-headline"></div></div>
+
+<div style="position:absolute;left:15%;top:30%;">
 <ul class="login-bullets"><li><%=image_tag("bullets.png")%>
 <li> <h3>Sign up</h3> Sign in with your facebook account,<br/>twitter or sign up with your <br/> traditonal email</li>
 <li><%=image_tag("bullets.png")%></li><li> <h3>Pick your status</h3> Let your classmates know <br/> what you are strugling with<br/> or need help with,organize a <br/> study group and get some help </li>

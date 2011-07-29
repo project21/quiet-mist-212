@@ -15,6 +15,7 @@ jQuery.ajaxSetup({
   }
 });
 
+
 // home show
 $(document).ready(function() {
   $(".attach-text-box").hide();
@@ -24,6 +25,7 @@ $(document).ready(function() {
                       $('.attach-text-box').show('fast');}
   });
 
+  
   $( '#general-field' ).elastic();
 
   $(".addbook-field").hide();
@@ -62,10 +64,5 @@ $(document).ready(function() {
 
   //$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
   
-  //sign in form
-   $('#email-login-button').click(function(){
-	if($('#sign-in-form').hasClass("ui-helper-hidden")){
-	$('#sign-in-form').removeClass('ui-helper-hidden');	}
-	else {$('#sign-in-form').addClass('ui-helper-hidden');  }
-  }); 
+
 });
