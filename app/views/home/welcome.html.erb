@@ -2,6 +2,7 @@
 <div style="margin-left:55px;"><%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %></div>
 <div class="headerline"></div>
 </div>
+
 <p>
 <% @school.each do |b|%>
 <%= b.name%>
@@ -9,13 +10,12 @@
 
 </p>
 <h2 style="margin-left:145px;">Welcome, <%=current_user.firstname%></h2>
-<h2 style="margin-left:145px;padding:6px;background:#00AFF0;color:white;width:200px;text-align:center;">Edit info</h2>
+<h2 class="edit-info">Edit info</h2>
 
 <%=render 'editform'%>
-<p><%= button_to "back",{:controller=>"home",:action=>"show"},{:class=>"backbutton"} %></p>
 
-<div style="margin-top:300px;">
-<div class="footerline"></div>
+
+<div class="welcome-footerline"></div>
 <span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
 <ul class="footer">
 <li> <%= link_to "About", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>

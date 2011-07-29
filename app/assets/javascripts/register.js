@@ -73,7 +73,7 @@ var scntDiv = $('#p_scents');
         var i = $('#p_scents p').size() + 1;
         
         $('#addScnt').live('click', function() {
-                $('<p> <label>Title:</label> <input id="books_title" name="books[title]" size="45" class="round" type="text" /> <a href="#" id="remScnt">Remove</a></p>').appendTo(scntDiv);
+                $('<p> <label>Book:</label> <input id="books_title" name="books[title]" size="45" class="round" type="text" /> <a href="#" id="remScnt">Remove</a></p>').appendTo(scntDiv);
                 i++;
                 return false;
         });   
@@ -84,11 +84,13 @@ var scntDiv = $('#p_scents');
                 }
                 return false;
         });
+
+
 var add_class = $('#add-class-field');
         var i = $('#add-class-field p').size()+ 1 ;
         
         $('#addcf').live('click', function() {
-                $('<p> <label>Title:</label> <input id="courses_subject" name="courses[subject]" size="45" class="round" type="text" /> <a href="#" id="remove">Remove</a></p>').appendTo(add_class);
+                $('<p> <label>class</label> <input id="courses_subject" name="courses[subject]" size="45" class="round" type="text" /> <a href="#" id="remove">Remove</a></p>').appendTo(add_class);
                 i++;
                 return false;
         });
@@ -99,6 +101,25 @@ var add_class = $('#add-class-field');
                 }
                 return false;
         });
+
+
+var add_class_tk = $('#add-class-taken');
+        var i = $('#add-class-taken p').size()+ 1 ;
+        
+        $('#addct').live('click', function() {
+                $('<p> <label>class</label> <input id="courses_subject" name="courses[subject]" size="45" class="round" type="text" /> <a href="#" id="remove_ct">Remove</a></p>').appendTo(add_class_tk);
+                i++;
+                return false;
+        });
+        $('#remove_ct').live('click', function() { 
+                if( i > 1 ) {
+                        $(this).parents('p').remove();
+                        i--;
+                }
+                return false;
+        });
+
+
 
  $('#school_name').autocomplete({source:[
    {label:"Sierra community College", data:1},

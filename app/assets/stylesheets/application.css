@@ -44,6 +44,14 @@ width:80%;
 border-top:solid #07A7D8 2px;
 
 }
+.welcome-footerline{  
+margin-left: 10%;
+margin-right:10%; 
+margin-top:100px;  
+width:80%;
+border-top:solid #07A7D8 2px;
+
+}
 .reg-footerline{clear:both;
 margin-left: 10%;
 margin-right:10%;
@@ -52,6 +60,7 @@ width:80%;
 border-top:solid #07A7D8 2px;	
 
 }
+
 .reg-footer{margin-top:0%;
 margin-left:40%;		
 font-size:11px;
@@ -95,7 +104,26 @@ a.classlink{color:#0000FF;}
      background-color: #EFF2F7;
    text-decoration: none;	
     }
-
+/*edit*/
+.edit-info{
+  margin-left:145px;padding:6px;background:#00AFF0;color:white;width:200px;text-align:center;
+   background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
+ background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
+}
+.finalbutton{
+   margin-top:40px;
+  float:left;
+    padding:5px 8px 5px 8px;
+    color:white;
+    background-color:#00AFF0;
+    border:none;
+    font-weight:bold;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
+    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);  
+}
 #left{
  margin-left:3%;
   float:left;
@@ -162,7 +190,6 @@ text-decoration:underline;
     border-radius:3px;
 }
 .savebutton{
-	
 	margin-top:40px;
 	float:left;
     padding:5px 8px 5px 8px;
@@ -173,6 +200,8 @@ text-decoration:underline;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
+     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
+    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);  
 }
 .declinebutton{
 	float:left;

@@ -19,7 +19,7 @@
   <fieldset class="form-panel ui-helper-hidden">
     <legend>Add Books</legend>
     <%=form_for :books do |b|%>
-    <label>Title:</label><%= b.text_field :title,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
+    <label>Book:</label><%= b.text_field :title,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
     <a href="#" id="addScnt">Add field</a>
     <div id="p_scents"></div>
     <p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
@@ -59,9 +59,9 @@
   <fieldset class="form-panel ui-helper-hidden" id="taken-classes">
     <legend>Classes taken in the past</legend>
     <%= form_for :class_takens, :url => '/users/registered', :class=>" ui-helper-hidden" do |c|%>
-      <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %><br/>
-      <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
-      <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round"  %><br/>
+      <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %>
+       <a href="#" id="addct">Add field</a>
+      <div id="add-class-taken"></div>
       <p><%= c.submit"save and continue",{:class=>"finalbutton"} %></p>
     <%end%>
   </fieldset>
