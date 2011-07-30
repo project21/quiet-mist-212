@@ -5,8 +5,6 @@ gem 'yajl-ruby'
 gem 'rails', '3.1.0.rc4'
 gem 'active_reload'
 
-#gem 'therubyracer'
-
 # asset pipeline helpers
 gem 'sass-rails', "~> 3.1.0.rc"
 gem 'coffee-script'
@@ -21,6 +19,7 @@ end
 
 platform :ruby do
   gem 'pg'
+  gem 'therubyracer'
 end
 
 gem 'devise', '1.4.2'
