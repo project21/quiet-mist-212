@@ -4,6 +4,7 @@ class BooksController < ApplicationController
   def search
     if bookp = params['book'] and search = bookp['title']
         result = begin
+                   # TODO: check that printType=books is used
                    Google::Book.search(search)
                  rescue
                    MOCK_BOOK_DATA if Rails.env.development?
