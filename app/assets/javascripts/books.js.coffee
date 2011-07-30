@@ -9,7 +9,7 @@ _.extend Backbone.Model.prototype,
     object
 
 Book = Backbone.Model.extend(
-  model_name: 'book_ownerships' # used for the url
+  model_name: 'book_ownership' # used for the url
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
