@@ -52,7 +52,7 @@ $(document).ready(function() {
   }			    }	
   });
 
-  $('.responsebutton').click(function(e){ {e.preventDefault();   $('#suggest').dialog({
+  $('.responsebutton').click(function(){ {  $('#suggest').dialog({
 			   autoOpen:false,
 			   buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("school added");$(this).dialog("close");} },
 			   width:340,
@@ -62,7 +62,7 @@ $(document).ready(function() {
 
   $('#suggest').dialog('open');}});
 
-  //$('#status').selectmenu({style:'dropdown', menuWidth:'250',handleWidth:'26'});
+  $('#status').selectmenu({style:'dropdown', menuWidth:'250'});
   
 
 });

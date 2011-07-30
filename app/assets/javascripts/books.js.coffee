@@ -71,7 +71,7 @@ BooksAppView = Backbone.View.extend({
 
   addSearched: (book) ->
     view = new BookView({model: book})
-    this.$("#notifications-table").append(view.render().el)
+    this.$("#posts-table").append(view.render().el)
 
   initialize: ->
     _.bindAll(this, 'addOwned', 'addAllOwned', 'addSearched', 'addAllSearched')
