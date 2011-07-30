@@ -14,64 +14,63 @@ $(document).ready(function() {
   } });  
 
   //set click handler for next button  
-  $(".savebutton").closest('form').submit(function() { 
-     var formToSubmit = $(this).serialize();
-     $.ajax({
-        url: $(this).attr('action'), 
-        data: formToSubmit,
-        dataType: "JSON",
-        type: "POST"
-          });
-  //look at each panel  
-  $(".form-panel").each(function() {  
-    //if it's not the first panel enable the back button  
-    ($(this).attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
-   
-    //if the panel is visible fade it out  
-    ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {  
-  
-      //add hidden class and show the next panel  
-      $(this).addClass("ui-helper-hidden").next().fadeIn("fast", function() {  
-  
-  
-        //remove hidden class from new panel  
-        $(this).removeClass("ui-helper-hidden");  
-  
-        //update progress bar  
-        $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") + 20);  
-      });  
-      });  
-    });  
+  $(".savebutton").closest('form').submit(function(e) { 
+     e.preventDefault();
+     var action = $(e.currentTarget).attr('action');
+     if( action !== '#' ) {
+       $.ajax({
+          url: action,
+          data: $(this).serialize(),
+          dataType: "JSON",
+          type: "POST"
+       });
+     }
 
-     return false; 
-  });  
-  
-  $(".backbutton").click(function(e) {  
-  
-  //stop form submission  
-  e.preventDefault();  
-  
-  //look at each panel  
-  $(".form-panel").each(function() {  
-  
-    //if the panel is visible fade it out  
-    ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {  
-  
-      //add hidden class and show the next panel  
-      $(this).addClass("ui-helper-hidden").prev().fadeIn("fast", function() {  
-  
-        //if it's the first panel disable the back button  
-          ($(this).attr("id") != "user-form") ? null : $(".backbutton").attr("disabled", "disabled");  
-  
-      //remove hidden class from new panel  
-      $(this).removeClass("ui-helper-hidden");  
-  
-      //update progress bar  
-      $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") - 20);  
+    //look at each panel  
+    $(".form-panel").each(function() {  
+      //if it's not the first panel enable the back button  
+      ($(this).attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
+     
+      //if the panel is visible fade it out  
+      ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {  
+    
+        //add hidden class and show the next panel  
+        $(this).addClass("ui-helper-hidden").next().fadeIn("fast", function() {  
+    
+    
+          //remove hidden class from new panel  
+          $(this).removeClass("ui-helper-hidden");  
+    
+          //update progress bar  
+          $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") + 20);  
+        });
       });  
     });  
   });  
-});  
+    
+  $(".backbutton").click(function(e) {
+      
+    //look at each panel  
+    $(".form-panel").each(function() {  
+    
+      //if the panel is visible fade it out  
+      ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {
+    
+        //add hidden class and show the next panel  
+        $(this).addClass("ui-helper-hidden").prev().fadeIn("fast", function() {  
+    
+          //if it's the first panel disable the back button  
+          ($(this).attr("id") != "user-form") ? null : $(".backbutton").attr("disabled", "disabled");  
+    
+          //remove hidden class from new panel  
+          $(this).removeClass("ui-helper-hidden");  
+    
+          //update progress bar  
+          $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") - 20);
+        }); 
+      });  
+    });  
+  });  
 
 var scntDiv = $('#p_scents');
         var i = $('#p_scents p').size() + 1;

@@ -40,7 +40,10 @@
       <tbody></tbody>
     </table>
 
-   </fieldset>
+    <%= form_tag '#' do %>
+      <%= submit_tag "save and continue", {:class=>"savebutton" }%>
+    <% end %>
+  </fieldset>
 
   <fieldset class="form-panel ui-helper-hidden" >
     <legend>Your current classes</legend>
