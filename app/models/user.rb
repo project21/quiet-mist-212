@@ -31,7 +31,12 @@ class User < ActiveRecord::Base
   end  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:school_id,:major,:sex,:zipcode
+  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:sex,:zipcode
+
+  def set_school_id sid
+    return if school_id || sid.to_i <= 0
+    self.school_id = sid
+  end
 
   def register!
     self.registered = true

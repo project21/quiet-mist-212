@@ -8,11 +8,11 @@ class RegistrationsController < Devise::RegistrationsController
   def update
     if uparams = params[:user] and uparams.delete(:school_name)
       school_id = uparams[:school_id].to_i
-      if school_id > 0 && !current_user.school_id
-        current_user.update_attributes(:school_id => school_id)
-        head :unprocessable_entity
-      else
+      if current_user.set_school_id school_id
+        current_user.save!
         head :ok
+      else
+        render :json => ["school_id", "could not set to #{school_id}"], :status => :unprocessable_entity
       end
     else
       super
