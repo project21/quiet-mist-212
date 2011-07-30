@@ -15,7 +15,7 @@ class User < ActiveRecord::Base
   has_many :weaknesses
 
   #has_and_belongs_to_many :courses
-  validates_presence_of :firstname, :lastname
+  validates_presence_of :firstname, :lastname,:highschool
   validates_presence_of :school_id, :if => :registered?
   validates_uniqueness_of :email, :if => :email
 

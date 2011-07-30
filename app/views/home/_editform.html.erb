@@ -11,7 +11,7 @@
         <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %><br/>
        <label>Major</label>
-    <%= select_tag(:major, options_for_select([['undeclared',1 ],['Computer Science',2]]),:class=>"round") %><br/>
+    <%= text_field :major,:class=>"round",:id=>"major" %><br/>
      <%= f.label :year %>
     <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
    <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>

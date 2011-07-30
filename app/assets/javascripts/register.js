@@ -119,6 +119,12 @@ var add_class_tk = $('#add-class-taken');
                 return false;
         });
 
+ $('#major').autocomplete({source: ["undeclared",
+    "Architectural Design","Art and Design","Administration of justice",
+     "Atmosphere and Energy","Aeronautics and Astronautics",
+     "Administration of justice","Computer science","African American Studies",
+     "American Cultures","Chemical Engineering","Mechanical Engineering","Envronmental Engineering",
+     "Political science"] });
 
  $('#school_name').autocomplete({source:[
    {label:"Sierra community College", data:1},
