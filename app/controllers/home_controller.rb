@@ -11,6 +11,8 @@ class HomeController < ApplicationController
   end
   
   def edit
+    @school = School.all
+    @javascript = ['register']
   end
 
   def setting

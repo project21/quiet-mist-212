@@ -10,6 +10,9 @@ class RegistrationsController < Devise::RegistrationsController
       school_id = uparams[:school_id].to_i
       if school_id > 0 && !current_user.school_id
         current_user.update_attributes(:school_id => school_id)
+        head :unprocessable_entity
+      else
+        head :ok
       end
     else
       super
