@@ -119,33 +119,14 @@ var add_class_tk = $('#add-class-taken');
                 return false;
         });
 
-
- $('#school_name').autocomplete({source:[
-   {label:"Sierra community College", data:1},
-   {label:"American River College", data:1},
-   {label:"california state University,Sacramento", data:1},
-   {label:"California Maritime Academy, (Vallejo)", data:1},
-   {label:"California Polytechnic State University, (San Luis Obispo)", data:1},
-   {label:"California State Polytechnic University, Pomona", data:1},
-   {label:"California State University, Bakersfield, (Bakersfield)", data:1},
-   {label:"California State University, Channel Islands,(Camarillo)", data:1},
-   {label:"California State University, Chico, (Chico)", data:1},
-   {label:"California State University, Dominguez Hills, (Carson)", data:1},
-   {label:"California State University, East Bay, (Hayward)", data:1},
-   {label:"California State University, Fresno, (Fresno)", data:1},
-   {label:"California State University, Fullerton, (Fullerton)", data:1},
-   {label:"California State University, Long Beach, (Long Beach)", data:1},
-   {label:"California State University, Los Angeles, (Los Angeles)", data:1},
-   {label:"California State University, Monterey Bay, (Seaside)", data:1},
-   {label:"California State University, Northridge, (Northridge)", data:1},
-   {label:"California State University, Sacramento, (Sacramento)", data:1},
-   {label:"California State University, San Bernardino, (San Bernardino)", data:1},
-   {label:"California State University, San Marcos, (San Marcos)", data:1},
-   {label:"California State University, Stanislaus", data:1},
-   {label:"Humboldt State University, (Arcata)", data:1}
- ]}).bind('autocompleteselect', function(ev,ui) {
-   $('#school_id').val(ui.item.data)
- }); 
+ $.get('/schools', function(data){
+   $('#school_name').autocomplete({
+     source: $.map(data, function(school,i){ 
+         return {label: school.name, data: school.id}
+       })
+   }).bind('autocompleteselect', function(ev,ui) {
+     $('#school_id').val(ui.item.data)
+   }); 
+ })
 
 });
-

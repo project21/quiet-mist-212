@@ -1,8 +1,8 @@
-   class SchoolController < ApplicationController
+class SchoolsController < ApplicationController
   respond_to :json
   
   def index
-    @school=School.all
+    respond_with School.all
   end
   
   def create

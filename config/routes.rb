@@ -2,8 +2,7 @@ Campus::Application.routes.draw do
 
   resources :courses
 
-  get "school/create"
-
+  resources :schools
 
   match '/users/auth/:provider/callback' => 'authentications#create'  
 
