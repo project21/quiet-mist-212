@@ -15,7 +15,7 @@
      <%= f.label :year %>
     <%= select_tag(:year, options_for_select([['Freshman',1 ],['Sophomore',2],['junior',3],['Senior',4]]),:class=>"round") %><br/>
    <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
- <%= f.text_field :highschool,:size=>"45",:class=>"round" %><br/>
+ <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
        
           <%= f.submit "save and continue",{:class=>"savebutton" }%>
       <%end%>
