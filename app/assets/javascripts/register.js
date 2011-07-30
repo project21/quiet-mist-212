@@ -119,14 +119,16 @@ var add_class_tk = $('#add-class-taken');
                 return false;
         });
 
- $.get('/schools', function(data){
-   $('#school_name').autocomplete({
-     source: $.map(data, function(school,i){ 
-         return {label: school.name, data: school.id}
-       })
-   }).bind('autocompleteselect', function(ev,ui) {
-     $('#school_id').val(ui.item.data)
-   }); 
- })
-
+ var school_name = $('#school_name')
+ if(school_name.length > 0) {
+   $.get('/schools', function(data){
+     school_name.autocomplete({
+       source: $.map(data, function(school,i){ 
+           return {label: school.name, data: school.id}
+         })
+     }).bind('autocompleteselect', function(ev,ui) {
+       $('#school_id').val(ui.item.data)
+     }); 
+   })
+ }
 });

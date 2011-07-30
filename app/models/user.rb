@@ -34,8 +34,13 @@ class User < ActiveRecord::Base
   attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:sex,:zipcode
 
   def set_school_id sid
-    return if school_id || sid.to_i <= 0
-    self.school_id = sid
+    s_id = sid.to_i
+    if s_id <= 0 || school_id
+      errors.add "school_id", "could not set to #{s_id}"
+      return nil
+    else
+      self.school_id = s_id
+    end
   end
 
   def register!

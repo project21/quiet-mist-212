@@ -7,9 +7,17 @@
     <fieldset>
       <legend>Basic details</legend>
       <%=form_for current_user, :url => '/users' do |f|%>
-        <%= f.hidden_field :school_id, :id => 'school_id' %>
-        <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
-        <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %><br/>
+        <% if current_user.school_id %>
+          <p>
+          School Name:
+          <span style="margin-left:40px;"><%= current_user.school_name %></span>
+          </p>
+        <% else %>
+          <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
+          <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
+          <%= f.hidden_field :school_id, :id => 'school_id' %>
+        <% end %>
+        <br/>
        <label>Major</label>
     <%= select_tag(:major, options_for_select([['undeclared',1 ],['Computer Science',2]]),:class=>"round") %><br/>
      <%= f.label :year %>
