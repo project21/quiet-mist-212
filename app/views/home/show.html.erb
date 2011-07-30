@@ -28,9 +28,8 @@
 
 <div id="center">
   <p id="suggest" class="ui-helper-hidden"><b id="suggest">Are you sure about this?</b></p>
- <div class="notification" id="inbox-partial"><%=render 'request'%></div>
   <div class="container" id="communication">
-   
+    <div class="notification" id="inbox-partial"><%=render 'request'%></div>
       <%= select_tag(:school, options_for_select([
              ['Pick your status',1 ],
              ['I need a study guide',2],

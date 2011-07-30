@@ -120,7 +120,6 @@ var add_class_tk = $('#add-class-taken');
         });
 
 
-
  $('#school_name').autocomplete({source:[
    {label:"Sierra community College", data:1},
    {label:"American River College", data:1},
