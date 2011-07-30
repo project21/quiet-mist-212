@@ -5,6 +5,7 @@ class User < ActiveRecord::Base
   has_many :posts
   has_many :user_courses
   has_many :courses, :through => :user_courses
+  has_many :active_courses, :through => :user_courses, :source => :course, :conditions => {'user_courses.active' => true}
 
   has_many :book_ownerships
   has_many :books, :through => :book_ownerships

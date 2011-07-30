@@ -46,17 +46,27 @@ CourseAppView = Backbone.View.extend({
     course = new Courses.model(obj)
     e.currentTarget.reset()
     Courses.add(course)
-    course.save()
+    course.save {}, error: (model, rsp) ->
+      err = "Did not save: \n" +
+      (for field, error of jQuery.parseJSON(rsp.responseText)
+        field + " " + error
+      ).join(".\n")
+      alert(err)
+      Courses.remove(course)
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
     Courses.bind('add', this.addOne)
+    Courses.bind('remove', this.removeOne)
     Courses.bind('reset', this.addAll)
     Courses.fetch()
 
-  addOne: (post) ->
-    view = new CourseView({model: post})
+  addOne: (course) ->
+    view = new CourseView({model: course})
     this.$("#courses-table").append(view.render().el)
+
+  removeOne: (course) ->
+    course.view.remove()
 
   addAll: ->
     Courses.each(this.addOne)

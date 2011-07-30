@@ -1,5 +1,4 @@
 Post = Backbone.Model.extend(
-  url: -> if @id then '/posts/' + @id else '/posts'
   model_name: 'post'
   confirm: -> Posts.confirmpost.get('post_type_id')
 )

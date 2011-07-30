@@ -1,6 +1,10 @@
 Campus::Application.routes.draw do
 
-  resources :courses
+  resources :courses do
+    collection do
+      get :school
+    end
+  end
 
   resources :schools
 
