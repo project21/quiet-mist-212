@@ -1,5 +1,9 @@
 //= require "jquery"
 //= require "jquery-ui-1.8.14.custom.min"
+//= require "underscore"
+//= require "backbone"
+//= require "form2json/form2json"
+//= require "books"
 
 // registration/ WELCOME PAGE
 $(document).ready(function() {

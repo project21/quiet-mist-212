@@ -7,7 +7,6 @@ _.extend Backbone.Model.prototype,
     object[@model_name] =
        _.clone(@attributes)
     object
-  url: -> '/' + @model_name  + (if @id then '' else '/' + @id)
 
 Book = Backbone.Model.extend(
   model_name: 'book_ownerships' # used for the url
@@ -26,7 +25,18 @@ window.SearchedBooks = new BookSearchCollection
 
 BookView = Backbone.View.extend(
   tagName:  "tr"
+  className:  "book"
   
+  events:
+    'click': "choose_book"
+
+  choose_book: (e) ->
+    e.preventDefault()
+    $(@el).remove()
+    SearchedBooks.remove(@model)
+    OwnedBooks.add(@model)
+    @model.save()
+
   initialize: ->
     @model.view = this
     _.bindAll(this, 'render')
@@ -67,6 +77,7 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
+    this.$("#posts-table").empty()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
@@ -82,9 +93,13 @@ BooksAppView = Backbone.View.extend({
     SearchedBooks.bind('reset', this.addAllSearched)
 
     OwnedBooks.fetch()
+    if OwnedBooks.length == 0
+      $('#my-book-quanity').text(' - None-yet')
 
   addOwned: (book) ->
     view = new BookView({model: book})
+    $('#my-book-quanity').text('')
+
     # TODO: add class if it is reserved
     this.$("#books-table").append(view.render().el)
 

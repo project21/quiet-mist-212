@@ -5,22 +5,18 @@ class BookOwnershipsController < ApplicationController
     respond_with current_user.books
   end
 
-  def edit; end
-
-  #def new; end
-  #def destroy; end
-
   def create
-    @book = Book.new(params[:book])
+    unless bo_params = params[:book_ownerships]
+      render :json => 'no params', :status => :unprocessable_entity
+      return
+    end
+
+    @book = Book.find_by_isbn(bo_params[:isbn]) || Book.new(bo_params)
     if @book.save
       BookOwnership.create!(:user => current_user, :book => @book)
-      render :json => @book, :status => :created,
+      respond_with @book
     else
-      render :json => @book, :status => :unprocessable_entity
+      respond_with @book, :status => :unprocessable_entity
     end
-  end
-
-  def show
-    @book = Book.find(params[:id])
   end
 end

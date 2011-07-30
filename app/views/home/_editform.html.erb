@@ -32,13 +32,14 @@
 
   <fieldset class="form-panel ui-helper-hidden">
     <legend>Add Books</legend>
-    <%=form_for BookOwnership.new do |b|%>
-      <%= b.label :book_id, 'Search for Book' %>
-      <%= b.text_field :book_id,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
-      <a href="#" id="addScnt">Add Book</a>
-      <div id="p_scents"></div>
-      <p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
-    <%end%>
+
+    <%= render 'books/index' %>
+    <br />
+
+    <table id="posts-table">
+      <tbody></tbody>
+    </table>
+
    </fieldset>
 
   <fieldset class="form-panel ui-helper-hidden" >
