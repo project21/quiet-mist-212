@@ -28,14 +28,6 @@ $(document).ready(function() {
   
   $( '#general-field' ).elastic();
 
-  $(".addbook-field").hide();
-  $('.addbookbutton').click(function(){
-				if (!$(".addbook-field").is(':visible')) 
-					$('.addbook-field').show('fast');
-				else 
-					$('.addbook-field').hide('fast');
-	});
-	
   $('.notification').hide();		
    $('div.side-box span').click(function(e){
  	   {e.preventDefault(); 

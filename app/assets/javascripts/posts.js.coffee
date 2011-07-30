@@ -24,6 +24,7 @@ window.Posts = new PostCollection
 
 PostView = Backbone.View.extend(
   tagName:  "tr"
+  className:  "post"
   
   initialize: ->
     @model.view = this

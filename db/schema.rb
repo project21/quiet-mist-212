@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110730181102) do
+ActiveRecord::Schema.define(:version => 20110730214916) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -39,7 +39,10 @@ ActiveRecord::Schema.define(:version => 20110730181102) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "edition"
+    t.string   "isbn",       :null => false
   end
+
+  add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
 
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"

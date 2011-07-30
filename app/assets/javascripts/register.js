@@ -1,5 +1,9 @@
 //= require "jquery"
 //= require "jquery-ui-1.8.14.custom.min"
+//= require "underscore"
+//= require "backbone"
+//= require "form2json/form2json"
+//= require "books"
 
 // registration/ WELCOME PAGE
 $(document).ready(function() {
@@ -118,7 +122,6 @@ var add_class_tk = $('#add-class-taken');
                 }
                 return false;
         });
-
  
  $('#major').autocomplete({source: ["undeclared",
     "Architectural Design","Art and Design","Administration of justice",
@@ -128,14 +131,16 @@ var add_class_tk = $('#add-class-taken');
      "Political science"] });
 
 
- $.get('/schools', function(data){
-   $('#school_name').autocomplete({
-     source: $.map(data, function(school,i){ 
-         return {label: school.name, data: school.id}
-       })
-   }).bind('autocompleteselect', function(ev,ui) {
-     $('#school_id').val(ui.item.data)
-   }); 
- })
-
+ var school_name = $('#school_name')
+ if(school_name.length > 0) {
+   $.get('/schools', function(data){
+     school_name.autocomplete({
+       source: $.map(data, function(school,i){ 
+           return {label: school.name, data: school.id}
+         })
+     }).bind('autocompleteselect', function(ev,ui) {
+       $('#school_id').val(ui.item.data)
+     }); 
+   })
+ }
 });

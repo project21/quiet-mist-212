@@ -247,8 +247,6 @@ text-decoration:underline;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
     border-radius:4px;
-    background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#5388C1),to(#50749B) );
-    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
     }
  
 .searchbutton{
