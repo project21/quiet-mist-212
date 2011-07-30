@@ -24,24 +24,28 @@
 
   <fieldset class="form-panel ui-helper-hidden">
     <legend>Add Books</legend>
-    <%=form_for :books do |b|%>
-    <label>Book:</label><%= b.text_field :title,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
-    <a href="#" id="addScnt">Add field</a>
-    <div id="p_scents"></div>
-    <p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
+    <%=form_for BookOwnership.new do |b|%>
+      <%= b.label :book_id, 'Search for Book' %>
+      <%= b.text_field :book_id,:size=>"45",:class=>"round",:id=>"p_scnt" %><br/>
+      <a href="#" id="addScnt">Add Book</a>
+      <div id="p_scents"></div>
+      <p><%= b.submit "save and continue",{:class=>"savebutton"} %></p>
     <%end%>
    </fieldset>
 
   <fieldset class="form-panel ui-helper-hidden" >
     <legend>Your current classes</legend>
-    <%=form_for :courses,:class=>"form-panel ui-helper-hidden" do |c|%>
-      <label>class:</label><%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
+    <%= form_for Course.new, :class=>"form-panel ui-helper-hidden" do |c|%>
+      <%= c.hidden_field :id %>
+      <%= c.label :subject, 'Class' %>
+      <%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
       <a href="#" id="addcf">Add field</a>
       <div id="add-class-field"></div>
       <p><%= c.submit "save and continue",{:class=>"savebutton"} %> </p>
     <%end%>
   </fieldset>
 
+<!--
   <fieldset class="form-panel ui-helper-hidden">
     <legend>subjects you are strong in</legend>
     <%=form_for :strengths,:class=>" ui-helper-hidden" do |s|%>
@@ -71,4 +75,5 @@
       <p><%= c.submit"save and continue",{:class=>"finalbutton"} %></p>
     <%end%>
   </fieldset>
+  -->
 </div>

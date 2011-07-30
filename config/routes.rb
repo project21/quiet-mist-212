@@ -1,6 +1,6 @@
 Campus::Application.routes.draw do
 
-  get "course/create"
+  resources :courses
 
   get "school/create"
 

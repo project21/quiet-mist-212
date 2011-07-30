@@ -10,7 +10,7 @@ class PostsController < ApplicationController
     if @post.save
       respond_with @post
     else
-      respond_with @post.errors, :status => :unprocessable_entity
+      respond_with @post, :status => :unprocessable_entity
     end
   end
 end

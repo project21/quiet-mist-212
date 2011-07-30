@@ -16,7 +16,7 @@ class BookOwnershipsController < ApplicationController
       BookOwnership.create!(:user => current_user, :book => @book)
       render :json => @book, :status => :created,
     else
-      render :json => @book.errors, :status => :unprocessable_entity
+      render :json => @book, :status => :unprocessable_entity
     end
   end
 

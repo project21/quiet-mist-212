@@ -62,7 +62,5 @@ $(document).ready(function() {
 
   $('#suggest').dialog('open');}});
 
-  //$('#status').selectmenu({style:'dropdown', menuWidth:'250'});
-  
-
+  // $('#status').selectmenu({style:'dropdown', menuWidth:'250'});
 });
