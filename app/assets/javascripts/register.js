@@ -90,14 +90,6 @@ var add_class_tk = $('#add-class-taken');
                 return false;
         });
  
- $('#major').autocomplete({source: ["undeclared",
-    "Architectural Design","Art and Design","Administration of justice",
-     "Atmosphere and Energy","Aeronautics and Astronautics",
-     "Administration of justice","Computer science","African American Studies",
-     "American Cultures","Chemical Engineering","Mechanical Engineering","Envronmental Engineering",
-     "Political science"] });
-
-
   var school_name = $('#school_name')
   if(school_name.length > 0) {
     $.get('/schools', function(data){
@@ -110,6 +102,20 @@ var add_class_tk = $('#add-class-taken');
      }); 
     })
   }
+
+  var major_name = $('#user_major')
+  if(major_name.length > 0) {
+    $.get('/majors', function(data){
+      major_name.autocomplete({
+        source: $.map(data, function(major){ 
+           return {label: major.name, data: major.id}
+         })
+      }).bind('autocompleteselect', function(ev,ui) {
+        $('#major_id').val(ui.item.data)
+      }); 
+    });
+  }
+
   $.get('/courses/school', function(data){
     school_name.autocomplete({
       source: $.map(data, function(course){ 

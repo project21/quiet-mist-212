@@ -34,6 +34,9 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:sex,:zipcode
 
+  # for form
+  attr_reader :major_id
+
   def set_school_id sid
     s_id = sid.to_i
     if s_id <= 0 || school_id

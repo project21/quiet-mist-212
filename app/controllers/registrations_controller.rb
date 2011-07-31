@@ -7,7 +7,13 @@ class RegistrationsController < Devise::RegistrationsController
 
   def update
     uparams = params[:user]
-    if uparams and uparams.delete(:school_name) or hs = uparams.delete('highschool')
+    if uparams and [ uparams.delete(:school_name),
+                     hs = uparams.delete('highschool'),
+                     uparams.delete('major_name')
+                   ].any?
+      if major_id = uparams.delete('major_id')
+        current_user.major = Major.find(major_id).name
+      end
       current_user.highschool = hs if hs.present?
       current_user.set_school_id uparams[:school_id]
       if current_user.save
