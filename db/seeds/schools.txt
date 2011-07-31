@@ -1,17 +1,17 @@
 Sierra community College
 American River College
-California Maritime Academy, (Vallejo)
-California Polytechnic State University, (San Luis Obispo)
-California State Polytechnic University, Pomona
-California State University, Bakersfield, (Bakersfield)
-California State University, Channel Islands,(Camarillo)
-California State University, Chico, (Chico)
-California State University, Dominguez Hills, (Carson)
-California State University, East Bay, (Hayward)
-California State University, Fresno, (Fresno)
-California State University, Fullerton, (Fullerton)
-California State University, Long Beach, (Long Beach)
-California State University, Los Angeles, (Los Angeles)
+California Maritime Academy
+California Polytechnic State University
+California State Polytechnic University
+California State University, Bakersfield
+California State University, Channel Islands
+California State University, Chico
+California State University, Dominguez Hills
+California State University, East Bay
+California State University, Fresno
+California State University, Fullerton
+California State University, Long Beach
+California State University, Los Angeles
 California State University, Monterey Bay
 California State University, Northridge
 California State University, Sacramento
@@ -199,3 +199,64 @@ Consumnes River College
 Folsom Lake College
 Sacramento City College
 College of Marin
+Mendocino College 
+Merced College
+MiraCosta College 
+Monterey Peninsula College 
+Mt. San Antonio College
+Mt. San Jacinto College
+Napa Valley College 
+Cypress College
+Fullerton College 
+Ohlone College
+Palo Verde College 
+Palomar College 
+Pasadena City College
+College of Alameda	
+Berkeley City College
+Laney College
+Merritt College 
+Santa Ana College
+Santiago Canyon College 
+College of the Redwoods 
+Rio Hondo College 
+Riverside Community College	
+Crafton Hills College
+San Bernardino Valley College 
+San Diego City College
+San Diego Mesa College
+San Diego Miramar College 
+City College of San Francisco 
+San Joaquin Delta College 
+Evergreen Valley College
+San Jose City College 
+Cuesta College 
+Canada College
+College of San Mateo
+Skyline College 
+Santa Barbara City College 
+College of the Canyons 
+Santa Monica College 
+College of the Sequoias 
+Shasta College 
+College of the Siskiyous 
+Solano Community College
+Santa Rosa Junior College 
+Irvine Junior College
+Saddleback College
+Southwestern College 
+Fresno City College
+Reedley College 
+Moorpark College
+Oxnard College
+Ventura College
+Victor Valley College 
+West Hills College Coalinga
+West Hills College Lemoore 
+Taft College 
+Mission College
+West Valley College 
+Columbia College
+Modesto Junior College
+Woodland Community College
+Yuba College 
