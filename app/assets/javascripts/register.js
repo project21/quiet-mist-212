@@ -43,7 +43,8 @@ $(document).ready(function() {
           $(this).removeClass("ui-helper-hidden");  
     
           //update progress bar  
-          $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") + 20);  
+          var pvalue = $("#progress").progressbar("option", "value") + 33;
+          $("#progress").progressbar("option", "value", pvalue >= 99 ? 100 : pvalue);  
         });
       });  
     });  
