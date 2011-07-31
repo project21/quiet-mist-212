@@ -33,7 +33,7 @@ PostView = Backbone.View.extend(
       <td>
         <span class="post-user"><%= user_id %><span>
         <span class="post-course"><%= course_id %><span>
-        <span class="post-type">I need a Study Guide</span>
+        <span class="post-type"></span>
         <span class="post-content"><%= content %></span>
         <span class="post-response"></span>
 
@@ -58,9 +58,9 @@ PostAppView = Backbone.View.extend({
     obj['user_id'] = 1
     obj['course_id'] = 1
     post = new Posts.model(obj)
+    Posts.add(post)
     post.save()
     e.currentTarget.reset()
-    Posts.add(post)
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
@@ -79,4 +79,5 @@ PostAppView = Backbone.View.extend({
 
 $(->
   window.PostApp = new PostAppView
+  $('#status').change -> $('#general-field').text($(this).find('option:selected').text())
 )

@@ -11,7 +11,7 @@ class RegistrationsController < Devise::RegistrationsController
                      hs = uparams.delete('highschool'),
                      uparams.delete('major_name')
                    ].any?
-      if major_id = uparams.delete('major_id')
+      if major_id_p = uparams.delete('major_id') and (major_id = major_id_p.to_i) != 0
         current_user.major = Major.find(major_id).name
       end
       current_user.highschool = hs if hs.present?

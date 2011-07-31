@@ -30,17 +30,13 @@
   <div class="container" id="communication">
     <div class="notification" id="inbox-partial"><%=render 'request'%></div>
       <%= select_tag(:school, options_for_select([
-             ['Pick your status',1 ],
-             ['I need a study guide',2],
-             ['I am looking for a textbook',3],
+             ['Make a Post',1 ],
              ['I need a study buddy',4],
-             ['I Want to form a study group',5],
              ['I want to borrow a textbook',6],
-             ['Can anybody upload notes for me',7],
-             ['I need a roommate',8]  
+             ['Can anybody give me class materials?',7],
+             ['I need help',9],
+             ['I need a roommate',8],
       ]),:id=>"status") %>
-
-      <%=link_to 'I need help',{:controller=>"books",:action=>"new"},{:class=>"needhelp"}%><br/>
 
      <%=form_for (Post.new) do |f|%>
         <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
