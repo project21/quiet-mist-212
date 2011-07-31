@@ -9,9 +9,9 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 File.readlines('db/seeds/schools.txt').each do |school|
-  School.find_or_create_by_name school
+  School.find_or_create_by_name school.chomp
 end
 
 File.readlines('db/seeds/majors.txt').each do |major|
-  Major.find_or_create_by_name major
+  Major.find_or_create_by_name major.chomp
 end
