@@ -2,7 +2,6 @@ class HomeController < ApplicationController
 #  before_filter :registered!, :only => 'show'
 
   def show
-    @books = current_user.books
     @javascript = ['application']
   end
   
@@ -11,7 +10,6 @@ class HomeController < ApplicationController
   end
   
   def edit
-    @school = School.all
     @javascript = ['register']
   end
 
@@ -20,7 +18,6 @@ class HomeController < ApplicationController
   end
   
   def welcome
-    @school = School.all
     @javascript = ['register']
   end
 
