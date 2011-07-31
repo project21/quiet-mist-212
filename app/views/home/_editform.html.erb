@@ -49,7 +49,7 @@
 
   <fieldset id="edit-course-profile" class="form-panel ui-helper-hidden" >
     <legend>Your current classes</legend>
-    <table id="courses-table">
+    <table class="courses-table">
       <tbody></tbody>
     </table>
     <br />
@@ -59,14 +59,34 @@
       <%= c.label :subject, 'Class' %>
       <%= c.text_field :subject,:size=>"45",:class=>"round" %>
       <p>
-      <%= c.submit "Add a Class",{:class=>"addbookbutton"} %>
+        <%= c.submit "Add a Class",{:class=>"addbookbutton"} %>
       </p>
     <%end%>
 
     <%= form_tag '#', :id => 'edit-courses-form' do %>
       <%= submit_tag "save and continue", {:class=>"savebutton" }%>
     <% end %>
+  </fieldset>
 
+  <fieldset id="taken-classes" class="form-panel ui-helper-hidden">
+    <legend>Classes taken in the past</legend>
+    <table class="courses-table">
+      <tbody></tbody>
+    </table>
+    <br />
+
+    <%= form_for Course.new do |c|%>
+      <%= c.hidden_field :id %>
+      <%= c.label :subject, 'Class' %>
+      <%= c.text_field :subject,:size=>"45",:class=>"round" %>
+      <%= c.submit "Add a Class",{:class=>"finalbutton"} %>
+    <%end%>
+
+    <br/>
+    <%= form_tag '#', :id => 'edit-taken-courses-form' do %>
+      <%= submit_tag "save and continue", {:class=>"savebutton" }%>
+    <% end %>
+    </p>
   </fieldset>
 
 <!--
@@ -91,13 +111,4 @@
   </fieldset>
   -->
 
-  <fieldset class="form-panel ui-helper-hidden" id="taken-classes">
-    <legend>Classes taken in the past</legend>
-    <%= form_for :class_takens, :url => '/users/registered', :class=>" ui-helper-hidden" do |c|%>
-      <label>class:</label><%= c.text_field :class_name,:size=>"45",:class=>"round" %>
-       <a href="#" id="addct">Add field</a>
-      <div id="add-class-taken"></div>
-      <p><%= c.submit"save and continue",{:class=>"finalbutton"} %></p>
-    <%end%>
-  </fieldset>
 </div>

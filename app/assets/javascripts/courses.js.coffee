@@ -18,6 +18,12 @@ CourseCollection = Backbone.Collection.extend(
 )
 window.Courses = new CourseCollection
 
+OldCourseCollection = Backbone.Collection.extend(
+  model : Course
+  url: '/courses?active=0'
+)
+window.OldCourses = new OldCourseCollection
+
 CourseView = Backbone.View.extend(
   tagName:  "tr"
   className:  "course"
@@ -36,42 +42,41 @@ CourseView = Backbone.View.extend(
 )
 
 CourseAppView = Backbone.View.extend({
-  el: "#edit-course-profile"
-
   events:
     'submit #new_course': "save"
 
   save: (e) ->
     obj = form_to_json(e)['course']
-    course = new Courses.model(obj)
+    course = new @collection.model(obj)
     e.currentTarget.reset()
-    Courses.add(course)
+    @collection.add(course)
     course.save {}, error: (model, rsp) ->
       err = "Did not save: \n" +
       (for field, error of jQuery.parseJSON(rsp.responseText)
         field + " " + error
       ).join(".\n")
       alert(err)
-      Courses.remove(course)
+      @collection.remove(course)
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
-    Courses.bind('add', this.addOne)
-    Courses.bind('remove', this.removeOne)
-    Courses.bind('reset', this.addAll)
-    Courses.fetch()
+    @collection.bind('add', this.addOne)
+    @collection.bind('remove', this.removeOne)
+    @collection.bind('reset', this.addAll)
+    @collection.fetch()
 
   addOne: (course) ->
     view = new CourseView({model: course})
-    this.$("#courses-table").append(view.render().el)
+    this.$(".courses-table").append(view.render().el)
 
   removeOne: (course) ->
     course.view.remove()
 
   addAll: ->
-    Courses.each(this.addOne)
+    @collection.each(this.addOne)
 })
 
 $(->
-  window.CourseApp = new CourseAppView
+  window.CourseApp = new CourseAppView(collection : Courses, el: "#edit-course-profile")
+  window.OldCourseApp = new CourseAppView(collection : OldCourses, el: "#taken-classes")
 )
