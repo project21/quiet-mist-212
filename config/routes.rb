@@ -1,5 +1,7 @@
 Campus::Application.routes.draw do
 
+  match '/majors' => 'majors#index'''
+
   resources :courses do
     collection do
       get :school
@@ -9,8 +11,6 @@ Campus::Application.routes.draw do
   resources :schools
 
   match '/users/auth/:provider/callback' => 'authentications#create'  
-
-  match "landing_page/index", :to => 'landing_page#index'
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
   devise_scope :user do
