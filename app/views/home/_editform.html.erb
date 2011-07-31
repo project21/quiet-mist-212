@@ -45,16 +45,26 @@
     <% end %>
   </fieldset>
 
-  <fieldset class="form-panel ui-helper-hidden" >
+  <fieldset id="edit-course-profile" class="form-panel ui-helper-hidden" >
     <legend>Your current classes</legend>
-    <%= form_for Course.new, :class=>"form-panel ui-helper-hidden" do |c|%>
+    <table id="courses-table">
+      <tbody></tbody>
+    </table>
+    <br />
+
+    <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
       <%= c.label :subject, 'Class' %>
-      <%= c.text_field :subject,:size=>"45",:class=>"round" %><br/>
-      <a href="#" id="addcf">Add field</a>
-      <div id="add-class-field"></div>
-      <p><%= c.submit "save and continue",{:class=>"savebutton"} %> </p>
+      <%= c.text_field :subject,:size=>"45",:class=>"round" %>
+      <p>
+      <%= c.submit "Add a Class",{:class=>"addbookbutton"} %>
+      </p>
     <%end%>
+
+    <%= form_tag '#', :id => 'edit-courses-form' do %>
+      <%= submit_tag "save and continue", {:class=>"savebutton" }%>
+    <% end %>
+
   </fieldset>
 
 <!--

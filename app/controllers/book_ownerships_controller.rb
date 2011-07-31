@@ -6,7 +6,7 @@ class BookOwnershipsController < ApplicationController
   end
 
   def create
-    unless bo_params = params[:book_ownerships]
+    unless bo_params = params[:book_ownership]
       render :json => 'no params', :status => :unprocessable_entity
       return
     end

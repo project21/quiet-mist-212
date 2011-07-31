@@ -4,6 +4,7 @@
 //= require "backbone"
 //= require "form2json/form2json"
 //= require "books"
+//= require "courses"
 
 // registration/ WELCOME PAGE
 $(document).ready(function() {
@@ -72,39 +73,6 @@ $(document).ready(function() {
     });  
   });  
 
-var scntDiv = $('#p_scents');
-        var i = $('#p_scents p').size() + 1;
-        
-        $('#addScnt').live('click', function() {
-                $('<p> <label>Book:</label> <input id="books_title" name="books[title]" size="45" class="round" type="text" /> <a href="#" id="remScnt">Remove</a></p>').appendTo(scntDiv);
-                i++;
-                return false;
-        });   
-        $('#remScnt').live('click', function() { 
-                if( i > 1 ) {
-                        $(this).parents('p').remove();
-                        i--;
-                }
-                return false;
-        });
-
-
-var add_class = $('#add-class-field');
-        var i = $('#add-class-field p').size()+ 1 ;
-        
-        $('#addcf').live('click', function() {
-                $('<p> <label>class</label> <input id="courses_subject" name="courses[subject]" size="45" class="round" type="text" /> <a href="#" id="remove">Remove</a></p>').appendTo(add_class);
-                i++;
-                return false;
-        });
-        $('#remove').live('click', function() { 
-                if( i > 1 ) {
-                        $(this).parents('p').remove();
-                        i--;
-                }
-                return false;
-        });
-
 
 var add_class_tk = $('#add-class-taken');
         var i = $('#add-class-taken p').size()+ 1 ;
@@ -130,16 +98,25 @@ var add_class_tk = $('#add-class-taken');
      "Political science"] });
 
 
- var school_name = $('#school_name')
- if(school_name.length > 0) {
-   $.get('/schools', function(data){
-     school_name.autocomplete({
-       source: $.map(data, function(school,i){ 
+  var school_name = $('#school_name')
+  if(school_name.length > 0) {
+    $.get('/schools', function(data){
+      school_name.autocomplete({
+        source: $.map(data, function(school){ 
            return {label: school.name, data: school.id}
          })
-     }).bind('autocompleteselect', function(ev,ui) {
-       $('#school_id').val(ui.item.data)
+      }).bind('autocompleteselect', function(ev,ui) {
+        $('#school_id').val(ui.item.data)
      }); 
-   })
- }
+    })
+  }
+  $.get('/courses/school', function(data){
+    school_name.autocomplete({
+      source: $.map(data, function(course){ 
+         return {label: course.subject, data: course.id}
+       })
+    }).bind('autocompleteselect', function(ev,ui) {
+      $('#course_id').val(ui.item.data)
+   }); 
+  })
 });
