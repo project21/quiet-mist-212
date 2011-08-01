@@ -3,22 +3,6 @@
 <div class="inbox-divider"></div>
 <span style="color:#00AFF0;font-size:12px;">Inbox</span>
 <div class="inbox-content">
-
- <% @books.each do |b|%>
-<span>wants &nbsp;to&nbsp;reserve</span><br/>
-<span class="booktitle"> <%= b.title   %> </span>by  <%= b.author %>&nbsp; <%=b.edition %>&nbsp;edition
-&nbsp;<span>for</span><br/><span>price</span><br/>
-<%=link_to 'Attach message',{:controller=>"books",:action=>"new"},{:class=>"attach-message"}-%>
-
-<%= form_for(:book) do |f| %>
- <%= f.text_area :title ,:class=>"attach-text-box",:placeholder=>"Enter a message",:rows=>"3"%>
-<%end%>
-
-<%=button_to'Decline',{:controller=>"books",:action=>"new"},{:class=>"declinebutton"}%><%=button_to'Accept offer',{:controller=>"books",:action=>"new"},{:class=>"acceptbutton"}%>
-<div style="clear:both"></div>
-<span style="color:#808080;font-size:11px;">Time</span>
-<div class="inbox-dotted-line"></div>
-<%end%>
 </div>
 
 </div>
