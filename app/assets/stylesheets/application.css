@@ -76,6 +76,12 @@ text-decoration: none;
 	width:335px;
     border-top:solid #e6e6e6 1px;	
 	}
+ .book-underline{ 
+  margin-top:4px; 
+  margin-bottom:4px;
+  width:335px;
+    border-top:solid #e6e6e6 1px; 
+  } 
 a.classlink{color:#0000FF;}
 .classlink a:hover{
   color:#3b5998; 

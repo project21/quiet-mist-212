@@ -17,10 +17,10 @@ class User < ActiveRecord::Base
   has_many :weaknesses
 
   #has_and_belongs_to_many :courses
-  validates_presence_of :firstname, :lastname,:highschool
+  validates_presence_of :firstname, :lastname
   validates_presence_of :school_id, :if => :registered?
   validates_uniqueness_of :email, :if => :email
-
+ validates_uniqueness_of :highschool ,:if=> :registered?
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
   devise :database_authenticatable, :registerable, :omniauthable,
