@@ -19,7 +19,7 @@
         <% end %>
         <br/>
 
-        <%= f.label :major %>
+        <%= f.label :major %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :major,:class=>"round" %><br/>
         <%= f.hidden_field :major_id, :id => 'major_id' %>
 
@@ -37,7 +37,6 @@
     <%= render 'books/index' %>
     <br />
 
-    <h4> Found Books </h4>
     <table id="posts-table">
       <tbody></tbody>
     </table>
@@ -56,11 +55,11 @@
 
     <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
-      <%= c.label :subject, 'Class' %>
-      <%= c.text_field :subject,:size=>"45",:class=>"round" %>
-      <p>
-        <%= c.submit "Add a Class",{:class=>"addbookbutton"} %>
-      </p>
+      <%= c.label :subject, 'Class' %><span style="color:red;margin-right:2px;">*</span>
+      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"e.g Math101"%>
+      
+        <%= c.submit "Add",{:class=>"add"} %>
+     
     <%end%>
 
     <%= form_tag '#', :id => 'edit-courses-form' do %>
@@ -78,8 +77,8 @@
     <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
       <%= c.label :subject, 'Class' %>
-      <%= c.text_field :subject,:size=>"45",:class=>"round" %>
-      <%= c.submit "Add a Class",{:class=>"addbookbutton"} %>
+      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"(optional)" %>
+      <%= c.submit "Add",{:class=>"add"} %>
     <%end%>
 
     <br/>

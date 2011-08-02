@@ -9,9 +9,11 @@
 
   <div id="new-book-form" >
     <%= form_for Book.new do |f| %>
-      <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook"%>
-      <%= f.submit "Book Search", {:class=>"addbookbutton"} %>
+      <%= f.text_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook (optional)"%>
+      <%= f.submit "Search book", {:class=>"addbookbutton"} %>
     <%end%>
   </div>
-  <span class="bookfound">Books found</span>
+ 
+<span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>
 </div>
+ 

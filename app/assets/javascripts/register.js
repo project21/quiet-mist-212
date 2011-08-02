@@ -27,6 +27,12 @@ $(document).ready(function() {
        });
      }
 
+
+ $('.bookfound').addClass('ui-helper-hidden');
+  $('.addbookbutton').click(function(){
+  	if(!$('.addbook-field').val()=="")
+  	 $('.bookfound').removeClass('ui-helper-hidden');	
+  });
     //look at each panel  
     $(".form-panel").each(function() {  
       //if it's not the first panel enable the back button  

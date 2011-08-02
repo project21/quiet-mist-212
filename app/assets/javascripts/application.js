@@ -24,8 +24,12 @@ $(document).ready(function() {
                   if (!$(".attach-text-box").is(':visible')) 
                       $('.attach-text-box').show('fast');}
   });
-
-  
+   
+   $('.bookfound').addClass('ui-helper-hidden');
+  $('.addbookbutton').click(function(){
+  	if(!$('.addbook-field').val()=="")
+  	 $('.bookfound').removeClass('ui-helper-hidden');	
+  });
   $( '#general-field' ).elastic();
 
   $('.notification').hide();		

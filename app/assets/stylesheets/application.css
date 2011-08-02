@@ -77,9 +77,9 @@ text-decoration: none;
     border-top:solid #e6e6e6 1px;	
 	}
  .book-underline{ 
-  margin-top:4px; 
+  margin-top:1px; 
   margin-bottom:4px;
-  width:335px;
+  width:355px;
     border-top:solid #e6e6e6 1px; 
   } 
 a.classlink{color:#0000FF;}
@@ -161,7 +161,8 @@ a.full_name:hover {
 color:#3299CC; 
 text-decoration:underline; 
 }
-.booktitle{color:#6f6fff;}
+a.booktitle {text-decoration:none ;color:#29355B;}
+
 .reserve{color:red;font-size:11px;}
 .deletebook a:link {
 color:#808080; 
@@ -173,6 +174,8 @@ text-decoration:none;
 color:blue; 
 text-decoration:none; 
 }
+ .loading img{height:16px;width:16px;}
+.bookfound {margin-left:30%;margin-top:20%;color:#1EC313;font-weight:bold;}
 .addbook-field{
  -moz-border-radius:5px;
  -webkit-border-radius:5px;
@@ -210,6 +213,18 @@ text-decoration:underline;
     border-radius:3px;
      background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
     background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);  
+}
+.add{
+    padding:5px 6px 5px 6px;
+    color:white;
+    background-color:#00AFF0;
+    border:none;
+    font-weight:bold;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
+    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .declinebutton{
 	float:left;
