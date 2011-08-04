@@ -13,7 +13,7 @@ class BookOwnership < ActiveRecord::Base
 
   def validate_reserver
     if reserver_id == user_id
-      errors.add :reserver_id, "Cannot reserver your own book"
+      errors.add :reserver_id, "Cannot reserve your own book"
       self.reserver_id = nil
       return false
     end

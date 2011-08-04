@@ -15,6 +15,7 @@ class User < ActiveRecord::Base
 
   has_many :strengths
   has_many :weaknesses
+  has_one :majors
 
   #has_and_belongs_to_many :courses
   validates_presence_of :firstname, :lastname

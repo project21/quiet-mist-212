@@ -5,7 +5,8 @@
 <%=button_to 'Connect',{:controller=>"books",:action=>"new"},{:class=>"connectbutton"}%><%=button_to 'Message me',{:controller=>"books",:action=>"new"},{:class=>"messagebutton"}%>
 <div class="proline_separator"></div>
 <div class="details-title" >Details</div>
-<span style="color:#808080;font-weight:bold;">Highschool:</span>
+<span style="color:#808080;font-weight:bold;">Highschool:</span><span> 
+ <%=current_user.highschool%></span>
  <div class="lightline"></div>
 <span style="color:#808080;font-weight:bold;">Possible professions:</span>
 <div class="lightline"></div>
@@ -20,8 +21,13 @@
 
 <div id="profile-center">
 <span class="profile-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
-<span class="schoolname"><%=current_user.school%></span><br/>
-<span class="major"><%=current_user.major%></span>
+
+<span class="schoolname"><%=@school.name%></span><br/>
+
+<span class="major"><%=current_user.major%></span><br/>
+<% @courses.each do |course|%>
+<span class="subject"><%=course.subject%> </span>
+<% end%>
 <div class="line_divider"></div>
 <div class="profile-titles">Books</div>
 <ul class="listbook" >

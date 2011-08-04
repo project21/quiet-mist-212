@@ -3,10 +3,15 @@ class HomeController < ApplicationController
 
   def show
     @javascript = ['application']
+    @books = current_user.books
   end
   
   def profile
     @books = current_user.books
+    @school=current_user.school
+    @courses=current_user.courses
+    @major=current_user.major
+
   end
   
   def edit

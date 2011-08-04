@@ -1,7 +1,11 @@
 <span class="result-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
+<% @courses.each do |course|%>
+<span class="current-classes"><%=course.subject%> </span><br/>
+<% end%>
 <ul class="listbook" >
  <% @books.each do |b|%>
  <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> </span></li>
+ <%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"result-reservebutton"}%>
  <%end%>
  </ul>
-<span class="fade">went to</span>
+

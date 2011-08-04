@@ -80,7 +80,27 @@ $(document).ready(function() {
     });  
   });  
 
-
+$("ul li").click(function(){
+  
+  switch ($(this).attr('id'))
+  {
+   case details:
+   alert('g');
+    break;
+   case bookform :
+   alert('h') ;
+   break;
+   case current :
+   $('#user-form').addClass("ui-helper-hidden");
+   $('#edit-course-profile').removeClass("ui-helper-hidden");
+   break;
+   case taken:
+   $('.form-panels').addClass("ui-helper-hidden");
+   $('#taken-classes').removeClass("ui-helper-hidden");
+   break;
+    
+  }
+});
 var add_class_tk = $('#add-class-taken');
         var i = $('#add-class-taken p').size()+ 1 ;
         

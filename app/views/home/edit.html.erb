@@ -1,2 +1,134 @@
 <%= render 'header'%>
-<%=render 'editform'%>
+  
+  <h2 style="color:#00AFF0;">Edit profile</h2>
+  <div style="float:left;width:250px;">
+  <ul class="edit-form">
+  <li id="details">Basic details</li> 
+  <div class="edit-line"></div>
+  <li  id="bookform">Books</li>
+  <div class="edit-line"></div>
+   <li  id="current">Current courses</li>
+   <div class="edit-line"></div>
+    <li  id="taken">Taken courses</li>
+  </ul>
+  </div>
+  <div style="float:left;">
+  <div class="form-panels" id="user-form">
+    <fieldset>
+      <legend>Basic details</legend>
+      <%=form_for current_user, :url => '/users' do |f|%>
+        <% if current_user.school_id %>
+          <p>
+          School Name:
+          <span style="margin-left:40px;"><%= current_user.school_name %></span>
+          </p>
+        <% else %>
+          <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
+          <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
+          <%= f.hidden_field :school_id, :id => 'school_id' %>
+        <% end %>
+        <br/>
+
+        <%= f.label :major %><span style="color:red;margin-right:2px;">*</span>
+        <%= f.text_field :major,:class=>"round",:id=>"user_major" %><br/>
+        <%= f.hidden_field :major_id, :id => 'major_id' %>
+
+        <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
+        <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
+       
+          <%= f.submit "save and continue",{:class=>"savebutton" }%>
+      <%end%>
+   </fieldset>
+  </div>
+
+  <fieldset class="form-panels ui-helper-hidden">
+    <legend>Add Books</legend>
+
+    <%= render 'books/index' %>
+    <br />
+
+    <table id="posts-table">
+      <tbody></tbody>
+    </table>
+
+    <%= form_tag '#' do %>
+      <%= submit_tag "save and continue", {:class=>"savebutton" }%>
+    <% end %>
+  </fieldset>
+
+  <fieldset id="edit-course-profile" class="form-panels ui-helper-hidden" >
+    <legend>Your current classes</legend>
+    <table class="courses-table">
+      <tbody></tbody>
+    </table>
+    <br />
+
+    <%= form_for Course.new do |c|%>
+      <%= c.hidden_field :id %>
+      <%= c.label :subject, 'Class' %><span style="color:red;margin-right:2px;">*</span>
+      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"e.g Math101"%>
+      
+        <%= c.submit "Add",{:class=>"add"} %>
+     
+    <%end%>
+
+    <%= form_tag '#', :id => 'edit-courses-form' do %>
+      <%= submit_tag "save and continue", {:class=>"savebutton" }%>
+    <% end %>
+  </fieldset>
+
+  <fieldset id="taken-classes" class="form-panels ui-helper-hidden">
+    <legend>Classes taken in the past</legend>
+    <table class="courses-table">
+      <tbody></tbody>
+    </table>
+    <br />
+
+    <%= form_for Course.new do |c|%>
+      <%= c.hidden_field :id %>
+      <%= c.label :subject, 'Class' %>
+      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"(optional)" %>
+      <%= c.submit "Add",{:class=>"add"} %>
+    <%end%>
+
+    <br/>
+    <%= form_tag '#', :id => 'edit-taken-courses-form' do %>
+      <%= submit_tag "save and continue", {:class=>"finalbutton" }%>
+    <% end %>
+    </p>
+  </fieldset>
+
+<!--
+  <fieldset class="form-panel ui-helper-hidden">
+    <legend>subjects you are strong in</legend>
+    <%=form_for :strengths,:class=>" ui-helper-hidden" do |s|%>
+      <label>Subject:</label></td> <td><%= s.text_field :subject,:size=>"45",:class=>"round" %><br/>
+      <label>Topic:</label></td> <td><%= s.text_field :topic,:size=>"45",:class=>"round"  %><br/>
+      <label>Details:</label></td><td><%= s.text_area :details,:rows=>"3",:class=>"round"  %><br/>
+      <p><%= s.submit "save and continue",{:class=>"savebutton"} %></p>
+    <%end%>
+  </fieldset>
+
+  <fieldset class="form-panel ui-helper-hidden" >
+    <legend>Subjects you are weak in</legend>
+    <%=form_for :weakenesses,:class=>" ui-helper-hidden" do |w|%>
+      <label>Subject:</label><%= w.text_field :subject,:size=>"45",:class=>"round" %><br/>
+      <label>Topic:</label><%= w.text_field :topic,:size=>"45",:class=>"round"  %><br/>
+      <label>Details:</label><%= w.text_area :details,:rows=>"3",:class=>"round" %><br/>
+      <p><%= w.submit"save and continue",{:class=>"savebutton"} %></p>
+    <%end%>
+  </fieldset>
+  -->
+
+</div>
+
+<div class="reg-footerline"></div>
+<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
+<ul class="footer">
+<li> <%= link_to "About", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+<li> <%= link_to "Feedback", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+<li> <%= link_to "Terms", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> &nbsp;</li>
+<li> <%= link_to "Help", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> </li>
+</ul>
+</div>
+

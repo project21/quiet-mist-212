@@ -19,7 +19,7 @@ end
 
 platform :ruby do
   gem 'pg'
-  #gem 'therubyracer'
+  gem 'therubyracer'
 end
 
 gem 'devise', '1.4.2'

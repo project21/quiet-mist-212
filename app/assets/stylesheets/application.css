@@ -38,6 +38,7 @@ margin-top:0px;
 width:100%;
 border-top:solid #07A7D8 2px;	
 }
+ul li{ list-style-type:none;}
 .footerline{	
 margin-left: 10%;
 margin-right:10%;	
@@ -273,10 +274,11 @@ text-decoration:underline;
 .searchbutton{
   position:absolute;
   float:left;
+  border:none;
+  border:solid #4F84EE 2px;
 	padding:10px 20px 10px 20px;
     color:white;
     background-color: #00AFF0;
-    border:none;
     font-weight:bold;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
@@ -612,14 +614,22 @@ border-radius:5px;
   min-width:0px;
 }
 .reservebutton{
-padding:4px 18px 4px 18px;
+padding:2px 12px 2px 12px;
  color:white;
  background-color: #00CD00;
- border:1px solid #006600;
  font-weight:bold;
  -moz-border-radius:5px;
  -webkit-border-radius:5px;
  border-radius:5px;		
+}
+.result-reservebutton{
+padding:2px 5px 2px 5px;
+ color:white;
+ background-color: #00CD00;
+ font-weight:500px;
+ -moz-border-radius:5px;
+ -webkit-border-radius:5px;
+ border-radius:5px;   
 }
 .profile-name{
 font-size:26px;	
@@ -661,12 +671,14 @@ height:550px;
 	}
 .profile-titles{
 	padding:6px;
-	background-color:#e6e6e6;
+	background-color:#00AFF0;
 	font-weight: bold;
 	font-size: 14px;
-	border-top:solid #D3D3D3 1px; 
+	border:solid #00AFF0 1px; 
 	width:500px;
 	margin-top:10px;
+   background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#fff),to(#00AFF0) );
+ background-image:-moz-linear-gradient(0% 100% 90deg,#00AFF0,#fff);
 }
 .details-title{
 	text-align:center;
@@ -835,3 +847,15 @@ font-size:24px;
 font-family:"Bookshelf Symbol 7";  
 font-weight:bolder}
 
+/*edit profile*/
+.edit-form
+{font-weight:bold;}
+.edit-line{
+  margin-top:4px; 
+  margin-bottom:4px;
+  width:150px;
+  border-top:solid #e6e6e6 1px; 
+}
+ul.edit-form  li :hover
+{background-color:#E2E9E9;
+border:solid #E2E9E9 1px;}
