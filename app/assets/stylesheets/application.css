@@ -307,7 +307,9 @@ text-decoration:underline;
   background-image:-moz-linear-gradient(0% 100% 0deg,#75C639,#7CED64);
 }
 .sign_up_button :hover{#7CED64;}
-.reserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
+.myreserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
+.pending{background:#EDD512;padding:4px;color:white; font-weight:bold;}
+.reserved{background:#ED4B12;padding:4px;color:white; font-weight:bold;}
 .side-box{
 margin-top:10px;	
 border:1px solid #dedede;	
