@@ -76,18 +76,20 @@ text-decoration: none;
 	margin-bottom:4px;
 	width:335px;
     border-top:solid #e6e6e6 1px;	
-	}
- .book-underline{ 
-  margin-top:1px; 
-  margin-bottom:4px;
-  width:355px;
-    border-top:solid #e6e6e6 1px; 
-  } 
+}
+
+#books-table tr.book {
+  width:100%;
+  border-bottom:solid #e6e6e6 1px; 
+} 
+
 a.classlink{color:#0000FF;}
-.classlink a:hover{
+
+.classlink a:hover {
   color:#3b5998; 
   text-decoration:underline; 
 }
+
 .classlink a:link{color:#3b5998; text-decoration:none;}
 .classlink a:visited{color:#3b5998; text-decoration:none;}
 .round {
