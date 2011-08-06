@@ -3,7 +3,7 @@ class BookOwnershipsController < ApplicationController
   before_filter :load_resource, :only => [:reserve, :decline, :accept]
   
   def index
-    respond_with current_user.books
+    respond_with current_user.books.select('"books".*, "book_ownerships".reserver_id')
   end
 
   def create
