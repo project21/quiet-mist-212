@@ -1,5 +1,4 @@
 class BookOwnershipsController < ApplicationController
-  before_filter :set_reserver_amount
   respond_to :json
   
   def index
