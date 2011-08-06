@@ -25,39 +25,6 @@ window.OwnedBooks = new BookOwnershipCollection
 window.UndoRemovedBooks = new BookOwnershipCollection
 window.SearchedBooks = new BookSearchCollection
 
-SearchedBookView = Backbone.View.extend(
-  tagName:  "tr"
-  className:  "book"
-  
-  events:
-    'click td.add-searched-book': "choose_book"
-
-  choose_book: (e) ->
-    e.preventDefault()
-    $(@el).remove()
-    SearchedBooks.remove(@model)
-    @model.set(reserver_id: null)
-    OwnedBooks.add(@model)
-    @model.save()
-
-  initialize: ->
-    @model.view = this
-    _.bindAll(this, 'render')
-    @model.bind('change', this.render)
-    @template = _.template('''
-      <td class='title'><%= title %></td>
-      <td class='edition'><%= edition %></td>
-      <td class='author'><%= author %></td>
-      <td class="add-searched-book"> <span class="reserved">Add</span></td>
-    ''')
-
-  render: ->
-    # TODO cutoff title after x chars
-    # TODO cutoff authors after 1 author
-    $(@el).html(@template(@model.attributes))
-    this
-)
-
 OwnedBookView = Backbone.View.extend(
   tagName:  "tr"
   className:  "book"
@@ -85,6 +52,40 @@ OwnedBookView = Backbone.View.extend(
     ''')
 
   render: ->
+    $(@el).html(@template(@model.attributes))
+    this
+)
+
+SearchedBookView = Backbone.View.extend(
+  tagName:  "tr"
+  className:  "book"
+  
+  events:
+    'click td.add-searched-book': "choose_book"
+
+  choose_book: (e) ->
+    e.preventDefault()
+    # TODO: must set the course_id
+    $(@el).remove()
+    SearchedBooks.remove(@model)
+    @model.set(reserver_id: null)
+    OwnedBooks.add(@model)
+    @model.save()
+
+  initialize: ->
+    @model.view = this
+    _.bindAll(this, 'render')
+    @model.bind('change', this.render)
+    @template = _.template('''
+      <td class='title'><%= title %></td>
+      <td class='edition'><%= edition %></td>
+      <td class='author'><%= author %></td>
+      <td class="add-searched-book"> <span class="reserved">Add</span></td>
+    ''')
+
+  render: ->
+    # TODO cutoff title after x chars
+    # TODO cutoff authors after 1 author
     $(@el).html(@template(@model.attributes))
     this
 )

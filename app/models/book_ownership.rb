@@ -3,7 +3,10 @@ class BookOwnership < ActiveRecord::Base
 
   belongs_to :user
   belongs_to :book
-  validates_presence_of :user_id, :book_id
+  # technically this should be limited through a join table that has uniqueness
+  # but we can't trust uniquenes because we are soliciting this data from users
+  belongs_to :course
+  validates_presence_of :user_id, :book_id, :course_id
 
   belongs_to :reserver, :class_name => 'User'
   validates_presence_of :reserver_id, :if => :offer?
