@@ -4,8 +4,9 @@ _.extend Backbone.Model.prototype,
     csrfValue = $("meta[name='csrf-token']").attr('content')
     object = {}
     object[csrfName] = csrfValue
-    object[@model_name] =
-       _.clone(@attributes)
+    attrs = _.clone(@attributes)
+    delete attrs.reserver_id
+    object[@model_name] = attrs
     object
 
 Book = Backbone.Model.extend(
@@ -35,6 +36,7 @@ SearchedBookView = Backbone.View.extend(
     e.preventDefault()
     $(@el).remove()
     SearchedBooks.remove(@model)
+    @model.set(reserver_id: null)
     OwnedBooks.add(@model)
     @model.save()
 
@@ -50,10 +52,8 @@ SearchedBookView = Backbone.View.extend(
     ''')
 
   render: ->
-    # reserved status is only for existing
-    # TODO cutoff title after 50 chars
-    # TODO cutoff authors after 1 character
-    # @model.get('title')
+    # TODO cutoff title after x chars
+    # TODO cutoff authors after 1 author
     $(@el).html(@template(@model.attributes))
     this
 )
@@ -72,6 +72,7 @@ OwnedBookView = Backbone.View.extend(
     OwnedBooks.remove(@model)
 
   initialize: ->
+    reserve_button = 
     @model.view = this
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
@@ -79,7 +80,8 @@ OwnedBookView = Backbone.View.extend(
       <td class='title'><%= title %></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td> <span class="reserved">reserved</span></td>
+      <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>
+      </td>
     ''')
 
   render: ->
@@ -99,6 +101,7 @@ BooksAppView = Backbone.View.extend({
     if query.length > 0
       # no need for a url
       $.getJSON('/books/search', query, (books) ->
+        SearchedBooks.reset()
         _(books).each( (book_attrs) ->
           book = new SearchedBooks.model(book_attrs)
           SearchedBooks.add(book)
