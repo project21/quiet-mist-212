@@ -1,5 +1,6 @@
 class BookOwnershipsController < ApplicationController
   respond_to :json
+  before_filter :load_resource, :only => [:reserve, :decline, :accept]
   
   def index
     respond_with current_user.books
@@ -21,21 +22,20 @@ class BookOwnershipsController < ApplicationController
   end
 
   def reserve
-  book_ownership.reserve!(@reserver,@amount)
-  Usermailer.reserve_notify(@user).deliver
+    book_ownership.reserve!(params[:reserver_id], params[:amount])
   end
 
   def decline
-   book_ownership.reject!  
+    book_ownership.reject!  
   end
  
   def accept
-  book_ownership.accept!
-  end
-    
-  def set_reserver_amount 
-  #get amount
-  @reserver=reserver_id
+    book_ownership.accept!
   end
 
+protected
+
+  def load_resource
+    @book_ownership = BookOwnership.find params[:id]
+  end
 end

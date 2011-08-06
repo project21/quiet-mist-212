@@ -10,6 +10,7 @@ class BookOwnership < ActiveRecord::Base
   validates_presence_of :offer, :if => :reserver_id?
 
   validate :validate_reserver, :if => :reserver_id?
+  validates_uniqueness_of :book_id, :scope => :user_id
 
   def validate_reserver
     if reserver_id == user_id
@@ -29,7 +30,9 @@ class BookOwnership < ActiveRecord::Base
     self.reserver_id = user.id
     self.offer = amount
     self.offered_at = Time.now
-    save
+    save.tap do |saved|
+      Usermailer.reserve_notify(user).deliver if saved
+    end
   end
 
   def reject!
