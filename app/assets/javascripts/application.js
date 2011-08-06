@@ -48,7 +48,24 @@ $(document).ready(function() {
   }			    }	
   });
 
-  $('.responsebutton').click(function(){ {  $('#suggest').dialog({
+$('.group').click(function(e){e.preventDefault();
+  //($('.group-form').hasClass('ui-helper-hidden'))? null :
+  $('.group-form').removeClass('ui-helper-hidden'); 
+
+});
+$('#create').click(function(){
+    $('.classmates').dialog({
+         autoOpen:false,
+         buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("submit offer to the database");$(this).dialog("close");} },
+         width:300,
+         height:250,
+         position:'center'
+  });
+  $('.classmates').dialog('open');
+});
+ //$('.reservebutton').live('click',function(){alert("h");});
+//$('.reservebutton').click(function(){alert('d');});
+ /*$('.responsebutton').click(function(){ {  $('#suggest').dialog({
 			   autoOpen:false,
 			   buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("school added");$(this).dialog("close");} },
 			   width:340,
@@ -56,7 +73,19 @@ $(document).ready(function() {
 			   position:'center'
   });
 
-  $('#suggest').dialog('open');}});
+  $('#suggest').dialog('open');}});*/
+  $('.reservebutton').click(function(){ { 
+    $('.offer').removeClass('ui-helper-hidden');
+    $('.offer').dialog({
+         autoOpen:false,
+         buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("submit offer to the database");$(this).dialog("close");} },
+         width:200,
+         height:150,
+         position:'center'
+  });
+  $('.offer').dialog('open');}
+
+});
 
   // $('#status').selectmenu({style:'dropdown', menuWidth:'250'});
 });

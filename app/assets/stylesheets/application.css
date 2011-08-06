@@ -307,7 +307,7 @@ text-decoration:underline;
   background-image:-moz-linear-gradient(0% 100% 0deg,#75C639,#7CED64);
 }
 .sign_up_button :hover{#7CED64;}
-
+.reserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
 .side-box{
 margin-top:10px;	
 border:1px solid #dedede;	
@@ -446,7 +446,6 @@ border: 5px solid #eee; padding: 5px; width: 500px;
 .reply-field{padding:5px 90px 5px 90px;}
 .needhelpform{background:#E5E5E5;border:solid #b4bbcd 1px;margin-bottom:3px;}
 .list-items {margin-top:12px; margin-left:34px;}
-/*.list-items li {float:left;}*/
 .homecontainerline{	
 width:220px;
 border-top:solid #aaaaaa 1px;
@@ -614,9 +613,10 @@ border-radius:5px;
   min-width:0px;
 }
 .reservebutton{
+ border:solid #7AEB7D 1px; 
 padding:2px 12px 2px 12px;
  color:white;
- background-color: #00CD00;
+ background-color:#31C918;
  font-weight:bold;
  -moz-border-radius:5px;
  -webkit-border-radius:5px;
@@ -638,7 +638,7 @@ color:#666666;
 font-weight: bold;
 }
 .schoolname{
-font-size: 18px;color:#00A6CB}
+font-size: 18px;color:#00A6CB;}
 .major{font-size: 14px;color:#333333;}
 .current-class{
 font-size: 12px;
@@ -687,7 +687,7 @@ height:550px;
 	font-weight: bold;
 	font-size: 14px;
 	border-top:solid #D3D3D3 1px; 
-	width:300px;
+	width:390px;
 	margin-top:10px;
 	background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
     background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);

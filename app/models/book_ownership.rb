@@ -18,7 +18,8 @@ class BookOwnership < ActiveRecord::Base
       return false
     end
   end
-
+#function is book reserved 
+ 
   def reserved?; !!reserver_id end
 
   def accepted?; !!accepted_at end

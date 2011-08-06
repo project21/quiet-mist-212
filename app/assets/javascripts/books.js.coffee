@@ -44,7 +44,9 @@ BookView = Backbone.View.extend(
     @template = _.template('''
      <tr> <td><a href  class="booktitle" title="Add a book"><%= title %></a></td>
       <td><%= edition %></td>
-      <td><%= author %></td></tr>
+      <td><%= author %></td>
+     <td> <span class="reserved">reserved</span></td>
+      </tr>
       <tr > <td class="book-underline"></td></tr>
     ''')
 

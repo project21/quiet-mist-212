@@ -23,7 +23,12 @@
     </div>
  
     <div class="side-box">
-      <h4>My School buddies</h4>
+      <h4>My Studdy buddies</h4>
+      <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> 
+<div class="ui-helper-hidden group-form">group name <br/>group description<br/>max No:<br/> <span id="create">create</span></div>
+
+<div class="ui-helper-hidden classmates">title="invite your classmates" list of classmates</div>
+
     </div>
 
   </div>
@@ -37,19 +42,20 @@
     <div class="notification" id="inbox-partial"></div>
       <%= select_tag(:school, options_for_select([
              ['Make a Post',1 ],
-             ['I need a study buddy',4],
-             ['I want to borrow a textbook',6],
-             ['Can anybody give me class materials?',7],
-             ['I need help',9],
-             ['I need a roommate',8],
+             ['Question',2],
+             ['I need a study buddy',3],
+             ['I want to borrow a textbook',4],
+             ['Can anybody give me class materials?',5],
+             ['I need help',6],
+             ['I need a roommate',7],
       ]),:id=>"status") %>
-
      <%=form_for (Post.new) do |f|%>
         <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
         <%=f.submit 'post',:class=>"postbutton"%>
       <%end%>
 
-     
+  
+</div>
     
 
    

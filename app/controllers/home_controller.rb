@@ -1,4 +1,4 @@
-class HomeController < ApplicationController
+ class HomeController < ApplicationController
 #  before_filter :registered!, :only => 'show'
 
   def show
@@ -7,6 +7,7 @@ class HomeController < ApplicationController
   end
   
   def profile
+    @javascript = ['application']
     @books = current_user.books
     @school=current_user.school
     @courses=current_user.courses

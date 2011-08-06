@@ -21,9 +21,8 @@
 
 <div id="profile-center">
 <span class="profile-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
-
+<!--need to limit name characters-->
 <span class="schoolname"><%=@school.name%></span><br/>
-
 <span class="major"><%=current_user.major%></span><br/>
 <% @courses.each do |course|%>
 <span class="subject"><%=course.subject%> </span>
@@ -33,7 +32,12 @@
 <ul class="listbook" >
  <% @books.each do |b|%>
  <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
-<%=button_to 'Reserve',{:controller=>"books",:action=>"new"},{:class=>"reservebutton"}%>
+<button class="reservebutton">Reserve</button>
+<div  class="offer ui-helper-hidden">
+ <%= form_for :book_ownership do |f| %>
+      <%= f.text_field :offer ,:size=>"20" ,:placeholder=>"Offer amount"%>
+      <%end%>
+</div>
 <div class="line_separator"></div>
  <%end%>
  </ul>
