@@ -78,6 +78,10 @@ text-decoration: none;
     border-top:solid #e6e6e6 1px;	
 }
 
+#books-table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
 #books-table tr.book {
   width:100%;
   border-bottom:solid #e6e6e6 1px; 
