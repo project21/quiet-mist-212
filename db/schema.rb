@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110806204650) do
+ActiveRecord::Schema.define(:version => 20110807025714) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -33,6 +33,7 @@ ActiveRecord::Schema.define(:version => 20110806204650) do
     t.datetime "offered_at"
     t.datetime "accepted_at"
     t.integer  "course_id"
+    t.integer  "school_id",                                                               :null => false
   end
 
   create_table "books", :force => true do |t|

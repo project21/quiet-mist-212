@@ -6,7 +6,7 @@ class BookOwnership < ActiveRecord::Base
   # technically this should be limited through a join table that has uniqueness
   # but we can't trust uniquenes because we are soliciting this data from users
   belongs_to :course
-  validates_presence_of :user_id, :book_id, :course_id
+  validates_presence_of :user_id, :book_id, :course_id, :school_id
 
   belongs_to :reserver, :class_name => 'User'
   validates_presence_of :reserver_id, :if => :offer?
@@ -14,6 +14,11 @@ class BookOwnership < ActiveRecord::Base
 
   validate :validate_reserver, :if => :reserver_id?
   validates_uniqueness_of :book_id, :scope => :user_id
+
+  before_validation :set_school_id
+  def set_school_id
+    self.school_id = user.school_id if new_record?
+  end
 
   def validate_reserver
     if reserver_id == user_id
@@ -44,7 +49,8 @@ class BookOwnership < ActiveRecord::Base
     elsif !reserved?
       errors.add :base, "no offer has abeen made"
     else
-      update_attributes :reserver_id => nil
+      self.reserver_id = nil
+      save(false)
     end
   end
 
@@ -54,7 +60,8 @@ class BookOwnership < ActiveRecord::Base
     elsif !reserved?
       errors.add :base, "no offer has abeen made"
     else
-      update_attributes :accepted_at => Time.now
+      self.accepted_at = Time.now
+      save(false)
     end
   end
 
@@ -62,7 +69,9 @@ class BookOwnership < ActiveRecord::Base
     if !reserved?
       errors.add :base, "no offer has abeen made"
     elsif accepted?
-      update_attributes :reserver_id => nil, :accepted_at => nil
+      self.reserver_id = nil
+      self.accepted_at = nil
+      save
     else
       errors.add :base, "can only cancel an accepted offer"
     end

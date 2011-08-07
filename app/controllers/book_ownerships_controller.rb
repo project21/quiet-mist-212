@@ -6,6 +6,15 @@ class BookOwnershipsController < ApplicationController
     respond_with current_user.books.select('"books".*, "book_ownerships".reserver_id')
   end
 
+  def show
+    book = Book.find_by_isbn(params[:isbn])
+    respond_with(if !book then [] else
+      BookOwnership.where(
+        :school_id => current_user.school_id, :book_id => book.id
+      ).includes(:book)
+    end)
+  end
+
   def create
     unless bo_params = params[:book_ownership]
       render :json => 'no params', :status => :unprocessable_entity
@@ -14,7 +23,7 @@ class BookOwnershipsController < ApplicationController
 
     @book = Book.find_by_isbn(bo_params[:isbn]) || Book.new(bo_params)
     if @book.save
-      BookOwnership.create!(:user => current_user, :book => @book)
+      BookOwnership.create!(:user => current_user, :book => @book, :course_id => bo_params[:course_id])
       respond_with @book
     else
       respond_with @book, :status => :unprocessable_entity

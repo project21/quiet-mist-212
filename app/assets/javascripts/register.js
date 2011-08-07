@@ -3,6 +3,7 @@
 //= require "underscore"
 //= require "backbone"
 //= require "form2json/form2json"
+//= require "lib"
 //= require "books"
 //= require "courses"
 
@@ -151,13 +152,5 @@ var add_class_tk = $('#add-class-taken');
     });
   }
 
-  $.get('/courses/school', function(data){
-    school_name.autocomplete({
-      source: $.map(data, function(course){ 
-         return {label: course.subject, data: course.id}
-       })
-    }).bind('autocompleteselect', function(ev,ui) {
-      $('#course_id').val(ui.item.data)
-   }); 
-  })
+  autocomplete_schools(function($('#course_name'), course_id){ $("#course_id").val(course_id) });
 });
