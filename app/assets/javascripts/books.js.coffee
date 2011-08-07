@@ -186,9 +186,9 @@ BooksAppView = Backbone.View.extend({
     query = $(e.currentTarget).serialize()
     if query.length > 0
       # no need for a url
-      $('.bookfound').addClass('ui-helper-hidden');
+      $('.bookfound').addClass('ui-helper-hidden')
       $.getJSON('/books/search', query, (books) ->
-         $('.bookfound').removeClass('ui-helper-hidden'); 
+        $('.bookfound').removeClass('ui-helper-hidden')
 
         SearchedBooks.reset()
         _(books).each( (book_attrs) ->
