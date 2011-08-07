@@ -28,11 +28,6 @@ $(document).ready(function() {
      }
 
 
- $('.bookfound').addClass('ui-helper-hidden');
-  $('.addbookbutton').click(function(){
-  	if(!$('.addbook-field').val()=="")
-  	 $('.bookfound').removeClass('ui-helper-hidden');	
-  });
     //look at each panel  
     $(".form-panel").each(function() {  
       //if it's not the first panel enable the back button  
@@ -80,23 +75,36 @@ $(document).ready(function() {
     });  
   });  
 
-$("ul li").click(function(){
+ $('.bookfound').addClass('ui-helper-hidden');
+  $('.addbookbutton').click(function(){
+    if(!$('.addbook-field').val()=="")
+     $('.bookfound').removeClass('ui-helper-hidden'); 
+  });
+
+$("ul.edit-form li").click(function(){
   
   switch ($(this).attr('id'))
   {
-   case details:
-   alert('g');
+   case "details":
+   $('.form-panels').addClass("ui-helper-hidden");
+   $('#user-form').removeClass("ui-helper-hidden");
     break;
-   case bookform :
-   alert('h') ;
+   case "bookform" :
+   $('.form-panels').addClass("ui-helper-hidden");
+   $('#books-form').removeClass("ui-helper-hidden");
    break;
-   case current :
-   $('#user-form').addClass("ui-helper-hidden");
+   case "current" :
+   $('.form-panels').addClass("ui-helper-hidden");
    $('#edit-course-profile').removeClass("ui-helper-hidden");
    break;
-   case taken:
+   case "taken":
    $('.form-panels').addClass("ui-helper-hidden");
    $('#taken-classes').removeClass("ui-helper-hidden");
+   break;
+
+   case "setting":
+   $('.form-panels').addClass("ui-helper-hidden");
+   $('#setting-form').removeClass("ui-helper-hidden");
    break;
     
   }

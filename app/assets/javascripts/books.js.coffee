@@ -44,11 +44,12 @@ OwnedBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td class='title'><%= title %></td>
+      <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>
-      </td>
+     <td ><span class='reserved'>reserved</span></td>
+      <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>  
+
     ''')
 
   render: ->
@@ -61,7 +62,7 @@ SearchedBookView = Backbone.View.extend(
   className:  "book"
   
   events:
-    'click td.add-searched-book': "choose_book"
+    'click td.title': "choose_book"
 
   choose_book: (e) ->
     e.preventDefault()
@@ -77,10 +78,10 @@ SearchedBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td class='title'><%= title %></td>
+      <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td class="add-searched-book"> <span class="reserved">Add</span></td>
+   <!-- <td class="add-searched-book"> <span class="reserved">Add</span></td>-->
     ''')
 
   render: ->
@@ -101,7 +102,10 @@ BooksAppView = Backbone.View.extend({
     query = $(e.currentTarget).serialize()
     if query.length > 0
       # no need for a url
+      $('.bookfound').addClass('ui-helper-hidden');
       $.getJSON('/books/search', query, (books) ->
+         $('.bookfound').removeClass('ui-helper-hidden'); 
+
         SearchedBooks.reset()
         _(books).each( (book_attrs) ->
           book = new SearchedBooks.model(book_attrs)

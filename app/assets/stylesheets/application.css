@@ -86,7 +86,16 @@ text-decoration: none;
   width:100%;
   border-bottom:solid #e6e6e6 1px; 
 } 
+/*#books-table tr td{width:10px;}*/
 
+#posts-table{
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+#posts-table tr{
+ width:98%;
+border-bottom:solid #e6e6e6 1px; 
+} 
 a.classlink{color:#0000FF;}
 
 .classlink a:hover {
@@ -143,9 +152,9 @@ a.classlink{color:#0000FF;}
  margin-left:3%;
   float:left;
   padding-right:5px;
-  width : 340px;
+  width : 350px;
   margin-top : 10px;
- min-width:20%;
+ min-width:25%;
 }
 
 .searchfield{ 
@@ -168,7 +177,6 @@ a.full_name:hover {
 color:#3299CC; 
 text-decoration:underline; 
 }
-a.booktitle {text-decoration:none ;color:#29355B;}
 
 .reserve{color:red;font-size:11px;}
 .deletebook a:link {
@@ -181,6 +189,7 @@ text-decoration:none;
 color:blue; 
 text-decoration:none; 
 }
+.title a{text-decoration:none; }
  .loading img{height:16px;width:16px;}
 .bookfound {margin-left:30%;margin-top:20%;color:#1EC313;font-weight:bold;}
 .addbook-field{
@@ -317,6 +326,7 @@ text-decoration:underline;
 .pending{background:#EDD512;padding:4px;color:white; font-weight:bold;}
 .reserved{background:#ED4B12;padding:4px;color:white; font-weight:bold;}
 .side-box{
+overflow:hidden; 
 margin-top:10px;	
 border:1px solid #dedede;	
 display:block;
@@ -778,8 +788,6 @@ border-radius:0px;
 /*Account setting*/
 .setting-wrapper{
 background-color:#E2E9E9;
-position: absolute;
-left:450px;
 top:20px;	
 border:1px solid #dedede;	
 display:block;
@@ -862,8 +870,22 @@ font-weight:bolder}
   margin-top:4px; 
   margin-bottom:4px;
   width:150px;
-  border-top:solid #e6e6e6 1px; 
+  
 }
+ul.edit-form  li a{text-decoration:none;color:black;}
 ul.edit-form  li :hover
-{background-color:#E2E9E9;
-border:solid #E2E9E9 1px;}
+{
+background-color:#E2E9E9;
+border:solid #808080 1px;
+padding:4px;
+width:50px;
+}
+
+ul.edit-form  li :active
+{
+background-color:#E2E9E9;
+border:solid #E2E9E9 1px;
+padding:4px;
+width:50px;
+}
+

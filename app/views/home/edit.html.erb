@@ -3,13 +3,15 @@
   <h2 style="color:#00AFF0;">Edit profile</h2>
   <div style="float:left;width:250px;">
   <ul class="edit-form">
-  <li id="details">Basic details</li> 
+  <li id="details"><a href="#">Basic details</a></li> 
   <div class="edit-line"></div>
-  <li  id="bookform">Books</li>
+  <li  id="bookform"><a href="#">Books</a></li>
   <div class="edit-line"></div>
-   <li  id="current">Current courses</li>
+   <li  id="current"><a href="#">Current courses</a></li>
    <div class="edit-line"></div>
-    <li  id="taken">Taken courses</li>
+    <li  id="taken"><a href="#">Taken courses</a></li>
+      <div class="edit-line"></div>
+    <li id="setting"><a href="#"> Account settings</a></li>
   </ul>
   </div>
   <div style="float:left;">
@@ -41,7 +43,7 @@
    </fieldset>
   </div>
 
-  <fieldset class="form-panels ui-helper-hidden">
+  <fieldset class="form-panels ui-helper-hidden" id="books-form">
     <legend>Add Books</legend>
 
     <%= render 'books/index' %>
@@ -119,6 +121,20 @@
     <%end%>
   </fieldset>
   -->
+<div class="form-panels  ui-helper-hidden" id="setting-form">
+<div class="setting-wrapper">
+<h2 style="text-align:center">Account settings</h2>
+<div class="setting-line"></div>
+
+<h4>Privacy </h4>
+ <div class="setting-dotted-line"></div>
+<h4>Notifications</h4>
+<div class="setting-dotted-line"></div>
+<h4>Account termination</h4>
+<%= button_to "Delete Account",{:controller=>"books",:action=>"new"},{:class=>"delete-account-button"} %>
+ <div class="setting-dotted-line"></div>
+</div>
+</div>
 
 </div>
 
