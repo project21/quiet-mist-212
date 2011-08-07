@@ -56,7 +56,7 @@
     <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
       <%= c.label :subject, 'Class' %><span style="color:red;margin-right:2px;">*</span>
-      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"e.g Math101"%>
+      <%= c.text_field :subject,:size=>"45",:id => 'course_name', :class=>"round",:placeholder=>"e.g Math101"%>
       
         <%= c.submit "Add",{:class=>"add"} %>
      

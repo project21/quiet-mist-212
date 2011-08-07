@@ -4,6 +4,7 @@
 //= require "backbone"
 //= require "form2json/form2json"
 //= require "jquery.elastic.source"
+//= require "lib"
 //= require "books"
 //= require "posts"
 
