@@ -131,8 +131,6 @@ a.classlink{color:#0000FF;}
 /*edit*/
 .edit-info{
   margin-left:145px;padding:6px;background:#00AFF0;color:white;width:200px;text-align:center;
-   background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
- background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .finalbutton{
    margin-top:40px;
@@ -145,8 +143,6 @@ a.classlink{color:#0000FF;}
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
-     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
-    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);  
 }
 #left{
  margin-left:3%;
@@ -227,8 +223,6 @@ text-decoration:underline;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
-     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
-    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);  
 }
 .add{
     padding:5px 6px 5px 6px;
@@ -239,8 +233,6 @@ text-decoration:underline;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
-     background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#50749B) );
-    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .declinebutton{
 	float:left;
@@ -298,8 +290,6 @@ text-decoration:underline;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
    border-radius:5px;
-   background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
-  background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .searchbutton:hover{
  background-color: #00AFF0;	
@@ -318,8 +308,6 @@ text-decoration:underline;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
    border-radius:5px;
-   background-image:-webkit-gradient(linear,50% 0%, 50% 100%,from(#75C639),to(#7CED64) );
-  background-image:-moz-linear-gradient(0% 100% 0deg,#75C639,#7CED64);
 }
 .sign_up_button :hover{#7CED64;}
 .myreserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
@@ -340,8 +328,6 @@ border-radius:5px;
 background-color:#00AFF0;	
 padding:6px;
 margin-top: 0px;
- background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
- background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .sidebox-content{
 padding-left: 4px;	
@@ -431,8 +417,6 @@ border: 5px solid #eee; padding: 5px; width: 500px;
  -moz-border-radius:4px;
  -webkit-border-radius:4px;
  border-radius:4px;
- background-image:-webkit-gradient(linear,50% 0%, 50% 100%,from(#AAB1A9),to(#F7F8F6) );
- background-image:-moz-linear-gradient(0% 100% 0deg,#AAB1A9,#F7F8F6);	
 }
 .responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
 /*.post-content{position:absolute;left:100px;max-width:500px; margin-top:10px;}*/
@@ -446,8 +430,6 @@ border: 5px solid #eee; padding: 5px; width: 500px;
  -moz-border-radius:3px;
  -webkit-border-radius:3px;
  border-radius:3px;	
- background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
- background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .postbutton:hover{background:#5686DC; }
 .replybutton{
@@ -695,8 +677,6 @@ height:550px;
 	border:solid #00AFF0 1px; 
 	width:500px;
 	margin-top:10px;
-   background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#fff),to(#00AFF0) );
- background-image:-moz-linear-gradient(0% 100% 90deg,#00AFF0,#fff);
 }
 .details-title{
 	text-align:center;
@@ -707,8 +687,6 @@ height:550px;
 	border-top:solid #D3D3D3 1px; 
 	width:390px;
 	margin-top:10px;
-	background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#5686DC) );
-    background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#5686DC);
 }
 .dotted_line_divider{	
 	clear:both;
@@ -838,8 +816,6 @@ height:270px;
 -moz-border-radius:    5px;
  -webkit-border-radius: 5px;
  border-radius:         5px;
- background-image:-webkit-gradient(linear,50% 0%,50% 100%,from(#00AFF0),to(#10285C) );
- background-image:-moz-linear-gradient(0% 100% 0deg,#00AFF0,#10285C );
 }
 #sign-in-form{z-index:1;
 	background:#fff;
