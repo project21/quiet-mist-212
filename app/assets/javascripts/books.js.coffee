@@ -11,24 +11,33 @@ _.extend Backbone.Model.prototype,
 
 Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
+  reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
   model : Book
   url: '/book_ownerships'
 )
+BookReservedCollection = Backbone.Collection.extend(
+  model : Book
+  url: '/book_ownerships/reserved'
+)
 BookSearchCollection = Backbone.Collection.extend(
   model : Book
-  transfer_to: (collection, book) ->
+  transfer_to: (collection, book, options) ->
     this.remove(book)
-    book.set(reserver_id: null)
+    book.unset('reserver_id', silent: true)
     collection.add(book)
-    book.save()
+    if options && options['reserve']
+      book.reserve()
+    else
+      book.save()
 )
 
 window.OwnedBooks = new BookOwnershipCollection
 window.UndoRemovedBooks = new BookOwnershipCollection
 window.SearchedBooks = new BookSearchCollection
+window.ReservedBooks = new BookReservedCollection
 
 OwnedBookView = Backbone.View.extend(
   tagName:  "tr"
@@ -61,19 +70,46 @@ OwnedBookView = Backbone.View.extend(
     this
 )
 
+ReservedBookView = Backbone.View.extend(
+  tagName:  "tr"
+  className:  "book"
+  
+  events:
+    # not used yet
+    'click .remove': "remove_book"
+
+  remove_book: (e) ->
+    e.preventDefault()
+    $(@el).remove()
+    OwnedBooks.remove(@model)
+
+  initialize: ->
+    @model.view = this
+    _.bindAll(this, 'render')
+    @model.bind('change', this.render)
+    @template = _.template('''
+      <td class='title'><a href="#"> <%= title %></a></td>
+      <td class='edition'><%= edition %></td>
+      <td class='author'><%= author %></td>
+    ''')
+
+  render: ->
+    $(@el).html(@template(@model.attributes))
+    this
+)
+
 SearchedBookView = Backbone.View.extend(
   tagName:  "tr"
   className:  "book"
   
   events:
-
-  
     'click td': "choose_book"
-
 
   choose_book: (e) ->
     e.preventDefault()
-    new ClassmatesBooksView(model: @model)
+    SearchedBooks.reset(@model)
+    view = new ClassmatesBooksView(model: @model)
+    view.render().el
 
   initialize: ->
     @model.view = this
@@ -122,13 +158,12 @@ ClassmatesBooksView = Backbone.View.extend({
   add_book: (e) ->
     e.preventDefault()
     add_course_name.dialog()
-
-    # TODO: must set the course_id
-    autocomplete_schools($('#add-course-name'), (course_id) =>
+    autocomplete_courses($('#add-course-name'), (course_id) =>
       @model.set(course_id: course_id)
       SearchedBooks.transfer_to(OwnedBooks, @model)
       add_course_name.dialog('close')
       @el.dialog('close').remove()
+      $('#posts-table tbody tr.book').remove()
     )
 
   initialize: ->
@@ -142,11 +177,14 @@ ClassmatesBooksView = Backbone.View.extend({
         @el.find('.finding-owners').hide()
       
       _(book_ownerships).each( (book_ownership) =>
-        view = new ClassmateBookView(model: @model, dialog: @el, book_ownership : book_ownership)
-        @el.find("#found-owners").append(view.render().el)
+        view = new ClassmateBookView(model: @model, dialog: @el, book_ownership: book_ownership)
+        @el.find(".found-owners").append(view.render().el)
       )
     )
-    @el.dialog()
+
+  render: ->
+    $('#posts-table tbody').append(@el)
+    this
 })
 
 ClassmateBookView = Backbone.View.extend(
@@ -154,15 +192,14 @@ ClassmateBookView = Backbone.View.extend(
   className:  "book"
 
   events:
-    'click #found-owners tr': "reserve_book"
+    'click': "reserve_book"
 
   reserve_book: (e) ->
     e.preventDefault()
-    SearchedBooks.transfer_to(OwnedBooks, @model)
-    @options['dialog'].dialog('close').remove()
+    @model.id = @options['book_ownership'].id
+    SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
 
   initialize: ->
-    @model.view = this
     _.bindAll(this, 'render')
     @template = _.template('''
       <td class='condition'><%= condition %></td>
@@ -204,15 +241,23 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    this.$("#posts-table").empty()
+    this.$("#posts-table tbody").empty()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
     view = new SearchedBookView({model: book})
-    this.$("#posts-table").append(view.render().el)
+    this.$("#posts-table tbody").append(view.render().el)
+
+  addReserved: (book) ->
+    view = new ReservedBookView({model: book})
+    this.$('#reserved-books-table tbody').append(view.render().el)
+
+  addAllReserved: (books) ->
+    this.$('#reserved-books-table tbody').empty()
+    ReservedBooks.each(this.addReserved)
 
   initialize: ->
-    _.bindAll(this, 'addOwned', 'addAllOwned', 'addSearched', 'addAllSearched')
+    _.bindAll(this, 'addOwned', 'addAllOwned', 'addSearched', 'addAllSearched', 'addReserved', 'addAllReserved')
     OwnedBooks.bind('add', this.addOwned)
     OwnedBooks.bind('reset', this.addAllOwned)
     OwnedBooks.bind('remove', UndoRemovedBooks.add)
@@ -220,19 +265,26 @@ BooksAppView = Backbone.View.extend({
     SearchedBooks.bind('add', this.addSearched)
     SearchedBooks.bind('reset', this.addAllSearched)
 
+    ReservedBooks.bind('add', this.addReserved)
+    ReservedBooks.bind('reset', this.addAllReserved)
+
     OwnedBooks.fetch()
     if OwnedBooks.length == 0
       $('#my-book-quanity').text(' - None-yet')
+
+    ReservedBooks.fetch()
+    if ReservedBooks.length == 0
+      $('#reserved-book-quanity').text(' - None-yet')
 
   addOwned: (book) ->
     view = new OwnedBookView({model: book})
     $('#my-book-quanity').text('')
 
     # TODO: add class if it is reserved
-    this.$("#books-table").append(view.render().el)
+    this.$("#books-table tbody").append(view.render().el)
 
   addAllOwned: ->
-    this.$("#books-table").empty()
+    this.$("#books-table tbody").empty()
     OwnedBooks.each(this.addOwned)
 })
 

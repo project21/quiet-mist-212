@@ -84,27 +84,23 @@ $(document).ready(function() {
 
 $("ul.edit-form li").click(function(){
   
+  $('.form-panels').addClass("ui-helper-hidden");
   switch ($(this).attr('id'))
   {
    case "details":
-   $('.form-panels').addClass("ui-helper-hidden");
    $('#user-form').removeClass("ui-helper-hidden");
     break;
    case "bookform" :
-   $('.form-panels').addClass("ui-helper-hidden");
    $('#books-form').removeClass("ui-helper-hidden");
    break;
    case "current" :
-   $('.form-panels').addClass("ui-helper-hidden");
    $('#edit-course-profile').removeClass("ui-helper-hidden");
    break;
    case "taken":
-   $('.form-panels').addClass("ui-helper-hidden");
    $('#taken-classes').removeClass("ui-helper-hidden");
    break;
 
    case "setting":
-   $('.form-panels').addClass("ui-helper-hidden");
    $('#setting-form').removeClass("ui-helper-hidden");
    break;
     
@@ -152,5 +148,7 @@ var add_class_tk = $('#add-class-taken');
     });
   }
 
-  autocomplete_schools(function($('#course_name'), course_id){ $("#course_id").val(course_id) });
+  $('#hschool').closest('form').submit(function(){
+    autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
+  });
 });

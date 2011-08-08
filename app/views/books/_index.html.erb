@@ -1,4 +1,11 @@
 <div id="book-app">
+  <div id="new-book-form" >
+    <%= form_for Book.new do |f| %>
+      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook (optional)"%>
+      <%= f.submit "Book Search", {:class=>"addbookbutton"} %>
+    <%end%>
+  </div>
+
   <h4>My Books <span id=my-book-quantity></span></h4>
 
   <table id="books-table">
@@ -7,13 +14,7 @@
 
   </table>
 
-  <div id="new-book-form" >
-    <%= form_for Book.new do |f| %>
-      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook (optional)"%>
-      <%= f.submit "Book Search", {:class=>"addbookbutton"} %>
-    <%end%>
-  </div>
  
-<span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>
+  <span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>
 </div>
  

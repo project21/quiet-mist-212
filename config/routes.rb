@@ -37,6 +37,8 @@ Campus::Application.routes.draw do
   end
   
   resources :book_ownerships do
+    member { post :reserve }
+    collection { get :reserved }
   end
 
   root :to=> "home#show"

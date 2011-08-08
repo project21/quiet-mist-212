@@ -1,23 +1,31 @@
 <%=render 'header'%>	
 <div id="left">
 
- <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
-
-<div class="line_separator"></div>
-
 <div class="side-box">
 <h4>Messages</h4>
 <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%></span>
 <div class="line_separator"></div>
 <span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',{:controller=>"books",:action=>"new"},{:class=>"sidebox-content"}%></span>
 </div>
+      <%= select_tag(:school, options_for_select([
+             ['Make a Post',1 ],
+             ['Question',2],
+             ['I need a study buddy',3],
+             ['I want to borrow a textbook',4],
+             ['Can anybody give me class materials?',5],
+             ['I need help',6],
+             ['I need a roommate',7],
+      ]),:id=>"status") %>
+     <%=form_for (Post.new) do |f|%>
+        <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
+        <%=f.submit 'post',:class=>"postbutton"%>
+     <%end%>
 
     <div class="side-box">
-    
       <%= render 'books/index' %>
 
-      <table id="posts-table">
-      
+      <h4>Reserved Books <span id=reserved-book-quantity></span></h4>
+      <table id="reserved-books-table">
         <tbody></tbody>
       </table>
     </div>
@@ -39,23 +47,11 @@
 <div id="center">
   <p id="suggest" class="ui-helper-hidden"><b id="suggest">Are you sure about this?</b></p>
   <div class="container" id="communication">
+    <table id="posts-table">
+      <tbody></tbody>
+    </table>
     <div class="notification" id="inbox-partial"></div>
-      <%= select_tag(:school, options_for_select([
-             ['Make a Post',1 ],
-             ['Question',2],
-             ['I need a study buddy',3],
-             ['I want to borrow a textbook',4],
-             ['Can anybody give me class materials?',5],
-             ['I need help',6],
-             ['I need a roommate',7],
-      ]),:id=>"status") %>
-     <%=form_for (Post.new) do |f|%>
-        <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
-        <%=f.submit 'post',:class=>"postbutton"%>
-      <%end%>
-
-  
-</div>
+  </div>
     
 
    

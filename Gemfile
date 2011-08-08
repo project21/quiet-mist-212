@@ -3,7 +3,7 @@ source 'http://rubygems.org'
 gem 'yajl-ruby'
 
 gem 'rails', '3.1.0.rc4'
-gem 'active_reload'
+#gem 'active_reload'
 
 # asset pipeline helpers
 gem 'sass-rails', "~> 3.1.0.rc"

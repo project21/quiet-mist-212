@@ -48,7 +48,7 @@ PostView = Backbone.View.extend(
 )
 
 PostAppView = Backbone.View.extend({
-  el: "#communication"
+  el: "body"
 
   events:
     'submit #new_post': "save"

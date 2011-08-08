@@ -6,6 +6,10 @@ class BookOwnershipsController < ApplicationController
     respond_with current_user.books.select('"books".*, "book_ownerships".reserver_id')
   end
 
+  def reserved
+    respond_with BookOwnership.where(:reserver_id => current_user.id).map(&:book)
+  end
+
   def show
     book = Book.find_by_isbn(params[:isbn])
     respond_with(if !book then [] else
@@ -31,20 +35,24 @@ class BookOwnershipsController < ApplicationController
   end
 
   def reserve
-    book_ownership.reserve!(params[:reserver_id], params[:amount])
+    if @book_ownership.reserve!(current_user, params[:amount])
+      respond_with @book_ownership
+    else
+      respond_with @book_ownership, :status => :unprocessable_entity
+    end
   end
 
   def decline
-    book_ownership.reject!  
+    @book_ownership.reject!  
   end
  
   def accept
-    book_ownership.accept!
+    @book_ownership.accept!
   end
 
 protected
 
   def load_resource
-    @book_ownership = BookOwnership.find params[:id]
+    @book_ownership = BookOwnership.where(:school_id => current_user.school_id).find(params[:id])
   end
 end

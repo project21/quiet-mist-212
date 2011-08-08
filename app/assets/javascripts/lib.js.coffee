@@ -1,4 +1,4 @@
-window.autocomplete_schools = (jq_auto, callback) ->
+window.autocomplete_courses = (jq_auto, callback) ->
   $.get('/courses/school', (data) ->
     jq_auto.autocomplete({
       source: $.map(data, (course) -> {label: course.subject, data: course.id})

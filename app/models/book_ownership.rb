@@ -38,9 +38,8 @@ class BookOwnership < ActiveRecord::Base
     self.reserver_id = user.id
     self.offer = amount
     self.offered_at = Time.now
-    save.tap do |saved|
-      Usermailer.reserve_notify(user).deliver if saved
-    end
+    save!
+    Usermailer.reserve_notify(user).deliver
   end
 
   def reject!
