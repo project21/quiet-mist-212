@@ -148,7 +148,6 @@ var add_class_tk = $('#add-class-taken');
     });
   }
 
-  $('#hschool').closest('form').submit(function(){
-    autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
-  });
+  // TODO: delay this for performance concerns
+  autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
 });

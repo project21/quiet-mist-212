@@ -13,8 +13,4 @@ class PostsController < ApplicationController
       respond_with @post, :status => :unprocessable_entity
     end
   end
-
-  def mypost
-  end
-    
 end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110807025714) do
+ActiveRecord::Schema.define(:version => 20110813231935) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -25,7 +25,6 @@ ActiveRecord::Schema.define(:version => 20110807025714) do
     t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "integer"
     t.integer  "reserver_id"
     t.string   "condition",                                           :default => "used", :null => false
     t.text     "condition_description"
@@ -54,7 +53,7 @@ ActiveRecord::Schema.define(:version => 20110807025714) do
   end
 
   create_table "courses", :force => true do |t|
-    t.string   "subject"
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "school_id",  :null => false
@@ -121,7 +120,6 @@ ActiveRecord::Schema.define(:version => 20110807025714) do
   create_table "users", :force => true do |t|
     t.string   "email",                               :default => "", :null => false
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
-    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"

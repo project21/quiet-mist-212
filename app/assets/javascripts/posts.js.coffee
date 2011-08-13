@@ -24,7 +24,12 @@ window.Posts = new PostCollection
 PostView = Backbone.View.extend(
   tagName:  "tr"
   className:  "post"
+
+  events:
+    "mousedown .responsebutton" : "respond"
   
+  respond: (e) ->
+
   initialize: ->
     @model.view = this
     _.bindAll(this, 'render')
@@ -36,8 +41,13 @@ PostView = Backbone.View.extend(
         <span class="post-type"></span>
         <span class="post-content"><%= content %></span>
         <span class="post-response"></span>
-
-        <button class="responsebutton" id="reply"> Reply </button>
+        <br/>
+        <span class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
+          Quick Reply
+        <br/>
+          <button class="responsebutton" id="reply"> Send </button>
+          <input type="text" />
+        </span>
       </td>
     ''')
        # <button> <%= confirm %> </button>
@@ -52,16 +62,28 @@ PostAppView = Backbone.View.extend({
 
   events:
     'submit #new_post': "save"
+    'mousedown #my-posts': "my_posts"
+
+  my_posts: (e) ->
+    Posts.filter (p) ->
+      if p.get('user_id') != window.CURRENT_USER_ID
+        Posts.remove(p)
+        p.view.remove()
 
   save: (e) ->
     SearchedBooks.reset()
-    # TODO: 
-    #$('#posts-table tr.book').remove()
+    $('#posts-table tr.book').remove()
 
-    obj = form_to_json(e)['post']
-    obj['user_id'] = 1
-    obj['course_id'] = 1
-    post = new Posts.model(obj)
+    post_attrs = form_to_json(e)['post']
+    delete post_attrs["0"]
+    delete post_attrs[0]
+    delete post_attrs['post_type']
+
+    # TODO hard coded!!
+    post_attrs['course_id'] = 14
+    post_attrs['user_id'] = 5
+
+    post = new Posts.model(post_attrs)
     Posts.add(post)
     post.save()
     e.currentTarget.reset()
@@ -83,5 +105,5 @@ PostAppView = Backbone.View.extend({
 
 $(->
   window.PostApp = new PostAppView
-  $('#status').change -> $('#general-field').text($(this).find('option:selected').text())
+  $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
 )

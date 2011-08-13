@@ -35,6 +35,7 @@ gem 'api_smith'
 
 
 group :development, :test do
+  gem 'ap', :require => 'ap'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'unicorn', :platform => :ruby
 end

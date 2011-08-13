@@ -33,7 +33,7 @@ CourseView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td><span class="subject"><%= subject %></span></td>
+      <td><span class="subject"><%= name %></span></td>
     ''')
 
   render: ->

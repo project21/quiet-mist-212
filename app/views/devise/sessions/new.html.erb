@@ -11,7 +11,7 @@
 <button id="email-login-button">Log in with your email</button>
 <div class="login-line"></div>
 
-<div class="ui-helper-hidden" id="sign-in-form">
+<div id="sign-in-form">
 <h3>Log in</h3>
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
   <p><%= f.label :email%><br />

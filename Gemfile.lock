@@ -32,6 +32,8 @@ GEM
     activesupport (3.1.0.rc4)
       multi_json (~> 1.0)
     addressable (2.2.4)
+    ap (0.1.1)
+      httparty (>= 0.7.7)
     api_smith (1.0.0)
       hashie (~> 1.0)
       httparty
@@ -248,6 +250,7 @@ PLATFORMS
   x86-mingw32
 
 DEPENDENCIES
+  ap
   api_smith
   capybara
   coffee-script

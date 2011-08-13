@@ -10,11 +10,11 @@ class CoursesController < ApplicationController
   end
 
   def create
-    course = if cid = model_params[:course_id]
-      school.courses.find cid
+    course = if cid = model_params[:id]
+      current_user.school.courses.find cid
     else
-      subject = model_params[:subject]
-      current_user.school.courses.build(:subject => subject)
+      name = model_params[:name]
+      current_user.school.courses.build(:name => name)
     end
 
     if !course.new_record? or course.save
@@ -23,6 +23,10 @@ class CoursesController < ApplicationController
     else
       respond_with course, :status => :unprocessible_entity
     end
+  end
+
+  def update
+    create
   end
 
 protected

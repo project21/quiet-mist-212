@@ -11,7 +11,6 @@ Campus::Application.routes.draw do
   end
 
   resources :schools
- match '/posts/mypost' =>"posts#mypost"
   match '/users/auth/:provider/callback' => 'authentications#create'  
 
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
