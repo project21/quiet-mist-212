@@ -32,14 +32,19 @@ $(document).ready(function() {
   	 $('.bookfound').removeClass('ui-helper-hidden');	
   });*/
   $( '#general-field' ).elastic();
-
-  $('.notification').hide();		
-   $('div.side-box span').click(function(e){
- 	   {e.preventDefault(); 
+  $('.post-background').hover(function(){
+    if ($(".responsebutton").hasClass('ui-helper-hidden'))
+      $(".responsebutton").removeClass('ui-helper-hidden');
+      else
+      $('.responsebutton').addClass("ui-helper-hidden");
+  });
+  
+		
+   $('div.side-box span').click(function(){
+ 	   { 
 		      switch( $(this).attr('id')){
-			  case "inbox":
-			  $('.notification').hide();	
-			 $('#inbox-partial').show();	
+			  case "inbox":	
+			 $('#inbox-partial').removeClass("ui-helper-hidden");	
 			  break;
 			  
 			  case "request":

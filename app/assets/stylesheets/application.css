@@ -27,7 +27,7 @@ width :500px;
 border-radius:         5px;
 }
 
-.header-wrapper{margin-left:1%;width:100%;}
+.header-wrapper{margin-left:1%;width:100%;min-width:900px;}
 .logo{height:70px;width:160px;float:left;margin-top:-15px;}
 .titleline{margin-top:1px;	width:60px; border-top:solid #aaaaaa 1px;}
 .headerline{
@@ -232,23 +232,36 @@ text-decoration:underline;
     -webkit-border-radius:3px;
     border-radius:3px;
 }
-.declinebutton{
-	float:left;
+
+.denybutton{
+    margin:2px;
+    float:left;
     padding:5px 6px 5px 6px;
     color:white;
     background-color:#B4BBCD;
-    border:1px solid #006600;
+    border:none;
     font-weight:bold;
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
     border-radius:2px;
 }
-.acceptbutton{
+.declinebutton{
+	float:left;
+    padding:5px 6px 5px 6px;
+    color:white;
+    background-color:#B4BBCD;
+    border:none;
+    font-weight:bold;
+    -moz-border-radius:2px;
+    -webkit-border-radius:2px;
+    border-radius:2px;
+}
+.acceptbutton{margin:2px;
 	float:left;
     padding:5px 6px 5px 6px;
     color:white;
     background-color:#4CC639;
-    border:1px solid #006600;
+    border:none;
     font-weight:bold;
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
@@ -259,7 +272,7 @@ text-decoration:underline;
     padding:5px 6px 5px 6px;
     color:white;
     background-color:#E2555A;
-    border:1px solid #006600;
+    border:none;
     font-weight:bold;
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
@@ -269,7 +282,7 @@ text-decoration:underline;
     padding:5px 8px 5px 8px;
     color:white;
     background-color:#5388C1;
-    border:none;
+    border:1px solid #006600;
     font-weight:bold;
     -moz-border-radius:4px;
     -webkit-border-radius:4px;
@@ -395,18 +408,21 @@ height:96%;min-height:800px;
 margin-top:3px;	
 border:2px solid #dedede;	
 width:600px;
-
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
 border-radius:5px;
 }
+
 .fieldbackground{background:#EFF2F7; }
 #general-field{	
 margin-left:35px;		
 margin-top:2px;	
 border: 5px solid #eee; padding: 5px; width: 500px;
 }
+.post-background{padding:0px;}
+.post-background:hover{padding:0px;background:#EFF2F7;}
 .responsebutton{	float:left;
+ margin:2px;
  padding:3px 10px 3px 10px;
  color:#55555E;
  background-color: #AAB1A9;
@@ -415,6 +431,8 @@ border: 5px solid #eee; padding: 5px; width: 500px;
  -moz-border-radius:4px;
  -webkit-border-radius:4px;
  border-radius:4px;
+ background-image:-webkit-gradient(linear,50% 0%,50% 100%,from( #AAB1A9),to(#fff));
+ background: -moz-linear-gradient(top, #AAB1A9, #fff 80%);
 }
 .responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
 /*.post-content{position:absolute;left:100px;max-width:500px; margin-top:10px;}*/
@@ -444,9 +462,9 @@ border: 5px solid #eee; padding: 5px; width: 500px;
 .reply-field{padding:5px 90px 5px 90px;}
 .needhelpform{background:#E5E5E5;border:solid #b4bbcd 1px;margin-bottom:3px;}
 .list-items {margin-top:12px; margin-left:34px;}
-.homecontainerline{	
-width:220px;
-border-top:solid #aaaaaa 1px;
+.homecontainerline{	clear:both;
+width:100%;
+border-top:dotted #aaaaaa 1px;
 }
 a img {
   border: none;
@@ -723,10 +741,9 @@ font-size: 12px;
 }
 .resultschool-name{font-size: 12px;color:#00A6CB;}
 /*Inbox*/
-.inbox-wrapper{	
+.inbox-wrapper{	padding:0px;
 margin:10px auto;	
 border:2px solid #808080;	
-display:block;
 width:95%;
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
@@ -736,8 +753,10 @@ border-radius:5px;
 .inbox-divider{margin-top:10px;border-top:solid #00AFF0 3px;}
 .inbox-bar{border-right:solid #808080 1px;margin-right:30px;height:20px;}
 .inbox-content{
+width:90%;
+font-size:14px;
 border:solid #00AFF0 1px;
-background:#E5E9EB;width:90%;margin:10px auto;
+background:#E5E9EB;margin:10px auto;
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
 border-radius:5px;
@@ -862,4 +881,19 @@ border:solid #E2E9E9 1px;
 padding:4px;
 width:50px;
 }
+/*email */
+.email-line
+{
+width:60%;
+border-top:solid #07A7D8 2px;   
+}
+.email-background{
+  font-size:15px;
+  margin-top:30px;
+  margin-bottom:30px;
 
+}
+.email-name {
+font-weight:bold;
+color:#3299CC; 
+}

@@ -183,7 +183,7 @@ ClassmatesBooksView = Backbone.View.extend({
     )
 
   render: ->
-    $('#posts-table tbody').append(@el)
+    $('#books-table tbody').append(@el)
     this
 })
 
@@ -241,12 +241,12 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    this.$("#posts-table tbody").empty()
+    this.$("#books-table tbody").empty()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
     view = new SearchedBookView({model: book})
-    this.$("#posts-table tbody").append(view.render().el)
+    this.$("#books-table tbody").append(view.render().el)
 
   addReserved: (book) ->
     view = new ReservedBookView({model: book})
