@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   def search
     if bookp = params['book'] and search = bookp['title']
         result = begin
-                   
                    # TODO: check that printType=books is used
                    Google::Book.search(search)
                  rescue
@@ -18,6 +17,9 @@ class BooksController < ApplicationController
           :isbn => b.isbn,
           :edition => b.hash["dc:date"]
         }
+      }.reject {|b|
+        ed = b[:edition].to_i
+        !b[:isbn] || (ed > 1900 && ed < 1980)
       }
     end
   end
