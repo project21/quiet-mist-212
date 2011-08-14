@@ -42,12 +42,12 @@ PostView = Backbone.View.extend(
         <span class="post-content"><%= content %></span>
         <span class="post-response"></span>
         <br/>
-        <span class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
+        <div class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
           Quick Reply
-        <br/>
+          <br/>
           <button class="responsebutton" id="reply"> Send </button>
           <input type="text" />
-        </span>
+        </div>
       </td>
     ''')
        # <button> <%= confirm %> </button>
