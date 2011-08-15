@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  attr_protected :user_id
+
   belongs_to :course
   belongs_to :user
 
@@ -25,10 +27,10 @@ class Post < ActiveRecord::Base
   # A post can be for multiple courses.
   # Rather than create a join table we duplicate the Post for each course.
   def set_course_ids
-    return course_ids.present?
+    return unless course_ids.present?
 
-    course_ids.each do |course_id|
-      Course.create attributes.merge(:course_id => course_id)
+    (course_ids - [course_id]).each do |course_id|
+      self.class.create attributes.merge(:course_id => course_id, :user => user)
     end
   end
 

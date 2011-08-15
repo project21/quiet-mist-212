@@ -45,7 +45,7 @@ OwnedBookView = Backbone.View.extend(
   
   events:
     # not used yet
-    'click .remove': "remove_book"
+    'mousedown .remove': "remove_book"
 
   remove_book: (e) ->
     e.preventDefault()

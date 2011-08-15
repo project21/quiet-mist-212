@@ -6,11 +6,16 @@ class PostsController < ApplicationController
   end
 
   def create
-    @post = current_user.posts.build(params[:post].merge(:user => current_user))
+    post_params.delete('user_id')
+    @post = current_user.posts.build(post_params.merge(:user => current_user))
     if @post.save
       respond_with @post
     else
       respond_with @post, :status => :unprocessable_entity
     end
+  end
+
+  def post_params
+    @post_params ||= params[:post] || {}
   end
 end

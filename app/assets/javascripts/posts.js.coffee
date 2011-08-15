@@ -29,6 +29,14 @@ PostView = Backbone.View.extend(
     "mousedown .responsebutton" : "respond"
   
   respond: (e) ->
+    form = $(e.currentTarget).parent()
+    reply = form.find('input').val()
+    #TODO: validate not empty
+    post = new Posts.model(created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
+    Posts.add(post)
+    post.save()
+    form[0].reset()
+    e.preventDefault()
 
   initialize: ->
     @model.view = this
@@ -40,14 +48,15 @@ PostView = Backbone.View.extend(
         <span class="post-course"><%= course_id %><span>
         <span class="post-type"></span>
         <span class="post-content"><%= content %></span>
+        <span class="post-sent"><%= created_at %></span>
         <span class="post-response"></span>
         <br/>
-        <span class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
+        <form class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
           Quick Reply
-        <br/>
-          <button class="responsebutton" id="reply"> Send </button>
-          <input type="text" />
-        </span>
+          <br/>
+          <button class="responsebutton"> Send </button>
+          <input type="text" name="post[content]"/>
+        </form>
       </td>
     ''')
        # <button> <%= confirm %> </button>
@@ -75,17 +84,20 @@ PostAppView = Backbone.View.extend({
     $('#posts-table tr.book').remove()
 
     post_attrs = form_to_json(e)['post']
-    delete post_attrs["0"]
-    delete post_attrs[0]
     delete post_attrs['post_type']
 
-    # TODO hard coded!!
-    post_attrs['course_id'] = 14
-    post_attrs['user_id'] = 5
+    # TODO: supposed to default to all?
+    # The whole multiple course id thing is pretty hacky
+    if !post_attrs[0]
+      alert("no course checked off")
+      return
 
-    post = new Posts.model(post_attrs)
+    post = new Posts.model(created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
     Posts.add(post)
     post.save()
+    for course_id in post_attrs
+      post = new Posts.model(created_at: new Date, content: post_attrs.content, course_id: course_id)
+      Posts.add(post)
     e.currentTarget.reset()
 
   initialize: ->
@@ -95,6 +107,7 @@ PostAppView = Backbone.View.extend({
     Posts.fetch()
 
   addOne: (post) ->
+    post.set('user_id': window.CURRENT_USER_ID) if !post.get('user_id')
     view = new PostView({model: post})
     # TODO: add class if it is reserved
     this.$("#posts-table").append(view.render().el)
