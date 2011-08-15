@@ -29,6 +29,14 @@ PostView = Backbone.View.extend(
     "mousedown .responsebutton" : "respond"
   
   respond: (e) ->
+    form = $(e.currentTarget).parent()
+    reply = form.find('input').val()
+    #TODO: validate not empty
+    # TODO: course_id
+    post = new Posts.model(created_at: new Date, course_id: 14, content: reply, reply_id: @model.id)
+    Posts.add(post)
+    post.save()
+    form[0].reset()
 
   initialize: ->
     @model.view = this
@@ -40,14 +48,15 @@ PostView = Backbone.View.extend(
         <span class="post-course"><%= course_id %><span>
         <span class="post-type"></span>
         <span class="post-content"><%= content %></span>
+        <span class="post-sent"><%= created_at %></span>
         <span class="post-response"></span>
         <br/>
-        <div class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
+        <form class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
           Quick Reply
           <br/>
-          <button class="responsebutton" id="reply"> Send </button>
-          <input type="text" />
-        </div>
+          <button class="responsebutton"> Send </button>
+          <input type="text" name="post[content]"/>
+        </form>
       </td>
     ''')
        # <button> <%= confirm %> </button>
@@ -81,7 +90,6 @@ PostAppView = Backbone.View.extend({
 
     # TODO hard coded!!
     post_attrs['course_id'] = 14
-    post_attrs['user_id'] = 5
 
     post = new Posts.model(post_attrs)
     Posts.add(post)
@@ -95,6 +103,7 @@ PostAppView = Backbone.View.extend({
     Posts.fetch()
 
   addOne: (post) ->
+    post.set('user_id': window.CURRENT_USER_ID) if !post.get('user_id')
     view = new PostView({model: post})
     # TODO: add class if it is reserved
     this.$("#posts-table").append(view.render().el)

@@ -1,4 +1,6 @@
 class Post < ActiveRecord::Base
+  attr_protected :user_id
+
   belongs_to :course
   belongs_to :user
 

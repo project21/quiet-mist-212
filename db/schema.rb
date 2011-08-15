@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110813231935) do
+ActiveRecord::Schema.define(:version => 20110815042359) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -75,6 +75,7 @@ ActiveRecord::Schema.define(:version => 20110813231935) do
     t.string   "post_type"
     t.integer  "post_type_id"
     t.text     "content_data"
+    t.integer  "reply_id"
   end
 
   create_table "professions", :force => true do |t|
