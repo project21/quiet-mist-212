@@ -32,11 +32,11 @@ PostView = Backbone.View.extend(
     form = $(e.currentTarget).parent()
     reply = form.find('input').val()
     #TODO: validate not empty
-    # TODO: course_id
-    post = new Posts.model(created_at: new Date, course_id: 14, content: reply, reply_id: @model.id)
+    post = new Posts.model(created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
     Posts.add(post)
     post.save()
     form[0].reset()
+    e.preventDefault()
 
   initialize: ->
     @model.view = this
@@ -84,16 +84,20 @@ PostAppView = Backbone.View.extend({
     $('#posts-table tr.book').remove()
 
     post_attrs = form_to_json(e)['post']
-    delete post_attrs["0"]
-    delete post_attrs[0]
     delete post_attrs['post_type']
 
-    # TODO hard coded!!
-    post_attrs['course_id'] = 14
+    # TODO: supposed to default to all?
+    # The whole multiple course id thing is pretty hacky
+    if !post_attrs[0]
+      alert("no course checked off")
+      return
 
-    post = new Posts.model(post_attrs)
+    post = new Posts.model(created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
     Posts.add(post)
     post.save()
+    for course_id in post_attrs
+      post = new Posts.model(created_at: new Date, content: post_attrs.content, course_id: course_id)
+      Posts.add(post)
     e.currentTarget.reset()
 
   initialize: ->
