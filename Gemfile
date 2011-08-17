@@ -2,7 +2,7 @@ source 'http://rubygems.org'
 
 gem 'yajl-ruby'
 
-gem 'rails', '3.1.0.rc4'
+gem 'rails', '3.1.0.rc6'
 #gem 'active_reload'
 
 # asset pipeline helpers
