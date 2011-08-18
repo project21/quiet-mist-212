@@ -2,7 +2,7 @@ class PostsController < ApplicationController
   respond_to :json
 
   def index
-    respond_with Post.for_user(current_user)
+    respond_with Post.for_user(current_user).includes(:user).to_json(:include => :user)
   end
 
   def create

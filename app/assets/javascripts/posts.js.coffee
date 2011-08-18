@@ -46,14 +46,11 @@ PostView = Backbone.View.extend(
     @model.bind('change', this.render)
     @template = _.template('''
       
-<!--TODO:the post is duplicated ,dispalys two post evertime-->
-<!--TODO:also the newer ones should display up top-->
-<!--TODO:validate if somebody dont enter anything in post field-->
-   <td>   <div class="post-background">
+     <td>
       <span class="post-course"><%= course_id %><span><br/>
-        <span class="post-user"><%= user_id %></span><br/>
+        <span class="post-user"><%= user.firstname %></span><br/>
         <span class="post-type"></span>
-      <span class="post-pic"> <img src="/assets/images/rails.png"  /></span>
+      <span class="post-pic"> <img src="/assets/rails.png"  /></span>
         <span class="post-content"><%= content %></span><br/>
         <span class="post-response"></span>
         <br/>
@@ -64,11 +61,8 @@ PostView = Backbone.View.extend(
           <input type="text" name="post[content] class="reply-field"/>
         </form>
         <span class="post-sent"><%= created_at %></span>
-        </div>
        </td>
-      <div  class="post-line"></div>
     ''')
-       # <button> <%= confirm %> </button>
 
   render: ->
     $(@el).html(@template(@model.attributes))
@@ -120,7 +114,7 @@ PostAppView = Backbone.View.extend({
     post.set('user_id': window.CURRENT_USER_ID) if !post.get('user_id')
     view = new PostView({model: post})
     # TODO: add class if it is reserved
-    this.$("#posts-table").append(view.render().el)
+    this.$("#posts-table").prepend(view.render().el)
 
   addAll: ->
     Posts.each(this.addOne)
