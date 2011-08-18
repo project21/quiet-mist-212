@@ -33,8 +33,7 @@ Campus::Application.configure do
 
   config.assets.js_compressor  = :uglifier
 
-  # TODO: re-enable this was brokent on rc4
-  # config.assets.css_compressor = :scss
+  config.assets.css_compressor = :scss
 
   # Enable serving of images, stylesheets, and javascripts from an asset server
   # config.action_controller.asset_host = "http://assets.example.com"
