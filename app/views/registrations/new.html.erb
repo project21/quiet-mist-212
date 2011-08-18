@@ -26,10 +26,6 @@
 <tr><td><label>Last name</label></td>
   <td><%= f.text_field :lastname,:class=>"round" %></td></tr>
 
-<tr><td> <label>Major</label></td>
-  <td><%= select_tag(:major_id, options_for_select([['undeclared',1 ],['computer science',2]]),:class=>"round") %></td></tr>
-
-  
 <% if @user.email_required? %>  
   <tr><td><label>Email</label></td>
   <td><%= f.text_field :email,:class=>"round" %></td></tr>
@@ -43,11 +39,6 @@
   <td><%= f.password_field :password_confirmation ,:class=>"round"%></td></tr>
 <% end %>
 
-<tr><td><label>Sex</label></td>
- <td><%= select_tag(:sex_id, options_for_select([['Male',1 ],['Female',2]]),:class=>"round") %></td></tr>
-
-<tr><td><label>Zipcode</label></td>
-  <td><%= f.text_field :zipcode,:class=>"round" %></td></tr>
 
 </table>
   <p><%= f.submit "Sign up",:class=>"sign_up_button" %></p>

@@ -33,13 +33,33 @@ $(document).ready(function() {
   });*/
   $( '#general-field' ).elastic();
   $('.post-background').hover(function(){
-    if ($(".responsebutton").hasClass('ui-helper-hidden'))
+   if ($(".responsebutton").hasClass('ui-helper-hidden'))
       $(".responsebutton").removeClass('ui-helper-hidden');
       else
       $('.responsebutton').addClass("ui-helper-hidden");
   });
   
+   $('span a.reservebook').click(function(){
+   if ($("#new-book-form").hasClass('ui-helper-hidden'))
+      $("#new-book-form").removeClass('ui-helper-hidden');
+      else
+      $('#new-book-form').addClass("ui-helper-hidden");
+  });
 		
+    $('ul.book-space li.listbook ').click(function(){
+   if ($("#new-book-form").hasClass('ui-helper-hidden'))
+      $("#new-book-form").removeClass('ui-helper-hidden');
+      else
+      $('#new-book-form').addClass("ui-helper-hidden");
+  });
+  
+   $('ul.book-space li.reservebook ').click(function(){
+   if ($("#reserve-book-form").hasClass('ui-helper-hidden'))
+      $("#reserve-book-form").removeClass('ui-helper-hidden');
+      else
+      $('#reserve-book-form').addClass("ui-helper-hidden");
+  });
+
    $('div.side-box span').click(function(){
  	   { 
 		      switch( $(this).attr('id')){

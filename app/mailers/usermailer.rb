@@ -8,7 +8,7 @@ class Usermailer < ActionMailer::Base
 
   def reserve_notify(user)
   	@user=user
-    mail(:to => user.email, :subject => "Book reserve request")
+    mail(:to => current_user.email, :subject => "Book reserve request")
     attachments["machinelogo2.jpg"]=File.read("#{Rails.root}/app/assets/images/machinelogo2.jpg")
   end
 

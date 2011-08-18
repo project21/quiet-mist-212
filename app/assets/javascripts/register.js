@@ -51,30 +51,7 @@ $(document).ready(function() {
       });  
     });  
   });  
-    
-  $(".backbutton").click(function(e) {
-      
-    //look at each panel  
-    $(".form-panel").each(function() {  
-    
-      //if the panel is visible fade it out  
-      ($(this).hasClass("ui-helper-hidden")) ? null : $(this).fadeOut("fast", function() {
-    
-        //add hidden class and show the next panel  
-        $(this).addClass("ui-helper-hidden").prev().fadeIn("fast", function() {  
-    
-          //if it's the first panel disable the back button  
-          ($(this).attr("id") != "user-form") ? null : $(".backbutton").attr("disabled", "disabled");  
-    
-          //remove hidden class from new panel  
-          $(this).removeClass("ui-helper-hidden");  
-    
-          //update progress bar  
-          $("#progress").progressbar("option", "value", $("#progress").progressbar("option", "value") - 20);
-        }); 
-      });  
-    });  
-  });  
+ 
 
  $('.bookfound').addClass('ui-helper-hidden');
   $('.addbookbutton').click(function(){

@@ -10,6 +10,7 @@ class PostsController < ApplicationController
     @post = current_user.posts.build(post_params.merge(:user => current_user))
     if @post.save
       respond_with @post
+       Usermailer.reserve_notify(user).deliver
     else
       respond_with @post, :status => :unprocessable_entity
     end
@@ -18,4 +19,8 @@ class PostsController < ApplicationController
   def post_params
     @post_params ||= params[:post] || {}
   end
+
+  def mypost
+  end
+    
 end

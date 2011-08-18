@@ -27,6 +27,8 @@ PostView = Backbone.View.extend(
 
   events:
     "mousedown .responsebutton" : "respond"
+    
+  
   
   respond: (e) ->
     form = $(e.currentTarget).parent()
@@ -43,21 +45,28 @@ PostView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td>
-        <span class="post-user"><%= user_id %><span>
-        <span class="post-course"><%= course_id %><span>
+      
+<!--TODO:the post is duplicated ,dispalys two post evertime-->
+<!--TODO:also the newer ones should display up top-->
+<!--TODO:validate if somebody dont enter anything in post field-->
+   <td>   <div class="post-background">
+      <span class="post-course"><%= course_id %><span><br/>
+        <span class="post-user"><%= user_id %></span><br/>
         <span class="post-type"></span>
-        <span class="post-content"><%= content %></span>
-        <span class="post-sent"><%= created_at %></span>
+      <span class="post-pic"> <img src="/assets/images/rails.png"  /></span>
+        <span class="post-content"><%= content %></span><br/>
         <span class="post-response"></span>
         <br/>
         <form class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
           Quick Reply
           <br/>
-          <button class="responsebutton"> Send </button>
-          <input type="text" name="post[content]"/>
+          <button class="responsebutton ui-helper-hidden"> Send </button>
+          <input type="text" name="post[content] class="reply-field"/>
         </form>
-      </td>
+        <span class="post-sent"><%= created_at %></span>
+        </div>
+       </td>
+      <div  class="post-line"></div>
     ''')
        # <button> <%= confirm %> </button>
 
@@ -72,6 +81,7 @@ PostAppView = Backbone.View.extend({
   events:
     'submit #new_post': "save"
     'mousedown #my-posts': "my_posts"
+   
 
   my_posts: (e) ->
     Posts.filter (p) ->

@@ -30,7 +30,12 @@
           <%= f.hidden_field :school_id, :id => 'school_id' %>
         <% end %>
         <br/>
+     <%= f.label :firstname %><span style="color:red;margin-right:2px;">*</span>
+      <%= f.text_field :firstname,:class=>"round",:id=>"firstname" %><br/>
 
+      <%= f.label :lastname %><span style="color:red;margin-right:2px;">*</span>
+      <%= f.text_field :lastname,:class=>"round",:id=>"lastname" %><br/>
+       
         <%= f.label :major %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :major,:class=>"round",:id=>"user_major" %><br/>
         <%= f.hidden_field :major_id, :id => 'major_id' %>

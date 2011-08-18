@@ -1,10 +1,20 @@
 <div id="book-app">
   
-  <h4>My Books <span id=my-book-quantity></span></h4>
-<div id="new-book-form" >
+  <h4>My Books </span></h4>
+ <ul class="book-space"><li class="listbook" ><a href="#" title="add a book to your profile" >List</a></li>
+  <li class="reservebook" ><a href="#" title="Reserve a book from your peers" >Reserve</a></li></ul>
+
+<div id="new-book-form" class="ui-helper-hidden">
     <%= form_for Book.new do |f| %>
-      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Enter your textbook (optional)"%>
-      <%= f.submit "Book Search", {:class=>"addbookbutton"} %>
+      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Search and list your textbook "%>
+      <%= f.submit "Search&list", {:class=>"addbookbutton"} %>
+    <%end%>
+  </div>
+ 
+ <div id="reserve-book-form" class="ui-helper-hidden">
+    <%= form_for Book.new do |f| %>
+      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Search textbooks you want to reserve "%>
+      <%= f.submit "Search&Reserve", {:class=>"addbookbutton"} %>
     <%end%>
   </div>
 
@@ -15,6 +25,6 @@
   </table>
 
  
-  <span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>
+ <!-- <span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>-->
 </div>
  

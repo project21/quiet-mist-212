@@ -55,8 +55,8 @@
 
     <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
-      <%= c.label :subject, 'Class' %><span style="color:red;margin-right:2px;">*</span>
-      <%= c.text_field :subject,:size=>"45",:id => 'course_name', :class=>"round",:placeholder=>"e.g Math101"%>
+      <%= c.label :name, 'Class' %><span style="color:red;margin-right:2px;">*</span>
+      <%= c.text_field :name,:size=>"45",:id => 'course_name', :class=>"round",:placeholder=>"e.g Math101"%>
       
         <%= c.submit "Add",{:class=>"add"} %>
      
@@ -76,8 +76,8 @@
 
     <%= form_for Course.new do |c|%>
       <%= c.hidden_field :id %>
-      <%= c.label :subject, 'Class' %>
-      <%= c.text_field :subject,:size=>"45",:class=>"round",:placeholder=>"(optional)" %>
+      <%= c.label :name, 'Class' %>
+      <%= c.text_field :name,:size=>"45",:class=>"round",:placeholder=>"(optional)" %>
       <%= c.submit "Add",{:class=>"add"} %>
     <%end%>
 
