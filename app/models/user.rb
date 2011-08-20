@@ -59,11 +59,15 @@ class User < ActiveRecord::Base
   end
 
   def apply_omniauth(omniauth)  
+    extra = omniauth["extra"] || {'user_hash' => {}}
     if email.blank?
       # not sure if the extra part is needed or not
-      self.email ||= omniauth['user_info']['email'] || omniauth["extra"]["user_hash"]["email"]
+      self.email ||= omniauth['user_info']['email'] || extra["user_hash"]["email"]
     end
 
+    if profile_image_url = omniauth['user_info']['image'] || extra["user_hash"]["profile_image_url"]
+      self.image_url = profile_image_url if profile_image_url != image_url
+    end
     self.lastname  = omniauth['user_info']['last_name']  if lastname.blank?
     self.firstname = omniauth['user_info']['first_name'] if firstname.blank?
 
