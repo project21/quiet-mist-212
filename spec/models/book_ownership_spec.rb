@@ -12,7 +12,7 @@ describe BookOwnership do
   end
 
   it "try to reserve own book" do
-    @bo.reserve! @bo.user, 20
+    lambda { @bo.reserve! @bo.user, 20 }.should raise_error(ActiveRecord::RecordInvalid)
     @bo.should_not be_reserved
     @bo.should_not be_valid
   end

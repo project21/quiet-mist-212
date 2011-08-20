@@ -39,7 +39,7 @@ class BookOwnership < ActiveRecord::Base
     self.offer = amount
     self.offered_at = Time.now
     save!
-    Usermailer.reserve_notify(user).deliver
+    Usermailer.reserve_notify(self).deliver
   end
 
   def reject!
@@ -49,7 +49,7 @@ class BookOwnership < ActiveRecord::Base
       errors.add :base, "no offer has abeen made"
     else
       self.reserver_id = nil
-      save(false)
+      save
     end
   end
 
@@ -60,7 +60,7 @@ class BookOwnership < ActiveRecord::Base
       errors.add :base, "no offer has abeen made"
     else
       self.accepted_at = Time.now
-      save(false)
+      save
     end
   end
 
