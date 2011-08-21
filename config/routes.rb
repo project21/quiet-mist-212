@@ -31,11 +31,11 @@ Campus::Application.routes.draw do
     get "notification"
   end
 
-  namespace :home do
-    get "show"
-    get "edit"
-    get "profile"
-    get "welcome"
+  resource :home do
+    member do
+      get "profile"
+      get "welcome"
+    end
   end
   
   resources :book_ownerships do

@@ -29,7 +29,7 @@ class Post < ActiveRecord::Base
   def set_course_ids
     return unless course_ids.present?
 
-    (course_ids - [course_id]).each do |course_id|
+    (course_ids - [course_id]).compact.each do |course_id|
       self.class.create attributes.merge(:course_id => course_id, :user => user)
     end
   end

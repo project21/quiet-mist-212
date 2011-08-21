@@ -1,4 +1,4 @@
- class HomeController < ApplicationController
+ class HomesController < ApplicationController
 #  before_filter :registered!, :only => 'show'
 
   def show

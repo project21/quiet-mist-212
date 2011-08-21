@@ -27,14 +27,12 @@ PostView = Backbone.View.extend(
 
   events:
     "mousedown .responsebutton" : "respond"
-    
-  
   
   respond: (e) ->
     form = $(e.currentTarget).parent()
     reply = form.find('input').val()
     #TODO: validate not empty
-    post = new Posts.model(created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
+    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
     Posts.add(post)
     post.save()
     form[0].reset()
@@ -58,12 +56,14 @@ PostView = Backbone.View.extend(
 <div class="clear"></div>
 <span class="post-sent"><%= created_at %></span>
         <span class="post-response"></span>
-        <br/> 
-        <form class="response" style="<%= user_id == window.CURRENT_USER_ID ? 'display:none' : '' %>">
-          Quick reply
-<input type="text" name="post[content] class="reply-field" />
-  <button class="responsebutton" > Send </button>
-         
+
+        <br/>
+        <form class="response" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
+          Quick Reply
+          <br/>
+          <button class="responsebutton ui-helper-hidden"> Send </button>
+          <input type="text" name="post[content] class="reply-field"/>
+
         </form>
        
         </div>
@@ -87,7 +87,7 @@ PostAppView = Backbone.View.extend({
 
   my_posts: (e) ->
     Posts.filter (p) ->
-      if p.get('user_id') != window.CURRENT_USER_ID
+      if p.get('user_id') != window.CURRENT_USER.id
         Posts.remove(p)
         p.view.remove()
 
@@ -104,11 +104,11 @@ PostAppView = Backbone.View.extend({
       alert("no course checked off")
       return
 
-    post = new Posts.model(created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
+    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
     Posts.add(post)
     post.save()
     for course_id in post_attrs
-      post = new Posts.model(created_at: new Date, content: post_attrs.content, course_id: course_id)
+      post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
       Posts.add(post)
     e.currentTarget.reset()
 
@@ -119,7 +119,7 @@ PostAppView = Backbone.View.extend({
     Posts.fetch()
 
   addOne: (post) ->
-    post.set('user_id': window.CURRENT_USER_ID) if !post.get('user_id')
+    post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
     view = new PostView({model: post})
     # TODO: add class if it is reserved
     this.$("#posts-table").append(view.render().el)

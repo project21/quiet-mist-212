@@ -18,16 +18,18 @@ Book.blueprint do
   title   { "Physics" }
   author  { "Weber" }
   edition { '1' }
+  isbn    { sn.to_s }
 end
 
 BookOwnership.blueprint do
   user { User.make! }
   book { Book.make! }
+  course { Course.make! }
 end
 
 Course.blueprint do
   school_id { School.make!.id }
-  subject { "Course 1" }
+  name { "Course 1" }
 end
 
 UserCourse.blueprint do
@@ -36,10 +38,11 @@ UserCourse.blueprint do
   course_id { Course.make!.id }
 end
 
-def make_post!
-  uc = UserCourse.make!
-  Post.make! :user_id => uc.user_id, :course_id => uc.course_id
-  uc
+def make_post! post_attributes = {}
+  cids = post_attributes.delete(:course_ids) || (uc = UserCourse.make!)
+  Post.make!({ :user_id => post_attributes.delete(:user_id) || uc.user_id,
+               :course_id => cids
+             }.merge(post_attributes))
 end
 
 Post.blueprint do
