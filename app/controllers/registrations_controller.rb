@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    session[:user_return_to]= welcom_home_url
+    session[:user_return_to]= welcome_home_url
     super
     session[:omniauth] = nil unless @user.new_record?   
   end

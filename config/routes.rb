@@ -1,5 +1,5 @@
 Campus::Application.routes.draw do
-  root :to=> "home#show"
+  root :to => "homes#show"
 
   get "request_response/books"
 
