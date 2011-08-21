@@ -39,10 +39,11 @@ class Post < ActiveRecord::Base
   def course_id= course_ids
     case course_ids
     when Array
-      super(course_ids.shift)
-      self.course_ids = course_ids
+      super(course_ids.shift).tap do
+        self.course_ids = course_ids.map(&:to_i)
+      end
     else
-      super(course_ids)
+      super course_ids
     end
   end
 end
