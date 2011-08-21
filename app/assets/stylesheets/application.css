@@ -238,6 +238,9 @@ text-decoration:underline;
     -moz-border-radius:2px;
     -webkit-border-radius:2px;
     border-radius:2px;
+     background: -webkit-gradient(linear, 0 0, 0 50%, from(#B4BBCD), 
+   color-stop(90%,#B4BBCD),color-stop(50%,#D1D1D2)); 
+    background:-moz-linear-gradient(top, #B4BBCD, #D1D1D2, #B4BBCD 30%); 
 }
 .declinebutton{
 	float:left;
@@ -260,12 +263,13 @@ color-stop(90%,#B4BBCD),color-stop(80%,#C2C6F5));
     background-color:#4CC639;
     border:none;
     font-weight:bold;
-    -moz-border-radius:2px;
-    -webkit-border-radius:2px;
-    border-radius:2px;
-     background:-moz-linear-gradient(top, #4CC639, #C2C6F5 50%, #4CC639 50%);
-  background: -webkit-gradient(linear, 0 0, 0 50%, from(#4CC639), 
-color-stop(90%,#4CC639),color-stop(80%,#C2C6F5));
+-moz-border-radius:2px;
+-webkit-border-radius:2px;
+border-radius:2px;
+ background: -webkit-gradient(linear, 0 0, 0 50%, from(#4CC639), 
+   color-stop(90%,#4CC639),color-stop(50%,#D1D1D2)); 
+    background:-moz-linear-gradient(top, #4CC639, #D1D1D2, #4CC639 30%); 
+
 }
 .sold-button{
 	float:left;
@@ -279,14 +283,19 @@ color-stop(90%,#4CC639),color-stop(80%,#C2C6F5));
     border-radius:2px;
 }
 .addbookbutton{
-    padding:5px 8px 5px 8px;
+    float:right;
+    padding:3px 5px 3px 5px;
     color:white;
-    background-color:#5388C1;
-    border:1px solid #006600;
-    font-weight:bold;
-    -moz-border-radius:4px;
-    -webkit-border-radius:4px;
-    border-radius:4px;
+    background-color:#666666;
+    border:none;
+    font-size:11px;
+    -moz-border-radius:3px;
+    -webkit-border-radius:3px;
+    border-radius:3px;
+    background: -webkit-gradient(linear, 0 0, 0 50%, from(#666666), 
+   color-stop(90%,#666666),color-stop(50%,#D1D1D2)); 
+    background:-moz-linear-gradient(top, #666666, #D1D1D2, #666666 30%); 
+
     }
  
 .searchbutton{
@@ -318,12 +327,15 @@ color-stop(90%,#4CC639),color-stop(80%,#C2C6F5));
 .sign_up_button{
  padding:5px 9px 5px 9px;
     color:white;
-    background-color: #75C639;
+    background-color: #45C01B;
     border:none;
     font-weight:bold;
    -moz-border-radius:5px;
    -webkit-border-radius:5px;
    border-radius:5px;
+    background:-moz-linear-gradient(top, #45C01B, #C2C6F5  50%, #45C01B 10%);
+  background: -webkit-gradient(linear, 0 0, 0 50%, from(#45C01B), 
+  color-stop(90%,#45C01B),color-stop(50%,#C2C6F5 ));  
 }
 .sign_up_button :hover{#7CED64;}
 .myreserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
@@ -429,23 +441,29 @@ margin-left:35px;
 margin-top:2px;	
 border: 5px solid #eee; padding: 5px; width: 500px;
 }
-.post-user{
+div a#post-user{
+ 
 font-weight:bold;
 color:#3299CC; 
 text-decoration:none; 
 }
-a.post-user:visited {
+div a#post-user:visited {
 color:#3299CC; 
 text-decoration:none; 
 }
-a.post-user:hover {
+div a#post-user:hover {
 color:#3299CC; 
 text-decoration:underline; 
+}
+.inline_table{
+  display: inline-table;
+  position: relative;float:left;
 }
 
 .post-sent{float:right;color:#808080;}
 .post-background:hover{padding:0px;background:#EFF2F7;}
-.responsebutton{	float:left;
+.responsebutton{	
+float:left;
  margin:2px;
  padding:3px 10px 3px 10px;
  color:black;
@@ -455,9 +473,12 @@ text-decoration:underline;
  -moz-border-radius:4px;
  -webkit-border-radius:4px;
  border-radius:4px;
+ background:-moz-linear-gradient(top, #C2C6F5, #aaa 50%, #aaa 50%); 
+ background: -webkit-gradient(linear, 0 0, 0 50%, from(#aaa ), 
+color-stop(90%,#aaa ),color-stop(50%,#C2C6F5));  
 }
 .responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
-.post-content{font-size:12px;}
+#post-content{font-size:12px;clear:both;}
 /*.post-pic{float:left;}*/
 .postbutton{
  margin-left:480px;	
@@ -490,12 +511,17 @@ background:-moz-linear-gradient(top, #C2C6F5, #00AFF0 50%, #00AFF0 50%); backgro
    -webkit-border-radius:5px;
    border-radius:5px;	
 }
-.reply-field{padding:5px 90px 5px 90px;}
+input.reply-field{padding:20px;}
 .needhelpform{background:#E5E5E5;border:solid #b4bbcd 1px;margin-bottom:3px;}
 .list-items {margin-top:12px; margin-left:34px;}
 .homecontainerline{	clear:both;
 width:100%;
 border-top:dotted #aaaaaa 1px;
+}
+.container-dotted{   
+width:600px;
+border-bottom:dotted #e6e6e6 1px; 
+clear:both;
 }
 a img {
   border: none;
@@ -792,11 +818,11 @@ border-radius:5px;
 .inbox-content{
 width:90%;
 font-size:14px;
-border:solid #00AFF0 1px;
+border:solid #dedede 1px;
 background:#E5E9EB;margin:10px auto;
--moz-border-radius:5px;
--webkit-border-radius: 5px;
-border-radius:5px;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
 }
 .inbox-dotted-line{	
 	clear:both;

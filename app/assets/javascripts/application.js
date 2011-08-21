@@ -32,6 +32,7 @@ $(document).ready(function() {
   	 $('.bookfound').removeClass('ui-helper-hidden');	
   });*/
   $( '#general-field' ).elastic();
+   $( '.reply-field' ).elastic();
   $('.post-background').hover(function(){
    if ($(".responsebutton").hasClass('ui-helper-hidden'))
       $(".responsebutton").removeClass('ui-helper-hidden');
