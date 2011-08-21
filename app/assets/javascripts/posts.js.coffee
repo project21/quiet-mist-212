@@ -26,40 +26,35 @@ PostView = Backbone.View.extend(
   className:  "post"
 
   events:
-    "mousedown .responsebutton" : "respond"
+    "submit form.response" : "respond"
   
   respond: (e) ->
-    form = $(e.currentTarget).parent()
-    reply = form.find('input').val()
+    reply = this.$(e.currentTarget).find('input').val()
     #TODO: validate not empty
     post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
     Posts.add(post)
     post.save()
-    form[0].reset()
     e.preventDefault()
+    e.currentTarget.reset()
 
   initialize: ->
     @model.view = this
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      
      <td>
        <span class="post-course"><%= course_id %><span><br/>
        <a href="#" class="post-user" class="inline_table"><%= user.firstname%>&nbsp;<%=user.lastname %></a>
        <span class="post-type"></span>
        <span class="post-pic"> <img src="<%= user.image_url || '/assets/rails.png' %>"/></span>
        <span class="post-content inline_table"><%= content %></span><br/>
-       <span class="post-sent"><%= created_at %></span>
-        <span class="post-response"></span>
+       <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
+       <span class="post-response"></span>
 
         <br/>
         <form class="response" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
-          Quick Reply
-          <br/>
-          <button class="responsebutton ui-helper-hidden"> Send </button>
           <input type="text" name="post[content] class="reply-field"/>
-
+          <input type="submit" class="responsebutton"> Send </input>
         </form>
        
         </div>
@@ -117,8 +112,7 @@ PostAppView = Backbone.View.extend({
   addOne: (post) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
     view = new PostView({model: post})
-    # TODO: add class if it is reserved
-    this.$("#posts-table").append(view.render().el)
+    this.$("#posts-table").prepend(view.render().el)
 
   addAll: ->
     Posts.each(this.addOne)
