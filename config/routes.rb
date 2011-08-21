@@ -1,4 +1,5 @@
 Campus::Application.routes.draw do
+  root :to=> "home#show"
 
   get "request_response/books"
 
@@ -11,9 +12,10 @@ Campus::Application.routes.draw do
   end
 
   resources :schools
+
   match '/users/auth/:provider/callback' => 'authentications#create'  
   match 'request_response/books' =>'request_response#books'
-  match 'posts/mypost'=>'posts#mypost'
+
   devise_for :users,:controllers=> {:registrations=> 'registrations' }
   devise_scope :user do
     match '/users/registered' => 'registrations#registered'
@@ -42,6 +44,4 @@ Campus::Application.routes.draw do
     member { post :reserve }
     collection { get :reserved }
   end
-
-  root :to=> "home#show"
 end
