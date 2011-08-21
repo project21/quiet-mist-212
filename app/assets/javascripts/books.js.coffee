@@ -60,9 +60,7 @@ OwnedBookView = Backbone.View.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-     <td ><span class='reserved'>reserved</span></td>
       <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>  
-
     ''')
 
   render: ->
