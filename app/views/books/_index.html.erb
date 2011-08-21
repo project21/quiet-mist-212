@@ -1,10 +1,12 @@
-<div id="book-app">
+<section id="book-app">
   
-  <h4>My Books </span></h4>
- <ul class="book-space"><li class="listbook" ><a href="#" title="add a book to your profile" >List</a></li>
-  <li class="reservebook" ><a href="#" title="Reserve a book from your peers" >Reserve</a></li></ul>
+  <header>
+    <h1>My Books</h2>
+    <h2 class="book-space"> <a class="listbook" href="#" title="add a book to your profile" >List</a> </h5>
+    <h2 class="book-space"> <a class="reservebook"  href="#" title="Reserve a book from your peers" >Reserve</a> </h5>
+  </header>
 
-<div id="new-book-form" class="ui-helper-hidden">
+  <div id="new-book-form" class="ui-helper-hidden">
     <%= form_for Book.new do |f| %>
       <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Search and list your textbook "%>
       <%= f.submit "Search&list", {:class=>"addbookbutton"} %>
@@ -26,5 +28,4 @@
 
  
  <!-- <span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>-->
-</div>
- 
+</section>

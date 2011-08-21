@@ -163,7 +163,7 @@ ClassmatesBooksView = Backbone.View.extend({
       SearchedBooks.transfer_to(OwnedBooks, @model)
       add_course_name.dialog('close')
       @el.dialog('close').remove()
-      $('#posts-table tbody tr.book').remove()
+      display_table.find('tr.book').remove()
     )
 
   initialize: ->
@@ -250,10 +250,10 @@ BooksAppView = Backbone.View.extend({
 
   addReserved: (book) ->
     view = new ReservedBookView({model: book})
-    this.$('#books-table tbody').append(view.render().el)
+    #this.$('#books-table tbody').append(view.render().el)
 
   addAllReserved: (books) ->
-    this.$('#books-table tbody').empty()
+    #this.$('#books-table tbody').empty()
     ReservedBooks.each(this.addReserved)
 
   initialize: ->
@@ -279,11 +279,8 @@ BooksAppView = Backbone.View.extend({
   addOwned: (book) ->
     book.set(reserver_id: null) if !book.get('reserver_id')
     view = new OwnedBookView({model: book})
-    this.$('#books-table tbody').append(view.render().el)
-    $('#my-book-quanity').text('')
-
-    # TODO: add class if it is reserved
-    display_table.append(view.render().el)
+    $('#books-table tbody').append(view.render().el)
+    #$('#my-book-quanity').text('')
 
   addAllOwned: ->
     display_table.empty()
