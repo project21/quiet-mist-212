@@ -183,7 +183,7 @@ ClassmatesBooksView = Backbone.View.extend({
     )
 
   render: ->
-    $('#books-table tbody').append(@el)
+    display_table.prepend(@el)
     this
 })
 
@@ -241,19 +241,19 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    this.$("#books-table tbody").empty()
+    display_table.empty()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
     view = new SearchedBookView({model: book})
-    this.$("#books-table tbody").append(view.render().el)
+    display_table.append(view.render().el)
 
   addReserved: (book) ->
     view = new ReservedBookView({model: book})
-    this.$('#reserved-books-table tbody').append(view.render().el)
+    this.$('#books-table tbody').append(view.render().el)
 
   addAllReserved: (books) ->
-    this.$('#reserved-books-table tbody').empty()
+    this.$('#books-table tbody').empty()
     ReservedBooks.each(this.addReserved)
 
   initialize: ->
@@ -277,18 +277,22 @@ BooksAppView = Backbone.View.extend({
       $('#reserved-book-quanity').text(' - None-yet')
 
   addOwned: (book) ->
+    book.set(reserver_id: null) if !book.get('reserver_id')
     view = new OwnedBookView({model: book})
+    this.$('#books-table tbody').append(view.render().el)
     $('#my-book-quanity').text('')
 
     # TODO: add class if it is reserved
-    this.$("#books-table tbody").append(view.render().el)
+    display_table.append(view.render().el)
 
   addAllOwned: ->
-    this.$("#books-table tbody").empty()
+    display_table.empty()
     OwnedBooks.each(this.addOwned)
 })
 
+display_table = null
 $(->
+  display_table = $('#posts-table tbody')
   window.BooksApp = new BooksAppView
   window.add_course_name = $("<div><p>What course is this for?</p></p><form><input type='text' id='add-course-name'></input></form></div>")
   # jquery ui screws up event bindings, see:

@@ -44,17 +44,13 @@ PostView = Backbone.View.extend(
     @model.bind('change', this.render)
     @template = _.template('''
       
-<!--TODO:the post is duplicated ,dispalys two post evertime-->
-<!--TODO:also the newer ones should display up top-->
-<!--TODO:validate if somebody dont enter anything in post field-->
-   <td>   
-<div class="post-background">
-<div class="post-course"><%= course_id %></div>
-<div id="post-pic" class="inline_table"> <img src="/assets/images/rails.png" alt="rails"/></div> 
-<div> <a href="#" id="post-user" class="inline_table"><%= user.firstname%>&nbsp;<%=user.lastname %></a> </div>  
-<div id="post-content" class="inline_table"><%= content %></div>
-<div class="clear"></div>
-<span class="post-sent"><%= created_at %></span>
+     <td>
+       <span class="post-course"><%= course_id %><span><br/>
+       <a href="#" class="post-user" class="inline_table"><%= user.firstname%>&nbsp;<%=user.lastname %></a>
+       <span class="post-type"></span>
+       <span class="post-pic"> <img src="<%= user.image_url || '/assets/rails.png' %>"/></span>
+       <span class="post-content inline_table"><%= content %></span><br/>
+       <span class="post-sent"><%= created_at %></span>
         <span class="post-response"></span>
 
         <br/>
