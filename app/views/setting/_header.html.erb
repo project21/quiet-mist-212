@@ -1,7 +1,7 @@
  <div class="header-wraper">
 <%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %>&nbsp;
 <ul id="css3menu1" class="topmenu">
-    <li class="topfirst"><%=link_to 'Home',:controller=>"home",:action=>"show"%></li>
+    <li class="topfirst"><%=link_to 'Home' home_url%></li>
     <li class="topmenu"><a href="#" title="Profile" style="height:18px;line-height:18px;"><span>Profile</span></a>
         <ul>
             <li><%=link_to 'Edit Profile',:controller=>"home",:action=>"edit"%></li>
