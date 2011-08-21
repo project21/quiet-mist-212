@@ -57,7 +57,7 @@ OwnedBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td class='title'><a href="#"> <%= title %></a></td>
+      <td class='title'><%= title %></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
       <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>  
