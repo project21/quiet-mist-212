@@ -292,6 +292,14 @@ $(->
   display_table = $('#posts-table tbody')
   window.BooksApp = new BooksAppView
   window.add_course_name = $("<div><p>What course is this for?</p></p><form><input type='text' id='add-course-name'></input></form></div>")
-  # jquery ui screws up event bindings, see:
+  # jquery ui dialog screws up event bindings, see:
   # https://groups.google.com/group/backbonejs/browse_thread/thread/fa9d2969608e59d7
+
+  $('.book-space .listbook ').click( ->
+    $("#new-book-form").toggleClass('ui-helper-hidden')
+  )
+  
+  $('.book-space .reservebook ').click( ->
+   $("#reserve-book-form").toggleClass('ui-helper-hidden')
+  )
 )

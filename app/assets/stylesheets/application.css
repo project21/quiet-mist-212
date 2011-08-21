@@ -171,7 +171,7 @@ color:#3299CC;
 color:#808080; 
 text-decoration:none; 
 }
-.listbook{list-style-type:none;margin-left:-40px; }
+.listbook{list-style-type:none;}
 .deletebook{font-weight:400;font-size:11px;} 
 .deletebook  a:visited {
 color:blue; 

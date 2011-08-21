@@ -2,23 +2,27 @@
   
   <header>
     <h1>My Books</h2>
-    <h2 class="book-space"> <a class="listbook" href="#" title="add a book to your profile" >List</a> </h5>
-    <h2 class="book-space"> <a class="reservebook"  href="#" title="Reserve a book from your peers" >Reserve</a> </h5>
+
+    <h2 class="book-space"> <a class="listbook" href="#" title="add a book to your profile" >List - Sell a book</a> </h2>
+
+    <div id="new-book-form" class="ui-helper-hidden">
+      <%= form_for Book.new do |f| %>
+        <%= f.search_field :title, :class=>"addbook-field",:placeholder=>"Search for the book you are listing"%>
+        <%= f.submit "Search", {:class=>"addbookbutton"} %>
+      <%end%>
+    </div>
+
+    <h2 class="book-space"> <a class="reservebook"  href="#" title="Reserve a book from your peers" >Reserve - Get a book</a> </h2>
+
+    <div id="reserve-book-form" class="ui-helper-hidden">
+      <%= form_for Book.new do |f| %>
+        <%= f.search_field :title, :class=>"addbook-field",:placeholder=>"Search for the book you are reserving"%>
+        <%= f.submit "Search", {:class=>"addbookbutton"} %>
+      <%end%>
+    </div>
   </header>
 
-  <div id="new-book-form" class="ui-helper-hidden">
-    <%= form_for Book.new do |f| %>
-      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Search and list your textbook "%>
-      <%= f.submit "Search&list", {:class=>"addbookbutton"} %>
-    <%end%>
-  </div>
- 
- <div id="reserve-book-form" class="ui-helper-hidden">
-    <%= form_for Book.new do |f| %>
-      <%= f.search_field :title ,:class=>"addbook-field",:placeholder=>"Search textbooks you want to reserve "%>
-      <%= f.submit "Search&Reserve", {:class=>"addbookbutton"} %>
-    <%end%>
-  </div>
+  <hr/>
 
   <table id="books-table">
 
