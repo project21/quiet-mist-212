@@ -2,12 +2,12 @@
 <div id="left">
   <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
 
-  <div class="side-box">
-    <h4>Posts</h4>
-    <%=link_to image_tag("message.png")+'All posts',{:controller=>"home",:action=>"show"},{:class=>"sidebox-content"}%>
-    <div class="line_separator"></div>
-    <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
-  </div>
+  <section class="side-box">
+    <h2>
+      <%=link_to image_tag("message.png")+'All posts', home_path, {:class=>"sidebox-content"}%>
+      <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
+    </h2>
+  </section>
  
 
   <div class="side-box">
