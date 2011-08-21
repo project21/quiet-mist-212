@@ -1,6 +1,6 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
-    session[:user_return_to]= "/home/welcome"
+    session[:user_return_to]= welcom_home_url
     super
     session[:omniauth] = nil unless @user.new_record?   
   end
@@ -28,7 +28,7 @@ class RegistrationsController < Devise::RegistrationsController
 
   def registered
     current_user.register!
-    redirect_to '/home/show'
+    redirect_to home_url
   end
 
 private  
