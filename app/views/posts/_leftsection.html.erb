@@ -4,7 +4,7 @@
 
  <div class="side-box">
       <h4>Posts</h4>
-      <%=link_to image_tag("message.png")+'All posts',{:controller=>"home",:action=>"show"},{:class=>"sidebox-content"}%>
+      <%=link_to image_tag("message.png")+'All posts',home_path,{:class=>"sidebox-content"}%>
      <div class="line_separator"></div>
      <%=link_to image_tag("message.png")+'My posts',{:controller=>"posts",:action=>"mypost"},{:class=>"sidebox-content"}%>
 
