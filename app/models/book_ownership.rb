@@ -33,9 +33,9 @@ class BookOwnership < ActiveRecord::Base
 
   def accepted?; !!accepted_at end
 
-  def reserve! user, amount
-    self.reserver = user
-    self.reserver_id = user.id
+  def reserve! reserver, amount
+    self.reserver = reserver
+    self.reserver_id = reserver.id
     self.offer = amount
     self.offered_at = Time.now
     save!
