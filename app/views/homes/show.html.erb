@@ -1,12 +1,13 @@
 <%=render 'header'%>	
 <div id="left">
+ <span class="photo"><%=image_tag current_user.photo_url.to_s%></span>
   <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
 
   <section class="side-box">
     <h2>
       <%=link_to image_tag("message.png")+'All posts', home_path, {:class=>"sidebox-content"}%>
       <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
-    </h2>
+   </h2>
   </section>
  
 
@@ -16,7 +17,7 @@
  
   <div class="side-box">
     <h4>Messages</h4>
-    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',{:controller=>"request_response",:action=>"books"},{:class=>"sidebox-content"}%></span>
+    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',{:controller=>"request_response",:action=>"message"},{:class=>"sidebox-content"}%></span>
     <div class="line_separator"></div>
     <span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',{:controller=>"request_response",:action=>"books"},{:class=>"sidebox-content"}%></span>
   </div>
@@ -75,3 +76,12 @@
    
   </div>
 </div>
+
+<div class="footerline"></div>
+<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
+<ul class="footer">
+<li> <%= link_to "About", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+<li> <%= link_to "Feedback", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+<li> <%= link_to "Terms", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> &nbsp;</li>
+<li> <%= link_to "Help", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> </li>
+</ul>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110820153455) do
+ActiveRecord::Schema.define(:version => 20110825042925) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -47,12 +47,6 @@ ActiveRecord::Schema.define(:version => 20110820153455) do
   end
 
   add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
-
-  create_table "campuses", :force => true do |t|
-    t.string  "name"
-    t.integer "postal_code"
-    t.integer "location_id"
-  end
 
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"
@@ -149,6 +143,7 @@ ActiveRecord::Schema.define(:version => 20110820153455) do
     t.boolean  "registered"
     t.integer  "school_id"
     t.string   "image_url"
+    t.string   "photo"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

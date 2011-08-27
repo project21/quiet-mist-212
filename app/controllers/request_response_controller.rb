@@ -3,4 +3,8 @@ class RequestResponseController < ApplicationController
   	 @javascript = ['application']
   end
 
+  def message
+  	  @javascript = ['application']
+  end	
+
 end

@@ -6,7 +6,7 @@
   <div class="form-panel" id="user-form">
     <fieldset>
       <legend>Basic details</legend>
-      <%=form_for current_user, :url => '/users' do |f|%>
+      <%=form_for current_user,:html=>{:multipart=>true}, :url => '/users' do |f|%>
         <% if current_user.school_id %>
           <p>
           School Name:
@@ -16,6 +16,7 @@
           <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
           <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
           <%= f.hidden_field :school_id, :id => 'school_id' %>
+        
         <% end %>
         <br/>
 
@@ -25,7 +26,8 @@
 
         <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
-       
+        <span> <label>photo</label>
+          <%= f.file_field :photo %></span><br/>
           <%= f.submit "save and continue",{:class=>"savebutton" }%>
       <%end%>
    </fieldset>
@@ -57,7 +59,7 @@
       <%= c.hidden_field :id %>
       <%= c.label :name, 'Class' %><span style="color:red;margin-right:2px;">*</span>
       <%= c.text_field :name,:size=>"45",:id => 'course_name', :class=>"round",:placeholder=>"e.g Math101"%>
-      
+      <!--TODO:unvalidate classes-->
         <%= c.submit "Add",{:class=>"add"} %>
      
     <%end%>

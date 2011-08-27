@@ -1,22 +1,9 @@
 
-<%=render 'leftsection' %>
+<%=render 'leftsection'%>	
 <div id="center">
-<div class="container">
-<h3>Request &Response</h3>
-<div class="inbox-divider"></div>
-<div class="inbox-content">
+<h3 class="message-title">Inbox </h3>
+<%= render 'noinbox'%>
 
-<div>
-<span>john</span><br/>
-<span>wants to reserve</span>&nbsp;<span>physics book</span> &nbsp;for <span>price</span>
-
-<div><%=button_to'Decline',{:controller=>"books",:action=>"new"},{:class=>"denybutton"}%></span><span><%=button_to'Accept',{:controller=>"books",:action=>"new"},{:class=>"acceptbutton"}%></div>
-</div>
-</div>
-<div class="container-dotted"></div>
-
-<!--<%=render 'request'%> -->
-</div>
 </div>
 
 <div class="footerline"></div>

@@ -1,7 +1,7 @@
 <%= render 'header'%>
   
   <h2 style="color:#00AFF0;">Edit profile</h2>
-  <div style="float:left;width:250px;">
+  <div style="float:left;width:270px;">
   <ul class="edit-form">
   <li id="details"><a href="#">Basic details</a></li> 
   <div class="edit-line"></div>
@@ -18,7 +18,7 @@
   <div class="form-panels" id="user-form">
     <fieldset>
       <legend>Basic details</legend>
-      <%=form_for current_user, :url => '/users' do |f|%>
+      <%=form_for current_user,:html=>{:multipart=>true}, :url => '/users' do |f|%>
         <% if current_user.school_id %>
           <p>
           School Name:
@@ -30,6 +30,7 @@
           <%= f.hidden_field :school_id, :id => 'school_id' %>
         <% end %>
         <br/>
+       
      <%= f.label :firstname %><span style="color:red;margin-right:2px;">*</span>
       <%= f.text_field :firstname,:class=>"round",:id=>"firstname" %><br/>
 
@@ -41,7 +42,10 @@
         <%= f.hidden_field :major_id, :id => 'major_id' %>
 
         <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
-        <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
+        <%= f.text_field :highschool,:size=>"30",:class=>"round" ,:id=>"hschool"  %>
+         <%=f.label :photo %>
+          <%= f.file_field :photo %> 
+        <br/>
        
           <%= f.submit "save and continue",{:class=>"savebutton" }%>
       <%end%>

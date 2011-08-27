@@ -1,7 +1,7 @@
  <div class="header-wraper">
 <%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %>&nbsp;
 <ul id="css3menu1" class="topmenu">
-    <li class="topfirst"><%=link_to 'Home' home_url%></li>
+    <li class="topfirst"><%=link_to 'Home', home_url%></li>
     <li class="topmenu"><a href="#" title="Profile" style="height:18px;line-height:18px;"><span>Profile</span></a>
         <ul>
             <li><%=link_to 'Edit Profile', edit_home_url %></li>
@@ -10,7 +10,7 @@
     </li>
     <li class="toplast"><a href="#" title="Account" style="height:18px;line- height:18px;"><span>Account</span></a>
         <ul>
-            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"profile"%></li>
+            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"show"%></li>
             <li><%= link_to "Sign out", destroy_user_session_path %></li>
         </ul>
     </li>
