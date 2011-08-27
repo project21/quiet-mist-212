@@ -105,8 +105,11 @@ SearchedBookView = Backbone.View.extend(
 
   choose_book: (e) ->
     e.preventDefault()
-    SearchedBooks.reset(@model)
-    view = new ClassmatesBooksView(model: @model)
+    SearchedBooks.reset()
+    view = if @options['reserve']
+      new ReserveClassmateBookView(model: @model)
+    else
+      new AddBookView(model: @model)
     view.render().el
 
   initialize: ->
@@ -127,14 +130,15 @@ SearchedBookView = Backbone.View.extend(
     this
 )
 
-# <li class="buy-book"> <span class="reserved">Buy</span> from Amazon </li>
 
-classmatesTemplate = '''
+add_book_template = '''
 <div>
-  <ul class="add-or-buy-or-reserve">
-    <li class="add-to-my-books"> <span class="reserved">Add</span> I own this book already! </li>
-    <li class="reserve-book" style="display:none;"> <span class="reserved">Reserve</span> from your classmates</li>
-  </ul>
+  <span class="add-to-my-books"> <span class="reserved">Add</span> I own this book already! </li>
+</div>
+'''
+reserve_book_template = '''
+<div>
+  <span class="reserve-book" style="display:none;"> <span class="reserved">Reserve</span> from your classmates</li>
   <p class="finding-owners">
     Looking for classmates with this book ...
   </p>
@@ -145,11 +149,11 @@ classmatesTemplate = '''
 </div>
 '''
 
-ClassmatesBooksView = Backbone.View.extend({
+AddBookView = Backbone.View.extend({
   el: "body"
 
   events:
-    "click .add-or-buy-or-reserve .add-to-my-books": "add_book"
+    "mousedown .add-to-my-books": "add_book"
   #  "click .add-or-buy-or-reserve .buy-book" : "buy_book"
   #buy_book: -> alert("sorry, not implemented yet")
 
@@ -165,7 +169,21 @@ ClassmatesBooksView = Backbone.View.extend({
     )
 
   initialize: ->
-    @el = $(classmatesTemplate)
+    @el = $(add_book_template)
+
+  render: ->
+    display_table.prepend(@el)
+    this
+})
+
+ReserveClassmateBookView = Backbone.View.extend({
+  el: "body"
+
+  #  "click .add-or-buy-or-reserve .buy-book" : "buy_book"
+  #buy_book: -> alert("sorry, not implemented yet")
+
+  initialize: ->
+    @el = $(reserve_book_template)
     $.get('/book_ownerships/0', {isbn: @model.get('isbn').toString()}, (book_ownerships) =>
       books_available = book_ownerships.length != 0
       @el.find('.reserve-book').toggle(books_available)
@@ -214,11 +232,13 @@ BooksAppView = Backbone.View.extend({
   el: "body"
 
   events:
-    'submit #new_book': "search"
+    'submit .search-book-form': "search"
 
   search: (e) ->
     e.preventDefault()
-    query = $(e.currentTarget).serialize()
+    form = $(e.currentTarget)
+    @form_id = form.attr('id')
+    query = form.find('input[type=search]').serialize()
     if query.length > 0
       # no need for a url
       $('.bookfound').addClass('ui-helper-hidden')
@@ -243,7 +263,7 @@ BooksAppView = Backbone.View.extend({
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
-    view = new SearchedBookView({model: book})
+    view = new SearchedBookView({model: book, reserve: @form_id == "reserve-book-form"})
     display_table.append(view.render().el)
 
   addReserved: (book) ->
