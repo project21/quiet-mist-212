@@ -259,7 +259,7 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    display_table.empty()
+    display_table.find('tr.book').remove()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
@@ -301,7 +301,7 @@ BooksAppView = Backbone.View.extend({
     #$('#my-book-quanity').text('')
 
   addAllOwned: ->
-    display_table.empty()
+    display_table.find('tr.book').remove()
     OwnedBooks.each(this.addOwned)
 })
 
