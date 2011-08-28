@@ -27,8 +27,10 @@
         <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
         <%= f.label :photo %>
-        <%= f.file_field :photo %><br/>
-        <%= f.submit "save and continue",{:class=>"savebutton" }%>
+        <% if !current_user.image_url %>
+          <%= f.file_field :photo %><br/>
+          <%= f.submit "save and continue",{:class=>"savebutton" }%>
+        <%end%>
       <%end%>
    </fieldset>
   </div>
