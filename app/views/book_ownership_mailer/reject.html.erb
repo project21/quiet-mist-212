@@ -1,0 +1,11 @@
+<div class="email-line"></div>
+<div class="email-background">
+  <span class="email-name"><%= @book_ownership.reserver.firstname %></span>
+  <span class="last-name"> <%= @book_ownership.reserver.lastname %></span>
+ 
+  declined your offer for the book:
+  <span class="book-title"><%= @book_ownership.book.author %></span>
+   
+   <a href='#'>Reserve again</a>
+</div>
+<div class="email-line"></div>

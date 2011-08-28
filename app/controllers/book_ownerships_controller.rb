@@ -43,7 +43,7 @@ class BookOwnershipsController < ApplicationController
   end
 
   def decline
-    @book_ownership.reject!  
+    @book_ownership.reject!
   end
  
   def accept

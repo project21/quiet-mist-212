@@ -39,7 +39,7 @@ class BookOwnership < ActiveRecord::Base
     self.offer = amount
     self.offered_at = Time.now
     save!
-    Usermailer.reserve_notify(self).deliver
+    BookOwnershipMailer.reserve(self).deliver
   end
 
   def reject!
@@ -51,6 +51,7 @@ class BookOwnership < ActiveRecord::Base
       self.reserver_id = nil
       save
     end
+    BookOwnershipMailer.reject(self).deliver
   end
 
   def accept!
@@ -62,6 +63,7 @@ class BookOwnership < ActiveRecord::Base
       self.accepted_at = Time.now
       save
     end
+    BookOwnershipMailer.accept(self).deliver
   end
 
   def cancel!
@@ -74,6 +76,7 @@ class BookOwnership < ActiveRecord::Base
     else
       errors.add :base, "can only cancel an accepted offer"
     end
+    BookOwnershipMailer.cancel(self).deliver
   end
 
   def sell!
