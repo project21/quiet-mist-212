@@ -29,6 +29,8 @@ gem "foreigner"
 
 gem 'simple_form'
 gem 'enumerated_attribute'
+# need unreleased version for latest rails
+#gem 'meta_where'
 
 gem 'google-book', :require => 'google/book'
 gem 'api_smith'

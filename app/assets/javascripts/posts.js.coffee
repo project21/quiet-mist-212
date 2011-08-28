@@ -24,9 +24,14 @@ window.Posts = new PostCollection
 PostView = Backbone.View.extend(
   tagName:  "tr"
   className:  "post"
+  # add border-bottom similar to: <div  class="post-line"></div>
 
   events:
     "submit form.response" : "respond"
+    "hover td" : "respondHover"
+
+  respondHover: (e) ->
+    $(e.currentTarget).find('form').toggleClass('ui-helper-hidden')
   
   respond: (e) ->
     reply = this.$(e.currentTarget).find('input').val()
@@ -52,14 +57,11 @@ PostView = Backbone.View.extend(
        <span class="post-response"></span>
 
         <br/>
-        <form class="response" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
+        <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
           <input type="text"   name="post[content] size="35" >
           <input type="submit"  value="send" class="responsebutton" >
         </form>
-       
-      
-       </td>
-      <div  class="post-line"></div>
+      </td>
     ''')
        # <button> <%= confirm %> </button>
 
@@ -113,6 +115,9 @@ PostAppView = Backbone.View.extend({
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
     view = new PostView({model: post})
     this.$("#posts-table").prepend(view.render().el)
+    #console.log(post)
+    #for reply in post.get('replies')
+      #@addOne(new Posts.model(reply))
 
   addAll: ->
     Posts.each(this.addOne)
