@@ -3,9 +3,7 @@ class PostsController < ApplicationController
 
   def index
     posts = Post.for_user(current_user).includes(:user).includes(:replies => :user)
-    #replies = Post.where(:reply_id => posts.map(&:id)).includes(:user)
-    #respond_with(posts.to_json(:include => [:user, {:replies => :user}]))
-    respond_with(posts.to_json(:include => [:user, :replies]))
+    respond_with(posts.to_json(:methods => :user, :include => {:replies => {:include => :user}}))
   end
 
   def create

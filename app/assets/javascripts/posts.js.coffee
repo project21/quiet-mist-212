@@ -113,11 +113,10 @@ PostAppView = Backbone.View.extend({
 
   addOne: (post) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
+    replies = post.get('replies')
+    @addOne(new Posts.model(reply)) for reply in replies if replies
     view = new PostView({model: post})
     this.$("#posts-table").prepend(view.render().el)
-    #console.log(post)
-    #for reply in post.get('replies')
-      #@addOne(new Posts.model(reply))
 
   addAll: ->
     Posts.each(this.addOne)
