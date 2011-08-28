@@ -15,7 +15,7 @@ class BookOwnershipsController < ApplicationController
     respond_with(if !book then [] else
       BookOwnership.where(
         :school_id => current_user.school_id, :book_id => book.id
-      ).includes(:book)
+      ).includes(:book, :user).to_json(:include => :user)
     end)
   end
 

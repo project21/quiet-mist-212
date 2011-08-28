@@ -89,6 +89,7 @@ ReservedBookView = Backbone.View.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
+      <td><span class='reserved'>Reserved</span></td>
     ''')
 
   render: ->
@@ -138,7 +139,7 @@ add_book_template = '''
 '''
 reserve_book_template = '''
 <div>
-  <span class="reserve-book" style="display:none;"> <span class="reserved">Reserve</span> from your classmates</li>
+  <span class="reserv-book">Reserve from your classmates</span>
   <p class="finding-owners">
     Looking for classmates with this book ...
   </p>
@@ -208,19 +209,20 @@ ClassmateBookView = Backbone.View.extend(
   className:  "book"
 
   events:
-    'click': "reserve_book"
+    'mousedown span.reserved': "reserve_book"
 
   reserve_book: (e) ->
     e.preventDefault()
     @model.id = @options['book_ownership'].id
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
+    display_table.empty()
 
   initialize: ->
     _.bindAll(this, 'render')
     @template = _.template('''
+      <td><span class="reserved">Reserve</span></td>
       <td class='condition'><%= condition %></td>
       <td class='description'><%= condition_description %></td>
-      </td>
     ''')
 
   render: ->
@@ -259,7 +261,7 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    display_table.find('tr.book').remove()
+    display_table.empty()
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
@@ -268,10 +270,9 @@ BooksAppView = Backbone.View.extend({
 
   addReserved: (book) ->
     view = new ReservedBookView({model: book})
-    #this.$('#books-table tbody').append(view.render().el)
+    this.$('#books-table tbody').append(view.render().el)
 
   addAllReserved: (books) ->
-    #this.$('#books-table tbody').empty()
     ReservedBooks.each(this.addReserved)
 
   initialize: ->
