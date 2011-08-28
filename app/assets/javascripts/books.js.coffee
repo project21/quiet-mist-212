@@ -139,7 +139,7 @@ add_book_template = '''
 '''
 reserve_book_template = '''
 <div>
-  <span class="reserv-book">Reserve from your classmates</span>
+  <span class="reserve-book">Reserve from your classmates</span>
   <p class="finding-owners">
     Looking for classmates with this book ...
   </p>
@@ -314,11 +314,11 @@ $(->
   # jquery ui dialog screws up event bindings, see:
   # https://groups.google.com/group/backbonejs/browse_thread/thread/fa9d2969608e59d7
 
-  $('.book-space .listbook ').click( ->
+  fast_click($('.book-space .listbook'), ->
     $("#new-book-form").toggleClass('ui-helper-hidden')
   )
   
-  $('.book-space .reservebook ').click( ->
-   $("#reserve-book-form").toggleClass('ui-helper-hidden')
+  fast_click($('.book-space .reservebook'), ->
+    $("#reserve-book-form").toggleClass('ui-helper-hidden')
   )
 )

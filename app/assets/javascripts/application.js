@@ -40,13 +40,6 @@ $(document).ready(function() {
       $('.responsebutton').addClass("ui-helper-hidden");
   });
   
-   $('span a.reservebook').click(function(){
-   if ($("#new-book-form").hasClass('ui-helper-hidden'))
-      $("#new-book-form").removeClass('ui-helper-hidden');
-      else
-      $('#new-book-form').addClass("ui-helper-hidden");
-  });
-		
    $('div.side-box span').click(function(){
  	   { 
 		      switch( $(this).attr('id')){
