@@ -9,7 +9,7 @@
   <%= require_javascript *@javascript %>
 
   <script type="text/javascript">
-    window.CURRENT_USER = <%= (current_user.try(:attributes) || {}).to_json.html_safe %>
+    window.CURRENT_USER = <%= (current_user.try(:attributes) || {}).slice('id', 'email', 'firstname', 'lastname', 'image_url', 'major','school_id', 'photo').to_json.html_safe %>
   </script>
 </head>
 
