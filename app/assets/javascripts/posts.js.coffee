@@ -59,7 +59,7 @@ PostView = Backbone.View.extend(
         <br/>
         <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
           <input type="text"   name="post[content] size="35" >
-          <input type="submit"  value="send" class="responsebutton" >
+          <input type="submit"  value="reply" class="responsebutton" >
         </form>
       </td>
     ''')
