@@ -47,18 +47,18 @@ PostView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-     <td>
+     <td width="300">
        <span class="post-course"><%= course_id %><span><br/>
        <span class="post-type"></span>
        <span class="inline_table"> <img src="<%= user.image_url || '/assets/rails.png' %>"/></span>
        <span class="inline_table"><a href="#" id="post-user" ><%= user.firstname%>&nbsp;<%=user.lastname %></a></span><br/>
-      <span class="inline_table"> <%= content %></span><br/>
+      <span class="post-content"> <%= content %></span><br/>
        <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
        <span class="post-response"></span>
 
         <br/>
         <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
-          <input type="text"   name="post[content] size="35" >
+          <input type="text"   name="post[content]" size="35" >
           <input type="submit"  value="reply" class="responsebutton" >
         </form>
       </td>

@@ -472,6 +472,7 @@ color-stop(90%,#aaa ),color-stop(50%,#C2C6F5));
   border-collapse: collapse;
   border-spacing: 0;
 }*/
+
 #posts-table tr.post td{
  width:600px;
 border-bottom:solid #e6e6e6 1px; 
@@ -483,7 +484,7 @@ padding:0px;background:#EFF2F7;
 /*tr.post div.post-line{  width:100%;
 border-bottom:solid #e6e6e6 1px;}*/
 .responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
- #post-content{
+ .post-content{
    font-size:12px;
    clear:both;
    position:relative;
