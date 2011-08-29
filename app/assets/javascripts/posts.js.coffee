@@ -70,13 +70,15 @@ PostView = Backbone.View.extend(
     this
 )
 
+
 PostAppView = Backbone.View.extend({
   el: "body"
 
+  stop_event : (e) -> e.preventDefault()
   events:
     'submit #new_post': "save"
     'mousedown #my-posts': "my_posts"
-   
+    'click #my-posts': "stop_event"
 
   my_posts: (e) ->
     Posts.filter (p) ->
@@ -85,8 +87,7 @@ PostAppView = Backbone.View.extend({
         p.view.remove()
 
   save: (e) ->
-    SearchedBooks.reset()
-    $('#posts-table tr.book').remove()
+    show_posts()
 
     post_attrs = form_to_json(e)['post']
     delete post_attrs['post_type']
@@ -116,13 +117,21 @@ PostAppView = Backbone.View.extend({
     replies = post.get('replies')
     @addOne(new Posts.model(reply)) for reply in replies if replies
     view = new PostView({model: post})
-    this.$("#posts-table").prepend(view.render().el)
+    posts_table.find('tbody').prepend(view.render().el)
 
   addAll: ->
     Posts.each(this.addOne)
 })
 
+window.posts_table = null
+window.show_posts = (e) ->
+  requests_table.addClass('ui-helper-hidden')
+  searched_books_table.addClass('ui-helper-hidden')
+  posts_table.removeClass('ui-helper-hidden')
+
+
 $(->
+  window.posts_table = $('#posts-table')
   window.PostApp = new PostAppView
   $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
 )

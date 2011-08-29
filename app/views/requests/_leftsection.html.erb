@@ -19,9 +19,9 @@
  
 <div class="side-box">
 <h4>Messages</h4>
-<span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',{:controller=>"request_response",:action=>"message"},{:class=>"sidebox-content"}%></span>
+<span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span>
 <div class="line_separator"></div>
-<span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',{:controller=>"request_response",:action=>"books"},{:class=>"sidebox-content"}%></span>
+<span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',requests_url,{:class=>"sidebox-content"}%></span>
 </div>
      
 

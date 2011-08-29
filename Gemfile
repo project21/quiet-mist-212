@@ -27,10 +27,9 @@ gem 'devise', '1.4.2'
 gem 'omniauth'
 gem "foreigner"
 
+gem 'squeel'
 gem 'simple_form'
 gem 'enumerated_attribute'
-# need unreleased version for latest rails
-#gem 'meta_where'
 
 gem 'google-book', :require => 'google/book'
 gem 'api_smith'

@@ -12,6 +12,7 @@ _.extend Backbone.Model.prototype,
 Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
   reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
+  requested: -> get('reserver_id')
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
@@ -111,7 +112,7 @@ SearchedBookView = Backbone.View.extend(
       new ReserveClassmateBookView(model: @model)
     else
       new AddBookView(model: @model)
-    view.render().el
+    searched_books_table.prepend( view.render().el )
 
   initialize: ->
     @model.view = this
@@ -166,14 +167,14 @@ AddBookView = Backbone.View.extend({
       SearchedBooks.transfer_to(OwnedBooks, @model)
       add_course_name.dialog('close')
       @el.dialog('close').remove()
-      display_table.find('tr.book').remove()
+      show_posts()
     )
 
   initialize: ->
     @el = $(add_book_template)
 
   render: ->
-    display_table.prepend(@el)
+    books_table.find('tbody').prepend(@el)
     this
 })
 
@@ -200,7 +201,7 @@ ReserveClassmateBookView = Backbone.View.extend({
     )
 
   render: ->
-    display_table.prepend(@el)
+    books_table.find('tbody').prepend(@el)
     this
 })
 
@@ -215,7 +216,6 @@ ClassmateBookView = Backbone.View.extend(
     e.preventDefault()
     @model.id = @options['book_ownership'].id
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
-    display_table.empty()
 
   initialize: ->
     _.bindAll(this, 'render')
@@ -241,17 +241,13 @@ BooksAppView = Backbone.View.extend({
     form = $(e.currentTarget)
     @form_id = form.attr('id')
     query = form.find('input[type=search]').serialize()
+    show_books()
     if query.length > 0
       # no need for a url
       $('.bookfound').addClass('ui-helper-hidden')
       $.getJSON('/books/search', query, (books) ->
         $('.bookfound').removeClass('ui-helper-hidden')
-
-        SearchedBooks.reset()
-        _(books).each( (book_attrs) ->
-          book = new SearchedBooks.model(book_attrs)
-          SearchedBooks.add(book)
-        )
+        SearchedBooks.reset(books)
       )
 
   save: (e) ->
@@ -261,16 +257,18 @@ BooksAppView = Backbone.View.extend({
     OwnedBooks.add(book)
 
   addAllSearched: (books) ->
-    display_table.empty()
+    searched_books_table.find('tbody').empty()
+    show_books
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
+    console.log(book)
     view = new SearchedBookView({model: book, reserve: @form_id == "reserve-book-form"})
-    display_table.append(view.render().el)
+    searched_books_table.find('tbody').append(view.render().el)
 
   addReserved: (book) ->
     view = new ReservedBookView({model: book})
-    this.$('#books-table tbody').append(view.render().el)
+    books_table.find('tbody').append(view.render().el)
 
   addAllReserved: (books) ->
     ReservedBooks.each(this.addReserved)
@@ -298,17 +296,38 @@ BooksAppView = Backbone.View.extend({
   addOwned: (book) ->
     book.set(reserver_id: null) if !book.get('reserver_id')
     view = new OwnedBookView({model: book})
-    $('#books-table tbody').append(view.render().el)
+    books_table.find('tbody').append(view.render().el)
     #$('#my-book-quanity').text('')
 
   addAllOwned: ->
-    display_table.find('tr.book').remove()
+    books_table.find('tbody').empty()
     OwnedBooks.each(this.addOwned)
+
+    # TODO: use requests views
+    #for book in _(OwnedBooks.filter((b)->b.requested)).concat(ReservedBooks.models).sortBy((b) -> b.updated_at)
+      #view = if b.reserver_id == CURRENT_USER['id']
+        #new ReserveRequestView(model:book)
+      #else if b.offered_at
+        #new OfferedRequestView(model:book)
+      #else if b.accepted_at
+        #new AccepteRequestView(model:book)
+      #else
+        #requests_table.find('tbody').append(view.render().el)
 })
 
-display_table = null
+window.books_table = null
+window.searched_books_table = null
+window.requesets_table = null
+
+window.show_books = (e) ->
+  requests_table.addClass('ui-helper-hidden')
+  posts_table.addClass('ui-helper-hidden')
+  searched_books_table.removeClass('ui-helper-hidden')
+
 $(->
-  display_table = $('#posts-table tbody')
+  window.requests_table = $('#requests-table')
+  window.books_table = $('#books-table')
+  window.searched_books_table = $('#searched-books-table')
   window.BooksApp = new BooksAppView
   window.add_course_name = $("<div><p>What course is this for?</p></p><form><input type='text' id='add-course-name'></input></form></div>")
   # jquery ui dialog screws up event bindings, see:

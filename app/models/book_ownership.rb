@@ -27,7 +27,11 @@ class BookOwnership < ActiveRecord::Base
       return false
     end
   end
-#function is book reserved 
+
+  scope :recently_requested, ->(){
+    t = (Time.now - 30.days)
+    where {(reserver_id != nil) & ((accepted_at >= t) | (offered_at >= t))}
+  }
  
   def reserved?; !!reserver_id end
 

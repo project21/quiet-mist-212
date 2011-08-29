@@ -17,9 +17,11 @@
  
   <div class="side-box">
     <h4>Messages</h4>
-    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',{:controller=>"request_response",:action=>"message"},{:class=>"sidebox-content"}%></span>
+    <!--
+    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span>
+    -->
     <div class="line_separator"></div>
-    <span id="request"><%=link_to image_tag("message.png")+'Requests & Responses',{:controller=>"request_response",:action=>"books"},{:class=>"sidebox-content"}%></span>
+    <span id="request"><%=link_to image_tag("message.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
   </div>
      
 
@@ -58,6 +60,12 @@
     <%end%>
 
     <table id="posts-table">
+      <tbody></tbody>
+    </table>
+    <table id="searched-books-table" class="ui-helper-hidden">
+      <tbody></tbody>
+    </table>
+    <table id="requests-table" class="ui-helper-hidden">
       <tbody></tbody>
     </table>
 <!-- <div class="post-background">sdhdsh<br/>fhufhfuh<br/>iireii
