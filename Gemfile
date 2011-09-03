@@ -27,14 +27,14 @@ end
 
 gem 'devise'
 #gem 'omniauth'
-#gem "foreigner"
+gem "foreigner"
 
-#gem 'squeel'
-#gem 'simple_form'
-#gem 'enumerated_attribute'
+gem 'squeel'
+gem 'simple_form'
+gem 'enumerated_attribute'
 
-#gem 'google-book', :require => 'google/book'
-#gem 'api_smith'
+gem 'google-book', :require => 'google/book'
+gem 'api_smith'
 
 
 group :development, :test do
