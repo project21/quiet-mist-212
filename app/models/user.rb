@@ -49,6 +49,8 @@ class User < ActiveRecord::Base
     end
   end
 
+  def image_url; photo_url || super end
+
   def register!
     self.registered = true
     save!

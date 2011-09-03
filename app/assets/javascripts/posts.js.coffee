@@ -54,7 +54,7 @@ PostView = Backbone.View.extend(
      <td>
        <span class="post-course"><%= course_id %><span><br/>
        <span class="post-type"></span>
-       <span class="inline_table"> <img src="<%= user.image_url || '/assets/main.png' %>"/></span>
+       <span class="inline_table"> <img src="<%= user.image_url || (user.photo ? user.photo.url : '/assets/main.png') %>"/></span>
        <span class="inline_tables"><a href="#" id="post-user" ><%= user.firstname%>&nbsp;<%=user.lastname %></a><br/><span class="post-content"><%= content %></span></span><br/>
   <!--    <span class="post-content"> <%= content %></span><br/>-->
        <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
