@@ -10,11 +10,11 @@ gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 
-#gem 'fog'
-#gem 'carrierwave'
+gem 'fog'
+gem 'carrierwave'
 
-#gem 'jquery-rails'
-#gem 'rake'
+gem 'jquery-rails'
+gem 'rake'
 
 platform :mswin, :mingw do
   gem 'sqlite3'
