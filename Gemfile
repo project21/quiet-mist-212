@@ -26,7 +26,7 @@ platform :ruby do
 end
 
 gem 'devise'
-gem 'omniauth', '0.3.0.rc3'
+gem 'omniauth'
 gem "foreigner"
 
 gem 'squeel'
