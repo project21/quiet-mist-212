@@ -25,7 +25,7 @@ platform :ruby do
   gem 'therubyracer'
 end
 
-#gem 'devise'
+gem 'devise'
 #gem 'omniauth'
 #gem "foreigner"
 
