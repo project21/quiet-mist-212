@@ -1,5 +1,11 @@
 class RegistrationsController < Devise::RegistrationsController
   def create
+    # image uploader only does POST
+    # require 'ruby-debug';debugger
+    if (file = params['qqfile']).present?
+      current_user.photo = file
+    end
+
     session[:user_return_to]= welcome_home_url
     super
     session[:omniauth] = nil unless @user.new_record?   
