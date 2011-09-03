@@ -16,6 +16,7 @@ OAUTH_CREDENTIALS = OauthCredentials[{
   }
 }]
 
+=begin omniauth broken
 Rails.application.config.middleware.use OmniAuth::Builder do  
   provider :twitter,  *OAUTH_CREDENTIALS.key_secret(:twitter)
   provider :facebook, *OAUTH_CREDENTIALS.key_secret(:facebook)
@@ -26,6 +27,7 @@ if Rails.env.development?
 else
   OmniAuth.config.full_host = "http://campusmachine.com"
 end
+=end
 
 # Twitter
 # Access token: # 327804893-p6ACPOHCzIwWwfRPIV8zstkVWJ6cowoRlKnj8klA

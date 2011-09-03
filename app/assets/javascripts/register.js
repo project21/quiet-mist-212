@@ -6,9 +6,22 @@
 //= require "lib"
 //= require "books"
 //= require "courses"
+//= require "fileuploader"
 
 // registration/ WELCOME PAGE
 $(document).ready(function() {
+
+  $('.file-uploader').each(function(){
+      new qq.FileUploader({
+        allowedExtensions: ['jpg', 'jpeg', 'png', 'gif'],
+          element: this,
+          action: $(this).closest('form').attr('action'),
+          method: 'PUT'
+          // additional data to send, name-value pairs
+          // params: { }
+      });
+  })
+
   //call progress bar constructor  
   $("#progress").progressbar({ change: function() {  
     //update amount label when value changes  
