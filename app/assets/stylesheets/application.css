@@ -15,6 +15,56 @@ body {
   min-width: 600px;
   padding:0px;
 }
+/*menu bar */
+.n-wrapper {    
+height: 20px; 
+margin-left:1%;width:100%;min-width:900px;
+
+} 
+    ul {  
+        margin: 0;  
+        padding: 0;  
+    }  
+     
+    ul.n-menu {  
+        height: 40px;  
+       border-left: 1px solid rgba(0,0,0,0.3);  
+        border-right: 1px solid rgba(255,255,255,0.3);  
+       float:left;  
+   }  
+     
+   ul.n-menu li {  
+     list-style: none;  
+       float:left;  
+       height: 40px;  
+      text-align: center;  
+       background: -webkit-gradient(radial, 50% 100%, 10, 50% 50%, 90, from(#00AFF0), to(#B6C3E7) );  
+      background: -moz-radial-gradient(center 80px 45deg, circle cover, #00AFF0 60%, #B6C3E7 100%);  
+      }  
+     
+   ul li a {  
+       color:white;
+       display: block;  
+       padding: 0 20px;  
+       border-left: 1px solid rgba(255,255,255,0.1);  
+      border-right: 1px solid rgba(0,0,0,0.1);  
+       text-align: center;  
+       line-height: 40px;  
+       background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));  
+       background : -moz-linear-gradient(top, rgb(168,168,168), rgb(69,69,69));  
+       -webkit-transition-property: background;  
+      -webkit-transition-duration: 700ms;  
+    -moz-transition-property: background;  
+     -moz-transition-duration: 700ms;  
+      }  
+  
+  ul.n-menu li a:hover {      background:yellow;  
+   }  
+     
+ ul li.active a{  
+       background: -webkit-gradient(radial, 50% 100%, 10, 50% 50%, 90, from(#00AFF0), to(#B6C3E7) );  
+       background: -moz-radial-gradient(center 20px 45deg, circle cover, #00AFF0 60%, #B6C3E7 100%);  
+   }  
 .registration{
 position:absolute;	
 background:#EAEFF0;	
