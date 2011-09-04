@@ -1050,14 +1050,19 @@ font-family:"Bookshelf Symbol 7";
 font-weight:bolder}
 
 /*edit profile*/
-.edit-form
-{font-weight:bold;}
+.edit-form {
+  font-weight:bold;
+  float:left;
+  width:200px;
+}
+
 .edit-line{
   margin-top:4px; 
   margin-bottom:4px;
   width:150px;
   
 }
+ul.edit-form  li {padding-bottom:10px;}
 ul.edit-form  li a{text-decoration:none;color:black;}
 ul.edit-form  li :hover
 {

@@ -1,36 +1,32 @@
 <div style="margin-left:140px;">
-  <div id="progress"></div>
-  <label id="amount">0%</label>
-  <br/>
-
   <div class="form-panel" id="user-form">
     <fieldset>
       <legend>Basic details</legend>
-      <%=form_for current_user,:html=>{:multipart=>true}, :remote => true, :url => '/users' do |f|%>
+      <%= simple_form_for current_user,:html=>{:multipart=>true}, :remote => true, :url => '/users' do |f|%>
         <% if current_user.school_id %>
           <p>
           School Name:
           <span style="margin-left:40px;"><%= current_user.school_name %></span>
           </p>
         <% else %>
-          <%= f.label :school_name %><span style="color:red;margin-right:2px;">*</span>
-          <%= f.text_field :school_name,:size=>"45",:class=>"round",:id=>"school_name" %>
+          <%= f.input :school_name, :required => true, :input_html => {:class=>"round",:id=>"school_name"} %>
           <%= f.hidden_field :school_id, :id => 'school_id' %>
-        
         <% end %>
+
+        <%= f.input :major, :required => true, :input_html => {:class=>"round",:id=>"user_major"} %>
+        <%= f.hidden_field :major_id, :id => 'major_id' %>
         <br/>
 
-        <%= f.label :major %><span style="color:red;margin-right:2px;">*</span>
-        <%= f.text_field :major,:class=>"round",:id=>"user_major" %><br/>
-        <%= f.hidden_field :major_id, :id => 'major_id' %>
+        <%= f.input :firstname, :input_html => {:class=>"round",:id=>"firstname"} %>
+        <%= f.input :lastname, :input_html => {:class=>"round",:id=>"lastname"} %>
+        <br/>
 
-        <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
-        <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
-        <%= f.label :photo %>
+        <%= f.input :highschool, :required => true, :label => 'High School', :input_html => {:class=>"round" ,:id=>"hschool"}  %>
+
+        <br/>
         <% if !current_user.image_url %>
-          <%=f.label :photo %>
-          <%= f.file_field :photo %> 
-          <br/>
+        <%= f.label :photo %>
+        <%= f.file_field :photo %> 
         <%end%>
 
         <%= f.submit "save and continue",{:class=>"savebutton" }%>
@@ -38,7 +34,7 @@
    </fieldset>
   </div>
 
-  <fieldset class="form-panel ui-helper-hidden">
+  <fieldset class="form-panel ui-helper-hidden" id="books-form">
     <legend>Add Books</legend>
 
     <%= render 'books/index' %>
