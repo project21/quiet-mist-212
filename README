@@ -5,6 +5,9 @@
   * Home page
   * cleanup everything
 
+* BUG fixes
+  * posting can create 2 posts
+  * reply accidentally submits the page instead of ajax
 * classes
 * sanitizer
 * url shortner
