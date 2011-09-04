@@ -1,8 +1,4 @@
 <div style="margin-left:140px;">
-  <div id="progress"></div>
-  <label id="amount">0%</label>
-  <br/>
-
   <div class="form-panel" id="user-form">
     <fieldset>
       <legend>Basic details</legend>
@@ -20,17 +16,23 @@
         <% end %>
         <br/>
 
+        <%= f.label :firstname %><span style="color:red;margin-right:2px;">*</span>
+        <%= f.text_field :firstname,:class=>"round",:id=>"firstname" %><br/>
+
+        <%= f.label :lastname %><span style="color:red;margin-right:2px;">*</span>
+        <%= f.text_field :lastname,:class=>"round",:id=>"lastname" %><br/>
+
         <%= f.label :major %><span style="color:red;margin-right:2px;">*</span>
         <%= f.text_field :major,:class=>"round",:id=>"user_major" %><br/>
         <%= f.hidden_field :major_id, :id => 'major_id' %>
 
         <%= f.label :HighSchool %><span style="color:red;margin-right:2px;">*</span>
-        <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %><br/>
+        <%= f.text_field :highschool,:size=>"45",:class=>"round" ,:id=>"hschool"  %>
+
         <%= f.label :photo %>
-        <% if !current_user.image_url %>
-          <%=f.label :photo %>
           <%= f.file_field :photo %> 
           <br/>
+        <% if !current_user.image_url %>
         <%end%>
 
         <%= f.submit "save and continue",{:class=>"savebutton" }%>
@@ -38,7 +40,7 @@
    </fieldset>
   </div>
 
-  <fieldset class="form-panel ui-helper-hidden">
+  <fieldset class="form-panel ui-helper-hidden" id="books-form">
     <legend>Add Books</legend>
 
     <%= render 'books/index' %>

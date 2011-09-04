@@ -1,6 +1,14 @@
 # encoding: utf-8
 
 class PhotoUploader < CarrierWave::Uploader::Base
+  # TODO: image re-sizing
+  #include CarrierWave::RMagick
+  #process :resize_to_fill => [100, 100]
+  # convert :jpg
+  # # required to convert to jpg
+  # def filename
+  #   super.chomp(File.extname(super))
+  # end
 
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick
@@ -39,12 +47,6 @@ class PhotoUploader < CarrierWave::Uploader::Base
   # Create different versions of your uploaded files:
   # version :thumb do
   #   process :scale => [50, 50]
-  # end
-
-  # Add a white list of extensions which are allowed to be uploaded.
-  # For images you might use something like this:
-  # def extension_white_list
-  #   %w(jpg jpeg gif png)
   # end
 
   # Override the filename of the uploaded files:

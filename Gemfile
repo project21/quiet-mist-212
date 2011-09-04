@@ -10,8 +10,10 @@ gem 'sass-rails'
 gem 'coffee-script'
 gem 'uglifier'
 
-gem 'fog'
 gem 'carrierwave'
+gem 'fog'
+#for image re-sizing
+#gem 'rmagick'
 
 gem 'jquery-rails'
 gem 'remotipart'
