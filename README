@@ -10,10 +10,12 @@
   * cleanup everything
 
 * BUG fixes
+  * form validation
+    * use simple form with html5 validation
+    * add polyfill plugin
   * posting can create 2 posts
   * reply accidentally submits the page instead of ajax
   * display course name instead of id (using existing course)
-  * form validation on signup
 * classes
 * sanitizer
 * url shortner
