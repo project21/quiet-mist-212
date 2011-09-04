@@ -1,6 +1,11 @@
 # Campus Machine!
 
 # TODO:
+* DESIGN!!
+  * Home page
+  * cleanup everything
+
+* classes
 * sanitizer
 * url shortner
 * fix uploader.
@@ -9,3 +14,7 @@
 * emails - disable in production - not needed for demo
 * fix oauth
   * test facebook login
+
+FUTURE
+* delete a class
+* semester changes- what happens to posts?
