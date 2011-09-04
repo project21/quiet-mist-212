@@ -31,6 +31,8 @@ margin-left:1%;width:100%;min-width:900px;
        border-left: 1px solid rgba(0,0,0,0.3);  
         border-right: 1px solid rgba(255,255,255,0.3);  
        float:left; 
+        border-radius:3px 3px 3px 3px;
+        -moz-border-radius:3px 3px 3px 3px;
        
    }  
      
@@ -45,13 +47,16 @@ margin-left:1%;width:100%;min-width:900px;
       }  
      
    ul.n-menu li a {  
+     text-decoration:none;
        color:white;
        display: block;  
        padding: 0 20px;  
        border-left: 1px solid rgba(255,255,255,0.1);  
       border-right: 1px solid rgba(0,0,0,0.1);  
        text-align: center;  
-       line-height: 40px;  
+       line-height: 40px; 
+        border-radius:3px 3px 3px 3px; 
+         -moz-border-radius:3px 3px 3px 3px;
        background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));  
       /* background : -moz-linear-gradient(top, rgb(168,168,168), rgb(69,69,69));  */
        -webkit-transition-property: background;  
@@ -60,13 +65,24 @@ margin-left:1%;width:100%;min-width:900px;
      -moz-transition-duration: 700ms;  
       } 
   
-/*   ul.n-menu li.active>a{
-    border-radius:5px 0 0 5px;-moz-border-radius:5px 0 0 5px;-webkit-border-   radius:5px;-webkit-border-top-right-radius:0;-webkit-border-bottom-right-radius:0;}
-ul.n-menu li.last>a{
-    border-radius:0 5px 5px 0;-moz-border-radius:0 5px 5px 0;-webkit-border-radius:0;-  webkit-border-top-right-radius:5px;-webkit-border-bottom-right-radius:5px;}  */    
+ul.n-menu li.first{
+    border-radius:3px 0 0 3px;
+    -moz-border-radius:3px 0 0 3px;
+    -webkit-border-radius:3px;
+    -webkit-border-top-right-radius:0;
+    -webkit-border-bottom-right-radius:0;
+    
+    }
+ul.n-menu li.last{
+    border-radius:0 3px 3px 0;
+    -moz-border-radius:0 3px 3px 0;
+    -webkit-border-radius:0;
+    -webkit-border-top-right-radius:3px;
+    -webkit-border-bottom-right-radius:3px;}     
   
   ul.n-menu li a:hover {     
-   background:#3EBFEF;  
+   background:#3EBFEF;
+     
    }  
      
  ul li.active a{  
