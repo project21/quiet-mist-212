@@ -1,5 +1,11 @@
 # Campus Machine!
 
 # TODO:
-# sanitizer
-# url shortnere
+* sanitizer
+* url shortner
+* fix uploader.
+  * test on production
+  * file upload- upload on post also
+* emails - disable in production - not needed for demo
+* fix oauth
+  * test facebook login
