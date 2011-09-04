@@ -1,4 +1,9 @@
 Campus::Application.configure do
+  #TODO: setup email
+  config.action_mailer.perform_deliveries = false
+
+  # TODO: turn on SSL
+  #config.force_ssl = true
   # Settings specified here will take precedence over those in config/application.rb
 
   # The production environment is meant for finished, "live" apps.

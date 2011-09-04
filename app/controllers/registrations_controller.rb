@@ -1,34 +1,36 @@
 class RegistrationsController < Devise::RegistrationsController
-  def create
-    # image uploader only does POST
-    # require 'ruby-debug';debugger
-    if (file = params['qqfile']).present?
-      current_user.photo = file
-    end
+  skip_before_filter :authenticate_user!, :only => :create
 
+  def create
     session[:user_return_to]= welcome_home_url
     super
     session[:omniauth] = nil unless @user.new_record?   
   end
 
   def update
-    uparams = params[:user]
-    if uparams and [ uparams.delete(:school_name),
-                     hs = uparams.delete('highschool'),
-                     uparams.delete('major_name')
-                   ].any?
-      if major_id_p = uparams.delete('major_id') and (major_id = major_id_p.to_i) != 0
-        current_user.major = Major.find(major_id).name
+    respond_to do |format|
+      format.html { super }
+      format.js do
+
+        uparams = params[:user]
+        if uparams and uparams.delete(:school_name)
+          current_user.set_school_id uparams.delete(:school_id)
+        end
+        if uparams and uparams.delete('major')
+          if major_id_p = uparams.delete('major_id') and (major_id = major_id_p.to_i) != 0
+            current_user.major = Major.find(major_id).name
+          end
+        end
+
+        if uparams.present?
+          current_user.attributes = uparams
+        end
+        if current_user.save
+          head :ok
+        else
+          respond_with current_user, :status => :unprocessable_entity
+        end
       end
-      current_user.highschool = hs if hs.present?
-      current_user.set_school_id uparams[:school_id]
-      if current_user.save
-        head :ok
-      else
-        respond_with current_user, :status => :unprocessable_entity
-      end
-    else
-      super
     end
   end
 

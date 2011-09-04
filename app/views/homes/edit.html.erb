@@ -18,7 +18,7 @@
   <div class="form-panels" id="user-form">
     <fieldset>
       <legend>Basic details</legend>
-      <%=form_for current_user,:html=>{:multipart=>true}, :url => '/users' do |f|%>
+      <%= form_for current_user, :html => {:multipart => true}, :remote => true, :url => '/users' do |f|%>
         <% if current_user.school_id %>
           <p>
           School Name:
@@ -45,16 +45,12 @@
         <%= f.text_field :highschool,:size=>"30",:class=>"round" ,:id=>"hschool"  %>
 
         <% if !current_user.image_url %>
-          <div class="file-uploader">       
-            <noscript>
-            <%=f.label :photo %>
-            <%= f.file_field :photo %> 
-            </noscript>
-          </div>
+          <%=f.label :photo %>
+          <%= f.file_field :photo %> 
           <br/>
         <%end%>
        
-          <%= f.submit "save and continue",{:class=>"savebutton" }%>
+          <%= f.submit "save and continue",{:class=>"no-savebutton" }%>
       <%end%>
    </fieldset>
   
