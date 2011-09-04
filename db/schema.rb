@@ -26,6 +26,7 @@ ActiveRecord::Schema.define(:version => 20110825042925) do
     t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "integer"
     t.integer  "reserver_id"
     t.string   "condition",                                           :default => "used", :null => false
     t.text     "condition_description"
@@ -122,6 +123,7 @@ ActiveRecord::Schema.define(:version => 20110825042925) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "password_salt",                       :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
