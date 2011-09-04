@@ -2,18 +2,21 @@
 
 # TODO:
 * DESIGN!!
+  * post replies should be indented
   * Home page
   * cleanup everything
 
 * BUG fixes
   * posting can create 2 posts
   * reply accidentally submits the page instead of ajax
+  * display course name instead of id (using existing course)
+  * form validation
 * classes
 * sanitizer
 * url shortner
-* fix uploader.
+* uploader
   * test on production
-  * file upload- upload on post also
+  * upload on post
 * emails - disable in production - not needed for demo
 * fix oauth
   * test facebook login

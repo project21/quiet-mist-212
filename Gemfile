@@ -14,6 +14,7 @@ gem 'fog'
 gem 'carrierwave'
 
 gem 'jquery-rails'
+gem 'remotipart'
 gem 'rake'
 
 platform :mswin, :mingw do
