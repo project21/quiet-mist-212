@@ -1,46 +1,37 @@
 <%= render 'header'%>
   
-  <h2 style="color:#00AFF0;">Edit profile</h2>
-  <div style="float:left;width:270px;">
-  <ul class="edit-form">
+<h2 style="color:#00AFF0;">Edit profile</h2>
+<ul class="edit-form">
   <li id="details"><a href="#">Basic details</a></li> 
-  <div class="edit-line"></div>
   <li  id="bookform"><a href="#">Books</a></li>
-  <div class="edit-line"></div>
-   <li  id="current"><a href="#">Current courses</a></li>
-   <div class="edit-line"></div>
-    <li  id="taken"><a href="#">Taken courses</a></li>
-      <div class="edit-line"></div>
-    <li id="setting"><a href="#"> Account settings</a></li>
-  </ul>
-  </div>
+  <li  id="current"><a href="#">Current courses</a></li>
+  <li  id="taken"><a href="#">Taken courses</a></li>
+  <li id="setting"><a href="#"> Account settings</a></li>
+</ul>
 
-  <%= render 'editform' %>
+<%= render 'editform' %>
 
-<div class="form-panel  ui-helper-hidden" id="setting-form">
-<div class="setting-wrapper">
-<h2 style="text-align:center">Account settings</h2>
-<div class="setting-line"></div>
+<div class="form-panel  ui-helper-hidden" id="setting-form" style="margin-left:140px;">
+  <fieldset>
+    <h2 style="text-align:center">Account settings</h2>
+    <div class="setting-line"></div>
 
-<h4>Privacy </h4>
- <div class="setting-dotted-line"></div>
-<h4>Notifications</h4>
-<div class="setting-dotted-line"></div>
-<h4>Account termination</h4>
-<%= button_to "Delete Account",{:controller=>"books",:action=>"new"},{:class=>"delete-account-button"} %>
- <div class="setting-dotted-line"></div>
-</div>
-</div>
-
+    <h4>Privacy </h4>
+    <div class="setting-dotted-line"></div>
+    <h4>Notifications</h4>
+    <div class="setting-dotted-line"></div>
+    <h4>Account shutdown</h4>
+    <%= button_to "Delete Account",{:controller=>"books",:action=>"new"},{:class=>"delete-account-button"} %>
+    <div class="setting-dotted-line"></div>
+  </fieldset>
 </div>
 
 <div class="reg-footerline"></div>
-<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
-<ul class="footer">
-<li> <%= link_to "About", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
-<li> <%= link_to "Feedback", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
-<li> <%= link_to "Terms", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> &nbsp;</li>
-<li> <%= link_to "Help", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> </li>
-</ul>
+  <span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
+  <ul class="footer">
+  <li> <%= link_to "About", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+  <li> <%= link_to "Feedback", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%>&nbsp; </li>
+  <li> <%= link_to "Terms", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> &nbsp;</li>
+  <li> <%= link_to "Help", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> </li>
+  </ul>
 </div>
-
