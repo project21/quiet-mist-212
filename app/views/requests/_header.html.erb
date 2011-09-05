@@ -1,22 +1,16 @@
  <div class="header-wrapper">
+ <span class="logout"><%= link_to "Log out", destroy_user_session_path %></span><br/>
 <%= image_tag("machinelogo2.jpg", :alt => "camp",:class=>"logo") %>&nbsp;
-<ul id="css3menu1" class="topmenu">
-    <li class="topfirst"><%=link_to 'Home', home_url%></li>
-    <li class="topmenu"><a href="#" title="Profile" style="height:18px;line-height:18px;"><span>Profile</span></a>
-        <ul>
-            <li><%=link_to 'Edit Profile', edit_home_url %></li>
-            <li><%=link_to 'View profile', profile_home_url %></li>
-        </ul>
-    </li>
-    <li class="toplast"><a href="#" title="Account" style="height:18px;line- height:18px;"><span>Account</span></a>
-        <ul>
-            <li><%=link_to 'Account settings',:controller=>"setting",:action=>"show"%></li>
-            <li><%= link_to "Sign out", destroy_user_session_path %></li>
-        </ul>
-    </li>
-</ul>            
-	
-	
+
+    <span class="n-wrapper">  
+    <ul class="n-menu" rel="sam1">  
+    <li class="first"><%=link_to 'Home', home_url%></li>  
+    <li ><%=link_to 'Profile', profile_home_url %></li>  
+    <li class="last"><%=link_to 'Account',:controller=>"setting",:action=>"show"%></li>  
+     
+   </ul>  
+
+   </span>  
 <input type="text" class="searchfield" id="search" size="50"/>
 <button type="button" class="searchbutton">Search</button>
 </div>

@@ -2,6 +2,7 @@
 <div id="left">
  <span class="photo"><%=image_tag current_user.image_url %></span>
   <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
+ <span class="edit"> <%=link_to 'Edit Profile', edit_home_url %></span>
 
   <section class="side-box">
     <h4>Posts</h4>
