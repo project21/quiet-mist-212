@@ -1,14 +1,13 @@
 # encoding: utf-8
 
 class PhotoUploader < CarrierWave::Uploader::Base
-  # TODO: image re-sizing
-  #include CarrierWave::RMagick
-  #process :resize_to_fill => [100, 100]
-  # convert :jpg
-  # # required to convert to jpg
-  # def filename
-  #   super.chomp(File.extname(super))
-  # end
+  include CarrierWave::RMagick
+  process :resize_to_fill => [100, 100]
+  convert :jpg
+  # required to convert to jpg
+  def filename
+    super.chomp(File.extname(super))
+  end
 
   # Include RMagick or ImageScience support:
   # include CarrierWave::RMagick

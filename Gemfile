@@ -12,8 +12,7 @@ gem 'uglifier'
 
 gem 'carrierwave'
 gem 'fog'
-#for image re-sizing
-#gem 'rmagick'
+gem 'rmagick'
 
 gem 'jquery-rails'
 gem 'remotipart'
