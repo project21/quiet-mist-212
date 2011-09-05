@@ -1,14 +1,13 @@
 <%=render 'header'%>	
 <div id="left">
- <span class="photo"><%=image_tag current_user.image_url %></span>
+ <span class="photo"><%=image_tag current_user.avatar_url %></span>
   <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
  <span class="edit"> <%=link_to 'Edit Profile', edit_home_url %></span>
 
   <section class="side-box">
     <h4>Posts</h4>
-      <%=link_to image_tag("message.png")+'All posts', home_path, {:class=>"sidebox-content"}%>
-      <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
-   
+    <%=link_to image_tag("message.png")+'All posts', '#', {id: 'all-posts', class:"sidebox-content"}%>
+    <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
   </section>
  
 
@@ -46,7 +45,7 @@
    
 
     <%= form_for (Post.new) do |f| %>
-   <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
+      <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
     <br/> <div class="field-wrapper">
     <span id="status"> <%= f.select(:post_type, options_for_select([
                ['Make a Post',1 ],

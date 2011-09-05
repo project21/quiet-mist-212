@@ -24,10 +24,12 @@
         <%= f.input :highschool, :required => true, :label => 'High School', :input_html => {:class=>"round" ,:id=>"hschool"}  %>
 
         <br/>
-        <% if !current_user.image_url %>
+        <p>
+        <%= image_tag f.object.avatar_url %>
+        <br/>
+        </p>
         <%= f.label :photo %>
         <%= f.file_field :photo %> 
-        <%end%>
 
         <%= f.submit "save and continue",{:class=>"savebutton" }%>
       <%end%>

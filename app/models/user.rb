@@ -51,7 +51,7 @@ class User < ActiveRecord::Base
     end
   end
 
-  def image_url; photo_url || super end
+  def avatar_url; photo_url || image_url end
 
   def register!
     self.registered = true

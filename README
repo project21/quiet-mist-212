@@ -3,8 +3,12 @@
 # TODO:
 * DAVID:
   * copy any misssing assets from laptop
+  * design
 
-* DESIGN!!
+* DESIGN
+  * post creation
+    * no checkboxes showing for courses
+    * no occluded Post button. Post button should be centered or left instead of right
   * post replies should be indented
   * Home page
   * cleanup everything
@@ -13,19 +17,18 @@
   * form validation
     * use simple form with html5 validation
     * add polyfill plugin
-  * posting can create 2 posts
   * reply accidentally submits the page instead of ajax
-  * display course name instead of id (using existing course)
-* classes
-* sanitizer
-* url shortner
-* uploader
-  * test on production
-  * upload on post
+    * I can't reproduce anymore
+  * course autocomplete during registration doesn't work because school isn't known at beginning
+* book requests
+* upload on a post
 * fix oauth
   * test facebook login
 
 FUTURE
+* test uploader on production
+* sanitizer
+* url shortner
 * emails - enable in production
 * delete a course
 * semester changes- what happens to posts?

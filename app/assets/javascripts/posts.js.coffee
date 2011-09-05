@@ -34,12 +34,12 @@ PostView = Backbone.View.extend(
     $(e.currentTarget).find('form').toggleClass('ui-helper-hidden')
   
   respond: (e) ->
+    e.preventDefault()
     reply = this.$(e.currentTarget).find('input').val()
     #TODO: validate not empty
     post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
     Posts.add(post)
     post.save()
-    e.preventDefault()
     e.currentTarget.reset()
 
   initialize: ->
@@ -49,7 +49,7 @@ PostView = Backbone.View.extend(
     @template = _.template('''
 
 <td>
-  <span class="post-course"><%= course_id %><span><br/>
+  <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
   <span class="post-type"></span>
   <span class="inline_table"> <img src="<%= user.image_url || (user.photo ? user.photo.url : '/assets/main.png') %>"/></span>
   <span class="inline_tables"><a href="#" id="post-user" ><%= user.firstname%>&nbsp;<%=user.lastname %></a><br/><span class="post-content"><%= content %></span></span><br/>
@@ -80,13 +80,21 @@ PostAppView = Backbone.View.extend({
   stop_event : (e) -> e.preventDefault()
   events:
     'submit #new_post': "save"
-    'mousedown #my-posts': "my_posts"
-    'click #my-posts': "stop_event"
+    'mousedown #my-posts':  "my_posts"
+    'mousedown #all-posts': "my_posts"
+    'click #my-posts':  "stop_event"
+    'click #all-posts': "stop_event"
+
+  all_posts: (e) ->
+    for p in Posts.models
+      if !p.view
+        view = new PostView({model: post})
+        posts_table.find('tbody').prepend(view.render().el)
 
   my_posts: (e) ->
     Posts.filter (p) ->
       if p.get('user_id') != window.CURRENT_USER.id
-        Posts.remove(p)
+        #Posts.remove(p)
         p.view.remove()
 
   save: (e) ->

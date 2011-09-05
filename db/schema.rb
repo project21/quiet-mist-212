@@ -48,6 +48,12 @@ ActiveRecord::Schema.define(:version => 20110825042925) do
 
   add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
 
+  create_table "campuses", :force => true do |t|
+    t.string  "name"
+    t.integer "postal_code"
+    t.integer "location_id"
+  end
+
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"
     t.datetime "created_at"
