@@ -6,6 +6,7 @@ class PhotoUploader < CarrierWave::Uploader::Base
   convert :jpg
   # required to convert to jpg
   def filename
+    return unless super
     super.chomp(File.extname(super))
   end
 
