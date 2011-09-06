@@ -1,7 +1,9 @@
 <%=render 'header'%>
+
 <div id="profile-left">
-
-
+<span style="float:left; padding-right:5px"><img src="/assets/main.png" width="100" height="100"/>
+</span>
+<span style="float:left;">
 <span class="profile-name"><%=current_user.firstname%>&nbsp;<%=current_user.lastname%></span><br/>
 <!--need to limit name characters-->
 <span class="schoolname"><%=@school.name%></span><br/>
@@ -9,8 +11,8 @@
 <% @courses.each do |course|%>
 <span class="subject"><%=course.name%> </span>
 <% end%>
-
-
+</span>
+<span><button>message</button></span><span><button>Invite me</button></span>
 <div class="line_divider"></div>
 <div class="profile-titles">Books</div>
 <ul class="listbook" >
@@ -35,7 +37,10 @@
 <div class="profile-titles">Classes taken in the past</div>
 <span class="past-classes"></span>
 <div class="dotted_line_divider"></div>
+<div class="report">Report this student</div>
+
 </div>
+
 <!--
 <div class="proline_separator"></div>
 <%=button_to 'Connect',{:controller=>"books",:action=>"new"},{:class=>"connectbutton"}%><%=button_to 'Message me',{:controller=>"books",:action=>"new"},{:class=>"messagebutton"}%>
@@ -55,7 +60,7 @@
 <div class="middle">
 <div class="bar-separator" ></div>
 <div class="main-bar-separator"></div>
-</div>-->
+</div>
 
 <div id="profile-center">
 <span ><button>message</button></span><span><button>Invite me</button></span>
@@ -64,5 +69,6 @@
   freshman
 </div>-->
 </div>
+
 
 

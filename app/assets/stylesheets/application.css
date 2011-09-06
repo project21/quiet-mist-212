@@ -758,12 +758,16 @@ legend {
 }
 /*profile styling*/
 #profile-left{
-margin-left:1%;
+margin-left:2%;
+margin-top:2%;
 float:left;
-padding-right:5px;
-width : 480px;
-min-width:25%;
-min-height:800px;
+padding:25px;
+width : 60%;
+min-width:620px;
+background:#C7DCF5;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
 }
 .details
 {background:#C7DCF5;
@@ -771,18 +775,28 @@ min-height:800px;
  font-size:13px;
  color:#45515E; 
 }
+.report{
+ background:#677CAD;
+ padding:3px;
+ color:black;
+ width:120px;
+ -moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
+} 
 .profile-wrapper{
-border: solid #808080 1px;
-width:1000px;		
+background:#C7DCF5;  
+/*border: solid #808080 1px;*/
+width:600px;	
 margin-top:5px;	
+padding:50%;
 /*border-right: solid #808080 1px;*/
-height:700px;
+/*height:700px;
 /*border-bottom:  solid #808080 1px;*/
--moz-border-radius:5px;
--webkit-border-radius: 5px;
-border-radius:5px;
--webkit-box-shadow:0px 0px 4px #000;
--moz-box-shadow:2px 2px  4px #000;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
+
 }
 .connectbutton
 {float:left;margin-left:40px;

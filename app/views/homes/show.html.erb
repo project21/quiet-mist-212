@@ -48,13 +48,14 @@
       <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
     <br/> <div class="field-wrapper">
     <span id="status"> <%= f.select(:post_type, options_for_select([
-               ['Make a Post',1 ],
+               ['Post type',1 ],
                ['Question',2],
-               ['I need a study buddy',3],
-               ['I want to borrow a textbook',4],
-               ['Can anybody give me class materials?',5],
-               ['I need help',6],
-               ['I need a roommate',7],
+               ['Material upload',3],
+               ['Textbook',4],
+               ['Roommate',5],
+               ['Homework',6],
+               ['Addcode',7],
+               ['Study buddy',8],
         ])) %></span>
       <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
       <%=f.submit 'post',:class=>"postbutton"%>
@@ -95,4 +96,5 @@
 <li> <%= link_to "Terms", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> &nbsp;</li>
 <li> <%= link_to "Help", {:controller=>"books",:action=>"new"},{:class=>"classlink"}%> </li>
 </ul>
-<!--TODO:delete current classes,separate them with taken,when somebody change current classes old posts for that particular class are destroyed-->
+<!--TODO:delete current classes,separate them with taken,when somebody change current classes old posts for that particular class are destroyed,
+when you send a post the picture dontappear right away until you refresh the page-->
