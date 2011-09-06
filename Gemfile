@@ -1,4 +1,3 @@
-YAML::ENGINE.yamler = 'syck'
 source 'http://rubygems.org'
 
 gem 'yajl-ruby'
