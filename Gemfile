@@ -1,3 +1,4 @@
+YAML::ENGINE.yamler = 'syck'
 source 'http://rubygems.org'
 
 gem 'yajl-ruby'
@@ -28,7 +29,7 @@ platform :ruby do
 end
 
 gem 'devise'
-#gem 'omniauth'
+gem 'omniauth'
 gem "foreigner"
 
 gem 'squeel'
