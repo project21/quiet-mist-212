@@ -109,6 +109,7 @@ border-radius:         5px;
 
 .header-wrapper{margin-left:1%;width:100%;min-width:900px;margin-top:15px;}
 .logo{height:70px;width:160px;float:left;margin-top:-15px;}
+.logos{height:190px;width:190px;float:left;margin-top:-70px;border:none;}
 .logo-png{height:220px;width:260px;margin-top:-70px;border:none;}
 .titleline{margin-top:1px;	width:60px; border-top:solid #aaaaaa 1px;}
 span.logout a{margin-left:850px;text-decoration:none;}
@@ -215,7 +216,14 @@ a.classlink{color:#0000FF;}
   width : 350px;
  min-width:25%;
 }
-
+.alpha{
+  padding:0px;
+  background:#DB8D1F;
+  color:white;
+  -moz-border-radius:3px;
+-webkit-border-radius:3px;
+ border-radius:3px;
+}
 .searchfield{ 
 float:left;	
 -moz-border-radius:5px;

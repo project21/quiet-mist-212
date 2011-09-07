@@ -17,23 +17,44 @@
  
   <div class="side-box">
     <h4>Messages</h4>
-    <!--
-    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span>
-    -->
+    
+    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span><span class="alpha" title="This feature is under development">Alpha</span>
+    
     <div class="line_separator"></div>
     <span id="request"><%=link_to image_tag("message.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
   </div>
+   
+   <div class="side-box">
+    <h4>My Lectures <span class="alpha" title="This feature is under development">Alpha</span></h4>
+    
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#1',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+    
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#2',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+ 
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#3',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+    
+    <div class="line_separator"></div>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#1',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#2',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#3',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <div class="line_separator"></div>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#1',messages_requests_url,{:class=>"sidebox-content"}%></span><br>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#2',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+  </div>
      
 
-<!--    <div class="side-box">
-      <h4>My Studdy buddies</h4>
+   <div class="side-box">
+      <h4>My Studdy buddies <span class="alpha" title="This feature is under development">Alpha</span></h4>
       <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> 
 <div class="ui-helper-hidden group-form">group name <br/>group description<br/>max No:<br/> <span id="create">create</span></div>
 
 <div class="ui-helper-hidden classmates">title="invite your classmates" list of classmates</div>
 
     </div>
--->
+
   </div>
 </div>
 
