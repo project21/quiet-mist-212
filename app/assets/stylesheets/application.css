@@ -18,7 +18,8 @@ body {
 }
 .root-header{
  background-image:url('lgrey139.jpg'); 
- height:60px;
+ height:90px;
+ min-width:900px;
 }
 /*menu bar */
 .n-wrapper {   
@@ -26,9 +27,9 @@ height: 20px;
 margin-left:1%;width:100%;min-width:900px;
 
 } 
-    ul {  
-        margin: 0;  
-        padding: 0;  
+ul {  
+    margin: 0;  
+    padding: 0;  
     }  
      
     ul.n-menu {  
@@ -64,10 +65,10 @@ margin-left:1%;width:100%;min-width:900px;
          -moz-border-radius:3px 3px 3px 3px;
        background : -webkit-gradient(linear, left top, left bottombottom, from(rgb(168,168,168)), to(rgb(69,69,69)));  
       /* background : -moz-linear-gradient(top, rgb(168,168,168), rgb(69,69,69));  */
-       -webkit-transition-property: background;  
-      -webkit-transition-duration: 700ms;  
-    -moz-transition-property: background;  
-     -moz-transition-duration: 700ms;  
+  -webkit-transition-property: background;  
+  -webkit-transition-duration: 700ms;  
+  -moz-transition-property: background;  
+  -moz-transition-duration: 700ms;  
       } 
   
 ul.n-menu li.first{
@@ -107,7 +108,7 @@ border-radius:         5px;
 
 .header-wrapper{margin-left:1%;width:100%;min-width:900px;margin-top:15px;}
 .logo{height:70px;width:160px;float:left;margin-top:-15px;}
-.logo-png{height:190px;width:210px;margin-top:-50px;}
+.logo-png{height:220px;width:260px;margin-top:-70px;border:none;}
 .titleline{margin-top:1px;	width:60px; border-top:solid #aaaaaa 1px;}
 span.logout a{margin-left:850px;text-decoration:none;}
 .headerline{
@@ -1014,17 +1015,37 @@ border-radius:5px;
 }
 /*sign in*/
 .sign-background{
-width:70%;	min-width:900px;
-margin-top:10px;
-margin-left:1%;	
+width:100%;	
+min-width:900px;
+margin:0;	
 background:#00AFF0;
-padding:40px;
-height:270px;
--webkit-box-shadow:0px 10px 15px #000;
--moz-box-shadow:0px 10px  15px #000;
--moz-border-radius:    5px;
+height:200px;
+background:-moz-linear-gradient(top, #00AFF0, #57C6EF 70%);
+background: -webkit-gradient(linear, 0 0, 0 90%, from(#00AFF0), to(#57C6EF ));  
+color:white;
+min-width:1100px;
+}
+.diagrams
+{
+margin-left:25%;
+padding:5px;
+min-width:700px;
+margin-bottom:25px;
+}
+.network{
+  width:250px;
+  height:250px;
+}
+.sales-pitch{margin:auto;}
+.sign-field{
+ -moz-border-radius:    5px;
  -webkit-border-radius: 5px;
- border-radius:         5px;
+ border-radius:         5px; 
+ width:150px; 
+ padding:5px;
+}
+.sign-footer{
+background:black;
 }
 #sign-in-form{z-index:1;
 	background:#fff;
@@ -1039,15 +1060,26 @@ height:270px;
 .login-bullets li{float:left;}
 /*.fblogin{width:300px;height:40px;}*/
 .sign-in-dotted{border-top:dotted #808080 1px;width:300px;}
- /*.sign-in-body{background:#E2E9E9;padding:50%;height:50%;}*/
+
 .login-bold-text{
-/*position:absolute;
-left:16%;top:12%;*/margin-left:20%;margin-bottom:30%;
-color:white;
+margin-left:20%;margin-bottom:30%;
+color:#00AFF0;
 font-size:24px;
 font-family:"Bookshelf Symbol 7";  
 font-weight:bolder}
-
+.sign_in_button{
+ padding:5px 9px 5px 9px;
+    color:white;
+    background-color: #45C01B;
+    border:none;
+    font-weight:bold;
+   -moz-border-radius:5px;
+   -webkit-border-radius:5px;
+   border-radius:5px;
+    background:-moz-linear-gradient(top, black, #C2C6F5  50%, black 10%);
+  background: -webkit-gradient(linear, 0 0, 0 50%, from(black), 
+  color-stop(90%,black),color-stop(50%,#C2C6F5 ));  
+}
 /*edit profile*/
 .edit-form {
   font-weight:bold;
