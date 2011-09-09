@@ -7,7 +7,7 @@
   <%= devise_error_messages! %>
 
 
-  <% if @user %>
+  <% if @user.authentications.empty? %>
     <div style="margin-left:6%;margin-top:10px;">
       <a href="/users/auth/facebook">
         <%= image_tag("fb_login_icon.gif",:class=>"fblogin") %>

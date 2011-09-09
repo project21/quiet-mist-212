@@ -25,6 +25,7 @@ end
 platform :ruby do
   gem 'pg'
   gem 'therubyracer'
+  gem 'unicorn'
 end
 
 gem 'devise'
@@ -40,7 +41,7 @@ gem 'api_smith'
 
 
 group :development, :test do
-  gem 'ap', :require => 'ap'
+  gem 'awesome_print', :require => 'awesome_print'
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'unicorn', :platform => :ruby
 end

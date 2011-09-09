@@ -67,11 +67,15 @@ class User < ActiveRecord::Base
       self.email ||= omniauth['user_info']['email'] || extra["user_hash"]["email"]
     end
 
+    self.lastname  = omniauth['user_info']['last_name']  if lastname.blank?
+    self.firstname = omniauth['user_info']['first_name'] if firstname.blank?
+    fname, lname = (omniauth['user_info']['name'] || extra["user_hash"]["name"] || '').split(/\s+/)
+    self.firstname = fname if firstname.blank?
+    self.lastname = lname  if lastname.blank?
+    
     if profile_image_url = omniauth['user_info']['image'] || extra["user_hash"]["profile_image_url"]
       self.image_url = profile_image_url if profile_image_url != image_url
     end
-    self.lastname  = omniauth['user_info']['last_name']  if lastname.blank?
-    self.firstname = omniauth['user_info']['first_name'] if firstname.blank?
 
     authentications.build(:provider => omniauth['provider'],
                           :uid => omniauth['uid'],

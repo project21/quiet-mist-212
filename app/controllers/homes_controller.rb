@@ -1,5 +1,5 @@
  class HomesController < ApplicationController
-#  before_filter :registered!, :only => 'show'
+  skip_before_filter :registered!, :only => 'welcome'
 
   def show
     @javascript = ['application']
