@@ -84,9 +84,16 @@ group name <input type="text" >
    
 
     <%= form_for (Post.new) do |f| %>
-      <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
-    <br/> <div class="field-wrapper">
-    <span id="status"> <%= f.select(:post_type, options_for_select([
+      <div id="course-check-box-container" style="display:none;">
+        <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
+      </div>
+      <script>
+        var cont = $('#course-check-box-container')
+        cont.find(':checkbox').hide()
+        cont.show()
+      </script>
+      <br/> <div class="field-wrapper">
+      <span id="status"> <%= f.select(:post_type, options_for_select([
                ['Post type',1 ],
                ['Question',2],
                ['Material upload',3],
