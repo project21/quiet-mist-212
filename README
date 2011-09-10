@@ -9,7 +9,6 @@
   * html5 validation alignment
   * welcome/registration bar
   * post creation
-    * no checkboxes showing for courses
     * no occluded Post button. Post button should be centered or left instead of right
   * post replies should be indented
   * Home page
@@ -26,6 +25,7 @@
 * upload on a post
 * fix oauth
   * test facebook login
+  * home page
 
 FUTURE
 * test uploader on production

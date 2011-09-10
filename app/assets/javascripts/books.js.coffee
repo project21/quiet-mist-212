@@ -233,8 +233,15 @@ ClassmateBookView = Backbone.View.extend(
 BooksAppView = Backbone.View.extend({
   el: "body"
 
+  stop_event : (e) -> e.preventDefault()
   events:
     'submit .search-book-form': "search"
+    'mousedown #request': "show_request"
+    'click #request': "stop_event"
+    # 'mousedown #inbox': "inbox"
+
+  show_request: (e) ->
+    $('#communication').html(book_request_template)
 
   search: (e) ->
     e.preventDefault()
@@ -341,3 +348,22 @@ $(->
     $("#reserve-book-form").toggleClass('ui-helper-hidden')
   )
 )
+
+window.book_request_template = '''
+    <h3>Request &Response</h3>
+    <div class="inbox-divider"></div>
+      <div class="inbox-content">
+
+      <div>
+        <span>john</span><br/>
+        <span>wants to reserve</span>&nbsp;
+        <span>physics book</span> &nbsp;for <span>price</span>
+
+        <div>
+          <span class="denybutton">a href='/books/new'/>Decline</a></span>
+          <span class="acceptbutton"><a href='/books/new'>Accept</a></span>
+        </div>
+      </div>
+      <div class="container-dotted"></div>
+    </div>
+'''

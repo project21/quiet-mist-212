@@ -508,6 +508,12 @@ margin-top: 0px;
   margin-top:10px;
  height:96%;
 }
+.centered {	
+  float:left;
+  width:50%;
+  margin-top:10px;
+ height:96%;
+}
 .container{
 height:96%;min-height:800px;
 margin-top:3px;	
