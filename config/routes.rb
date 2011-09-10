@@ -1,4 +1,12 @@
 Campus::Application.routes.draw do
+  get "group/create"
+
+  get "group/mygroup"
+
+  get "lecture/mylecture"
+
+  get "lecture/find_lecture"
+
   root :to => "homes#show"
 
   match '/majors' => 'majors#index'''
@@ -19,7 +27,21 @@ Campus::Application.routes.draw do
   resources :books do
     collection { get 'search' }
   end
+  
+  resources :lecture
+  resource :lecture do
+    collection do
+      get 'mylecture'
+      get 'find_lecture'
+    end
+  end
 
+  resource :group do
+    collection do
+      get 'create'
+      get 'mygroup'
+    end
+  end
   resources :posts
 
   namespace :setting do

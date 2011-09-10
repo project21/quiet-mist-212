@@ -31,6 +31,9 @@ $(document).ready(function() {
   	if(!$('.addbook-field').val()=="")
   	 $('.bookfound').removeClass('ui-helper-hidden');	
   });*/
+  
+
+ $('#datepicker').datepicker(); 
   $( '#general-field' ).elastic();
    $( '.reply-field' ).elastic();
   $('.post-background').hover(function(){
@@ -58,6 +61,14 @@ $('.group').click(function(e){e.preventDefault();
   //($('.group-form').hasClass('ui-helper-hidden'))? null :
   $('.group-form').removeClass('ui-helper-hidden'); 
 
+});
+
+$('#study').click(function(){
+  $('.nested-group').removeClass('ui-helper-hidden'); 
+});
+
+$('#live').click(function(){
+  $('.calender').removeClass('ui-helper-hidden'); 
 });
 $('#create').click(function(){
     $('.classmates').dialog({

@@ -7,7 +7,7 @@
   <section class="side-box">
     <h4>Posts</h4>
     <%=link_to image_tag("message.png")+'All posts', '#', {id: 'all-posts', class:"sidebox-content"}%>
-    <%=link_to image_tag("message.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
+    <%=link_to image_tag("mypost.png")+'My posts','#',{id: 'my-posts', class: "sidebox-content"}%>
   </section>
  
 
@@ -21,13 +21,14 @@
     <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span><span class="alpha" title="This feature is under development">Alpha</span>
     
     <div class="line_separator"></div>
-    <span id="request"><%=link_to image_tag("message.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
+    <span id="request"><%=link_to image_tag("alert.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
   </div>
    
    <div class="side-box">
     <h4>My Lectures <span class="alpha" title="This feature is under development">Alpha</span></h4>
-    
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#1',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
+    <span style="bakground:grey;"><%=link_to 'Find lecture',find_lecture_lecture_url,:class=>"find"%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
     
     <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#2',messages_requests_url,{:class=>"sidebox-content"}%></span><br/>
  
@@ -48,8 +49,25 @@
 
    <div class="side-box">
       <h4>My Studdy buddies <span class="alpha" title="This feature is under development">Alpha</span></h4>
-      <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> 
-<div class="ui-helper-hidden group-form">group name <br/>group description<br/>max No:<br/> <span id="create">create</span></div>
+    
+
+ <div ><%=link_to image_tag("group.png")+'francis group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
+  <div> <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
+<div class="ui-helper-hidden group-form">
+group name <input type="text" >
+
+<br/>group description<input type="text" >
+<br/>max No:<input type="text" ><br/> 
+ <input type="radio" id="general" >General <input type="radio" id="study" >Study Group<br/>
+ <div class="nested-group ui-helper-hidden">
+ <input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
+ <label>professor</label><input type="text"/><br/>
+ </div>
+  <input type="radio" id="remote" >Remote <input type="radio" id="live" >Live meet up <br/>
+  <div class="calender ui-helper-hidden">
+  Day<input id="datepicker" type="text" >
+  </div>
+<button id="create">create</button></div>
 
 <div class="ui-helper-hidden classmates">title="invite your classmates" list of classmates</div>
 
@@ -108,6 +126,17 @@
    
   </div>
 </div>
+<!--
+<div id="right">
+<div class="right-side-box">
+<h4>Open groups</h4>
+<h5> Francis group</h5>
+If you're looking for a place to learn and/or share knowledge about Androiddevelopment, then this is the place for you. We are a group of both  students and hobbyists alike that share experiences on Android development.<br/>
+<b>type</b> studygroup-live meetup <br/><b>Members</b> <br/><button>ask to join</button>
+
+</div>
+
+</div>-->
 
 <div class="footerline"></div>
 <span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
