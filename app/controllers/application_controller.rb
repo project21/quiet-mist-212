@@ -4,7 +4,9 @@ class ApplicationController < ActionController::Base
   
 protected
   def registered!
-    redirect_to welcome_home_url unless current_user.registered
+    if current_user
+      redirect_to welcome_home_url unless current_user.registered
+    end
   end
 
   def to_boolean param
