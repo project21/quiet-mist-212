@@ -81,7 +81,7 @@ PostAppView = Backbone.View.extend({
   events:
     'submit #new_post': "save"
     'mousedown #my-posts':  "my_posts"
-    'mousedown #all-posts': "my_posts"
+    'mousedown #all-posts': "all_posts"
     'click #my-posts':  "stop_event"
     'click #all-posts': "stop_event"
 
@@ -89,7 +89,9 @@ PostAppView = Backbone.View.extend({
     for p in Posts.models
       if !p.view
         view = new PostView({model: post})
-        posts_table.find('tbody').prepend(view.render().el)
+        posts_table_body.prepend(view.render().el)
+      else
+        posts_table_body.prepend(p.view.render().el)
 
   my_posts: (e) ->
     Posts.filter (p) ->
@@ -128,13 +130,14 @@ PostAppView = Backbone.View.extend({
     replies = post.get('replies')
     @addOne(new Posts.model(reply)) for reply in replies if replies
     view = new PostView({model: post})
-    posts_table.find('tbody').prepend(view.render().el)
+    posts_table_body.prepend(view.render().el)
 
   addAll: ->
     Posts.each(this.addOne)
 })
 
 window.posts_table = null
+window.posts_table_body = null
 window.show_posts = (e) ->
   requests_table.addClass('ui-helper-hidden')
   searched_books_table.addClass('ui-helper-hidden')
@@ -143,6 +146,7 @@ window.show_posts = (e) ->
 
 $(->
   window.posts_table = $('#posts-table')
+  window.posts_table_body = posts_table.find('tbody')
   window.PostApp = new PostAppView
   $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
 )
