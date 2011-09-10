@@ -14,6 +14,6 @@ protected
   end
 
   def user_required
-    redirect_to :root unless current_user
+    redirect_to welcome_home_url unless current_user
   end
 end
