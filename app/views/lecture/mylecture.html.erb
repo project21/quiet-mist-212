@@ -1,0 +1,47 @@
+<%= render 'left_section'%>
+
+<div id="center">
+<div style="font-size:14px;">Math41-lecture#1-Prof Owen Thompson</div>
+<div style="border:solid #00AFF0 2px;width:400px;background:black;margin-bottom:15px;-moz-border-radius:    3px;
+-webkit-border-radius: 3px;
+border-radius:         3px;" >
+<span style="margin:160px;"><%=image_tag('1315458807_Play1Normal.png')%></span> </div>
+
+<div style="font-size:14px;font-weight:bold;text-align:center">Question&Answers</div>
+<div style="margin-top:5px;	
+	margin-bottom:3px;
+	width:440px;
+    border-top:solid #e6e6e6 1px;"></div>
+ <%= form_for (Post.new) do |f| %>
+     
+   
+      <%=f.text_area :content,:id=>"ask-field",:class=>" round",:rows=>"1"%>
+      <%=f.submit 'Ask',:class=>"ask"%>
+    <%end%>
+
+
+<span class="inline_table"><%=image_tag('d.jpg')%> </span>  
+<span class="inline_table"><button>Invite me</button></span>  
+<span class="inline_table">I have been able to get content out of WebView using javascript and loadUrl() method having specified an interface thats called from javascript string that is injected into WebView.The problem is that this only works for me when the loadUrl() method is present in onPageFinished() method in the WebView client?</span><br/>
+ <div style="clear:both;font-weight:bold;font-size:14px;">Answer</div>   
+<div style="background:#EAEFF0;">
+  You asked for a tool or application answer, but what you really need is a a<br/> process answer. The underlying theme here is that you should be versioning <br/>your database DDL (and DML, when needed) and providing change scripts to be <br/>able to update any version of your database to a higher version.
+    </div>
+    <div style="margin-top:5px;	
+	margin-bottom:3px;
+	width:440px;
+    border-top:solid #e6e6e6 1px;"></div>
+
+    <span class="inline_table"><%=image_tag('main.png')%> </span>
+    <span class="inline_table"><button>Invite me</button></span>     
+<span class="inline_table">I have been able to get content out of WebView using javascript and loadUrl() method having specified an interface thats called from javascript string that is injected into WebView.The problem is that this only works for me when the loadUrl() method is present in onPageFinished() method in the WebView client?</span><br/>
+<div style="clear:both;font-weight:bold;font-size:14px;">Answer</div>
+<div style="background:#EAEFF0;clear:both;">
+  You asked for a tool or application answer, but what you really need is a a<br/> process answer. The underlying theme here is that you should be versioning <br/>your database DDL (and DML, when needed) and providing change scripts to be <br/>able to update any version of your database to a higher version.
+    </div>
+    <div style="margin-top:5px;	
+	margin-bottom:3px;
+	width:440px;
+    border-top:solid #e6e6e6 1px;"></div>
+
+</div> 
