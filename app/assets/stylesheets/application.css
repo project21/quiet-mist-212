@@ -643,7 +643,7 @@ color-stop(90%,#00AFF0),color-stop(80%,#C2C6F5));
 .postbutton:hover{
 background:#5686DC; 
 background:-moz-linear-gradient(top, #C2C6F5, #00AFF0 50%, #00AFF0 50%); background: -webkit-gradient(linear, 0 0, 0 50%, from(#00AFF0), 
-  color-stop(50%,#C2C6F5),color-stop(50%,#00AFF0));
+  color-stop(20%,#C2C6F5),color-stop(60%,#00AFF0));
 }
 .replybutton{
    margin-left:350px;	
