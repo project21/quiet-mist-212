@@ -43,6 +43,7 @@ gem 'api_smith'
 group :development, :test do
   gem 'awesome_print', :require => 'awesome_print'
   gem 'ruby-debug19', :require => 'ruby-debug'
+  gem 'pry', :require => 'pry'
   gem 'unicorn', :platform => :ruby
 end
 

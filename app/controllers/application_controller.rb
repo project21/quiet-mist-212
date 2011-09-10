@@ -1,5 +1,5 @@
 class ApplicationController < ActionController::Base
-  before_filter :authenticate_user!, :registered!
+  before_filter :authenticate_user!, :registered!, :user_required
   protect_from_forgery
   
 protected
@@ -11,5 +11,9 @@ protected
 
   def to_boolean param
     param.present? and (not ["false","0"].include? param)
+  end
+
+  def user_required
+    redirect_to :root unless current_user
   end
 end

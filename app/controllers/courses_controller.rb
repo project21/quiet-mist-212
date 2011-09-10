@@ -1,4 +1,5 @@
 class CoursesController < ApplicationController
+  skip_before_filter :registered!
   respond_to :json
 
   def index
@@ -6,6 +7,10 @@ class CoursesController < ApplicationController
   end
 
   def school
+    unless current_user.school
+      head 401
+      return
+    end
     respond_with current_user.school.courses
   end
 
