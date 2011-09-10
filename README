@@ -7,7 +7,7 @@
 
 * DESIGN
   * html5 validation alignment
-  * registration bar
+  * welcome/registration bar
   * post creation
     * no checkboxes showing for courses
     * no occluded Post button. Post button should be centered or left instead of right

@@ -25,7 +25,7 @@
 
         <br/>
         <p>
-        <%= image_tag f.object.avatar_url %>
+        <%= image_tag f.object.avatar_url if f.object.avatar_url %>
         <br/>
         </p>
         <%= f.label :photo %>
@@ -87,7 +87,7 @@
     <%end%>
 
     <br/>
-    <%= form_tag '/', :id => 'edit-taken-courses-form' do %>
+    <%= form_tag '/users/registered', :id => 'edit-taken-courses-form' do %>
       <%= submit_tag "save and continue", {:class=>"finalbutton" }%>
     <% end %>
     </p>

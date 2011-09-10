@@ -1,7 +1,7 @@
 class RegistrationsController < Devise::RegistrationsController
   skip_before_filter :authenticate_user!, :only => :create
   skip_before_filter :user_required
-  skip_before_filter :registered!, :only => :update
+  skip_before_filter :registered!
 
   def create
     session[:user_return_to]= welcome_home_url
@@ -37,7 +37,10 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def registered
-    current_user.register!
+    unless current_user.register!
+      head 401 
+      return
+    end
     redirect_to home_url
   end
 

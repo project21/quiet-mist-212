@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
 
   def register!
     self.registered = true
-    save!
+    save
   end
   
   def full_name
