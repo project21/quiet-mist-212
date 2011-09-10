@@ -1,5 +1,5 @@
 class AuthenticationsController < ApplicationController  
-  skip_before_filter :authenticate_user!
+  skip_before_filter :authenticate_user!, :user_required, :registered!
 
   def index  
     @authentications = current_user.authentications if current_user  

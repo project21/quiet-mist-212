@@ -34,11 +34,18 @@ $(document).ready(function() {
      }
 
 
+    school_exists = false;
     //look at each panel  
     $(".form-panel").each(function() {
       //if it's not the first panel enable the back button  
       var that = $(this);
       (that.attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
+
+      // on /home/welcome delayed until now when a school should exist
+      if (!school_exists){
+        autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
+        school_exists = true;
+      }
      
       //if the panel is visible fade it out  
       (that.hasClass("ui-helper-hidden")) ? null : that.fadeOut("fast", function() {  
@@ -74,20 +81,22 @@ $(document).ready(function() {
     switch ($(this).attr('id'))
     {
        case "details":
-       panel = '#user-form';
-        break;
+         panel = '#user-form';
+         break;
        case "bookform" :
-       panel = '#books-form';
-       break;
+         panel = '#books-form';
+         break;
        case "current" :
-       panel = '#edit-course-profile';
-       break;
+         // on /home/welcome delayed until now when a school should exist
+         autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
+         panel = '#edit-course-profile';
+         break;
        case "taken":
-       panel = '#taken-classes';
-       break;
+         panel = '#taken-classes';
+         break;
        case "setting":
-       panel = '#setting-form';
-       break;
+         panel = '#setting-form';
+         break;
     }
     if(panel) $(panel).removeClass("ui-helper-hidden");
  });
@@ -134,7 +143,4 @@ $(document).ready(function() {
       }); 
     });
   }
-
-  // TODO: delay this for performance concerns
-  autocomplete_courses($('#course_name'), function(course_id){ $("#course_id").val(course_id) });
 });
