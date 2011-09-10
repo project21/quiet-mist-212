@@ -19,7 +19,7 @@ Campus::Application.routes.draw do
 
   match '/users/auth/:provider/callback' => 'authentications#create'  
 
-  devise_for :users,:controllers=> {:registrations=> 'registrations' }
+  devise_for :users,:controllers=> {:sessions => 'sessions', :registrations=> 'registrations' }
   devise_scope :user do
     match '/users/registered' => 'registrations#registered'
   end
