@@ -187,6 +187,7 @@ ClassmateBookView = Backbone.View.extend(
   reserve_book: (e) ->
     e.preventDefault()
     @model.id = @options['book_ownership'].id
+    @options['dialog'].dialog('close')
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
 
   initialize: ->

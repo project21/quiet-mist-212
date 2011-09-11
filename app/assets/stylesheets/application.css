@@ -748,8 +748,13 @@ a {
   background-color: #c00;
   color: #fff;
 }
+
 #progress{margin-left:145px;width:45%;}
+
 label#amount {margin-left:145px;}
+
+.edit-profile-sidebar { margin-left:20px; }
+
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
