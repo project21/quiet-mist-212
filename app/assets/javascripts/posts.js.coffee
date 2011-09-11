@@ -48,7 +48,8 @@ PostView = Backbone.View.extend(
     @model.bind('change', this.render)
     @template = _.template('''
 
-<td>
+<td class="num_parents_<%= num_parents %>">
+    
   <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
   <span class="post-type"></span>
   <span class="inline_table"> <img src="<%= user.image_url || (user.photo ? user.photo.url : '/assets/main.png') %>"/></span>
@@ -69,7 +70,9 @@ PostView = Backbone.View.extend(
        # <button> <%= confirm %> </button>
 
   render: ->
-    $(@el).html(@template(@model.attributes))
+    attrs = _.clone(@model.attributes)
+    attrs.num_parents = @options.num_parents
+    $(@el).html(@template(attrs))
     this
 )
 
@@ -128,15 +131,15 @@ PostAppView = Backbone.View.extend({
     Posts.bind('reset', this.addAll)
     Posts.fetch()
 
-  addOne: (post) ->
+  addOne: (post, num_parents) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
-    replies = post.get('replies')
-    @addOne(new Posts.model(reply)) for reply in replies if replies
-    view = new PostView({model: post})
+    view = new PostView({model: post, num_parents: num_parents})
+    for reply in (post.get('replies') || []).reverse()
+      @addOne(new Posts.model(reply), num_parents + 1)
     posts_table_body.prepend(view.render().el)
 
   addAll: ->
-    Posts.each(this.addOne)
+    Posts.each((p) => this.addOne(p, 0))
 })
 
 window.posts_container = null

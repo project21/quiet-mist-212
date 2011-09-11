@@ -14,6 +14,7 @@ class Post < ActiveRecord::Base
   validates_presence_of :user_id, :course_id, :content
 
   scope :for_user, ->(user){ where(:course_id => user.course_ids) }
+  scope :top_level, where(reply_id: nil)
 
   validate :valid_course_id, :if => :course_id
 

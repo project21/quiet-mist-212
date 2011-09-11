@@ -3,21 +3,18 @@
 # TODO:
 LAYOUT to avoid copy/paste
 
-* DAVID:
-  * design
-
 Greg
-  * posts- threading
-  * books
+  * upload on a post
+
+DAVID:
+  * design
 
 * DESIGN
   * edit profile link in the profile
   * log out link - remove or style or move to account page
   * html5 validation alignment
-  * welcome/registration bar
   * post creation
     * no occluded Post button. Post button should be centered or left instead of right
-  * post replies should be indented
   * Home page - remove double image thing
   * books list/reserve Search button
   * cleanup everything
@@ -31,14 +28,8 @@ Greg
   * form validation
     * use simple form with html5 validation
     * add polyfill plugin
-  * reply accidentally submits the page instead of ajax
-    * I can't reproduce anymore
-  * course autocomplete during registration doesn't work because school isn't known at beginning
-* book requests
-* upload on a post
-* fix oauth
+* oauth
   * test facebook login
-  * home page
 
 FUTURE
 * test uploader on production
