@@ -25,9 +25,10 @@ class BookOwnershipsController < ApplicationController
       return
     end
 
+    course_id = bo_params.delete(:course_id)
     @book = Book.find_by_isbn(bo_params[:isbn]) || Book.new(bo_params)
     if @book.save
-      BookOwnership.create!(:user => current_user, :book => @book, :course_id => bo_params[:course_id])
+      BookOwnership.create!(:user => current_user, :book => @book, :course_id => course_id)
       respond_with @book
     else
       respond_with @book, :status => :unprocessable_entity

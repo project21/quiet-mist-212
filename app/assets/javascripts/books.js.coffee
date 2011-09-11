@@ -108,11 +108,16 @@ SearchedBookView = Backbone.View.extend(
   choose_book: (e) ->
     e.preventDefault()
     SearchedBooks.reset()
-    view = if @options['reserve']
-      new ReserveClassmateBookView(model: @model)
+    if @options['reserve']
+      view = new ReserveClassmateBookView(model: @model)
+      view.render().el.dialog()
     else
-      new AddBookView(model: @model)
-    searched_books_table.prepend( view.render().el )
+      add_course_name.dialog()
+      autocomplete_courses $('#add-course-name'), (course_id) =>
+        @model.set(course_id: course_id)
+        SearchedBooks.transfer_to(OwnedBooks, @model)
+        add_course_name.dialog('close')
+        show_posts()
 
   initialize: ->
     @model.view = this
@@ -133,11 +138,6 @@ SearchedBookView = Backbone.View.extend(
 )
 
 
-add_book_template = '''
-<div>
-  <span class="add-to-my-books"> <span class="reserved">Add</span> I own this book already! </li>
-</div>
-'''
 reserve_book_template = '''
 <div>
   <span class="reserve-book">Reserve from your classmates</span>
@@ -150,33 +150,6 @@ reserve_book_template = '''
   </table>
 </div>
 '''
-
-AddBookView = Backbone.View.extend({
-  el: "body"
-
-  events:
-    "mousedown .add-to-my-books": "add_book"
-  #  "click .add-or-buy-or-reserve .buy-book" : "buy_book"
-  #buy_book: -> alert("sorry, not implemented yet")
-
-  add_book: (e) ->
-    e.preventDefault()
-    add_course_name.dialog()
-    autocomplete_courses($('#add-course-name'), (course_id) =>
-      @model.set(course_id: course_id)
-      SearchedBooks.transfer_to(OwnedBooks, @model)
-      add_course_name.dialog('close')
-      @el.dialog('close').remove()
-      show_posts()
-    )
-
-  initialize: ->
-    @el = $(add_book_template)
-
-  render: ->
-    books_table.find('tbody').prepend(@el)
-    this
-})
 
 ReserveClassmateBookView = Backbone.View.extend({
   el: "body"
@@ -201,7 +174,6 @@ ReserveClassmateBookView = Backbone.View.extend({
     )
 
   render: ->
-    books_table.find('tbody').prepend(@el)
     this
 })
 
@@ -215,6 +187,7 @@ ClassmateBookView = Backbone.View.extend(
   reserve_book: (e) ->
     e.preventDefault()
     @model.id = @options['book_ownership'].id
+    @options['dialog'].dialog('close')
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
 
   initialize: ->
@@ -319,9 +292,10 @@ window.books_table = null
 window.searched_books_table = null
 window.requesets_table = null
 
+
 window.show_books = (e) ->
-  requests_table.addClass('ui-helper-hidden')
-  posts_table.addClass('ui-helper-hidden')
+  communication_content.addClass('ui-helper-hidden')
+  posts_container.addClass('ui-helper-hidden')
   searched_books_table.removeClass('ui-helper-hidden')
 
 $(->
@@ -341,3 +315,28 @@ $(->
     $("#reserve-book-form").toggleClass('ui-helper-hidden')
   )
 )
+
+#AddBookView = Backbone.View.extend({
+  #el: "body"
+
+  #events:
+    #"mousedown .add-to-my-books": "add_book"
+  ##  "click .add-or-buy-or-reserve .buy-book" : "buy_book"
+  ##buy_book: -> alert("sorry, not implemented yet")
+
+  #add_book: (e) ->
+    #)
+
+  #initialize: ->
+    #@el = $(add_book_template)
+
+  #render: ->
+    #books_table.find('tbody').prepend(@el)
+    #this
+#})
+
+#add_book_template = '''
+#<div>
+  #<span class="add-to-my-books"> <span class="reserved">Add</span> I own this book already! </li>
+#</div>
+#'''

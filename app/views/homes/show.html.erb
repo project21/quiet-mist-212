@@ -1,39 +1,40 @@
 
   
-<div id="center">
-  <p id="suggest" class="ui-helper-hidden"><b id="suggest">Are you sure about this?</b></p>
- 
-  <div class="container" id="communication">
+  <div class="container centered" id="communication">
+    <div id="communication-content" class="ui-helper-hidden">
+    </div>
    
 
-    <%= form_for (Post.new) do |f| %>
-      <div id="course-check-box-container" style="display:none;">
-        <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
-      </div>
-      <script>
-        var cont = $('#course-check-box-container')
-        cont.find(':checkbox').hide()
-        cont.show()
-      </script>
-      <br/> <div class="field-wrapper">
-      <span id="status"> <%= f.select(:post_type, options_for_select([
-               ['Post type',1 ],
-               ['Question',2],
-               ['Material upload',3],
-               ['Textbook',4],
-               ['Roommate',5],
-               ['Homework',6],
-               ['Addcode',7],
-               ['Study buddy',8],
-        ])) %></span>
-      <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
-      <%=f.submit 'post',:class=>"postbutton"%>
-    <%end%>
-</div>
-   
-    <table id="posts-table" style="table-layout:fixed;width:500px;">
-      <tbody></tbody>
-    </table>
+    <div id="posts-container">
+      <fieldset class="field-wrapper">
+        <%= form_for (Post.new) do |f| %>
+          <div id="course-check-box-container" style="display:none;">
+            <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
+          </div>
+          <script>
+            var cont = $('#course-check-box-container')
+            cont.find(':checkbox').hide()
+            cont.show()
+          </script>
+          <span id="status"> <%= f.select(:post_type, options_for_select([
+                   ['Post type',1 ],
+                   ['Question',2],
+                   ['Material upload',3],
+                   ['Textbook',4],
+                   ['Roommate',5],
+                   ['Homework',6],
+                   ['Addcode',7],
+                   ['Study buddy',8],
+            ])) %></span>
+          <%=f.text_area :content,:id=>"general-field",:class=>" round",:rows=>"1"%>
+          <%=f.submit 'post',:class=>"postbutton"%>
+        <%end%>
+     </fieldset>
+     
+      <table id="posts-table" style="table-layout:fixed;width:500px;">
+        <tbody></tbody>
+      </table>
+    </div>
     <table id="searched-books-table" class="ui-helper-hidden">
       <tbody></tbody>
     </table>
@@ -55,7 +56,6 @@
 
    
   </div>
-</div>
 <!--
 <div id="right">
 <div class="right-side-box">

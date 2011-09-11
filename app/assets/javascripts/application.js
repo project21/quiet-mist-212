@@ -7,6 +7,7 @@
 //= require "lib"
 //= require "books"
 //= require "posts"
+//= require "requests"
 
 jQuery.ajaxSetup({ 
   'beforeSend': function(xhr, settings) {

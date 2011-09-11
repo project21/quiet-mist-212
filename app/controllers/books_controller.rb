@@ -4,7 +4,6 @@ class BooksController < ApplicationController
   def search
     if bookp = params['book'] and search = bookp['title']
         result = begin
-                   fail
                    # TODO: check that printType=books is used
                    Google::Book.search(search)
                  rescue

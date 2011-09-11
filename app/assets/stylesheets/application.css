@@ -508,6 +508,12 @@ margin-top: 0px;
   margin-top:10px;
  height:96%;
 }
+.centered {	
+  float:left;
+  width:50%;
+  margin-top:10px;
+ height:96%;
+}
 .container{
 height:96%;min-height:800px;
 margin-top:3px;	
@@ -667,9 +673,8 @@ border-top:dotted #aaaaaa 1px;
   padding:7px;
   background:#BCBCCD;
   -moz-border-radius:3px;
-   -webkit-border-radius:3px;
-   border-radius:3px; 
-   width:470px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
   background:-moz-linear-gradient(top, #BCBCCD, #DEDEE7 , #BCBCCD 30%);
   background: -webkit-gradient(linear, 0 0, 0 50%, from(#BCBCCD), 
   color-stop(90%,#BCBCCD),color-stop(50%,#DEDEE7));  
@@ -742,7 +747,13 @@ a {
   background-color: #c00;
   color: #fff;
 }
-#progress{width:45%;}
+
+#progress{margin-left:145px;width:45%;}
+
+label#amount {margin-left:145px;}
+
+.edit-profile-sidebar { margin-left:20px; }
+
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;

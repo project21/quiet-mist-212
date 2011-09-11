@@ -1,21 +1,33 @@
 # Campus Machine!
 
 # TODO:
+LAYOUT to avoid copy/paste
+
 * DAVID:
-  * copy any misssing assets from laptop
   * design
 
+Greg
+  * posts- threading
+  * books
+
 * DESIGN
+  * edit profile link in the profile
+  * log out link - remove or style or move to account page
   * html5 validation alignment
   * welcome/registration bar
   * post creation
-    * no checkboxes showing for courses
     * no occluded Post button. Post button should be centered or left instead of right
   * post replies should be indented
-  * Home page
+  * Home page - remove double image thing
+  * books list/reserve Search button
   * cleanup everything
 
 * BUG fixes
+  * groups 
+    * General -> Meetup or something better
+    * General button broken
+    * cleanup forms (align fields)
+    * remove scheduling from form, put on actual page
   * form validation
     * use simple form with html5 validation
     * add polyfill plugin
@@ -26,6 +38,7 @@
 * upload on a post
 * fix oauth
   * test facebook login
+  * home page
 
 FUTURE
 * test uploader on production
