@@ -5,10 +5,15 @@ RequestAppView = Backbone.View.extend({
   events:
     'mousedown #request': "show_book_request"
     'click #request': "stop_event"
-    # 'mousedown #inbox': "inbox"
+    'mousedown #inbox': "show_inbox"
+    'click #inbox': "stop_event"
 
   show_book_request: (e) ->
     communication_content.html(book_request_template).removeClass('ui-helper-hidden')
+    show_book_requests()
+
+  show_inbox: (e) ->
+    communication_content.html(inbox_template).removeClass('ui-helper-hidden')
     show_book_requests()
 })
 
@@ -40,4 +45,13 @@ window.book_request_template = '''
       </div>
       <div class="container-dotted"></div>
     </div>
+'''
+
+window.inbox_template = '''
+<h3 class="message-title">Inbox </h3>
+<div class="inbox-wrapper center">
+  <div style="padding:20px;">
+    <div style="color:#808080;font-size:16px;font-weight:bold;text-align:center;">You have no messages</div>
+  </div>
+</div>
 '''

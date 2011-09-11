@@ -673,9 +673,8 @@ border-top:dotted #aaaaaa 1px;
   padding:7px;
   background:#BCBCCD;
   -moz-border-radius:3px;
-   -webkit-border-radius:3px;
-   border-radius:3px; 
-   width:470px;
+  -webkit-border-radius:3px;
+  border-radius:3px;
   background:-moz-linear-gradient(top, #BCBCCD, #DEDEE7 , #BCBCCD 30%);
   background: -webkit-gradient(linear, 0 0, 0 50%, from(#BCBCCD), 
   color-stop(90%,#BCBCCD),color-stop(50%,#DEDEE7));  
