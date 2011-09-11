@@ -1,4 +1,5 @@
 class LectureController < ApplicationController
+	layout "home"
   def mylecture
   end
 

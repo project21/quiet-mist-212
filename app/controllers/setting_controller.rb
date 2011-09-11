@@ -1,4 +1,5 @@
 class SettingController < ApplicationController
+	layout "home"
   def privacy
   end
 

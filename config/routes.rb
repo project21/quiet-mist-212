@@ -6,7 +6,9 @@ Campus::Application.routes.draw do
   get "lecture/mylecture"
 
   get "lecture/find_lecture"
-
+  
+ 
+  
   root :to => "homes#show"
 
   match '/majors' => 'majors#index'''
