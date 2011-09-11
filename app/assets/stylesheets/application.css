@@ -1163,13 +1163,12 @@ font-weight:bold;
 text-align:center;
 }
 
-td.num_parents_1 { padding-left:20px; }
-td.num_parents_2 { padding-left:40px; }
-td.num_parents_3 { padding-left:60px; }
-td.num_parents_4 { padding-left:80px; }
-td.num_parents_5 { padding-left:100px; }
-td.num_parents_6 { padding-left:120px; }
-td.num_parents_7 { padding-left:120px; }
-td.num_parents_8 { padding-left:120px; }
-td.num_parents_9 { padding-left:120px; }
-td.num_parents_10 { padding-left:120px; }
+td.post-reply { background: #ddd; }
+
+td.num_parents_1 { padding-left:40px; }
+td.num_parents_2 { padding-left:80px; }
+td.num_parents_3 { padding-left:120px; }
+td.num_parents_4 { padding-left:160px; }
+td.num_parents_5 { padding-left:200px; }
+td.num_parents_6 { padding-left:240px; }
+td.num_parents_7 { padding-left:280px; }

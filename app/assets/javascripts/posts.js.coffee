@@ -48,7 +48,7 @@ PostView = Backbone.View.extend(
     @model.bind('change', this.render)
     @template = _.template('''
 
-<td class="num_parents_<%= num_parents %>">
+<td class="num_parents_<%= num_parents %> <%= row_classes %>">
     
   <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
   <span class="post-type"></span>
@@ -72,6 +72,7 @@ PostView = Backbone.View.extend(
   render: ->
     attrs = _.clone(@model.attributes)
     attrs.num_parents = @options.num_parents
+    attrs.row_classes = @options.row_classes
     $(@el).html(@template(attrs))
     this
 )
@@ -131,15 +132,16 @@ PostAppView = Backbone.View.extend({
     Posts.bind('reset', this.addAll)
     Posts.fetch()
 
-  addOne: (post, num_parents) ->
+  addOne: (post, num_parents, row_classes) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
-    view = new PostView({model: post, num_parents: num_parents})
+    view = new PostView({model: post, num_parents: num_parents, row_classes: row_classes})
     for reply in (post.get('replies') || []).reverse()
-      @addOne(new Posts.model(reply), num_parents + 1)
+      @addOne(new Posts.model(reply), num_parents + 1, 'post-reply')
     posts_table_body.prepend(view.render().el)
 
   addAll: ->
-    Posts.each((p) => this.addOne(p, 0))
+    Posts.each((p) =>
+      this.addOne(p, 0))
 })
 
 window.posts_container = null

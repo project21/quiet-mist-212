@@ -4,20 +4,26 @@
 LAYOUT to avoid copy/paste
 
 Greg
-  * upload on a post
+  * upload a file on a post
+  * replies should not be appended to top
+  * my-posts should show a thread I am in. Otherwise hide all of thread
+  * form validation
+    * use simple form with html5 validation
+    * add polyfill plugin
 
 DAVID:
   * design
 
 * DESIGN
+  * grey bar on blue buttons
   * edit profile link in the profile
   * log out link - remove or style or move to account page
-  * html5 validation alignment
   * post creation
     * no occluded Post button. Post button should be centered or left instead of right
-  * Home page - remove double image thing
+  * Root page - remove double image thing
   * books list/reserve Search button
   * cleanup everything
+  * html5 validation alignment
 
 * BUG fixes
   * groups 
@@ -25,9 +31,6 @@ DAVID:
     * General button broken
     * cleanup forms (align fields)
     * remove scheduling from form, put on actual page
-  * form validation
-    * use simple form with html5 validation
-    * add polyfill plugin
 * oauth
   * test facebook login
 
