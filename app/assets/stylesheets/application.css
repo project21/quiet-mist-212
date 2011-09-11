@@ -748,7 +748,8 @@ a {
   background-color: #c00;
   color: #fff;
 }
-#progress{width:45%;}
+#progress{margin-left:145px;width:45%;}
+label#amount {margin-left:145px;}
 #errorExplanation p {
   color: #333;
   margin-bottom: 0;
