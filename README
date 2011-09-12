@@ -5,11 +5,6 @@ LAYOUT to avoid copy/paste
 
 Greg
   * upload a file on a post
-  * replies should not be appended to top
-  * my-posts should show a thread I am in. Otherwise hide all of thread
-  * form validation
-    * use simple form with html5 validation
-    * add polyfill plugin
 
 DAVID:
   * design
@@ -35,6 +30,12 @@ DAVID:
   * test facebook login
 
 FUTURE
+* Modernizr
+  * css3 shims
+  * console.log shim
+* form validation
+  * add polyfill plugin for html5 validation
+  * use more html5 validation
 * test uploader on production
 * sanitizer
 * url shortner

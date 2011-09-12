@@ -1,11 +1,21 @@
 Post = Backbone.Model.extend(
   model_name: 'post'
+  traverse_to_top: (n, posts) ->
+    if reply = @get('reply')
+      @traverse_to_top n, posts.concat(reply)
+    else
+      [n, reply]
   #confirm: -> Posts.confirmpost.get('post_type_id')
+
+  children: ->
+    replies = @get('replies') || []
+    replies.concat(_.flatten( _.map(replies, (r) -> r.children()) ))
 )
 
 PostCollection = Backbone.Collection.extend(
   model : Post
   url: '/posts'
+
 
   #confirm: (post_type_id) ->
     #switch post_type_id
@@ -37,7 +47,7 @@ PostView = Backbone.View.extend(
     e.preventDefault()
     reply = this.$(e.currentTarget).find('input').val()
     #TODO: validate not empty
-    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id)
+    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
     Posts.add(post)
     post.save()
     e.currentTarget.reset()
@@ -96,14 +106,17 @@ PostAppView = Backbone.View.extend({
         view = new PostView({model: post})
         posts_table_body.prepend(view.render().el)
       else
-        posts_table_body.prepend(p.view.render().el)
+        $(p.view.el).show()
+        # posts_table_body.prepend(p.view.render().el)
     show_posts()
 
   my_posts: (e) ->
-    Posts.filter (p) ->
-      if p.get('user_id') != window.CURRENT_USER.id
-        #Posts.remove(p)
-        p.view.remove()
+    # this could be more efficient
+    Posts.each (p) ->
+      check_others = p.children()
+
+      unless (p.get('user_id') == window.CURRENT_USER.id) || _(check_others).any( (other) -> other.get('user_id') == window.CURRENT_USER.id )
+        $(p.view.el).hide()
     show_posts()
 
   save: (e) ->
@@ -134,10 +147,25 @@ PostAppView = Backbone.View.extend({
 
   addOne: (post, num_parents, row_classes) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
-    view = new PostView({model: post, num_parents: num_parents, row_classes: row_classes})
-    for reply in (post.get('replies') || []).reverse()
-      @addOne(new Posts.model(reply), num_parents + 1, 'post-reply')
-    posts_table_body.prepend(view.render().el)
+
+    if typeof num_parents == "number"
+      view = new PostView({model: post, num_parents: num_parents, row_classes: row_classes})
+      reply_models = for reply in (post.get('replies') || []).reverse()
+        _(new Posts.model(reply)).tap (reply_model) =>
+          @addOne(reply_model, num_parents + 1, 'post-reply')
+      post.set(replies: reply_models)
+      posts_table_body.prepend(view.render().el)
+    else
+      reply = post.get('reply')
+      if reply?
+        [num_parents, parents] = reply.traverse_to_top 0, []
+        view = new PostView({model: post, num_parents: num_parents + 1, row_classes: 'post-reply'})
+        $(reply.view.el).after(view.render().el)
+        delete post.attributes['reply']
+      else
+        console.log("[ERROR] expected a reply")
+        view = new PostView({model: post, num_parents: num_parents + 1, row_classes: 'post-reply'})
+        posts_table_body.prepend(view.render().el)
 
   addAll: ->
     Posts.each((p) =>
