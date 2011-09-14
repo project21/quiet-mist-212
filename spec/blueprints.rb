@@ -1,50 +1,53 @@
-require 'machinist/active_record'
+require 'factory_girl'
+#require 'factory_girl/active_record'
 
-School.blueprint do
-  name { "State University" }
-  postal_code { 95816 }
-end
+FactoryGirl.define do
+  factory :school do
+    sequence(:name) {|sn| "State University #{sn}" }
+    postal_code { 95816 }
+  end
 
-User.blueprint do
-  email { "#{sn}@example.com" }
-  password {'secret' }
-  password_confirmation { 'secret' }
-  firstname { "First" }
-  lastname { "Last" }
-  school_id { School.make!.id }
-end
+  factory :user do
+    sequence(:email) {|sn| "#{sn}@example.com" }
+    password {'secret' }
+    password_confirmation { 'secret' }
+    firstname { "First" }
+    lastname { "Last" }
+    school_id { create(:school).id }
+  end
 
-Book.blueprint do
-  title   { "Physics" }
-  author  { "Weber" }
-  edition { '1' }
-  isbn    { sn.to_s }
-end
+  factory :book do
+    title   { "Physics" }
+    author  { "Weber" }
+    edition { '1' }
+    sequence(:isbn) {|sn| sn.to_s }
+  end
 
-BookOwnership.blueprint do
-  user { User.make! }
-  book { Book.make! }
-  course { Course.make! }
-end
+  factory :book_ownership do
+    user { create(:user) }
+    book { create(:book) }
+    course { create(:course) }
+  end
 
-Course.blueprint do
-  school_id { School.make!.id }
-  name { "Course 1" }
-end
+  factory :course do
+    school_id { create(:school).id }
+    name { "Course 1" }
+  end
 
-UserCourse.blueprint do
-  active { true }
-  user_id { User.make!.id }
-  course_id { Course.make!.id }
+  factory :user_course do
+    active { true }
+    user_id { create(:user).id }
+    course_id { create(:course).id }
+  end
+
+  factory :post do
+    content { "Posting..." }
+  end
 end
 
 def make_post! post_attributes = {}
-  cids = post_attributes.delete(:course_ids) || (uc = UserCourse.make!)
-  Post.make!({ :user_id => post_attributes.delete(:user_id) || uc.user_id,
-               :course_id => cids
+  cids = post_attributes.delete(:course_ids) || (uc = create(:user_course)).id
+  create(:post, { :user_id => post_attributes.delete(:user_id) || uc.user_id,
+               :course_id => cid
              }.merge(post_attributes))
-end
-
-Post.blueprint do
-  content { "Posting..." }
 end

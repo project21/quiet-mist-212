@@ -34,7 +34,7 @@ class User < ActiveRecord::Base
   end  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:image_url,:photo, :highschool
+  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:image_url,:photo, :highschool, :remember_me
 
   # for form
   attr_reader :major_id

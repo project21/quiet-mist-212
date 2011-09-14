@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe BookOwnership do
-  before { @bo = BookOwnership.make! }
+  before { @bo = create(:book_ownership) }
 
   it do
     should_not be_reserved
@@ -19,7 +19,7 @@ describe BookOwnership do
 
   describe 'reserved' do
     before do
-      @bo.reserve! User.make!, 20
+      @bo.reserve! create(:user), 20
       @bo.should be_valid
     end
 

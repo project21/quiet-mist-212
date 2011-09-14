@@ -71,6 +71,7 @@ GEM
     excon (0.6.5)
     execjs (1.2.4)
       multi_json (~> 1.0)
+    factory_girl (2.1.0)
     faraday (0.6.1)
       addressable (~> 2.2.4)
       multipart-post (~> 1.1.0)
@@ -108,7 +109,6 @@ GEM
     libv8 (3.3.10.2)
     linecache19 (0.5.12)
       ruby_core_source (>= 0.1.4)
-    machinist (2.0.0.beta2)
     mail (2.3.0)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -306,11 +306,11 @@ DEPENDENCIES
   database_cleaner
   devise
   enumerated_attribute
+  factory_girl (~> 2.0)
   fog
   foreigner
   google-book
   jquery-rails
-  machinist (>= 2.0.0.beta2)
   omniauth
   pg
   pry
