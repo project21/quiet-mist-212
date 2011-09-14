@@ -252,6 +252,8 @@ color:#3299CC;
 }
 span.edit a{color:#414449;text-decoration:none;font-size:11px;}
 span.edit a:hover{color:#414449;text-decoration:underline;font-size:11px;}
+.edit-profile a{color:#414449;text-decoration:none;font-size:11px;float:right;} 
+.edit-profile a:hover{color:#414449;text-decoration:underline;font-size:11px;float:right;}
 .reserve{color:red;font-size:11px;}
 .deletebook a:link {
 color:#808080; 
@@ -369,19 +371,17 @@ border-radius:2px;
     border-radius:2px;
 }
 .addbookbutton{
-    float:right;
-    padding:3px 5px 3px 5px;
+    padding:5px 5px 5px 5px;
     color:white;
-    background-color:#666666;
+    background-color:black;
     border:none;
     font-size:11px;
     -moz-border-radius:3px;
     -webkit-border-radius:3px;
     border-radius:3px;
-    background: -webkit-gradient(linear, 0 0, 0 50%, from(#666666), 
-   color-stop(90%,#666666),color-stop(50%,#D1D1D2)); 
-    background:-moz-linear-gradient(top, #666666, #D1D1D2, #666666 30%); 
-
+    background: -webkit-gradient(linear, 0 0, 0 50%, from(black), 
+   color-stop(90%,black),color-stop(50%,#2A303C)); 
+    background:-moz-linear-gradient(top, black, #2A303C, black 30%); 
     }
  
 .searchbutton{
@@ -443,9 +443,9 @@ border-radius:5px;
 background-color:#00AFF0;	
 padding:6px;
 margin-top: 0px;
-background:-moz-linear-gradient(top, #00AFF0, #C2C6F5, #00AFF0 30%);
+background:-moz-linear-gradient(top, #00AFF0, #66D2FA, #00AFF0 30%);
 background: -webkit-gradient(linear, 0 0, 0 50%, from(#00AFF0 ), 
-color-stop(90%,#00AFF0 ),color-stop(50%,#C2C6F5));  
+color-stop(90%,#00AFF0 ),color-stop(50%,#66D2FA));  
 }
 .sidebox-content{
 padding-left: 4px;	
@@ -508,6 +508,7 @@ margin-top: 0px;
   margin-top:10px;
  height:96%;
 }
+#auto-center{margin-left:15%;}
 .centered {	
   float:left;
   width:50%;
@@ -624,9 +625,14 @@ background: -webkit-gradient(linear, 0 97%, 0 0%, from(black),to(#454854)
     background:-moz-linear-gradient(top, black, #454854, black 30%); 
 
  }
- .collection_check_boxes:hover{
+.collection_check_boxes:hover{
    background:#5A5B5E;
+   
  }
+.active-state{background:#58595A;
+background: -webkit-gradient(linear, 0 97%, 0 0%, from(#58595A),to(#454854) 
+  ); 
+background:-moz-linear-gradient(top, #58595A, #454854, #58595A 30%); }
  .inline_table img{height:50px;width:50px;}
 /*.post-pic{float:left;}*/
 .postbutton{
@@ -1057,13 +1063,13 @@ min-width:1000px;
 }
 .diagrams
 {
-margin-left:25%;
+margin-left:5%;
 padding:5px;
-min-width:700px;
+min-width:900px;
 margin-bottom:25px;
 }
 .network{
-  width:250px;
+  width:430px;
   height:250px;
 }
 .sales-pitch{margin:auto;}

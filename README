@@ -13,8 +13,6 @@ DAVID:
   * grey bar on blue buttons
   * edit profile link in the profile
   * log out link - remove or style or move to account page
-  * post creation
-    * no occluded Post button. Post button should be centered or left instead of right
   * Root page - remove double image thing
   * books list/reserve Search button
   * cleanup everything
@@ -23,7 +21,7 @@ DAVID:
 * BUG fixes
   * groups 
     * General -> Meetup or something better
-    * General button broken
+    * General button broken()
     * cleanup forms (align fields)
     * remove scheduling from form, put on actual page
 * oauth

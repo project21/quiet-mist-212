@@ -14,7 +14,7 @@
 </head>
 
 <body>
-
+<%=render'header'%>
 <div id="left">
  <span class="photo"><%=image_tag current_user.avatar_url %></span>
   <span class="full_name"><%= current_user.firstname %> &nbsp;<%= current_user.lastname %></span> <br/>
@@ -70,11 +70,17 @@
  <div ><%=link_to image_tag("group.png")+'francis group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
   <div> <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
 <div class="ui-helper-hidden group-form">
-group name <input type="text" >
-
-<br/>group description<input type="text" >
-<br/>max No:<input type="text" ><br/> 
- <input type="radio" id="general" >General <input type="radio" id="study" >Study Group<br/>
+<table>
+<tr>
+<td><label>group name</label> </td><td><input type="text" ></td>
+</tr>
+<br/>
+<tr><td>group description</td><td><input type="text" ></td></tr>
+<br/>
+<tr><td>max No:</td><td><input type="text" ></td></tr>
+</table>
+<br/> 
+<input type="radio" id="general" >General <input type="radio" id="study" >Study Group<br/>
  <div class="nested-group ui-helper-hidden">
  <input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
  <label>professor</label><input type="text"/><br/>
