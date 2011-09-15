@@ -43,6 +43,8 @@ $(document).ready(function() {
       else
       $('.responsebutton').addClass("ui-helper-hidden");
   });
+ 
+ $('.inline_table').hover(function(){$('.invite').removeClass('ui-helper-hidden');}
   
   $(".collection_check_boxes").live('click',function(){ 
 if (!$(this).hasClass('active-state') )
@@ -68,8 +70,8 @@ else
 
 $('.group').click(function(e){e.preventDefault();
   //($('.group-form').hasClass('ui-helper-hidden'))? null :
-  $('.group-form').removeClass('ui-helper-hidden'); 
-
+ // $('.group-form').removeClass('ui-helper-hidden'); 
+alert('f');
 });
 
 $('#study').click(function(){
