@@ -29,7 +29,7 @@ platform :ruby do
 end
 
 gem 'devise'
-gem 'omniauth' #, :git => 'https://github.com/intridea/omniauth.git', :branch => '1.0-beta'
+#gem 'omniauth' #, :git => 'https://github.com/intridea/omniauth.git', :branch => '1.0-beta'
 gem "foreigner"
 
 gem 'squeel'
