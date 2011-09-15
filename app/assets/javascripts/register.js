@@ -36,9 +36,10 @@ $(document).ready(function() {
 
     school_exists = false;
     //look at each panel  
-    $(".form-panel").each(function() {
+    $('.form-panel').each(function() {
       //if it's not the first panel enable the back button  
       var that = $(this);
+      console.log(that.attr("id"));
       (that.attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
 
       // on /home/welcome delayed until now when a school should exist
@@ -51,12 +52,16 @@ $(document).ready(function() {
       (that.hasClass("ui-helper-hidden")) ? null : that.fadeOut("fast", function() {  
     
         //add hidden class and show the next panel  
-        $(this).addClass("ui-helper-hidden").next().fadeIn("fast", function() {  
+        that.addClass("ui-helper-hidden")
+        var next = that.next();
+        if (next.attr('id') == 'books-form') next = next.next();
+        next.fadeIn("fast", function() {  
+          var that = $(this);
     
           //remove hidden class from new panel  
-          $(this).removeClass("ui-helper-hidden");  
+          that.removeClass("ui-helper-hidden");  
           // this is a hack to remove the display:block from the fadeIn
-          $(this).attr('style', '')
+          that.attr('style', '')
     
           //update progress bar  
           var pvalue = $("#progress").progressbar("option", "value") + 33;
