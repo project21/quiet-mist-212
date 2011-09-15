@@ -62,8 +62,8 @@ PostView = Backbone.View.extend(
     
   <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
   <span class="post-type"></span>
-  <span class="inline_table"> <img src="<%= user.image_url || (user.photo ? user.photo.url : '/assets/main.png') %>"/></span>
-  <span class="inline_tables"><a href="#" id="post-user" ><%= user.firstname%>&nbsp;<%=user.lastname %></a><br/><span class="post-content"><%= content %></span></span><br/>
+  <span class="inline_table"> <img src="<%= image_url %>"/></span>
+  <span class="inline_tables"><a href="#" id="post-user" ><%= firstname %>&nbsp;<%= lastname %></a><br/><span class="post-content"><%= content %></span></span><br/>
 <!--    <span class="post-content"> <%= content %></span><br/>-->
   <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
   <span class="post-response"></span>
@@ -83,6 +83,10 @@ PostView = Backbone.View.extend(
     attrs = _.clone(@model.attributes)
     attrs.num_parents = @options.num_parents
     attrs.row_classes = @options.row_classes
+    user = @model.get('user')
+    attrs.image_url = user?.image_url or if user?.photo then user.photo.url else '/assets/main.png'
+    attrs.firstname = @model.get('user')?.firstname || 'first'
+    attrs.lastname = @model.get('user')?.lastname || 'last'
     $(@el).html(@template(attrs))
     this
 )
