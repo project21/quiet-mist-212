@@ -132,7 +132,7 @@ PostAppView = Backbone.View.extend({
     # TODO: supposed to default to all?
     # The whole multiple course id thing is pretty hacky
     if !post_attrs[0]
-      alert("no course checked off")
+      alert("Please select a course for this post.")
       return
 
     post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
