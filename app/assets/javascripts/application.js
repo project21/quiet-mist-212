@@ -44,15 +44,14 @@ $(document).ready(function() {
       $('.responsebutton').addClass("ui-helper-hidden");
   });
  
- $('.inline_table').hover(function(){$('.invite').removeClass('ui-helper-hidden');}
+ $('.inline_table').hover(function(){$('.invite').removeClass('ui-helper-hidden');});
   
   $(".collection_check_boxes").live('click',function(){ 
-if (!$(this).hasClass('active-state') )
-$(this).addClass("active-state"); 
-else
-  $(this).removeClass("active-state");
-
-}); 
+    if (!$(this).hasClass('active-state') )
+      $(this).addClass("active-state"); 
+    else
+      $(this).removeClass("active-state");
+  }); 
 
    $('div.side-box span').click(function(){
  	   { 
@@ -68,11 +67,7 @@ else
   }			    }	
   });
 
-$('.group').click(function(e){e.preventDefault();
-  //($('.group-form').hasClass('ui-helper-hidden'))? null :
- // $('.group-form').removeClass('ui-helper-hidden'); 
-alert('f');
-});
+$('.group').click(function(e){e.preventDefault(); });
 
 $('#study').click(function(){
   $('.nested-group').removeClass('ui-helper-hidden'); 
