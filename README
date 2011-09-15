@@ -1,33 +1,21 @@
 # Campus Machine!
 
 # TODO:
-LAYOUT to avoid copy/paste
-
-Greg
-  * upload a file on a post
-
-DAVID:
-  * design
-
-* DESIGN
-  * grey bar on blue buttons
-  * edit profile link in the profile
-  * log out link - remove or style or move to account page
-  * Root page - remove double image thing
-  * books list/reserve Search button
-  * cleanup everything
-  * html5 validation alignment
 
 * BUG fixes
-  * groups 
+  * horizontal browser scrollbar
+  * html5 validation alignment
+  * groups - start link broken
     * General -> Meetup or something better
     * General button broken()
     * cleanup forms (align fields)
     * remove scheduling from form, put on actual page
+
 * oauth
   * test facebook login
 
 FUTURE
+* upload a file on a post
 * Modernizr
   * css3 shims
   * console.log shim
