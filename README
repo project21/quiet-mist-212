@@ -3,8 +3,9 @@
 # TODO:
 
 * BUG fixes
+  * horizontal browser scrollbar
   * html5 validation alignment
-  * groups 
+  * groups - start link broken
     * General -> Meetup or something better
     * General button broken()
     * cleanup forms (align fields)
