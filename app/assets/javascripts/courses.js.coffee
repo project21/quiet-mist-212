@@ -50,7 +50,7 @@ CourseAppView = Backbone.View.extend({
     course = new @collection.model(obj)
     e.currentTarget.reset()
     @collection.add(course)
-    course.save {}, error: (model, rsp) ->
+    course.save {}, error: (model, rsp) =>
       err = "Did not save: \n" +
       (for field, error of jQuery.parseJSON(rsp.responseText)
         field + " " + error
