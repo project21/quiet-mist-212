@@ -12,6 +12,7 @@
     * remove scheduling from form, put on actual page
 
 * oauth
+  * fix twitter redirect issue
   * test facebook login
 
 FUTURE
