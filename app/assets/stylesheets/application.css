@@ -643,6 +643,7 @@ background: -webkit-gradient(linear, 0 97%, 0 0%, from(#58595A),to(#454854)
   ); 
 background:-moz-linear-gradient(top, #58595A, #454854, #58595A 30%); }
  .inline_table img{height:50px;width:50px;}
+  .mock img{height:50px;width:50px;}
 /*.post-pic{float:left;}*/
 .postbutton{
  margin-left:480px;	

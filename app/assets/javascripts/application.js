@@ -67,8 +67,9 @@ $(document).ready(function() {
   }			    }	
   });
 
-$('.group').click(function(e){e.preventDefault(); });
-
+$('.group').click(function(e){e.preventDefault(); 
+$('.group-form').removeClass('ui-helper-hidden'); 
+});
 $('#study').click(function(){
   $('.nested-group').removeClass('ui-helper-hidden'); 
 });
@@ -81,7 +82,7 @@ $('#create').click(function(){
          autoOpen:false,
          buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("submit offer to the database");$(this).dialog("close");} },
          width:300,
-         height:250,
+         height:350,
          position:'center'
   });
   $('.classmates').dialog('open');
