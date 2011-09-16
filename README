@@ -3,6 +3,7 @@
 # TODO:
 * David:
   Fix up Home Page design
+  Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
 * BUG fixes
   * Add courses button should be on the left
