@@ -1,8 +1,15 @@
 # Campus Machine!
 
 # TODO:
+* David:
+  Fix up Home Page design
+  Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
 * BUG fixes
+  * Add courses button should be on the left
+    * Save & Continue should auto add a course
+  * Create Group link broken
+  * visual transition when adding a book
   * horizontal browser scrollbar
   * html5 validation alignment
   * groups - start link broken
@@ -12,6 +19,8 @@
     * remove scheduling from form, put on actual page
 
 * oauth
+  * omniauth broken
+  * fix twitter redirect issue
   * test facebook login
 
 FUTURE
