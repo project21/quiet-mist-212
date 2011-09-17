@@ -3,7 +3,8 @@ module ApplicationHelper
 
   def user_json
     return {}.to_json unless current_user
-    attrs = current_user.attributes.slice('id', 'email', 'firstname', 'lastname', 'image_url', 'major','school_id', 'photo')
+    attrs = current_user.attributes.slice('id', 'email', 'firstname', 'lastname', 'image_url', 'major','school_id')
+    attrs['image_url'] = current_user.avatar_url
     attrs['courses'] = current_user.courses.inject({}) {|hsh,c| hsh[c.id] = c.name; hsh }
     attrs.to_json.html_safe
   end

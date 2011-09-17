@@ -9,29 +9,24 @@
   Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
 * BUG fixes
+  * Edit Profile section clicking messed up
   * Add courses button should be on the left
     * Save & Continue should auto add a course
-  * Create Group link broken
-  * visual transition when adding a book
-  * horizontal browser scrollbar
   * html5 validation alignment
   * groups - start link broken
-    * General -> Meetup or something better
-    * General button broken()
-    * cleanup forms (align fields)
-    * remove scheduling from form, put on actual page
+    * Club/Organization/Study Group radio buttons - only select one
 
 Greg
-*sanitize - xss_terminate
-*book reserve wrap-up
-*upload a file on a post
-*display post type in the post
+* book requests
+* upload a file on a post
+* display post type in the post
 * oauth
   * omniauth broken
   * fix twitter redirect issue
   * test facebook login
 
 FUTURE
+*sanitize - xss_terminate
 *mypost to include the original post
 * Modernizr
   * css3 shims
