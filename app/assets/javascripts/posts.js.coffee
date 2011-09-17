@@ -1,4 +1,6 @@
 Post = Backbone.Model.extend(
+  #url: -> if @id then '/posts/' + @id.toStrig() else '/posts/'
+
   model_name: 'post'
   traverse_to_top: (n, posts) ->
     if reply = @get('reply')
@@ -15,6 +17,12 @@ Post = Backbone.Model.extend(
 PostCollection = Backbone.Collection.extend(
   model : Post
   url: '/posts'
+  latest: ->
+    max_post = @max((p) -> p.id)
+    console.log(max_post)
+    $.get(@url + '/latest', {max_id:max_post.id}, (data) ->
+      Posts.add(data)
+    )
 
 
   #confirm: (post_type_id) ->
@@ -47,9 +55,7 @@ PostView = Backbone.View.extend(
     e.preventDefault()
     reply = this.$(e.currentTarget).find('input').val()
     #TODO: validate not empty
-    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
-    Posts.add(post)
-    post.save()
+    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
     e.currentTarget.reset()
 
   initialize: ->
@@ -135,12 +141,10 @@ PostAppView = Backbone.View.extend({
       alert("Please select a course for this post.")
       return
 
-    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
-    Posts.add(post)
-    post.save()
-    for course_id in post_attrs
-      post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
-      Posts.add(post)
+    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
+    #for course_id in post_attrs
+      #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
+      #Posts.add(post)
     e.currentTarget.reset()
 
   initialize: ->
@@ -167,8 +171,7 @@ PostAppView = Backbone.View.extend({
         $(reply.view.el).after(view.render().el)
         delete post.attributes['reply']
       else
-        console.log("[ERROR] expected a reply")
-        view = new PostView({model: post, num_parents: num_parents + 1, row_classes: 'post-reply'})
+        view = new PostView({model: post, num_parents: 0, row_classes: 'post-reply'})
         posts_table_body.prepend(view.render().el)
 
   addAll: ->
@@ -189,4 +192,5 @@ $(->
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView
   $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
+  setInterval("Posts.latest()", 3000)
 )

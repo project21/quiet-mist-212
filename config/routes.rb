@@ -44,7 +44,11 @@ Campus::Application.routes.draw do
       get 'mygroup'
     end
   end
-  resources :posts
+  resources :posts do
+    collection do
+      get 'latest'
+    end
+  end
 
   namespace :setting do
     get "show"

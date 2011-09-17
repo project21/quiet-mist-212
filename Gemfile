@@ -39,7 +39,6 @@ gem 'enumerated_attribute'
 gem 'google-book', :require => 'google/book'
 gem 'api_smith'
 
-
 group :development, :test do
   gem 'awesome_print', :require => 'awesome_print'
   gem 'ruby-debug19', :require => 'ruby-debug'

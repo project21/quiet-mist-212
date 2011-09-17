@@ -8,6 +8,8 @@
 //= require "books"
 //= require "posts"
 //= require "requests"
+//= require "jquery.ajaxmanager.js"
+//= require "backbone.sync.ajaxman.js"
 
 jQuery.ajaxSetup({ 
   'beforeSend': function(xhr, settings) {
