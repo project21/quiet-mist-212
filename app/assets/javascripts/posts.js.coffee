@@ -18,11 +18,10 @@ PostCollection = Backbone.Collection.extend(
   model : Post
   url: '/posts'
   latest: ->
-    max_post = @max((p) -> p.id)
-    console.log(max_post)
-    $.get(@url + '/latest', {max_id:max_post.id}, (data) ->
-      Posts.add(data)
-    )
+    if max_post = @max((p) -> p.id)
+      $.get(@url + '/latest', {max_id:max_post.id}, (data) ->
+        Posts.add(data)
+      )
 
 
   #confirm: (post_type_id) ->
