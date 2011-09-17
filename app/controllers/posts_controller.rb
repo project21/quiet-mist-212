@@ -2,9 +2,15 @@ class PostsController < ApplicationController
   respond_to :json
 
   def index
-    posts = Post.for_user(current_user).top_level.includes(:user).includes(:replies => :user)
+    posts = get_posts
     respond_with make_json_tree posts
       #posts.to_json(:methods => :user, :include => {:replies => {:include => :user}}))
+  end
+
+  def latest
+    head :unprocessable_entity unless max_id = params[:max_id]
+    posts = get_posts.where {id > max_id}
+    respond_with make_json_tree posts
   end
 
   def create
@@ -18,6 +24,11 @@ class PostsController < ApplicationController
   end
 
 protected
+
+  def get_posts
+    Post.for_user(current_user).top_level.includes(:user).includes(:replies => :user)
+  end
+
   def make_json_tree posts
     posts.map do |post|
       post.attributes.merge(:user => post.user, :replies => make_json_tree(post.replies))

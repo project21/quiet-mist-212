@@ -1,5 +1,12 @@
 Post = Backbone.Model.extend(
+  #url: -> if @id then '/posts/' + @id.toStrig() else '/posts/'
+
   model_name: 'post'
+
+  image_url: ->
+    if user = @get('user')
+      user?.image_url or user?.photo?.url
+
   traverse_to_top: (n, posts) ->
     if reply = @get('reply')
       @traverse_to_top n, posts.concat(reply)
@@ -15,6 +22,11 @@ Post = Backbone.Model.extend(
 PostCollection = Backbone.Collection.extend(
   model : Post
   url: '/posts'
+  latest: ->
+    if max_post = @max((p) -> p.id)
+      $.get(@url + '/latest', {max_id:max_post.id}, (data) ->
+        Posts.add(data)
+      )
 
 
   #confirm: (post_type_id) ->
@@ -50,9 +62,7 @@ PostView = Backbone.View.extend(
     e.preventDefault()
     reply = this.$(e.currentTarget).find('input').val()
     #TODO: validate not empty
-    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
-    Posts.add(post)
-    post.save()
+    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
     e.currentTarget.reset()
 
   initialize: ->
@@ -85,8 +95,7 @@ PostView = Backbone.View.extend(
     attrs = _.clone(@model.attributes)
     attrs.num_parents = @options.num_parents
     attrs.row_classes = @options.row_classes
-    user = @model.get('user')
-    attrs.image_url = user?.image_url or if user?.photo then user.photo.url else '/assets/main.png'
+    attrs.image_url = @model.image_url() or '/assets/main.png'
     attrs.firstname = @model.get('user')?.firstname || 'first'
     attrs.lastname = @model.get('user')?.lastname || 'last'
     $(@el).html(@template(attrs))
@@ -137,12 +146,10 @@ PostAppView = Backbone.View.extend({
       alert("Please select a course for this post.")
       return
 
-    post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
-    Posts.add(post)
-    post.save()
-    for course_id in post_attrs
-      post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
-      Posts.add(post)
+    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
+    #for course_id in post_attrs
+      #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
+      #Posts.add(post)
     e.currentTarget.reset()
 
   initialize: ->
@@ -150,6 +157,11 @@ PostAppView = Backbone.View.extend({
     Posts.bind('add', this.addOne)
     Posts.bind('reset', this.addAll)
     Posts.fetch()
+
+  appendViewToTable: (view) ->
+    e = view.render().el
+    posts_table_body.prepend(e)
+    $(e).effect('highlight', 2000) unless @noHighlight
 
   addOne: (post, num_parents, row_classes) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
@@ -160,7 +172,7 @@ PostAppView = Backbone.View.extend({
         _(new Posts.model(reply)).tap (reply_model) =>
           @addOne(reply_model, num_parents + 1, 'post-reply')
       post.set(replies: reply_models)
-      posts_table_body.prepend(view.render().el)
+      @appendViewToTable view
     else
       reply = post.get('reply')
       if reply?
@@ -169,13 +181,18 @@ PostAppView = Backbone.View.extend({
         $(reply.view.el).after(view.render().el)
         delete post.attributes['reply']
       else
-        console.log("[ERROR] expected a reply")
-        view = new PostView({model: post, num_parents: num_parents + 1, row_classes: 'post-reply'})
-        posts_table_body.prepend(view.render().el)
+        view = new PostView({model: post, num_parents: 0})
+        @appendViewToTable view
+
+  withoutHighlight: (f) ->
+    @noHighlight = true
+    f()
+    @noHighlight = false
 
   addAll: ->
-    Posts.each((p) =>
-      this.addOne(p, 0))
+    @withoutHighlight =>
+      Posts.each((p) =>
+        this.addOne(p, 0))
 })
 
 window.posts_container = null
@@ -191,4 +208,5 @@ $(->
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView
   $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
+  setInterval("Posts.latest()", 3000)
 )

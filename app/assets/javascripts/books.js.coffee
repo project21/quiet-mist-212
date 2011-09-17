@@ -192,6 +192,7 @@ ClassmateBookView = Backbone.View.extend(
 
   initialize: ->
     _.bindAll(this, 'render')
+    # TODO: add user
     @template = _.template('''
       <td><span class="reserved">Reserve</span></td>
       <td class='condition'><%= condition %></td>
@@ -239,13 +240,6 @@ BooksAppView = Backbone.View.extend({
     view = new SearchedBookView({model: book, reserve: @form_id == "reserve-book-form"})
     searched_books_table.find('tbody').append(view.render().el)
 
-  addReserved: (book) ->
-    view = new ReservedBookView({model: book})
-    books_table.find('tbody').append(view.render().el)
-
-  addAllReserved: (books) ->
-    ReservedBooks.each(this.addReserved)
-
   initialize: ->
     _.bindAll(this, 'addOwned', 'addAllOwned', 'addSearched', 'addAllSearched', 'addReserved', 'addAllReserved')
     OwnedBooks.bind('add', this.addOwned)
@@ -258,6 +252,8 @@ BooksAppView = Backbone.View.extend({
     ReservedBooks.bind('add', this.addReserved)
     ReservedBooks.bind('reset', this.addAllReserved)
 
+    # TODO: separate tables for owned and reserved?
+    books_table.find('tbody').empty()
     OwnedBooks.fetch()
     if OwnedBooks.length == 0
       $('#my-book-quanity').text(' - None-yet')
@@ -266,26 +262,29 @@ BooksAppView = Backbone.View.extend({
     if ReservedBooks.length == 0
       $('#reserved-book-quanity').text(' - None-yet')
 
+  addViewToBooksTable: (view) ->
+    el = books_table.find('tbody').prepend(view.render().el)
+    el.effect('highlight', 2000) unless @noHighlight
+
+  addReserved: (book) ->
+    view = new ReservedBookView({model: book})
+    @addViewToBooksTable(view)
+
   addOwned: (book) ->
     book.set(reserver_id: null) if !book.get('reserver_id')
     view = new OwnedBookView({model: book})
-    books_table.find('tbody').append(view.render().el)
-    #$('#my-book-quanity').text('')
+    @addViewToBooksTable(view)
+
+  withoutHighlight: (f) ->
+    @noHighlight = true
+    f()
+    @noHighlight = false
+
+  addAllReserved: ->
+    @withoutHighlight => ReservedBooks.each(@addReserved)
 
   addAllOwned: ->
-    books_table.find('tbody').empty()
-    OwnedBooks.each(this.addOwned)
-
-    # TODO: use requests views
-    #for book in _(OwnedBooks.filter((b)->b.requested)).concat(ReservedBooks.models).sortBy((b) -> b.updated_at)
-      #view = if b.reserver_id == CURRENT_USER['id']
-        #new ReserveRequestView(model:book)
-      #else if b.offered_at
-        #new OfferedRequestView(model:book)
-      #else if b.accepted_at
-        #new AccepteRequestView(model:book)
-      #else
-        #requests_table.find('tbody').append(view.render().el)
+    @withoutHighlight => OwnedBooks.each(@addOwned)
 })
 
 window.books_table = null
