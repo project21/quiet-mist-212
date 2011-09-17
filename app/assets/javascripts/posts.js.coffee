@@ -89,7 +89,7 @@ PostView = Backbone.View.extend(
     attrs.num_parents = @options.num_parents
     attrs.row_classes = @options.row_classes
     user = @model.get('user')
-    attrs.image_url = user?.image_url or if user?.photo then user.photo.url else '/assets/main.png'
+    attrs.image_url = user?.image_url or user?.photo?.url or '/assets/main.png'
     attrs.firstname = @model.get('user')?.firstname || 'first'
     attrs.lastname = @model.get('user')?.lastname || 'last'
     $(@el).html(@template(attrs))
@@ -170,7 +170,7 @@ PostAppView = Backbone.View.extend({
         $(reply.view.el).after(view.render().el)
         delete post.attributes['reply']
       else
-        view = new PostView({model: post, num_parents: 0, row_classes: 'post-reply'})
+        view = new PostView({model: post, num_parents: 0})
         posts_table_body.prepend(view.render().el)
 
   addAll: ->
