@@ -2,6 +2,9 @@
 
 # TODO:
 * David:
+  style post-align reply & textfield and reply button
+  view for users with books
+  dialog box buttons
   Fix up Home Page design
   Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
@@ -17,14 +20,18 @@
     * General button broken()
     * cleanup forms (align fields)
     * remove scheduling from form, put on actual page
-
+Greg
+*book reserve wrap-up
+*ajax photo upload
+*upload a file on a post
+*display post type in the post
 * oauth
   * omniauth broken
   * fix twitter redirect issue
   * test facebook login
 
 FUTURE
-* upload a file on a post
+*mypost to include the original post
 * Modernizr
   * css3 shims
   * console.log shim

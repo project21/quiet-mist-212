@@ -6,14 +6,16 @@
  *= require_tree . 
 */
 html{
-  padding:0px;width: 100%;margin:0;}
+  padding:0px;width: 100%;margin:0;
+  min-width: 900px;
+}
  
 body {
   background-color: #fff;
   font-family: Verdana, Helvetica, Arial;
   font-size: 13px;
   width: 100%;
-  min-width: 600px;
+  min-width: 900px;
   padding:0px;
   margin:0;
 }
@@ -97,7 +99,7 @@ ul.n-menu li.last{
        background: -moz-radial-gradient(center 20px 45deg, circle cover, #00AFF0 60%, #B6C3E7 100%);  
    }  
 .registration{
-position:absolute;	
+position:absolute;
 background:#EAEFF0;	
 font-size: 14px;
 margin-left:6%;
@@ -107,13 +109,18 @@ width :500px;
 -webkit-border-radius: 5px;
 border-radius:         5px;
 }
-.header-background{background:#BABBC5;
+.header-background{
+width:100%;
+min-width:1000px; 
+background:#BABBC5;
  height:75px; 
-padding:5px;
+padding:0px;
 margin-top:-15px;
 background: -webkit-gradient(linear, 0 0, 0 90%,from(#ffffff),to(#BABBC5 )); 
+background:-moz-linear-gradient(top, #ffffff, #BABBC5  40%);
+
 }
-.header-wrapper{margin-left:1%;width:100%;min-width:900px;margin-top:15px;}
+.header-wrapper{width:100%;min-width:900px;margin-top:20px;}
 .logo{height:80px;width:170px;float:left;margin-top:-25px;}
 .logos{height:190px;width:190px;float:left;margin-top:-70px;}
 .logo-png{height:220px;width:260px;border:none;margin-top:-70px;}
@@ -128,12 +135,12 @@ border-top:solid #07A7D8 2px;
 }
 ul li{ list-style-type:none;}
 .footerline{	clear:both;
-margin-left: 10%;
-margin-right:10%;	
+margin-left: 5%;
+margin-right:5%;	
 margin-top:50%;	
-width:80%;
+width:90%;
 border-top:solid #07A7D8 2px;
-
+margin-top:50%;
 }
 .welcome-footerline{  
 margin-left: 10%;
@@ -228,7 +235,7 @@ color:white;
     -webkit-border-radius:3px;
     border-radius:3px;
 }
-#left{
+.left{
  margin-top:5px; 
  margin-left:1%;
   float:left;
@@ -392,7 +399,6 @@ border-radius:2px;
     }
  
 .searchbutton{
-  position:absolute;
   float:left;
   border:none;
 	padding:10px 20px 10px 20px;
@@ -518,9 +524,10 @@ margin-top: 0px;
 #auto-center{margin-left:15%;}
 .centered {	
   float:left;
-  width:50%;
+  width:10%;
   margin-top:10px;
  height:96%;
+
 }
 .container{
 height:96%;min-height:800px;
@@ -561,7 +568,7 @@ text-decoration:underline;
 .inline_tables{
   display: inline-table;
   position: relative;float:left;
-  width:500px;
+  width:400px;
 }
 .field-wrapper{
  background:#EEF0F7; 
@@ -609,9 +616,9 @@ color-stop(90%,#aaa ),color-stop(50%,#C2C6F5));
  width:600px;
 border-bottom:solid #e6e6e6 1px; 
 } 
-#posts-table tr.post td:hover { background:#EFF2F7; }
+/*#posts-table tr.post td:hover { background:#EFF2F7; }
 
-/*tr.post div.post-line{  width:100%;
+tr.post div.post-line{  width:100%;
 border-bottom:solid #e6e6e6 1px;}*/
 #responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
  span.post-content{
@@ -638,10 +645,10 @@ background: -webkit-gradient(linear, 0 97%, 0 0%, from(black),to(#454854)
    background:#5A5B5E;
    
  }
-.active-state{background:#58595A;
-background: -webkit-gradient(linear, 0 97%, 0 0%, from(#58595A),to(#454854) 
+.active-state{background:#848894; color:black;
+background: -webkit-gradient(linear, 0 97%, 0 0%, from(#848894),to(#B5B5B5) 
   ); 
-background:-moz-linear-gradient(top, #58595A, #454854, #58595A 30%); }
+background:-moz-linear-gradient(top, #848894, #B5B5B5 80%); }
  .inline_table img{height:50px;width:50px;}
   .mock img{height:50px;width:50px;}
 /*.post-pic{float:left;}*/
@@ -1075,8 +1082,7 @@ margin:0;
 background:#00AFF0;
 height:200px;
 background:-moz-linear-gradient(top, #00AFF0, #57C6EF 70%);
-g 
-color:white;
+background: -webkit-gradient(linear, 0 0, 0 90%,from(#00AFF0),to(#57C6EF ));color:white;
 min-width:1000px;
 }
 .diagrams
@@ -1110,9 +1116,7 @@ background:black;
 #sign-in-form h3{padding:5px;background:#E2E9E9;margin-top:0px;}
 .login-line{border:solid #424667 2px ;width:150px;margin-bottom:10px;}
 .login-headline{border-top:solid white 3px;width:480px;}
-.login-bullets{min-width:1100px;margin-left:0%;margin-top:10%;font-family: "Century Gothic";font-size:12px;color:white;list-style-type: none;position:fixed;}
-.login-bullets li{float:left;}
-/*.fblogin{width:300px;height:40px;}*/
+
 .sign-in-dotted{border-top:dotted #808080 1px;width:300px;}
 
 .login-bold-text{
@@ -1187,12 +1191,12 @@ font-weight:bold;
 text-align:center;
 }
 
-td.post-reply { background: #ddd; }
+td.post-reply { background: #EFF2F7; }
 
 td.num_parents_1 { padding-left:40px; }
-td.num_parents_2 { padding-left:80px; }
-td.num_parents_3 { padding-left:120px; }
-td.num_parents_4 { padding-left:160px; }
-td.num_parents_5 { padding-left:200px; }
-td.num_parents_6 { padding-left:240px; }
-td.num_parents_7 { padding-left:280px; }
+td.num_parents_2 { padding-left:60px; }
+td.num_parents_3 { padding-left:80px; }
+td.num_parents_4 { padding-left:120px; }
+td.num_parents_5 { padding-left:140px; }
+td.num_parents_6 { padding-left:160px; }
+td.num_parents_7 { padding-left:180px; }

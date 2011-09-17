@@ -6,13 +6,13 @@ Campus::Application.routes.draw do
   get "lecture/mylecture"
 
   get "lecture/find_lecture"
-  
+  get  "/home/profile/user_id"
  
   
   root :to => "homes#show"
 
   match '/majors' => 'majors#index'''
-
+  match "/home/profile/user_id", :to =>'homes#profile'
   resources :courses do
     collection do
       get :school
