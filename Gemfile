@@ -46,6 +46,13 @@ group :development, :test do
   gem 'unicorn', :platform => :ruby
 end
 
+group :development do
+  gem 'guard'
+  gem 'guard-rspec'
+  gem 'guard-livereload'
+  gem 'guard-bundler'
+end
+
 group :test do
   gem 'rspec-rails'
   gem 'capybara'
