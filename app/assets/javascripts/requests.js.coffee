@@ -18,9 +18,12 @@ RequestAppView = Backbone.View.extend({
 })
 
 window.show_book_requests = (e) ->
-  requests_table.addClass('ui-helper-hidden')
-  posts_container.addClass('ui-helper-hidden')
-  searched_books_table.removeClass('ui-helper-hidden')
+  hide_main_posts()
+  hide_main_books()
+  communication_content.removeClass('ui-helper-hidden')
+
+window.hide_main_requests = ->
+  communication_content.addClass('ui-helper-hidden')
 
 window.communication_content = null
 $(->

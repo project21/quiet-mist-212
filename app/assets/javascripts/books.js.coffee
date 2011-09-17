@@ -293,11 +293,15 @@ window.searched_books_table = null
 window.requesets_table = null
 
 
-window.show_searched_books = (e) ->
-  communication_content.addClass('ui-helper-hidden')
-  posts_container.addClass('ui-helper-hidden')
+window.show_searched_books = ->
+  hide_main_requests()
+  hide_main_posts()
   classmates_books_table.addClass('ui-helper-hidden')
   searched_books_table.removeClass('ui-helper-hidden')
+
+window.hide_main_books = ->
+  classmates_books_table.addClass('ui-helper-hidden')
+  searched_books_table.addClass('ui-helper-hidden')
 
 $(->
   window.requests_table = $('#requests-table')

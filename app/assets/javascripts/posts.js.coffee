@@ -195,9 +195,13 @@ PostAppView = Backbone.View.extend({
 
 window.posts_container = null
 window.posts_table_body = null
-window.show_posts = (e) ->
-  communication_content.addClass('ui-helper-hidden')
-  searched_books_table.addClass('ui-helper-hidden')
+
+window.hide_main_posts = ->
+  posts_container.addClass('ui-helper-hidden')
+
+window.show_posts = ->
+  hide_main_requests()
+  hide_main_books()
   posts_container.removeClass('ui-helper-hidden')
 
 
@@ -206,5 +210,5 @@ $(->
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView
   $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
-  setInterval("Posts.latest()", 3000)
+  setInterval("Posts.latest()", 5000)
 )
