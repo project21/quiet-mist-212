@@ -2,6 +2,11 @@ Post = Backbone.Model.extend(
   #url: -> if @id then '/posts/' + @id.toStrig() else '/posts/'
 
   model_name: 'post'
+
+  image_url: ->
+    if user = @get('user')
+      user?.image_url or user?.photo?.url
+
   traverse_to_top: (n, posts) ->
     if reply = @get('reply')
       @traverse_to_top n, posts.concat(reply)
@@ -88,8 +93,7 @@ PostView = Backbone.View.extend(
     attrs = _.clone(@model.attributes)
     attrs.num_parents = @options.num_parents
     attrs.row_classes = @options.row_classes
-    user = @model.get('user')
-    attrs.image_url = user?.image_url or user?.photo?.url or '/assets/main.png'
+    attrs.image_url = @model.image_url() or '/assets/main.png'
     attrs.firstname = @model.get('user')?.firstname || 'first'
     attrs.lastname = @model.get('user')?.lastname || 'last'
     $(@el).html(@template(attrs))
