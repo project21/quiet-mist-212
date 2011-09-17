@@ -3,11 +3,11 @@ class BookOwnershipsController < ApplicationController
   before_filter :load_resource, :only => [:reserve, :decline, :accept]
   
   def index
-    respond_with current_user.books.select('"books".*, "book_ownerships".reserver_id')
+    respond_with book_ownership_json(:user_id => current_user.id)
   end
 
   def reserved
-    respond_with BookOwnership.where(:reserver_id => current_user.id).map(&:book)
+    respond_with book_ownership_json(:reserver_id => current_user.id)
   end
 
   def show
@@ -52,6 +52,11 @@ class BookOwnershipsController < ApplicationController
   end
 
 protected
+  def book_ownership_json cond
+    BookOwnership.where(cond).map do |bo|
+      bo.book.attributes.merge(bo.attributes.slice('reserver_id', 'accepted_at'))
+    end
+  end
 
   def load_resource
     @book_ownership = BookOwnership.where(:school_id => current_user.school_id).find(params[:id])

@@ -7,6 +7,10 @@ window.autocomplete_courses = (jq_auto, callback) ->
 
 window.fast_click = (jq, fn) -> jq.mousedown(fn).click((e)->e.preventDefault())
 
+window.capitalize = (str) ->
+  return str if !str || str.length == 0
+  str[0].toUpperCase() + str.slice(1)
+
 # same as jQuery $
 # but throw an exception if no elements are found
 window.$_ = (arg1, arg2) ->

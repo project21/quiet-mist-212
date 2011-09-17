@@ -12,7 +12,18 @@ _.extend Backbone.Model.prototype,
 Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
   reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
-  requested: -> get('reserver_id')
+
+  status: ->
+    if @get('reserver_id')
+      if !@get('accepted_at')
+        'pending'
+      else
+        'reserved'
+
+  view_attributes: ->
+    attrs = _.clone(@attributes)
+    attrs.status = @status()
+    attrs
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
@@ -27,7 +38,6 @@ BookSearchCollection = Backbone.Collection.extend(
   model : Book
   transfer_to: (collection, book, options) ->
     this.remove(book)
-    book.unset('reserver_id', silent: true)
     collection.add(book)
     if options && options['reserve']
       book.reserve()
@@ -61,21 +71,29 @@ OwnedBookView = Backbone.View.extend(
       <td class='title'><%= title %></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>  
+      <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
     ''')
 
   render: ->
-    $(@el).html(@template(@model.attributes))
+    $(@el).html(@template(@model.view_attributes()))
     this
 )
 
-ReservedBookView = Backbone.View.extend(
+
+CampusMachineView = Backbone.View.extend(
+  stop_event : (e) -> e.preventDefault()
+)
+
+ReservedBookView = CampusMachineView.extend(
   tagName:  "tr"
   className:  "book"
   
   events:
-    # not used yet
-    'click .remove': "remove_book"
+    'click td.title': "search_again"
+
+  search_again: (e) ->
+    e.preventDefault()
+    $("#reserve-book-form :input").val($(e.currentTarget).text()).submit()
 
   remove_book: (e) ->
     e.preventDefault()
@@ -90,11 +108,11 @@ ReservedBookView = Backbone.View.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td><span class='reserved'>Reserved</span></td>
+      <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
     ''')
 
   render: ->
-    $(@el).html(@template(@model.attributes))
+    $(@el).html(@template(@model.view_attributes()))
     this
 )
 
@@ -177,8 +195,9 @@ ClassmateBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     # TODO: add user
     @template = _.template('''
-      <td><span class="reserved">Reserve</span></td>
+      <td><span class="reserved">Reserve this book</span></td>
       <td class='condition'><%= condition %></td>
+      <td><span class="from">from <%= user.firstname %> <%= user.lastname %></span></td>
       <td class='description'><%= condition_description %></td>
     ''')
 
@@ -274,11 +293,15 @@ window.searched_books_table = null
 window.requesets_table = null
 
 
-window.show_searched_books = (e) ->
-  communication_content.addClass('ui-helper-hidden')
-  posts_container.addClass('ui-helper-hidden')
+window.show_searched_books = ->
+  hide_main_requests()
+  hide_main_posts()
   classmates_books_table.addClass('ui-helper-hidden')
   searched_books_table.removeClass('ui-helper-hidden')
+
+window.hide_main_books = ->
+  classmates_books_table.addClass('ui-helper-hidden')
+  searched_books_table.addClass('ui-helper-hidden')
 
 $(->
   window.requests_table = $('#requests-table')
