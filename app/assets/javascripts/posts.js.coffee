@@ -46,21 +46,21 @@ window.Posts = new PostCollection
 PostView = Backbone.View.extend(
   tagName:  "tr"
   className:  "post"
-  # add border-bottom similar to: <div  class="post-line"></div>
+ 
 
   events:
     "submit form.response" : "respond"
-    "hover td" : "respondHover"
+    "mousedown td" : "respondHover"
     "click td" : "elastic"
 
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
   respondHover: (e) ->
-    $(e.currentTarget).find('form').toggleClass('ui-helper-hidden')
+    $(e.currentTarget).find('form.response').toggleClass('ui-helper-hidden')
   
   respond: (e) ->
     e.preventDefault()
-    reply = this.$(e.currentTarget).find('input').val()
+    reply = this.$(e.currentTarget).find('textarea').val()
     #TODO: validate not empty
     post = Posts.create(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
     e.currentTarget.reset()
@@ -82,9 +82,10 @@ PostView = Backbone.View.extend(
   <span class="post-response"></span>
 
   <br/>
+ <!-- <button type="button" class="reply">Reply<button/>-->
   <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
-    <textarea    name="post[content]" class="reply-field" rows="1" cols="50"></textarea>
-    <input type="submit"  value="reply" id="responsebutton" >
+    <textarea name="post[content]" class="reply-field" rows="1" cols="50"/>
+    <input type="submit"  value="reply" id="responsebutton" />
   </form>
 </td>
 

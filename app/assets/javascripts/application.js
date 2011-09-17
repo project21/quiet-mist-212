@@ -38,7 +38,7 @@ $(document).ready(function() {
 
  $('#datepicker').datepicker(); 
   $( '#general-field' ).elastic();
-   $( '.reply-field' ).elastic();
+   
   $('.post-background').hover(function(){
    if ($(".responsebutton").hasClass('ui-helper-hidden'))
       $(".responsebutton").removeClass('ui-helper-hidden');
