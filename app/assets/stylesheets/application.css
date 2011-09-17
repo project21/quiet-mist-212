@@ -605,6 +605,7 @@ color-stop(90%,#aaa ),color-stop(50%,#C2C6F5));
   width:100%;
   border-bottom:solid #e6e6e6 1px; 
 } 
+#searched-books-table thead{padding:2px;background:blue;}
 /*#books-table tr td{width:10px;}*/
 
 /*#posts-table{

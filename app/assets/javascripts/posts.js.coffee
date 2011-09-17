@@ -39,6 +39,9 @@ PostView = Backbone.View.extend(
   events:
     "submit form.response" : "respond"
     "hover td" : "respondHover"
+    "click td" : "elastic"
+
+  elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
   respondHover: (e) ->
     $(e.currentTarget).find('form').toggleClass('ui-helper-hidden')
@@ -69,10 +72,9 @@ PostView = Backbone.View.extend(
   <span class="post-response"></span>
 
   <br/>
-
   <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
-    <input type="text"   name="post[content]" size="35" >
-    <input type="submit"  value="reply" id="responsebutton">
+    <textarea    name="post[content]" class="reply-field" rows="1" cols="50"></textarea>
+    <input type="submit"  value="reply" id="responsebutton" >
   </form>
 </td>
 
