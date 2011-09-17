@@ -107,10 +107,13 @@ SearchedBookView = Backbone.View.extend(
 
   choose_book: (e) ->
     e.preventDefault()
-    SearchedBooks.reset()
+
     if @options['reserve']
-      view = new ReserveClassmateBookView(model: @model)
-      view.render().el.dialog()
+      SearchedBooks.each (book) =>
+        $(book.view.el).hide() unless book.get('isbn') == @model.get('isbn')
+      new ReserveClassmateBookView(model: @model)
+      classmates_books_table.find('tbody').empty()
+      classmates_books_table.removeClass('ui-helper-hidden')
     else
       add_course_name.dialog()
       autocomplete_courses $('#add-course-name'), (course_id) =>
@@ -138,43 +141,24 @@ SearchedBookView = Backbone.View.extend(
 )
 
 
-reserve_book_template = '''
-<div>
-  <span class="reserve-book">Reserve from your classmates</span>
-  <p class="finding-owners">
-    Looking for classmates with this book ...
-  </p>
-  <table class="found-owners">
-    <tbody>
-    </tbody>
-  </table>
-</div>
-'''
-
 ReserveClassmateBookView = Backbone.View.extend({
   el: "body"
 
-  #  "click .add-or-buy-or-reserve .buy-book" : "buy_book"
-  #buy_book: -> alert("sorry, not implemented yet")
-
   initialize: ->
-    @el = $(reserve_book_template)
     $.get('/book_ownerships/0', {isbn: @model.get('isbn').toString()}, (book_ownerships) =>
       books_available = book_ownerships.length != 0
-      @el.find('.reserve-book').toggle(books_available)
-      if !books_available
-        @el.find('.finding-owners').text("Sorry, no classmates found with this book!")
-      else
-        @el.find('.finding-owners').hide()
-      
-      _(book_ownerships).each( (book_ownership) =>
-        view = new ClassmateBookView(model: @model, dialog: @el, book_ownership: book_ownership)
-        @el.find(".found-owners").append(view.render().el)
-      )
-    )
 
-  render: ->
-    this
+      if !books_available
+        classmates_books_table.prepend("<tr class='no-classmates-found'><td>Sorry, no classmates found with this book</td></tr>")
+          .effect('highlight', 2000)
+      else
+        $_('#finding-classmate-book-owners').addClass('ui-helper-hidden')
+        _(book_ownerships).each( (book_ownership) =>
+          view = new ClassmateBookView(model: @model, book_ownership: book_ownership)
+          classmates_books_table.append(view.render().el)
+        )
+    )
+  render: -> this
 })
 
 ClassmateBookView = Backbone.View.extend(
@@ -187,7 +171,6 @@ ClassmateBookView = Backbone.View.extend(
   reserve_book: (e) ->
     e.preventDefault()
     @model.id = @options['book_ownership'].id
-    @options['dialog'].dialog('close')
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
 
   initialize: ->
@@ -215,7 +198,7 @@ BooksAppView = Backbone.View.extend({
     form = $(e.currentTarget)
     @form_id = form.attr('id')
     query = form.find('input[type=search]').serialize()
-    show_books()
+    show_searched_books()
     if query.length > 0
       # no need for a url
       $('.bookfound').addClass('ui-helper-hidden')
@@ -232,11 +215,10 @@ BooksAppView = Backbone.View.extend({
 
   addAllSearched: (books) ->
     searched_books_table.find('tbody').empty()
-    show_books
+    show_searched_books
     SearchedBooks.each(this.addSearched)
 
   addSearched: (book) ->
-    console.log(book)
     view = new SearchedBookView({model: book, reserve: @form_id == "reserve-book-form"})
     searched_books_table.find('tbody').append(view.render().el)
 
@@ -292,15 +274,17 @@ window.searched_books_table = null
 window.requesets_table = null
 
 
-window.show_books = (e) ->
+window.show_searched_books = (e) ->
   communication_content.addClass('ui-helper-hidden')
   posts_container.addClass('ui-helper-hidden')
+  classmates_books_table.addClass('ui-helper-hidden')
   searched_books_table.removeClass('ui-helper-hidden')
 
 $(->
   window.requests_table = $('#requests-table')
   window.books_table = $('#books-table')
   window.searched_books_table = $('#searched-books-table')
+  window.classmates_books_table = $('#classmates-books-table')
   window.BooksApp = new BooksAppView
   window.add_course_name = $("<div><p>What course is this for?</p></p><form><input type='text' id='add-course-name'></input></form></div>")
   # jquery ui dialog screws up event bindings, see:
