@@ -1,14 +1,22 @@
 # Campus Machine!
 
 # TODO:
-* David:
-  style post-align reply & textfield and reply button
-  view for users with books
-  dialog box buttons
-  Fix up Home Page design
-  Make class selection buttons nicer. They should be highlighted instead of greyed out.
+David:
+  * posting re-sesizing issue
+  * email about setting up demo room ahead of time
+  * style post-align reply & textfield and reply button
+  * view for users with books
+  * dialog box buttons
+  * Fix up Home Page design
+  * Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
-* BUG fixes
+Greg
+  * course button logic messed up
+    * also, uncheck all course buttons on post submit
+  * Post type text is not being reset
+  * Fake data for book listings
+
+BUG fixes
   * Edit Profile section clicking messed up
   * Add courses button should be on the left
     * Save & Continue should auto add a course
