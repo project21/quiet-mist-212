@@ -37,6 +37,10 @@ class BookOwnership < ActiveRecord::Base
 
   def accepted?; !!accepted_at end
 
+  def pending
+    reserver_id && !accepted_at
+  end
+
   def reserve! reserver, amount
     self.reserver = reserver
     self.reserver_id = reserver.id

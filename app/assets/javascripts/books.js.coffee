@@ -12,7 +12,18 @@ _.extend Backbone.Model.prototype,
 Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
   reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
-  requested: -> get('reserver_id')
+
+  status: ->
+    if @get('reserver_id')
+      if !@get('accepted_at')
+        'pending'
+      else
+        'reserved'
+
+  view_attributes: ->
+    attrs = _.clone(@attributes)
+    attrs.status = @status()
+    attrs
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
@@ -27,8 +38,6 @@ BookSearchCollection = Backbone.Collection.extend(
   model : Book
   transfer_to: (collection, book, options) ->
     this.remove(book)
-    book.unset('reserver_id', silent: true)
-    book.set(ownership_status: 'pending')
     collection.add(book)
     if options && options['reserve']
       book.reserve()
@@ -62,11 +71,11 @@ OwnedBookView = Backbone.View.extend(
       <td class='title'><%= title %></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td> <% if(reserver_id) {%><span class='reserved'>reserved</span><%}%> </td>  
+      <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
     ''')
 
   render: ->
-    $(@el).html(@template(@model.attributes))
+    $(@el).html(@template(@model.view_attributes()))
     this
 )
 
@@ -99,14 +108,11 @@ ReservedBookView = CampusMachineView.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td><span class='<%= ownership_status %>'><%= capitalize(ownership_status) %></span></td>
+      <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
     ''')
 
   render: ->
-    # I am ok with not cloning the attributes here
-    attrs = @model.attributes
-    attrs.ownership_status ||= 'reserved'
-    $(@el).html(@template(attrs))
+    $(@el).html(@template(@model.view_attributes()))
     this
 )
 
