@@ -156,6 +156,11 @@ PostAppView = Backbone.View.extend({
     Posts.bind('reset', this.addAll)
     Posts.fetch()
 
+  appendViewToTable: (view) ->
+    e = view.render().el
+    posts_table_body.prepend(e)
+    $(e).effect('highlight', 2000) unless @noHighlight
+
   addOne: (post, num_parents, row_classes) ->
     post.set('user_id': window.CURRENT_USER.id) if !post.get('user_id')
 
@@ -165,7 +170,7 @@ PostAppView = Backbone.View.extend({
         _(new Posts.model(reply)).tap (reply_model) =>
           @addOne(reply_model, num_parents + 1, 'post-reply')
       post.set(replies: reply_models)
-      posts_table_body.prepend(view.render().el)
+      @appendViewToTable view
     else
       reply = post.get('reply')
       if reply?
@@ -175,11 +180,17 @@ PostAppView = Backbone.View.extend({
         delete post.attributes['reply']
       else
         view = new PostView({model: post, num_parents: 0})
-        posts_table_body.prepend(view.render().el)
+        @appendViewToTable view
+
+  withoutHighlight: (f) ->
+    @noHighlight = true
+    f()
+    @noHighlight = false
 
   addAll: ->
-    Posts.each((p) =>
-      this.addOne(p, 0))
+    @withoutHighlight =>
+      Posts.each((p) =>
+        this.addOne(p, 0))
 })
 
 window.posts_container = null

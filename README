@@ -20,9 +20,10 @@
     * General button broken()
     * cleanup forms (align fields)
     * remove scheduling from form, put on actual page
+
 Greg
+*sanitize - xss_terminate
 *book reserve wrap-up
-*ajax photo upload
 *upload a file on a post
 *display post type in the post
 * oauth
