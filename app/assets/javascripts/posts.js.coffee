@@ -50,7 +50,7 @@ PostView = Backbone.View.extend(
 
   events:
     "submit form.response" : "respond"
-    "mousedown td" : "respondHover"
+    "mousedown td " : "respondHover"
     "click td" : "elastic"
 
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
@@ -82,8 +82,9 @@ PostView = Backbone.View.extend(
   <span class="post-response"></span>
 
   <br/>
- <!-- <button type="button" class="reply">Reply<button/>-->
-  <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
+   <button class="reply" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">reply</button>
+  
+  <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>" >
     <textarea name="post[content]" class="reply-field" rows="1" cols="50"/>
     <input type="submit"  value="reply" id="responsebutton" />
   </form>
