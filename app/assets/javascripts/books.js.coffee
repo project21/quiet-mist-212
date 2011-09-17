@@ -28,6 +28,7 @@ BookSearchCollection = Backbone.Collection.extend(
   transfer_to: (collection, book, options) ->
     this.remove(book)
     book.unset('reserver_id', silent: true)
+    book.set(ownership_status: 'pending')
     collection.add(book)
     if options && options['reserve']
       book.reserve()
@@ -69,13 +70,21 @@ OwnedBookView = Backbone.View.extend(
     this
 )
 
-ReservedBookView = Backbone.View.extend(
+
+CampusMachineView = Backbone.View.extend(
+  stop_event : (e) -> e.preventDefault()
+)
+
+ReservedBookView = CampusMachineView.extend(
   tagName:  "tr"
   className:  "book"
   
   events:
-    # not used yet
-    'click .remove': "remove_book"
+    'click td.title': "search_again"
+
+  search_again: (e) ->
+    e.preventDefault()
+    $("#reserve-book-form :input").val($(e.currentTarget).text()).submit()
 
   remove_book: (e) ->
     e.preventDefault()
@@ -90,11 +99,14 @@ ReservedBookView = Backbone.View.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-      <td><span class='reserved'>Reserved</span></td>
+      <td><span class='<%= ownership_status %>'><%= capitalize(ownership_status) %></span></td>
     ''')
 
   render: ->
-    $(@el).html(@template(@model.attributes))
+    # I am ok with not cloning the attributes here
+    attrs = @model.attributes
+    attrs.ownership_status ||= 'reserved'
+    $(@el).html(@template(attrs))
     this
 )
 
@@ -177,8 +189,9 @@ ClassmateBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     # TODO: add user
     @template = _.template('''
-      <td><span class="reserved">Reserve</span></td>
+      <td><span class="reserved">Reserve this book</span></td>
       <td class='condition'><%= condition %></td>
+      <td><span class="from">from <%= user.firstname %> <%= user.lastname %></span></td>
       <td class='description'><%= condition_description %></td>
     ''')
 
