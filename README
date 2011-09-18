@@ -11,6 +11,7 @@ David:
   * Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
 Greg
+  * reserving a book not showing up as pending
   * course button logic messed up
     * also, uncheck all course buttons on post submit
   * Post type text is not being reset
