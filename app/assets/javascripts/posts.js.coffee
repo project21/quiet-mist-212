@@ -154,7 +154,7 @@ PostAppView = Backbone.View.extend({
       #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
       #Posts.add(post)
     e.currentTarget.reset()
-    $('#general-field').val('')
+    $(".collection_check_boxes").removeClass("active-state")
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
@@ -212,6 +212,10 @@ window.show_posts = ->
 
 
 $(->
+  $(".collection_check_boxes").live 'click', (e) ->
+    e.preventDefault()
+    $_('#' + $(this).toggleClass("active-state").attr('for')).click()
+
   window.posts_container = $('#posts-container')
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView

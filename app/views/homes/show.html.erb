@@ -18,15 +18,13 @@
             cont.show()
           </script>
           <span id="status"> <%= f.select(:post_type, options_for_select([
-                   ['Post type:',1 ],
-                   ['Question:',2],
-                   ['Material upload:',3],
-                   ['Textbook:',4],
-                   ['Roommate:',5],
-                   ['Homework:',6],
-                   ['Financial aid:',7],
-                   ['Addcode:',8],
-                   ['Study buddy:',9],
+                   ['Post type:'],
+                   ['Question:'],
+                   ['Material upload:'],
+                   ['Textbook:'],
+                   ['Roommate:'],
+                   ['Homework:'],
+                   ['Study buddy:'],
             ])) %></span>
           <%= f.text_area :content, id:"general-field", class:"round", rows:1 %>
           <%= f.submit 'post',:class=>"postbutton"%>
