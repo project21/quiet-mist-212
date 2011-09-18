@@ -25,7 +25,8 @@ PostCollection = Backbone.Collection.extend(
   latest: ->
     if max_post = @max((p) -> p.id)
       $.get(@url + '/latest', {max_id:max_post.id}, (data) ->
-        Posts.add(data)
+        for d in data
+          Posts.add(d) unless Posts.get(d.id)
       )
 
 
@@ -153,6 +154,7 @@ PostAppView = Backbone.View.extend({
       #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
       #Posts.add(post)
     e.currentTarget.reset()
+    $('#general-field').val('')
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
@@ -213,6 +215,7 @@ $(->
   window.posts_container = $('#posts-container')
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView
-  $('#post_post_type').change -> $('#general-field').text($(this).find('option:selected').text())
+  $('#post_post_type').change ->
+    $('#general-field').val($(this).find('option:selected').text())
   setInterval("Posts.latest()", 5000)
 )

@@ -189,6 +189,7 @@ ClassmateBookView = Backbone.View.extend(
   reserve_book: (e) ->
     e.preventDefault()
     @model.id = @options['book_ownership'].id
+    @model.set(reserver_id: CURRENT_USER.id)
     SearchedBooks.transfer_to(ReservedBooks, @model, reserve : true)
 
   initialize: ->

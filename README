@@ -2,6 +2,8 @@
 
 # TODO:
 David:
+  * lecture links
+  * invite box- names for people, there should just be a 'Done' button
   * posting re-sesizing issue
   * email about setting up demo room ahead of time
   * style post-align reply & textfield and reply button
@@ -11,10 +13,9 @@ David:
   * Make class selection buttons nicer. They should be highlighted instead of greyed out.
 
 Greg
-  * reserving a book not showing up as pending
+  * make sure post reply shows up
   * course button logic messed up
     * also, uncheck all course buttons on post submit
-  * Post type text is not being reset
   * Fake data for book listings
 
 BUG fixes

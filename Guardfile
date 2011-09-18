@@ -18,7 +18,7 @@ end
 # rb-fsevent
 # growl_notify
 
-guard 'livereload' do
+guard 'livereload', :apply_js_live => false do
   watch(%r{app/.+\.(erb|haml)})
   #watch(%r{app/helpers/.+\.rb})
   #watch(%r{(public/|app/assets).+\.(css|js|html)})
