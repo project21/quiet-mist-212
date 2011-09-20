@@ -49,6 +49,8 @@
     
     <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
  
+ <div class="more">more</div>
+ <div class="lectures ui-helper-hidden">
     <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#3',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
     
     <div class="line_separator"></div>
@@ -61,6 +63,8 @@
     <div class="line_separator"></div>
     <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br>
     <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+     </div>
+
   </div>
      
 
@@ -70,7 +74,7 @@
 
  <div ><%=link_to image_tag("group.png")+'francis group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
   <div> <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
-<div class="ui-helper-hidden group-form">
+<form class="ui-helper-hidden group-form">
 <table>
 <tr>
 <td><label>group name</label> </td><td><input type="text" ></td>
@@ -81,24 +85,26 @@
 <tr><td>max No:</td><td><input type="text" ></td></tr>
 </table>
 <br/> 
-<input type="radio" id="general" >Club 
-<input type="radio" id="general" >Organization 
-<input type="radio" id="study">Study Group<br/>
+<input type="radio" id="study" value="section" name="group-type"/>My class section
+<input type="radio" id="general" value="club" name="group-type"/>Club 
+<input type="radio" id="general" value="org" name="group-type" />Organization 
+<br/>
  <div class="nested-group ui-helper-hidden">
  <input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
  <label>professor</label><input type="text"/><br/>
  </div>
-  <input type="radio" id="remote" >Remote <input type="radio" id="live" >Live meet up <br/>
+  <input type="radio" id="remote" name="communication">Remote 
+  <input type="radio" id="live" name="communication">Live meet up <br/>
   
 <button id="create">create</button></div>
-
+</form>
 <div class="ui-helper-hidden classmates" title="Invite your classmates" list of classmates> <span class="mock"><%=image_tag('d.jpg')%> </span><button>invite</button><br/> 
 <span><%=image_tag('spencer.jpg')%> </span> <button>invite</button><br/>
 <span ><%=image_tag('down.jpg')%> </span><button >invite</button> <br/> 
-<span class="mock"><%=image_tag('kamy.jpg')%> </span><button >invite</button> <br/> 
+<span class="mock"><%=image_tag('kamy.jpg')%> </span><button >invite</button>
+ <br/> 
 </div>
 
-    </div>
 
   </div>
 </div>

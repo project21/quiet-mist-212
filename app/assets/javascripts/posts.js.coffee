@@ -50,13 +50,14 @@ PostView = Backbone.View.extend(
 
   events:
     "submit form.response" : "respond"
-    "mousedown td " : "respondHover"
+    "mousedown   td " : "respondHover"
     "click td" : "elastic"
 
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
   respondHover: (e) ->
-    $(e.currentTarget).find('form.response').toggleClass('ui-helper-hidden')
+    $(e.currentTarget).find('form.response').removeClass('ui-helper-hidden')
+    $(e.currentTarget).find('button.reply').addClass('ui-helper-hidden')
   
   respond: (e) ->
     e.preventDefault()
@@ -77,16 +78,21 @@ PostView = Backbone.View.extend(
   <span class="post-type"></span>
   <span class="inline_table"> <img src="<%= image_url %>"/></span>
   <span class="inline_tables"><a href='/home/profile/<%= user_id %>' id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
+   <div class="clear"></div> 
 <!--    <span class="post-content"> <%= content %></span><br/>-->
   <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
   <span class="post-response"></span>
 
-  <br/>
-   <button class="reply" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">reply</button>
   
+   <button class="reply" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">Reply</button>
+
+  <!-- <button  type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">I can help</button> -->
+  
+<a href="#" class="uploads" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : ''%>
+  ">Attach</a>
   <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>" >
-    <textarea name="post[content]" class="reply-field" rows="1" cols="50"/>
-    <input type="submit"  value="reply" id="responsebutton" />
+    <textarea name="post[content]" class="reply-field" rows="1" cols="50"/><br/>
+    <input type="submit"  value="send" id="responsebutton" />
   </form>
 </td>
 

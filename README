@@ -7,33 +7,20 @@ David:
   * style post-align reply & textfield and reply button
   * view for users with books
   * dialog box buttons
-  * Fix up Home Page design
   * Make class selection buttons nicer. They should be highlighted instead of greyed out.
-
+  * Club/Organization/Study Group radio buttons - only select one 
 Greg
-  * reserving a book not showing up as pending
   * course button logic messed up
-    * also, uncheck all course buttons on post submit
-  * Post type text is not being reset
-  * Fake data for book listings
-
-BUG fixes
-  * Edit Profile section clicking messed up
-  * Add courses button should be on the left
-    * Save & Continue should auto add a course
-  * html5 validation alignment
-  * groups - start link broken
-    * Club/Organization/Study Group radio buttons - only select one
-
-Greg
-* book requests
-* upload a file on a post
-* display post type in the post
+  * book requests
+  * reserving a book not showing up as pending
+  * upload a file on a post
 * oauth
   * omniauth broken
   * fix twitter redirect issue
   * test facebook login
+  
 
+Greg
 FUTURE
 *sanitize - xss_terminate
 *mypost to include the original post
@@ -49,3 +36,6 @@ FUTURE
 * emails - enable in production
 * delete a course
 * semester changes- what happens to posts?
+BUG fixes
+  * Edit Profile section clicking messed up
+  * html5 validation alignment

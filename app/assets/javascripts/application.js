@@ -19,7 +19,6 @@ jQuery.ajaxSetup({
   }
 });
 
-
 // home show
 $(document).ready(function() {
   $(".attach-text-box").hide();
@@ -28,7 +27,23 @@ $(document).ready(function() {
                   if (!$(".attach-text-box").is(':visible')) 
                       $('.attach-text-box').show('fast');}
   });
-   
+  
+$('.file-field').addClass("ui-helper-hidden");
+ $("a.uploads").click(function(e){
+    e.preventDefault();
+
+    switch ($(this).attr('id'))
+    {
+       case "material":
+         $('#material-field').removeClass("ui-helper-hidden");
+          $('#audio-field').addClass("ui-helper-hidden");
+         break;
+       case "audio" :
+        $('#audio-field').removeClass("ui-helper-hidden");
+        $('#material-field').addClass("ui-helper-hidden");
+         break;
+       }
+       });
  /*  $('.bookfound').addClass('ui-helper-hidden');
   $('.addbookbutton').click(function(){
   	if(!$('.addbook-field').val()=="")
@@ -111,6 +126,11 @@ $('#create').click(function(){
   });
   $('.offer').dialog('open');}
 
+});
+
+$('.more').click(function(){
+$('.lectures').removeClass("ui-helper-hidden");
+$(this).hide();
 });
 
   // $('#status').selectmenu({style:'dropdown', menuWidth:'250'});

@@ -25,12 +25,17 @@
                    ['Roommate:',5],
                    ['Homework:',6],
                    ['Financial aid:',7],
-                   ['Addcode:',8],
+                   ['Tutor:',8],
                    ['Study buddy:',9],
             ])) %></span>
           <%=f.text_area :content, id:"general-field", class:"round", rows:1 %>
           <%=f.submit 'post',:class=>"postbutton"%>
         <%end%>
+        <a href="#" class="attach">Attachment:</a>
+        <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Material</a> <input type="file" class="file-field" id="material-field" />
+        &nbsp;
+        <a href="#" id="audio" class="uploads"><img src="/assets/audio.png"/>Lecture</a><input type="file" class="file-field" id="audio-field" />
+         
      </fieldset>
      
       <table id="posts-table" style="table-layout:fixed;width:500px;">
