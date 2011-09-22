@@ -33,18 +33,19 @@
             cont.show()
           </script>
           <span id="status"> <%= f.select(:post_type, options_for_select([
+
                    ['Post type:',1 ],
                    ['Question:',2],
                    ['Material upload:',3],
                    ['Textbook:',4],
                    ['Roommate:',5],
                    ['Homework:',6],
-                   ['Financial aid:',7],
-                   ['Tutor:',8],
-                   ['Study buddy:',9],
+                   ['Tutor:',7],
+                   ['Study buddy:',8],
+
             ])) %></span>
-          <%=f.text_area :content, id:"general-field", class:"round", rows:1 %>
-          <%=f.submit 'post',:class=>"postbutton"%>
+          <%= f.text_area :content, id:"general-field", class:"round", rows:1 %>
+          <%= f.submit 'post',:class=>"postbutton"%>
         <%end%>
         <a href="#" class="attach">Attachment:</a>
         <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Material</a> <input type="file" class="file-field" id="material-field" />

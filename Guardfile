@@ -18,11 +18,11 @@ end
 # rb-fsevent
 # growl_notify
 
-guard 'livereload' do
-  watch(%r{app/.+\.(erb|haml)})
-  #watch(%r{app/helpers/.+\.rb})
-  #watch(%r{(public/|app/assets).+\.(css|js|html)})
-  watch(%r{(app/assets/.+\.css)\.s[ac]ss}) { |m| m[1] }
-  watch(%r{(app/assets/.+\.js)\.coffee}) { |m| m[1] }
-  watch(%r{config/locales/.+\.yml})
+guard 'livereload', :apply_js_live => false do
+  watch %r!app/.+\.(erb|haml)!
+  watch %r!app/helpers/.+\.rb!
+  watch %r!(public/|app/assets).+\.(css|js|html)!
+  watch %r!(app/assets/.+\.css)(\.s[ac]ss)?! do |m| m[1] end
+  watch %r!(app/assets/.+\.js)(\.coffee)?!   do |m| m[1] end
+  #watch(%r{config/locales/.+\.yml})
 end

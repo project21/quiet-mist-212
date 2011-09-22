@@ -63,13 +63,6 @@ $('.file-field').addClass("ui-helper-hidden");
  
  $('.inline_table').hover(function(){$('.invite').removeClass('ui-helper-hidden');});
   
-  $(".collection_check_boxes").live('click',function(){ 
-    if (!$(this).hasClass('active-state') )
-      $(this).addClass("active-state"); 
-    else
-      $(this).removeClass("active-state");
-  }); 
-
    $('div.side-box span').click(function(){
  	   { 
 		      switch( $(this).attr('id')){

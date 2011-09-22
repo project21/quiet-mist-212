@@ -2,6 +2,8 @@
 
 # TODO:
 David:
+  * lecture links
+  * invite box- names for people, there should just be a 'Done' button
   * posting re-sesizing issue
   * email about setting up demo room ahead of time
   * style post-align reply & textfield and reply button
@@ -14,6 +16,9 @@ Greg
   * book requests
   * reserving a book not showing up as pending
   * upload a file on a post
+  * display post type in the post
+
+ 
 * oauth
   * omniauth broken
   * fix twitter redirect issue
