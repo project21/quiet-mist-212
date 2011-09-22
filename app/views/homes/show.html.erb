@@ -1,6 +1,21 @@
 
   <div class="centered">
-  
+   
+   <table id="searched-books-table" class="ui-helper-hidden">
+      <caption>Book results</caption>
+      <tbody></tbody>
+    </table>
+
+     <table id="classmates-books-table" class="ui-helper-hidden">
+      <caption id="finding-classmate-book-owners">
+       <b>Reserve this book from Classmates</b> 
+      </caption>
+      <tbody> </tbody>
+    </table>
+   
+   <table id="requests-table" class="ui-helper-hidden">
+      <tbody></tbody>
+    </table>
    
   <div class="container" id="communication">
     <div id="communication-content" class="ui-helper-hidden">
@@ -42,19 +57,8 @@
         <tbody></tbody>
       </table>
     </div>
-    <table id="searched-books-table" class="ui-helper-hidden">
-      <caption>Book results</caption>
-      <tbody></tbody>
-    </table>
-    <table id="classmates-books-table" class="ui-helper-hidden">
-      <caption id="finding-classmate-book-owners">
-          Classmates with this book
-      </caption>
-      <tbody></tbody>
-    </table>
-    <table id="requests-table" class="ui-helper-hidden">
-      <tbody></tbody>
-    </table>
+   
+   
 <!-- <div class="post-background">sdhdsh<br/>fhufhfuh<br/>iireii
 <div> <%= button_to "I'm down",  {:controller=>"books",:action=>"new"},{:class=>"responsebutton ui-helper-hidden"} %>
 <%= button_to "I have it", {:controller=>"books",:action=>"new"},{:class=>"responsebutton ui-helper-hidden"} %>
@@ -70,8 +74,7 @@
 </div>
    
   </div>
-<!--
-<div id="right">
+<!--<div id="right">
 <div class="right-side-box">
 <h4>Open groups</h4>
 <h5> Francis group</h5>

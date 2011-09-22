@@ -7,6 +7,13 @@
 	width:440px;
     border-top:solid #e6e6e6 1px;"></div>
 
+     <%= form_for (Post.new) do |f| %>
+     
+   
+      <%=f.text_area :content,:id=>"ask-field",:class=>" round",:rows=>"1"%>
+      <%=f.submit 'post',:class=>"ask"%>
+    <%end%>
+
     <span class="inline_table"><%=image_tag('d.jpg')%> </span>  
  
 <span class="inline_table">For example, I want to make custom field with car models list. Of course, it would be too weird to cram the entire list in one combobox. The standard way to avoid this is a two combobox with nested lists, in first combo, user choose car brand, second combo loads in background list of models by this brand. Is it possible to create something similar in Redmine for the non Ruby programmer?</span><br/>

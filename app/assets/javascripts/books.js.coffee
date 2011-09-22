@@ -13,6 +13,7 @@ Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
   reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
 
+
   status: ->
     if @get('reserver_id')
       if !@get('accepted_at')
@@ -24,6 +25,7 @@ Book = Backbone.Model.extend(
     attrs = _.clone(@attributes)
     attrs.status = @status()
     attrs
+
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
@@ -68,7 +70,7 @@ OwnedBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-      <td class='title'><%= title %></td>
+      <td class='title'><a href="#"><%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
       <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
@@ -133,7 +135,7 @@ SearchedBookView = Backbone.View.extend(
       classmates_books_table.find('tbody').empty()
       classmates_books_table.removeClass('ui-helper-hidden')
     else
-      add_course_name.dialog()
+      add_course_name.dialog(  )
       autocomplete_courses $('#add-course-name'), (course_id) =>
         @model.set(course_id: course_id)
         SearchedBooks.transfer_to(OwnedBooks, @model)
@@ -148,7 +150,7 @@ SearchedBookView = Backbone.View.extend(
       <td class='title'><a href="#"> <%= title %></a></td>
       <td class='edition'><%= edition %></td>
       <td class='author'><%= author %></td>
-
+      <td ><button>Add</button></td> 
     ''')
 
   render: ->
@@ -170,7 +172,7 @@ ReserveClassmateBookView = Backbone.View.extend({
         classmates_books_table.prepend("<tr class='no-classmates-found'><td>Sorry, no classmates found with this book</td></tr>")
           .effect('highlight', 2000)
       else
-        $_('#finding-classmate-book-owners').addClass('ui-helper-hidden')
+        $_('#finding-classmate-book-owners').removeClass('ui-helper-hidden')
         _(book_ownerships).each( (book_ownership) =>
           view = new ClassmateBookView(model: @model, book_ownership: book_ownership)
           classmates_books_table.append(view.render().el)
@@ -195,10 +197,13 @@ ClassmateBookView = Backbone.View.extend(
     _.bindAll(this, 'render')
     # TODO: add user
     @template = _.template('''
-      <td><span class="reserved">Reserve this book</span></td>
+      <td><img src="<%= user.image_url %>"/></td>
+      <td><span class="full_name"> <%= user.firstname %> <%= user.lastname %></span></td>
       <td class='condition'><%= condition %></td>
-      <td><span class="from">from <%= user.firstname %> <%= user.lastname %></span></td>
       <td class='description'><%= condition_description %></td>
+      <td><button class="reservebutton">Reserve</button></td>
+
+     
     ''')
 
   render: ->
@@ -296,6 +301,7 @@ window.requesets_table = null
 window.show_searched_books = ->
   hide_main_requests()
   hide_main_posts()
+  container.addClass('ui-helper-hidden')
   classmates_books_table.addClass('ui-helper-hidden')
   searched_books_table.removeClass('ui-helper-hidden')
 
@@ -306,6 +312,7 @@ window.hide_main_books = ->
 $(->
   window.requests_table = $('#requests-table')
   window.books_table = $('#books-table')
+  window.container=$('.container')
   window.searched_books_table = $('#searched-books-table')
   window.classmates_books_table = $('#classmates-books-table')
   window.BooksApp = new BooksAppView

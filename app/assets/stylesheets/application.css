@@ -206,7 +206,7 @@ color:white;
   padding:0px;
   font-weight:bold;
 }
-.nested-group{margin-left:60px;}
+.nested-group{margin-left:20px;}
 .calender{margin-left:60px;}
 .menu_item{
    	zoom: 1;
@@ -251,6 +251,7 @@ color:white;
 -webkit-border-radius:3px;
  border-radius:3px;
 }
+
 .searchfield{ 
 float:left;	
 -moz-border-radius:5px;
@@ -436,11 +437,12 @@ border-radius:2px;
   background: -webkit-gradient(linear, 0 0, 0 50%, from(#45C01B), 
   color-stop(90%,#45C01B),color-stop(50%,#C2C6F5 ));  
 }
+
 .photo{margin-top:3px;float:left;}
 .sign_up_button :hover{#7CED64;}
 .myreserved{background:#31C918;padding:4px;color:white; font-weight:bold;}
 .pending{background:#EDD512;padding:4px;color:white; font-weight:bold;}
-.reserved{background:#ED4B12;padding:4px;color:white; font-weight:bold;}
+.reserved{background:#ED4B12;color:white; font-weight:bold;}
 .side-box{
 overflow:hidden; 
 margin-top:10px;	
@@ -450,6 +452,7 @@ width:340px;
 -moz-border-radius:5px;
 -webkit-border-radius: 5px;
 border-radius:5px;
+
 }
 
 .side-box h4{
@@ -481,6 +484,7 @@ text-decoration:none;
 
 
 #right{
+  margin-left:700px;
   float:left;
   margin-top :10px;
   width : 20%;
@@ -610,14 +614,38 @@ color-stop(90%,#aaa ),color-stop(50%,#C2C6F5));
   width:100%;
   border-bottom:solid #e6e6e6 1px; 
 } 
-#searched-books-table thead{padding:2px;background:blue;}
-/*#books-table tr td{width:10px;}*/
-
-/*#posts-table{
+#books-table  td.title a{color:#0C37B0;}
+#books-table  td.title a:hover{color:#0C37B0;text-decoration:underline;}
+#searched-books-table caption{
+padding:6px;
+background:#ACAFB9;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
+background: -webkit-gradient(linear, 0 97%, 0 0%, from(#00AFF0),to(#66D2FA) 
+  ); 
+  background:-moz-linear-gradient(top,#00AFF0, #66D2FA 60%);
+  font-weight:bold;
+}
+ul.listbook a.booktitle {color:#0C37B0;text-decoration:none;}
+ul.listbook a.booktitle:hover{color:#0C37B0;text-decoration:underline;}
+#searched-books-table {
+width:640px;
+border:1px solid #dedede;
+background:#CFD8ED;
+-moz-border-radius:3px;
+-webkit-border-radius: 3px;
+border-radius:3px;
+}
+#classmates-books-table tr.book{
+  width:640px;
+  border-bottom:1px solid #dedede;
+}
+#classmates-books-table {
   border-collapse: collapse;
   border-spacing: 0;
-}*/
-
+   width:640px;
+}
 #posts-table tr.post td{
  width:600px;
 border-bottom:solid #e6e6e6 1px; 
@@ -1199,7 +1227,9 @@ font-size:15px;
 font-weight:bold;
 text-align:center;
 }
-
+a.group {text-decoration:none;color:#3165F2;}
+a.group:hover {text-decoration:underline;color:#3165F2;}
+.group-form{background:#EFF2F7; width:96%;margin-left:6px;}
 td.post-reply { background: #EFF2F7; }
 
 td.num_parents_1 { padding-left:40px; }

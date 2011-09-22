@@ -1,5 +1,5 @@
 class GroupController < ApplicationController
-	layout "home"
+	layout "group_layout"
   def create
   end
 

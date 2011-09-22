@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Campus</title>
+  <%= stylesheet_link_tag 'application', :debug => Rails.env.development? %>
+  <%= csrf_meta_tag %>
+
+  <% yield :head %>
+  <%= require_javascript *@javascript %>
+
+  <script type="text/javascript">
+    window.CURRENT_USER = <%= user_json %>
+  </script>
+</head>
+
+<body>
+
+<%=render'header'%>
+<div class="left">
+  <span class="photo"><%=image_tag(current_user.avatar_url || 'main.png', :size => '100x100') %></span>
+  <span class="full_name"><%= current_user.firstname%> &nbsp; <%=current_user.lastname %></span> <br/>
+ <span class="edit"> <%=link_to 'Edit Profile', edit_home_url %></span>
+
+  <div class="side-box">
+    <h4>Topics</h4>
+   Enter topic<br/>
+   need help
+  </div>
+ 
+
+  <div class="side-box">
+  <h4>Classmates</h4>
+  Online classmates<br/>
+  Find classmates
+    
+  </div>
+   
+   <div class="side-box">
+    <h4>Manage class </h4>
+    Report student<br/>
+    Delete class
+   </div>
+
+  
+     
+
+
+
+  </div>
+</div>
+
+ <%= yield %>
+ <%=render'footer' %>
+</body>
+
+</html>

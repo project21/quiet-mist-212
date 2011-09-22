@@ -38,4 +38,5 @@ FUTURE
 * semester changes- what happens to posts?
 BUG fixes
   * Edit Profile section clicking messed up
+     class auto-complete in registration doesnt work
   * html5 validation alignment

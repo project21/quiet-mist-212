@@ -73,9 +73,16 @@
     
 
  <div ><%=link_to image_tag("group.png")+'francis group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
-  <div> <%=link_to "Start a group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
+  <div class="start"> <%=link_to "Start Class group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
 <form class="ui-helper-hidden group-form">
-<table>
+<input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
+ <label>Professor</label><input type="text"/><br/>
+ <label>Crn</label><input type="text"/><br/>
+ <label>Group Objectives</label><textarea ></textarea >
+<br/> 
+
+ <div class="nested-group ui-helper-hidden">
+ <table>
 <tr>
 <td><label>group name</label> </td><td><input type="text" ></td>
 </tr>
@@ -84,18 +91,11 @@
 <br/>
 <tr><td>max No:</td><td><input type="text" ></td></tr>
 </table>
-<br/> 
-<input type="radio" id="study" value="section" name="group-type"/>My class section
-<input type="radio" id="general" value="club" name="group-type"/>Club 
-<input type="radio" id="general" value="org" name="group-type" />Organization 
-<br/>
- <div class="nested-group ui-helper-hidden">
- <input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
- <label>professor</label><input type="text"/><br/>
- </div>
-  <input type="radio" id="remote" name="communication">Remote 
+ <input type="radio" id="remote" name="communication">Remote 
   <input type="radio" id="live" name="communication">Live meet up <br/>
   
+ </div>
+ 
 <button id="create">create</button></div>
 </form>
 <div class="ui-helper-hidden classmates" title="Invite your classmates" list of classmates> <span class="mock"><%=image_tag('d.jpg')%> </span><button>invite</button><br/> 

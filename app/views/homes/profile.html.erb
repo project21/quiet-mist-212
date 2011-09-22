@@ -18,7 +18,7 @@
 <div class="profile-titles">Books</div>
 <ul class="listbook" >
  <% @books.each do |b|%>
- <li><span class="booktitle"> <%= b.title   %> by <%= b.author %> <%=b.edition %>&nbsp;edition</span></li>
+ <li><a href="#" class="booktitle"> <%= b.title   %></a> by <%= b.author %> <%=b.edition %>&nbsp;edition</li>
 <button class="reservebutton">Reserve</button>
 <div  class="offer ui-helper-hidden">
  <%= form_for :book_ownership do |f| %>
