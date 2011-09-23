@@ -1,3 +1,32 @@
+ReserveRequestView = Backbone.View.extend(
+  tagName:  "tr"
+  className:  "book"
+  
+  events:
+    # not used yet
+    'mousedown .remove': "remove_book"
+
+  remove_book: (e) ->
+    e.preventDefault()
+    $(@el).remove()
+    OwnedBooks.remove(@model)
+
+  initialize: ->
+    @model.view = this
+    _.bindAll(this, 'render')
+    @model.bind('change', this.render)
+    @template = _.template('''
+      <td class='title'><a href="#"><%= title %></a></td>
+      <td class='edition'><%= edition %></td>
+      <td class='author'><%= author %></td>
+      <td><span class='<%= status %>'><%= capitalize(status) %></span></td>
+    ''')
+
+  render: ->
+    $(@el).html(@template(@model.view_attributes()))
+    this
+)
+
 RequestAppView = Backbone.View.extend({
   el: "body"
 
@@ -9,12 +38,18 @@ RequestAppView = Backbone.View.extend({
     'click #inbox': "stop_event"
 
   show_book_request: (e) ->
+    for book in window.ReservedBooks.pending
+      view = new ReserveRequestView(model:book)
     communication_content.html(book_request_template).removeClass('ui-helper-hidden')
     show_book_requests()
 
   show_inbox: (e) ->
     communication_content.html(inbox_template).removeClass('ui-helper-hidden')
     show_book_requests()
+
+  initialize: ->
+    window.OwnedBooks
+    window.ReservedBooks
 })
 
 window.show_book_requests = (e) ->
