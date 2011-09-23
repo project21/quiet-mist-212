@@ -84,10 +84,9 @@ class User < ActiveRecord::Base
                          )
   end  
 
-  def self.from_omniauth(omniauth)
-    if a = Authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])  
-      return a.user
-    end
-    User.new.tap {|u| u.apply_omniauth omniauth }
+  def self.from_omniauth(omniauth, current_user)
+    (if current_user and a = current_user.authentication.find_by_provider_and_uid(omniauth['provider'], omniauth['uid'])  
+      a.user
+    end || current_user || User.new).tap {|u| u.apply_omniauth omniauth }
   end
 end

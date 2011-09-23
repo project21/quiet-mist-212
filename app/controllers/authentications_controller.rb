@@ -7,23 +7,17 @@ class AuthenticationsController < ApplicationController
 
   def create  
     omniauth = request.env["omniauth.auth"]  
-    user = User.from_omniauth(omniauth)
+    user = User.from_omniauth(omniauth, current_user)
 
     if !user.new_record?
       user.save! if user.changed?
       flash[:notice] = "Signed in successfully."  
       sign_in_and_redirect(user)  
     elsif current_user
-      current_user.authentications.create(
-        :provider => omniauth['provider'],
-        :uid => omniauth['uid'],
-        :token => omniauth['credentials']['token'],
-        :secret => omniauth['credentials']['secret']
-      )
       flash[:notice] = "Authentication successful."  
       redirect_to authentications_url  
     else  
-      if user.save  
+      if user.save
         flash[:notice] = "Signed in successfully."  
         sign_in_and_redirect(user)  
       else  
