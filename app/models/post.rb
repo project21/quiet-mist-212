@@ -51,4 +51,10 @@ class Post < ActiveRecord::Base
       super course_ids
     end
   end
+
+  attr_accessor :attachment
+
+  def attachment= file
+    post_attachments.build(:attachment => file)
+  end
 end

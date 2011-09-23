@@ -45,12 +45,17 @@
 
             ])) %></span>
           <%= f.text_area :content, id:"general-field", class:"round", rows:1 %>
+
+          <div style="float:left;">
+            <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Material</a>
+            &nbsp;
+            <%= f.file_field :attachment, id:"material-field", class:"ui-helper-hidden", rows:1 %>
+            <a href="#" id="audio" class="uploads"><img src="/assets/audio.png"/>Lecture</a>
+            <%= f.file_field :attachment, id:"audio-field", class:"ui-helper-hidden", rows:1 %>
+          </div>
           <%= f.submit 'post',:class=>"postbutton"%>
+          <div style="clear:both;"> </div>
         <%end%>
-        <a href="#" class="attach">Attachment:</a>
-        <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Material</a> <input type="file" class="file-field" id="material-field" />
-        &nbsp;
-        <a href="#" id="audio" class="uploads"><img src="/assets/audio.png"/>Lecture</a><input type="file" class="file-field" id="audio-field" />
          
      </fieldset>
      

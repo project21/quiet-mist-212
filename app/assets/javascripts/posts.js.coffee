@@ -62,9 +62,11 @@ PostView = Backbone.View.extend(
   
   respond: (e) ->
     e.preventDefault()
-    reply = this.$(e.currentTarget).find('textarea').val()
+    f = this.$(e.currentTarget)
+    reply = f.find('textarea').val()
+    attachment = f.find('input[type=file]').val()
     #TODO: validate not empty
-    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
+    post = Posts.create(attachment: attachment, user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
     e.currentTarget.reset()
 
   initialize: ->
@@ -155,10 +157,11 @@ PostAppView = Backbone.View.extend({
       alert("Please select a course for this post.")
       return
 
-    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop())
+    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop(), attachment: post_attrs.attachment)
     #for course_id in post_attrs
       #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
       #Posts.add(post)
+    $(e.currentTarget).find('input[type=file]').addClass('ui-helper-hidden')
     e.currentTarget.reset()
     $(".collection_check_boxes").removeClass("active-state")
 
