@@ -47,10 +47,10 @@ BookSearchCollection = Backbone.Collection.extend(
       book.save()
 )
 
-window.OwnedBooks = new BookOwnershipCollection
+window.OwnedBooks       = new BookOwnershipCollection
 window.UndoRemovedBooks = new BookOwnershipCollection
-window.SearchedBooks = new BookSearchCollection
-window.ReservedBooks = new BookReservedCollection
+window.SearchedBooks    = new BookSearchCollection
+window.ReservedBooks    = new BookReservedCollection
 
 OwnedBookView = Backbone.View.extend(
   tagName:  "tr"

@@ -15,7 +15,6 @@ class BooksController < ApplicationController
       result = MOCK_BOOK_DATA 
     end
 
-    binding.pry
 # is this how you get edition? http://books.google.com/books/feeds/volumes?q=editions:ISBN0451198492&lr=en
     respond_with result.map { |b|
       { :title => b.title,
