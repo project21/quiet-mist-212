@@ -5,27 +5,28 @@ David:
   * lecture links
   * invite box- names for people, there should just be a 'Done' button
   * posting re-sesizing issue
-  * email about setting up demo room ahead of time
-  * style post-align reply & textfield and reply button
-  * view for users with books
-  * dialog box buttons
-  * Make class selection buttons nicer. They should be highlighted instead of greyed out.
-  * Club/Organization/Study Group radio buttons - only select one 
+  * view for users with books ?
+  * dialog box buttons ?
+  * Improve class selection buttons a little more
+
 Greg
-  * course button logic messed up
-  * book requests
-  * reserving a book not showing up as pending
+  * make sure post reply shows up
+  * book reserve requests
+  * Fake data for book listings
   * upload a file on a post
-  * display post type in the post
 
  
-* oauth
-  * omniauth broken
-  * fix twitter redirect issue
+Prodution
+  * SSL
   * test facebook login
-  
+  * test uploader on production
 
-Greg
+BUG fixes
+  * Edit Profile section clicking messed up
+     class auto-complete in registration doesnt work
+  * html5 validation alignment
+  * Save & Continue should auto add a course
+
 FUTURE
 *sanitize - xss_terminate
 *mypost to include the original post
@@ -35,13 +36,8 @@ FUTURE
 * form validation
   * add polyfill plugin for html5 validation
   * use more html5 validation
-* test uploader on production
 * sanitizer
 * url shortner
 * emails - enable in production
 * delete a course
 * semester changes- what happens to posts?
-BUG fixes
-  * Edit Profile section clicking messed up
-     class auto-complete in registration doesnt work
-  * html5 validation alignment
