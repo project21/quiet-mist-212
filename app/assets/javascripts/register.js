@@ -1,4 +1,4 @@
-//= require "jquery"
+//= require "jquery-1.6"
 //= require "jquery-ui-1.8.14.custom.min"
 //= require "underscore"
 //= require "backbone"
