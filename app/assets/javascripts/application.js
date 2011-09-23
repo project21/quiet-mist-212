@@ -35,11 +35,11 @@ $('.file-field').addClass("ui-helper-hidden");
     switch ($(this).attr('id'))
     {
        case "material":
-         $('#material-field').removeClass("ui-helper-hidden");
+         $('#material-field').toggleClass("ui-helper-hidden");
           $('#audio-field').addClass("ui-helper-hidden");
          break;
        case "audio" :
-        $('#audio-field').removeClass("ui-helper-hidden");
+        $('#audio-field').toggleClass("ui-helper-hidden");
         $('#material-field').addClass("ui-helper-hidden");
          break;
        }

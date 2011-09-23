@@ -24,3 +24,9 @@ window.$_ = (arg1, arg2) ->
   if window.location.href.match(/localhost/)
     console.log msg
   throw msg
+
+error = (o) ->
+  if window.location.href.match(/localhost/)
+    console.log(o)
+    alert(o)
+  o

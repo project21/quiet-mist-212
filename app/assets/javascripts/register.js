@@ -16,7 +16,7 @@ $(document).ready(function() {
   $("#progress").progressbar({ change: function() {  
     //update amount label when value changes  
     $("#amount").text($("#progress").progressbar("option", "value") + "%");  
-  } });  
+  } });
 
   //set click handler for next button  
   $(".savebutton").closest('form').submit(function(e) { 
@@ -39,7 +39,6 @@ $(document).ready(function() {
     $('.form-panel').each(function() {
       //if it's not the first panel enable the back button  
       var that = $(this);
-      console.log(that.attr("id"));
       (that.attr("id") != "panel1") ? null : $(".backbutton").removeAttr("disabled");  
 
       // on /home/welcome delayed until now when a school should exist
@@ -83,7 +82,8 @@ $(document).ready(function() {
     $('.form-panel').addClass("ui-helper-hidden");
 
     var panel = null;
-    switch ($(this).attr('id'))
+    var id = $(this).attr('id');
+    switch (id)
     {
        case "details":
          panel = '#user-form';
@@ -102,6 +102,8 @@ $(document).ready(function() {
        case "setting":
          panel = '#setting-form';
          break;
+       default:
+         error("invalid id: " + id);
     }
     if(panel) $(panel).removeClass("ui-helper-hidden");
  });
