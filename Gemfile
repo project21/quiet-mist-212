@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'remotipart'
 gem 'rake'
 
+gem 'mini_record'
+
 platform :mswin, :mingw do
   gem 'sqlite3'
 end
