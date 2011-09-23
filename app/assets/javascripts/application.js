@@ -90,7 +90,7 @@ $('#live').click(function(){
 $('#create').click(function(e){e.preventDefault();
     $('.classmates').dialog({
          autoOpen:false,
-         buttons:{cancel:function(){$(this).dialog("close");},"Yes":function(){alert("submit offer to the database");$(this).dialog("close");} },
+         buttons:{cancel:function(){$(this).dialog("close");},"Done":function(){alert("submit offer to the database");$(this).dialog("close");} },
          width:300,
          height:350,
          position:'center'
