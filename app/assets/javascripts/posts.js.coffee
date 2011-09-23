@@ -5,7 +5,7 @@ Post = Backbone.Model.extend(
 
   image_url: ->
     if user = @get('user')
-      user?.image_url or user?.photo?.url
+      user.photo?.url or user.image_url
 
   traverse_to_top: (n, posts) ->
     if reply = @get('reply')
