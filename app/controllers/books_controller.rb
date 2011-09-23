@@ -2,26 +2,31 @@ class BooksController < ApplicationController
   respond_to :json
 
   def search
-    if bookp = params['book'] and search = bookp['title']
-        result = begin
-                   # TODO: check that printType=books is used
-                   Google::Book.search(search)
-                 rescue
-                   MOCK_BOOK_DATA if Rails.env.development?
-                 end
-
-# is this how you get edition? http://books.google.com/books/feeds/volumes?q=editions:ISBN0451198492&lr=en
-      respond_with result.map { |b|
-        { :title => b.title,
-          :author => b.hash['dc:creator'],
-          :isbn => b.isbn,
-          :edition => b.hash["dc:date"]
-        }
-      }.reject {|b|
-        ed = b[:edition].to_i
-        !b[:isbn] || (ed > 1900 && ed < 1980)
-      }
+    result = if bookp = params['book'] and search = bookp['title']
+      begin
+        # TODO: check that printType=books is used
+        Google::Book.search(search)
+      rescue
+        []
+      end
     end
+
+    if Rails.env.development? and result.blank? || result.to_a.blank?
+      result = MOCK_BOOK_DATA 
+    end
+
+    binding.pry
+# is this how you get edition? http://books.google.com/books/feeds/volumes?q=editions:ISBN0451198492&lr=en
+    respond_with result.map { |b|
+      { :title => b.title,
+        :author => b.hash['dc:creator'],
+        :isbn => b.isbn,
+        :edition => b.hash["dc:date"]
+      }
+    }.reject {|b|
+      ed = b[:edition].to_i
+      !b[:isbn] || (ed > 1900 && ed < 1980)
+    }
   end
 
 MOCK_BOOK_DATA = [
