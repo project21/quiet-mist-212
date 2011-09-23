@@ -18,6 +18,8 @@ gem 'jquery-rails'
 gem 'remotipart'
 gem 'rake'
 
+gem 'mini_record'
+
 platform :mswin, :mingw do
   gem 'sqlite3'
 end
@@ -36,6 +38,7 @@ gem 'squeel'
 gem 'simple_form'
 gem 'enumerated_attribute'
 
+gem 'httparty', '0.7.8'
 gem 'google-book', :require => 'google/book'
 gem 'api_smith'
 

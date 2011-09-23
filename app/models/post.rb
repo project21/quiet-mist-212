@@ -4,6 +4,8 @@ class Post < ActiveRecord::Base
   belongs_to :course
   belongs_to :user
 
+  has_many :post_attachments
+
   has_many :replies, :class_name => 'Post', :foreign_key => :reply_id
 
 =begin
@@ -48,5 +50,11 @@ class Post < ActiveRecord::Base
     else
       super course_ids
     end
+  end
+
+  attr_accessor :attachment
+
+  def attachment= file
+    post_attachments.build(:attachment => file)
   end
 end

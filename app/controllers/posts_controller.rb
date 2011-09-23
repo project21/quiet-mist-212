@@ -16,6 +16,7 @@ class PostsController < ApplicationController
   def create
     post_params.delete('user_id')
     post_params.delete('reply')
+    post_params.delete('attachment')
     @post = current_user.posts.build(post_params.merge(:user => current_user))
     if @post.save
       respond_with @post

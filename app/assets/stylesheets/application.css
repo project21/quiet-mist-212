@@ -690,7 +690,8 @@ font-weight:bolder;
   .mock img{height:50px;width:50px;}
 /*.post-pic{float:left;}*/
 .postbutton{
- margin-left:480px;	
+  margin-right:15px;
+  float:right;	
  padding:6px 18px 6px 18px;
  background-color: #00AFF0;
  border:1px solid #808080;
