@@ -8,6 +8,7 @@
 html{
   padding:0px;width: 100%;margin:0;
   min-width: 900px;
+  height:100%;
 }
  
 body {
@@ -18,6 +19,7 @@ body {
   min-width: 900px;
   padding:0px;
   margin:0;
+  height:100%;
 }
 .root-header{
  background-image:url('lgrey139.jpg'); 
@@ -1166,7 +1168,7 @@ font-weight:bolder}
 .sign_in_button{
  padding:5px 9px 5px 9px;
     color:white;
-    background-color: #45C01B;
+    background-color: black;
     border:none;
     font-weight:bold;
    -moz-border-radius:5px;
