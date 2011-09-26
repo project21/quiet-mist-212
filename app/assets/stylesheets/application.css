@@ -1120,7 +1120,7 @@ width:100%;
 min-width:900px;
 margin:0;	
 background:#00AFF0;
-height:100%;
+height:200px;
 background:-moz-linear-gradient(top, #00AFF0, #57C6EF 70%);
 background: -webkit-gradient(linear, 0 0, 0 90%,from(#00AFF0),to(#57C6EF ));color:white;
 min-width:1000px;
