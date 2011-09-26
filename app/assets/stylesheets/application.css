@@ -1146,6 +1146,8 @@ margin-bottom:25px;
 }
 .sign-footer{
 background:black;
+margin:0;
+padding:0;
 }
 #sign-in-form{z-index:1;
 	background:#fff;
