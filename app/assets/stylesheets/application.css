@@ -20,6 +20,7 @@ body {
   padding:0px;
   margin:0;
   height:100%;
+  position:relative;
 }
 .root-header{
  background-image:url('lgrey139.jpg'); 
