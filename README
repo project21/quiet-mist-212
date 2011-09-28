@@ -12,7 +12,7 @@ David:
 Greg
   * make sure post reply shows up
   * book reserve requests
-  * Fake data for book listings
+  * After reserving a book return back a post table
   * upload a file on a post
 
  
