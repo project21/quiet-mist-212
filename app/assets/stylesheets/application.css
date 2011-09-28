@@ -1146,7 +1146,7 @@ margin-right:auto;
   width:430px;
   height:265px;
 }
-.sales-pitch{display:block;margin-left:auto;margin-right:auto}
+div.sales-pitch span{display:block;margin-left:auto;margin-right:auto;}
 .sign-field{
  -moz-border-radius:    5px;
  -webkit-border-radius: 5px;
