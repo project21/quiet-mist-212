@@ -32,47 +32,15 @@
     <%= render 'books/index' %>
   </div>
  
-  <div class="side-box">
-    <h4>Messages</h4>
-    
-    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span><span class="alpha" title="This feature is under development">Alpha</span>
-    
-    <div class="line_separator"></div>
-    <span id="request"><%=link_to image_tag("alert.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
-  </div>
+  
    
-   <div class="side-box">
-    <h4>My Lectures <span class="alpha" title="This feature is under development">Alpha</span></h4>
-    <span style="bakground:grey;"><%=link_to 'Find lecture',find_lecture_lecture_url,:class=>"find"%></span><br/>
-
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-    
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
- 
- <div class="more">more</div>
- <div class="lectures ui-helper-hidden">
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#3',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-    
-    <div class="line_separator"></div>
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#3',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-
-    <div class="line_separator"></div>
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br>
-    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
-     </div>
-
-  </div>
-     
-
    <div class="side-box">
       <h4>My Studdy buddies <span class="alpha" title="This feature is under development">Alpha</span></h4>
     
 
- <div ><%=link_to image_tag("group.png")+'francis group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
+ <div ><%=link_to image_tag("group.png")+'Math41 group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
+  
+ <div class="line_separator"></div>
   <div class="start"> <%=link_to "Start Class group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
 <form class="ui-helper-hidden group-form">
 <input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
@@ -96,7 +64,7 @@
   
  </div>
  
-<button id="create">create</button></div>
+<button id="create">create</button>
 </form>
 <div class="ui-helper-hidden classmates" title="Invite your classmates" list of classmates> <span class="mock"><%=image_tag('d.jpg')%> </span><button>invite</button><br/> 
 <span><%=image_tag('spencer.jpg')%> </span> <button>invite</button><br/>
@@ -104,9 +72,45 @@
 <span class="mock"><%=image_tag('kamy.jpg')%> </span><button >invite</button>
  <br/> 
 </div>
-
-
   </div>
+
+<div class="side-box">
+    <h4>Notifications</h4>
+    
+    <span id="inbox"><%=link_to image_tag("e_mail.png")+'Private message',messages_requests_url,{:class=>"sidebox-content"}%></span><span class="alpha" title="This feature is under development">Alpha</span>
+    
+    <div class="line_separator"></div>
+    <span id="request"><%=link_to image_tag("alert.png")+'Book Requests',books_requests_url,{:class=>"sidebox-content"}%></span>
+  </div>
+   
+   <div class="side-box">
+    <h4>My Lectures <span class="alpha" title="This feature is under development">Alpha</span></h4>
+    <!--
+    <span style="bakground:grey;"><%=link_to 'Find lecture',find_lecture_lecture_url,:class=>"find"%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+    
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'math41-lecture#3',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+    
+ 
+ <div class="more">more</div>
+ <div class="lectures ui-helper-hidden">
+    
+    <div class="line_separator"></div>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'psyc101-lecture#3',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+
+    <div class="line_separator"></div>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#1',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br>
+    <span ><%=link_to image_tag("1315436291_player_play.png")+'chem1B-lecture#2',mylecture_lecture_url,{:class=>"sidebox-content"}%></span><br/>
+     </div>-->
+
+  </div>    
 </div>
 
  <%= yield %>
