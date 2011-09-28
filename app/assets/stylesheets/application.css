@@ -23,7 +23,7 @@ body {
 }
 .root-header{
  background-image:url('lgrey139.jpg'); 
- height:90px;
+ height:95px;
  min-width:900px;
 
 }
@@ -1146,7 +1146,7 @@ margin-bottom:25px;
 }
 .sign-footer{
 background:black;
-padding:50px;
+padding:15px;
 
 }
 #sign-in-form{z-index:1;
