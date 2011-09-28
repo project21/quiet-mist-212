@@ -1127,12 +1127,12 @@ min-width:1000px;
 }
 .diagrams
 {
-margin:20px auto;
+margin: auto;
 padding:5px;
 min-width:900px;
 margin-bottom:25px;
 }
-.network{
+.network{margin: auto;
   width:430px;
   height:265px;
 }
