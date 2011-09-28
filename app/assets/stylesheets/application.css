@@ -1127,14 +1127,14 @@ min-width:1000px;
 }
 .diagrams
 {
-margin-left:5%;
+margin:20px auto;
 padding:5px;
 min-width:900px;
 margin-bottom:25px;
 }
 .network{
   width:430px;
-  height:250px;
+  height:265px;
 }
 .sales-pitch{margin:auto;}
 .sign-field{
