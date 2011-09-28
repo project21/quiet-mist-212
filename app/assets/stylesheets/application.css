@@ -1128,21 +1128,21 @@ min-width:1000px;
 .diagrams
 {
 padding:5px;
-min-width:1100px;
+min-width:980px;
 margin-bottom:25px;
 }
 .network{
  float:left;
 display:block;
 margin-left:auto;
-margin-right: auto;
-  width:430px;
+margin-right:auto;
+  width:510px;
   height:265px;
 }
 .girl-laptop{
 display:block;
 margin-left:auto;
-margin-right: auto;
+margin-right:auto;
   width:430px;
   height:265px;
 }
