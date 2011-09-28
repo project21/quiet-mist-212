@@ -1126,7 +1126,7 @@ background: -webkit-gradient(linear, 0 0, 0 90%,from(#00AFF0),to(#57C6EF ));colo
 min-width:1000px;
 }
 .diagrams
-{
+{display:block;
 margin: auto;
 padding:5px;
 min-width:1100px;
@@ -1134,14 +1134,12 @@ margin-bottom:25px;
 }
 .network{
   float:left;
- display:block; 
-margin: auto;
+
   width:430px;
   height:265px;
 }
 .girl-laptop{float:left;
- display:block; 
-margin: auto;
+
   width:430px;
   height:265px;
 }
