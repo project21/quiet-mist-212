@@ -13,7 +13,7 @@ FactoryGirl.define do
     password_confirmation { 'secret' }
     firstname { "First" }
     lastname { "Last" }
-    school_id { create(:school).id }
+    school
   end
 
   factory :book do
@@ -24,20 +24,20 @@ FactoryGirl.define do
   end
 
   factory :book_ownership do
-    user { create(:user) }
-    book { create(:book) }
-    course { create(:course) }
+    user
+    book
+    course
   end
 
   factory :course do
-    school_id { create(:school).id }
+    school
     name { "Course 1" }
   end
 
   factory :user_course do
     active { true }
-    user_id { create(:user).id }
-    course_id { create(:course).id }
+    user
+    course
   end
 
   factory :post do
@@ -46,8 +46,8 @@ FactoryGirl.define do
 end
 
 def make_post! post_attributes = {}
-  cids = post_attributes.delete(:course_ids) || (uc = create(:user_course)).id
-  create(:post, { :user_id => post_attributes.delete(:user_id) || uc.user_id,
-               :course_id => cid
+  cids = post_attributes.delete(:course_ids) || (uc = FactoryGirl.create(:user_course)).id
+  FactoryGirl.create(:post, { :user_id => post_attributes.delete(:user_id) || uc.user_id,
+               :course_id => cids
              }.merge(post_attributes))
 end
