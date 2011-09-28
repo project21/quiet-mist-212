@@ -13,7 +13,6 @@ Book = Backbone.Model.extend(
   model_name: 'book_ownership' # used for the url
   reserve: -> $.post('book_ownerships/' + @id.toString() + '/reserve?amount=0', @toJSON())
 
-
   status: ->
     if @get('reserver_id')
       if !@get('accepted_at')
@@ -25,7 +24,6 @@ Book = Backbone.Model.extend(
     attrs = _.clone(@attributes)
     attrs.status = @status()
     attrs
-
 )
 
 BookOwnershipCollection = Backbone.Collection.extend(
@@ -35,6 +33,7 @@ BookOwnershipCollection = Backbone.Collection.extend(
 BookReservedCollection = Backbone.Collection.extend(
   model : Book
   url: '/book_ownerships/reserved'
+  pending: -> @filter (book) -> book.status() == 'pending'
 )
 BookSearchCollection = Backbone.Collection.extend(
   model : Book
