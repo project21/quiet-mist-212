@@ -1135,13 +1135,13 @@ margin-bottom:25px;
  float:left;
 display:block;
 margin-left:auto;
-
+margin-right: auto;
   width:430px;
   height:265px;
 }
 .girl-laptop{
 display:block;
-
+margin-left:auto;
 margin-right: auto;
   width:430px;
   height:265px;
