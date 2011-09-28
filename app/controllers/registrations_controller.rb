@@ -37,11 +37,11 @@ class RegistrationsController < Devise::RegistrationsController
   end
 
   def registered
-    unless current_user.register!
-      head 401 
-      return
+    if current_user.register!
+      redirect_to welcome_home_url
+    else
+      redirect_to home_url
     end
-    redirect_to home_url
   end
 
 private  
