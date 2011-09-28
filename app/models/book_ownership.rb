@@ -56,10 +56,10 @@ class BookOwnership < ActiveRecord::Base
     elsif !reserved?
       errors.add :base, "no offer has abeen made"
     else
+      BookOwnershipMailer.reject(self, reserver).deliver
       self.reserver_id = nil
       save
     end
-    BookOwnershipMailer.reject(self).deliver
   end
 
   def accept!
@@ -78,13 +78,13 @@ class BookOwnership < ActiveRecord::Base
     if !reserved?
       errors.add :base, "no offer has abeen made"
     elsif accepted?
+      BookOwnershipMailer.reject(self, reserver).deliver
       self.reserver_id = nil
       self.accepted_at = nil
       save
     else
       errors.add :base, "can only cancel an accepted offer"
     end
-    BookOwnershipMailer.cancel(self).deliver
   end
 
   def sell!

@@ -11,7 +11,7 @@ class BookOwnershipMailer < ActionMailer::Base
     mail(:to => bo.user.email, :subject => "Book reservation request")
   end
 
-  def reject(bo)
+  def reject(bo, reserver)
   	@book_ownership = bo
   	mail(:to => bo.user.email, :subject => "Book reservation rejected")
   end
