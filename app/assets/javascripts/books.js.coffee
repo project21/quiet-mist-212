@@ -308,6 +308,7 @@ window.show_searched_books = ->
 window.hide_main_books = ->
   classmates_books_table.addClass('ui-helper-hidden')
   searched_books_table.addClass('ui-helper-hidden')
+  container.removeClass('ui-helper-hidden')
 
 $(->
   window.requests_table = $('#requests-table')

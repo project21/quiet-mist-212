@@ -2,6 +2,10 @@
   
   <h4 >My Books</h4>
 
+  <table id="books-table">
+    <tbody></tbody>
+  </table>
+
  <h5 class="book-space"> <a class="listbook" href="#" title="add a book to your profile" >List - Sell your books</a> </h5>
 
   <div id="new-book-form" class="search-book-form ui-helper-hidden">
@@ -10,7 +14,7 @@
       <%= f.submit "Search", {:class=>"addbookbutton"} %>
     <%end%>
   </div>
-
+<div class="line_separator"></div>
  <h5 class="book-space"><a class="reservebook"  href="#" title="Reserve a book from your peers" >Reserve - Get books</a> </h5>
 
   <div id="reserve-book-form" class="search-book-form ui-helper-hidden">
@@ -20,11 +24,9 @@
     <%end%>
   </div>
 
-  <hr/>
+  
 
-  <table id="books-table">
-    <tbody></tbody>
-  </table>
+  
 
  
  <!-- <span class="bookfound">Books found <span class="loading"><%=image_tag('loading.gif')%></span></span>-->

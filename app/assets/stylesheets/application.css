@@ -293,6 +293,10 @@ text-decoration:none;
  padding:9px;width:90%;
  font-size:15px;
 }
+a.listbook{text-decoration:none;color:#3954F3;}
+a.listbook:hover{text-decoration:underline;color:#1028B1;}
+a.reservebook{text-decoration:none;color:#3954F3;}
+a.reservebook:hover{text-decoration:underline;color:#1028B1;}
 .deletebook  a:hover {
 color:#3b5998; 
 text-decoration:underline; 
