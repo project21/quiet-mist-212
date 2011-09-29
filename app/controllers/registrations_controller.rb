@@ -38,9 +38,9 @@ class RegistrationsController < Devise::RegistrationsController
 
   def registered
     if current_user.register!
-      redirect_to welcome_home_url
-    else
       redirect_to home_url
+    else
+      redirect_to welcome_home_url
     end
   end
 
