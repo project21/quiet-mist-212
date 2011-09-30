@@ -51,14 +51,14 @@ PostView = Backbone.View.extend(
  
 
   events:
-    "submit form.response" : "respond"
-    "mousedown   td " : "respondHover"
-    "click td" : "elastic"
-    "mousedown   option" : "picktype"
+    "submit form.response" :"respond"
+    "mousedown  td ":"respondHover"
+    "click td" :"elastic"
+    "mousedown option:selected" :"picktype"
 
   
   picktype: (e) -> 
-    value=$('#post_post_type').val()
+    value=$('#post_post_type').find('option:selected').text()
     $('#posts-table span.post-type').html(value)
     
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
