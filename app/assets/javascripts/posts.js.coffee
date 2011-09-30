@@ -29,6 +29,7 @@ PostCollection = Backbone.Collection.extend(
           Posts.add(d) unless Posts.get(d.id)
       )
 
+  
 
   #confirm: (post_type_id) ->
     #switch post_type_id
@@ -53,7 +54,13 @@ PostView = Backbone.View.extend(
     "submit form.response" : "respond"
     "mousedown   td " : "respondHover"
     "click td" : "elastic"
+    "mousedown   option" : "picktype"
 
+  
+  picktype: (e) -> 
+    value=$('#post_post_type').val()
+    $('#posts-table span.post-type').html(value)
+    
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
   respondHover: (e) ->

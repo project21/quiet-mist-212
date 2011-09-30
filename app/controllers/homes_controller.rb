@@ -17,7 +17,7 @@
   end
   
   def user_profile
-   @javascript = ['application']
+    @javascript = ['application']
     @user=User.find(params[:id])
   end
     
