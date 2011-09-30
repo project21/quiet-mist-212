@@ -80,7 +80,7 @@ PostView = Backbone.View.extend(
   <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
   <span class="post-type"></span>
   <span class="inline_table"> <img src="<%= image_url %>"/></span>
-  <span class="inline_tables"><a href='/home/profile/<%= user_id %>' id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
+  <span class="inline_tables"><a href="/home/user_profile/id" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
    <div class="clear"></div> 
 <!--    <span class="post-content"> <%= content %></span><br/>-->
   <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>

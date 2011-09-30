@@ -4,10 +4,11 @@
 
 
   def show
-    @javascript = ['application']
+    @javascript = ['application'] 
   end
   
   def profile
+   
     @javascript = ['application']
     @books = current_user.books
     @school=current_user.school
@@ -15,6 +16,11 @@
     @major=current_user.major
   end
   
+  def user_profile
+   @javascript = ['application']
+    @user=User.find(params[:id])
+  end
+    
   def edit
     @javascript = ['register']
   end

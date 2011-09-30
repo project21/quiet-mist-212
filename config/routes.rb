@@ -1,18 +1,15 @@
 Campus::Application.routes.draw do
   get "group/create"
-
   get "group/mygroup"
-
   get "lecture/mylecture"
-
   get "lecture/find_lecture"
-  get  "/home/profile/user_id"
+  get "/home/user_profile/id"
  
   
   root :to => "homes#show"
 
   match '/majors' => 'majors#index'''
-  match "/home/profile/user_id", :to =>'homes#profile'
+  match "/home/user_profile/id" =>'homes#user_profile'
   resources :courses do
     collection do
       get :school
@@ -56,10 +53,12 @@ Campus::Application.routes.draw do
     get "notification"
   end
 
+ 
   resource :home do
     member do
       get "profile"
       get "welcome"
+      get "user_profile"
     end
   end
   

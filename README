@@ -28,6 +28,7 @@ BUG fixes
   * Save & Continue should auto add a course
 
 FUTURE
+*picture upload doesnt work in production
 *sanitize - xss_terminate
 *mypost to include the original post
 * Modernizr
