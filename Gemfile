@@ -47,6 +47,7 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'pry', :require => 'pry'
   gem 'unicorn', :platform => :ruby
+  gem 'ghostbuster'
 end
 
 group :development do
@@ -60,7 +61,6 @@ group :test do
   gem 'rspec-rails'
   gem 'capybara'
   gem 'database_cleaner'
-  #gem 'factory_girl_rails'
   gem 'factory_girl', '~>2.0'
   gem 'rr'
 end

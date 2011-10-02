@@ -1,0 +1,4 @@
+# __DIR__ = File.dirname(File.expand_path(__FILE__))
+ghost.phantom_bin = 'phantomjs'
+ghost.pattern = "*.coffee"
+ghost.screenshot_dir = "screenshots"

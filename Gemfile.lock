@@ -95,6 +95,7 @@ GEM
     foreigner (1.1.1)
       activerecord (>= 3.0.0)
     formatador (0.2.1)
+    ghostbuster (0.3.3)
     google-book (0.4.0)
       bookland (~> 1.0)
       httparty (~> 0.7)
@@ -323,6 +324,7 @@ DEPENDENCIES
   factory_girl (~> 2.0)
   fog
   foreigner
+  ghostbuster
   google-book
   guard
   guard-bundler
