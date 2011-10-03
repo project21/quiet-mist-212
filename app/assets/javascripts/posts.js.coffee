@@ -54,12 +54,12 @@ PostView = Backbone.View.extend(
     "submit form.response" :"respond"
     "mousedown  td ":"respondHover"
     "click td" :"elastic"
-    "mousedown option:selected" :"picktype"
+    "mousedown select" :"picktype"
 
   
   picktype: (e) -> 
-    value=$('#post_post_type').find('option:selected').text()
-    $('#posts-table span.post-type').html(value)
+    value=$('#post_post_type').val() 
+    $('#posts-table span.post-type').html(value) 
     
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
@@ -93,13 +93,14 @@ PostView = Backbone.View.extend(
   <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
   <span class="post-response"></span>
 
-  
-   <button class="reply" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">Reply</button>
+  <span class="reply-line"  style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>"></span><br/>
+
+   <button class="reply responsebutton" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">Reply</button>
 
   <!-- <button  type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">I can help</button> -->
-  
+  <!--
 <a href="#" class="uploads" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : ''%>
-  ">Attach</a>
+  ">Attach</a>-->
   <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>" >
     <textarea name="post[content]" class="reply-field" rows="1" cols="50"/><br/>
     <input type="submit"  value="send" id="responsebutton" />

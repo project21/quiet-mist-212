@@ -50,7 +50,7 @@ ul {
    }  
      
    ul.n-menu li  { 
-   
+    background:#00AFF0;
      list-style: none;  
        float:left;  
        height: 40px;  
@@ -598,7 +598,7 @@ text-decoration:underline;
 a.uploads{text-decoration:none;color:#3461EA;}
 a.uploads:hover{text-decoration:underline;color:#0B3ACB;}
 .response{background:#EFF2F7;padding:2px;width:430px;}
-#responsebutton{	
+.responsebutton{	
 float:left;
  margin:2px;
  padding:3px 10px 3px 10px;
@@ -661,7 +661,7 @@ border-bottom:solid #e6e6e6 1px;
 
 tr.post div.post-line{  width:100%;
 border-bottom:solid #e6e6e6 1px;}*/
-#responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
+.responsebutton:hover{-webkit-box-shadow:0px 0px 5px #000;-moz-box-shadow:0px 0px  5px #000;background:#31C918;color:white;}
  span.post-content{
   word-wrap:break-word;
    font-size:12px;
@@ -743,6 +743,8 @@ input.reply-field{padding:20px;}
 width:100%;
 border-top:dotted #aaaaaa 1px;
 }
+.reply-line{width:70%;
+border-top:dotted #dedede 1px;}
 .message-title{
   padding:7px;
   background:#BCBCCD;
