@@ -26,7 +26,7 @@
 
     <div id="posts-container">
       <fieldset class="field-wrapper">
-        <%= form_for (Post.new) do |f| %>
+        <%= form_for (Post.new), remote:true, html:{multipart:true} do |f| %>
           <div id="course-check-box-container" style="display:none;">
             <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
           </div>
@@ -50,11 +50,13 @@
           <%= f.text_area :content, id:"general-field", class:"round", rows:1 %>
 
           <div style="float:left;">
-            <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Material</a>
+            <a href="#" id="material" class="uploads"><img src="/assets/material.png"/>Attach File</a>
             &nbsp;
             <%= f.file_field :attachment, id:"material-field", class:"ui-helper-hidden", rows:1 %>
+            <!--
             <a href="#" id="audio" class="uploads"><img src="/assets/lecture-icon.png"/>Lecture</a>
-            <%= f.file_field :attachment, id:"audio-field", class:"ui-helper-hidden", rows:1 %>
+            -->
+            <%#= f.file_field :attachment, id:"audio-field", class:"ui-helper-hidden", rows:1 %>
           </div>
           <%= f.submit 'post',:class=>"postbutton"%>
           <div style="clear:both;"> </div>

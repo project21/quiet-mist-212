@@ -1,5 +1,6 @@
 class PostsController < ApplicationController
   respond_to :json
+  respond_to :html, only: :create
 
   def index
     posts = get_posts
@@ -16,8 +17,8 @@ class PostsController < ApplicationController
   def create
     post_params.delete('user_id')
     post_params.delete('reply')
-    post_params.delete('attachment')
     @post = current_user.posts.build(post_params.merge(:user => current_user))
+
     if @post.save
       respond_with @post
     else
@@ -28,12 +29,12 @@ class PostsController < ApplicationController
 protected
 
   def get_posts
-    Post.for_user(current_user).top_level.includes(:user).includes(:replies => :user)
+    Post.for_user(current_user).top_level.includes(:user, :post_attachments).includes(:replies => :user)
   end
 
   def make_json_tree posts
     posts.map do |post|
-      post.attributes.merge(:user => post.user, :replies => make_json_tree(post.replies))
+      post.attributes.merge(:user => post.user, :attachment => post.attachment, :replies => make_json_tree(post.replies))
     end
   end
     #post_lookup = Hash.new

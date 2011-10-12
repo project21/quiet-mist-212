@@ -10,9 +10,13 @@
 //= require "requests"
 //= require "jquery.ajaxmanager.js"
 //= require "backbone.sync.ajaxman.js"
+//= require jquery_ujs
+//= require jquery.remotipart
 
 jQuery.ajaxSetup({ 
-  'beforeSend': function(xhr, settings) {
+  dataType:'json',
+
+  beforeSend: function(xhr, settings) {
     xhr.setRequestHeader("Accept", "application/json");
     settings['dataType'] = "json";
     settings['contentType'] = "application/json";

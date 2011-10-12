@@ -49,17 +49,15 @@ PostView = Backbone.View.extend(
   tagName:  "tr"
   className:  "post"
  
-
   events:
     "submit form.response" :"respond"
     "mousedown  td ":"respondHover"
     "click td" :"elastic"
     "mousedown select" :"picktype"
 
-  
-  picktype: (e) -> 
-    value=$('#post_post_type').val() 
-    $('#posts-table span.post-type').html(value) 
+  picktype: (e) ->
+    value=$('#post_post_type').val()
+    $('#posts-table span.post-type').html(value)
     
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
@@ -68,13 +66,25 @@ PostView = Backbone.View.extend(
     $(e.currentTarget).find('button.reply').addClass('ui-helper-hidden')
   
   respond: (e) ->
-    e.preventDefault()
     f = this.$(e.currentTarget)
-    reply = f.find('textarea').val()
-    attachment = f.find('input[type=file]').val()
-    #TODO: validate not empty
-    post = Posts.create(attachment: attachment, user: window.CURRENT_USER, created_at: new Date, course_id: @model.get('course_id'), content: reply, reply_id: @model.id, reply: @model)
-    e.currentTarget.reset()
+    # we are using remotipart which uses rails remote form which defines these events
+    f.bind('ajax:beforeSend', (evt, xhr, settings) =>
+      f.addClass('ui-helper-hidden').siblings('button.reply').removeClass('ui-helper-hidden')
+      xhr.setRequestHeader("Accept", "application/json"))
+    f.bind('ajax:success', (evt, data, status, xhr) =>
+      data.user = window.CURRENT_USER
+      data.reply = @model
+      Posts.add(data)
+      return
+    )
+    f.bind('ajax:complete', (evt, xhr, status) =>
+      e.currentTarget.reset() # stop spinner
+      return
+    )
+    f.bind('ajax:error', (evt, xhr, status, error) ->
+      alert("Sorry, your post was not saved. Maybe you can try again.")
+      return
+    )
 
   initialize: ->
     @model.view = this
@@ -91,20 +101,22 @@ PostView = Backbone.View.extend(
    <div class="clear"></div> 
 <!--    <span class="post-content"> <%= content %></span><br/>-->
   <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
+  <a class="post-attachment" href="<%= attachment_url %>"><%= attachment %></a>
   <span class="post-response"></span>
 
-  <span class="reply-line"  style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>"></span><br/>
+  <div style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
+    <span class="reply-line"  style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>"></span><br/>
+    <button class="reply responsebutton" type="button">Reply</button>
 
-   <button class="reply responsebutton" type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">Reply</button>
-
-  <!-- <button  type="button" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">I can help</button> -->
-  <!--
-<a href="#" class="uploads" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : ''%>
-  ">Attach</a>-->
-  <form class="response ui-helper-hidden" style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>" >
-    <textarea name="post[content]" class="reply-field" rows="1" cols="50"/><br/>
-    <input type="submit"  value="send" id="responsebutton" />
-  </form>
+    <form data-remote="true" data-type="json" class="response ui-helper-hidden" action="/posts" method="POST" enctype="multipart/form-data" accept-charset="UTF-8">
+      <input type="hidden" name="authenticity_token" value="<%= authenticity_token %>"/>
+      <input type="hidden" name="post[reply_id]" value="<%= id %>"/>
+      <input type="hidden" name="post[course_id]" value="<%= course_id %>"/>
+      <textarea name="post[content]" class="reply-field" rows="1" cols="50"/><br/>
+      <input type="submit" value="send" name="responsebutton" />
+      <input type="file" name="post[attachment]" />
+    </form>
+  </div>
 </td>
 
     ''')
@@ -114,9 +126,13 @@ PostView = Backbone.View.extend(
     attrs = _.clone(@model.attributes)
     attrs.num_parents = @options.num_parents
     attrs.row_classes = @options.row_classes
-    attrs.image_url = @model.image_url() or '/assets/main.png'
-    attrs.firstname = @model.get('user')?.firstname || 'first'
-    attrs.lastname = @model.get('user')?.lastname || 'last'
+    attrs.image_url   = @model.image_url() or '/assets/main.png'
+    attrs.firstname   = @model.get('user')?.firstname || 'first'
+    attrs.lastname    = @model.get('user')?.lastname || 'last'
+    attrs.attachment_url  = @model.get('attachment')?.attachment?.url
+    attrs.attachment = _.last((attrs.attachment_url || "").split('/'))
+    csrfValue = $("meta[name='csrf-token']").attr('content')
+    attrs.authenticity_token = csrfValue
     $(@el).html(@template(attrs))
     this
 )
@@ -196,7 +212,7 @@ PostAppView = Backbone.View.extend({
       @appendViewToTable view
     else
       reply = post.get('reply')
-      if reply?
+      if reply
         [num_parents, parents] = reply.traverse_to_top 0, []
         view = new PostView({model: post, num_parents: num_parents + 1, row_classes: 'post-reply'})
         $(reply.view.el).after(view.render().el)

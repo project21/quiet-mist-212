@@ -52,9 +52,15 @@ class Post < ActiveRecord::Base
     end
   end
 
-  attr_accessor :attachment
-
   def attachment= file
     post_attachments.build(:attachment => file)
+  end
+
+  def attachment
+    post_attachments.first
+  end
+
+  def as_json options
+    super(options.merge(:methods => [:attachment]))
   end
 end
