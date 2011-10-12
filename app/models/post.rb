@@ -35,7 +35,7 @@ class Post < ActiveRecord::Base
     return unless course_ids.present?
 
     (course_ids.map(&:to_i) - [course_id]).compact.each do |course_id|
-      self.class.create attributes.merge(:course_id => course_id, :user => user)
+      self.class.create attributes.merge(:course_id => course_id, :user => user, :attachment => attachment.try(:attachment))
     end
   end
 
@@ -44,8 +44,9 @@ class Post < ActiveRecord::Base
   def course_id= course_ids
     case course_ids
     when Array
-      super(course_ids.shift).tap do
-        self.course_ids = course_ids.map(&:to_i)
+      cids = course_ids.map {|cid| cid.to_i }.reject {|cid| cid == 0 }
+      super(cids.shift).tap do
+        self.course_ids = cids
       end
     else
       super course_ids
@@ -53,6 +54,7 @@ class Post < ActiveRecord::Base
   end
 
   def attachment= file
+    return nil unless file
     post_attachments.build(:attachment => file)
   end
 

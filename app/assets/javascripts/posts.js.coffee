@@ -45,6 +45,31 @@ PostCollection = Backbone.Collection.extend(
 
 window.Posts = new PostCollection
 
+make_post = (e, model, cb) ->
+  f = $(e.currentTarget)
+  # we are using remotipart which uses rails remote form which defines these events
+  f.bind('ajax:beforeSend', (evt, xhr, settings) =>
+    if model
+      f.addClass('ui-helper-hidden').siblings('button.reply').removeClass('ui-helper-hidden')
+    xhr.setRequestHeader("Accept", "application/json"))
+
+  f.bind 'ajax:success', (evt, data, status, xhr) =>
+    data.user = window.CURRENT_USER
+    data.reply = model
+    try
+      Posts.add(data)
+    catch error
+    return
+
+  f.bind 'ajax:complete', (evt, xhr, status) =>
+    e.currentTarget.reset()
+    cb()
+    return
+
+  f.bind 'ajax:error', (evt, xhr, status, error) ->
+    alert("Sorry, your post was not saved. Maybe you can try again.")
+    return
+
 PostView = Backbone.View.extend(
   tagName:  "tr"
   className:  "post"
@@ -65,36 +90,16 @@ PostView = Backbone.View.extend(
     $(e.currentTarget).find('form.response').removeClass('ui-helper-hidden')
     $(e.currentTarget).find('button.reply').addClass('ui-helper-hidden')
   
-  respond: (e) ->
-    f = this.$(e.currentTarget)
-    # we are using remotipart which uses rails remote form which defines these events
-    f.bind('ajax:beforeSend', (evt, xhr, settings) =>
-      f.addClass('ui-helper-hidden').siblings('button.reply').removeClass('ui-helper-hidden')
-      xhr.setRequestHeader("Accept", "application/json"))
-    f.bind('ajax:success', (evt, data, status, xhr) =>
-      data.user = window.CURRENT_USER
-      data.reply = @model
-      Posts.add(data)
-      return
-    )
-    f.bind('ajax:complete', (evt, xhr, status) =>
-      e.currentTarget.reset() # stop spinner
-      return
-    )
-    f.bind('ajax:error', (evt, xhr, status, error) ->
-      alert("Sorry, your post was not saved. Maybe you can try again.")
-      return
-    )
+  respond: (e) -> make_post(e, @model)
 
   initialize: ->
     @model.view = this
     _.bindAll(this, 'render')
     @model.bind('change', this.render)
     @template = _.template('''
-
 <td class="num_parents_<%= num_parents %> <%= row_classes %>">
-    
-  <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span><br/>
+  <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span>
+  <br/>
   <span class="post-type"></span>
   <span class="inline_table"> <img src="<%= image_url %>"/></span>
   <span class="inline_tables"><a href="/home/user_profile/id" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
@@ -118,9 +123,7 @@ PostView = Backbone.View.extend(
     </form>
   </div>
 </td>
-
     ''')
-       # <button> <%= confirm %> </button>
 
   render: ->
     attrs = _.clone(@model.attributes)
@@ -173,21 +176,13 @@ PostAppView = Backbone.View.extend({
     show_posts()
 
     post_attrs = form_to_json(e)['post']
-    delete post_attrs['post_type']
 
-    # TODO: supposed to default to all?
-    # The whole multiple course id thing is pretty hacky
     if !post_attrs[0]
       alert("Please select a course for this post.")
       return
 
-    post = Posts.create(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_ids: post_attrs.slice(), course_id: post_attrs.pop(), attachment: post_attrs.attachment)
-    #for course_id in post_attrs
-      #post = new Posts.model(user: window.CURRENT_USER, created_at: new Date, content: post_attrs.content, course_id: course_id)
-      #Posts.add(post)
+    make_post e, null, -> $(".collection_check_boxes").removeClass("active-state")
     $(e.currentTarget).find('input[type=file]').addClass('ui-helper-hidden')
-    e.currentTarget.reset()
-    $(".collection_check_boxes").removeClass("active-state")
 
   initialize: ->
     _.bindAll(this, 'addOne', 'addAll')
@@ -244,10 +239,12 @@ window.show_posts = ->
   posts_container.removeClass('ui-helper-hidden')
 
 
+for_collection_checkbox = (jq) -> $_('#' + jq.attr('for'))
+
 $(->
-  $(".collection_check_boxes").live 'click', (e) ->
+  $(".collection_check_boxes").click (e) ->
     e.preventDefault()
-    $_('#' + $(this).toggleClass("active-state").attr('for')).click()
+    for_collection_checkbox($(this).toggleClass("active-state")).click()
 
   window.posts_container = $('#posts-container')
   window.posts_table_body = posts_container.find('tbody')

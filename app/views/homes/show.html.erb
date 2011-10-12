@@ -26,7 +26,7 @@
 
     <div id="posts-container">
       <fieldset class="field-wrapper">
-        <%= form_for (Post.new), remote:true, html:{multipart:true} do |f| %>
+        <%= form_for (Post.new), remote:true, html:{multipart:true, 'data-type' => 'json'} do |f| %>
           <div id="course-check-box-container" style="display:none;">
             <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
           </div>
