@@ -5,6 +5,7 @@
 
   def show
     @javascript = ['application'] 
+    
   end
   
   def profile
@@ -12,7 +13,8 @@
     @javascript = ['application']
     @books = current_user.books
     @school=current_user.school
-    @courses=current_user.courses
+    @current_courses=current_user.user_courses.where(:active=>"true").includes(:course)
+    @taken_courses=current_user.user_courses.where(:active=>"false").includes(:course)
     @major=current_user.major
   end
   

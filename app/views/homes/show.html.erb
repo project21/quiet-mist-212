@@ -28,7 +28,7 @@
       <fieldset class="field-wrapper">
         <%= form_for (Post.new), remote:true, html:{multipart:true, 'data-type' => 'json'} do |f| %>
           <div id="course-check-box-container" style="display:none;">
-            <%= f.collection_check_boxes(:course_id, current_user.courses, :id,:name, :class=>"check-course") %>
+            <%= f.collection_check_boxes(:course_id, current_user.active_courses, :id,:name, :class=>"check-course") %>
           </div>
           <script>
             var cont = $('#course-check-box-container')
@@ -37,14 +37,14 @@
           </script>
           <span id="status"> <%= f.select(:post_type,options_for_select([
 
-                   ['Post type:',1 ],
-                   ['Question:',2],
-                   ['Material upload:',3],
-                   ['Textbook:',4],
-                   ['Roommate:',5],
-                   ['Homework:',6],
-                   ['Tutor:',7],
-                   ['Study buddy:',8],
+                   ['Post type' ],
+                   ['Question'],
+                   ['Material upload'],
+                   ['Textbook'],
+                   ['Roommate'],
+                   ['Homework'],
+                   ['Tutor:'],
+                   ['Study buddy:'],
 
             ])) %></span>
           <%= f.text_area :content, id:"general-field", class:"round", rows:1 %>

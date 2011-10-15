@@ -7,8 +7,8 @@
 <!--need to limit name characters-->
 <span class="schoolname"><%=@school.name%></span><br/>
 <span class="major"><%=current_user.major%></span><br/>
-<% @courses.each do |course|%>
-<span class="subject"><%=course.name%> </span>
+<% @current_courses.each do |course|%>
+<span class="subject"><%=course.course.name%> </span>
 <% end%>
 
 </span>
@@ -36,7 +36,10 @@
 <span class="subject"></span><span class="topic"></span><span class="knowledgedetails"></span>
 <div class="dotted_line_divider"></div>-->
 <div class="profile-titles">Classes taken in the past</div>
-<span class="past-classes"></span>
+<span class="past-classes">
+<% @taken_courses.each do |course|%>
+<span class="subject"><%=course.course.name%> </span>
+<% end%></span>
 <div class="dotted_line_divider"></div>
 <div class="report">Report this student</div>
 

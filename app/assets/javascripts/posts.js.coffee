@@ -78,11 +78,7 @@ PostView = Backbone.View.extend(
     "submit form.response" :"respond"
     "mousedown  td ":"respondHover"
     "click td" :"elastic"
-    "mousedown select" :"picktype"
-
-  picktype: (e) ->
-    value=$('#post_post_type').val()
-    $('#posts-table span.post-type').html(value)
+ 
     
   elastic: (e) -> $(e.currentTarget).find('.reply-field' ).elastic()
 
@@ -100,12 +96,12 @@ PostView = Backbone.View.extend(
 <td class="num_parents_<%= num_parents %> <%= row_classes %>">
   <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span>
   <br/>
-  <span class="post-type"></span>
+  <span class="post-type"><%=post_type%></span>
   <span class="inline_table"> <img src="<%= image_url %>"/></span>
-  <span class="inline_tables"><a href="/home/user_profile/id" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
+  <span class="inline_tables"><a href="/home/user_profile/<%= user_id %>" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
    <div class="clear"></div> 
-<!--    <span class="post-content"> <%= content %></span><br/>-->
-  <time class="post-sent" datetime="<%= created_at %>"><%= created_at %></time>
+
+  <time class="post-sent" datetime="<%= created_at %>"><%= timeago(created_at) %></time>
   <a class="post-attachment" href="<%= attachment_url %>"><%= attachment %></a>
   <span class="post-response"></span>
 
@@ -136,6 +132,7 @@ PostView = Backbone.View.extend(
     attrs.attachment = _.last((attrs.attachment_url || "").split('/'))
     csrfValue = $("meta[name='csrf-token']").attr('content')
     attrs.authenticity_token = csrfValue
+    attrs.timeago = $.timeago
     $(@el).html(@template(attrs))
     this
 )
@@ -249,7 +246,7 @@ $(->
   window.posts_container = $('#posts-container')
   window.posts_table_body = posts_container.find('tbody')
   window.PostApp = new PostAppView
-  $('#post_post_type').change ->
-    $('#general-field').val($(this).find('option:selected').text())
+  # $('#post_post_type').change ->
+  #  $('#general-field').val($(this).find('option:selected').text())
   setInterval("Posts.latest()", 5000)
 )

@@ -3,7 +3,7 @@ Campus::Application.routes.draw do
   get "group/mygroup"
   get "lecture/mylecture"
   get "lecture/find_lecture"
-  get "/home/user_profile/id"
+ 
  
   
   root :to => "homes#show"
@@ -23,6 +23,7 @@ Campus::Application.routes.draw do
     match '/users/registered' => 'registrations#registered'
   end
 
+ match "/home/user_profile/:id" => 'homes#user_profile', :via=>:get
   resources :books do
     collection { get 'search' }
   end
