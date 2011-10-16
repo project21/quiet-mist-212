@@ -241,7 +241,11 @@ for_collection_checkbox = (jq) -> $_('#' + jq.attr('for'))
 $(->
   $(".collection_check_boxes").click (e) ->
     e.preventDefault()
-    for_collection_checkbox($(this).toggleClass("active-state")).click()
+    cbox = for_collection_checkbox($(this).toggleClass("active-state"))
+    if cbox.checked
+      cbox.removeAttr('checked', 'checked')
+    else
+      cbox.attr('checked', 'checked')
 
   window.posts_container = $('#posts-container')
   window.posts_table_body = posts_container.find('tbody')
