@@ -11,8 +11,8 @@
 //= require "jquery.ajaxmanager.js"
 //= require "backbone.sync.ajaxman.js"
 //= require jquery_ujs
-//= r
-//=require "time_ago.js"
+//= require jquery.remotipart
+//= require time_ago.js
 
 jQuery.ajaxSetup({ 
   dataType:'json',

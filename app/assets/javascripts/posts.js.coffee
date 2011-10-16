@@ -48,10 +48,11 @@ window.Posts = new PostCollection
 make_post = (e, model, cb) ->
   f = $(e.currentTarget)
   # we are using remotipart which uses rails remote form which defines these events
-  f.bind('ajax:beforeSend', (evt, xhr, settings) =>
+  f.bind 'ajax:beforeSend', (evt, xhr, settings) =>
     if model
       f.addClass('ui-helper-hidden').siblings('button.reply').removeClass('ui-helper-hidden')
-    xhr.setRequestHeader("Accept", "application/json"))
+    xhr.setRequestHeader("Accept", "application/json")
+    return
 
   f.bind 'ajax:success', (evt, data, status, xhr) =>
     data.user = window.CURRENT_USER
@@ -63,7 +64,7 @@ make_post = (e, model, cb) ->
 
   f.bind 'ajax:complete', (evt, xhr, status) =>
     e.currentTarget.reset()
-    cb()
+    cb() if cb
     return
 
   f.bind 'ajax:error', (evt, xhr, status, error) ->
@@ -176,7 +177,7 @@ PostAppView = Backbone.View.extend({
 
     if !post_attrs[0]
       alert("Please select a course for this post.")
-      return
+      return false
 
     make_post e, null, -> $(".collection_check_boxes").removeClass("active-state")
     $(e.currentTarget).find('input[type=file]').addClass('ui-helper-hidden')
@@ -253,4 +254,5 @@ $(->
   # $('#post_post_type').change ->
   #  $('#general-field').val($(this).find('option:selected').text())
   setInterval("Posts.latest()", 5000)
+  $('#material-field').val("")
 )
