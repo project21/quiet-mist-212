@@ -95,15 +95,19 @@ PostView = Backbone.View.extend(
     @model.bind('change', this.render)
     @template = _.template('''
 <td class="num_parents_<%= num_parents %> <%= row_classes %>">
-  <span class="post-course"><%= CURRENT_USER.courses[course_id] %><span>
+  <span class="post-course"><b><%= CURRENT_USER.courses[course_id] %></b><span>
+ <img src="/assets/arrow.png"><span class="post-type"><b><%=post_type%></b></span>
   <br/>
-  <span class="post-type"><%=post_type%></span>
+ 
   <span class="inline_table"> <img src="<%= image_url %>"/></span>
-  <span class="inline_tables"><a href="/home/user_profile/<%= user_id %>" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %></span></span><br/>
+  <span class="inline_tables"><a href="/home/user_profile/<%= user_id %>" id="post-user"><%=firstname %> <%=lastname%></a><br/><span class="post-content"><%= content %><br/>
+     <a class="post-attachment" href="<%= attachment_url %>" > <%= attachment %>
+       </a>
+    </span></span><br/>
    <div class="clear"></div> 
 
   <time class="post-sent" datetime="<%= created_at %>"><%= timeago(created_at) %></time>
-  <a class="post-attachment" href="<%= attachment_url %>"><%= attachment %></a>
+ 
   <span class="post-response"></span>
 
   <div style="<%= user_id == window.CURRENT_USER.id ? 'display:none' : '' %>">
