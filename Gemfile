@@ -47,7 +47,6 @@ group :development, :test do
   gem 'ruby-debug19', :require => 'ruby-debug'
   gem 'pry', :require => 'pry'
   gem 'unicorn', :platform => :ruby
-  gem 'ghostbuster'
 end
 
 group :development do
@@ -59,7 +58,7 @@ end
 
 group :test do
   gem 'rspec-rails'
-  gem 'capybara'
+  gem 'capybara-webkit'
   gem 'database_cleaner'
   gem 'factory_girl', '~>2.0'
   gem 'rr'
