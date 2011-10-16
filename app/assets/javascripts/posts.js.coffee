@@ -63,7 +63,7 @@ make_post = (e, model, cb) ->
 
   f.bind 'ajax:complete', (evt, xhr, status) =>
     e.currentTarget.reset()
-    cb()
+    cb() if cb
     return
 
   f.bind 'ajax:error', (evt, xhr, status, error) ->

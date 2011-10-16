@@ -134,8 +134,15 @@ SearchedBookView = Backbone.View.extend(
       classmates_books_table.find('tbody').empty()
       classmates_books_table.removeClass('ui-helper-hidden')
     else
-      add_course_name.dialog(  )
-      autocomplete_courses $('#add-course-name'), (course_id) =>
+      add_course_field = $('#add-course-name')
+      add_course_name.dialog
+        buttons:
+          cancel: ()->$(this).dialog("close")
+          save: () ->
+            add_course_field.trigger('autocompleteselect')
+            $(this).dialog("close")
+
+      autocomplete_courses add_course_field, (course_id) =>
         @model.set(course_id: course_id)
         SearchedBooks.transfer_to(OwnedBooks, @model)
         add_course_name.dialog('close')
