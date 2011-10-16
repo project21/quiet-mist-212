@@ -1,16 +1,19 @@
 require 'spec_helper'
 
 describe Post do
+  before do
+    @user = create(:user)
+  end
+
   it "creates duplicate posts for each class" do
-    u = create(:user)
-    course_ids = (1..3).map {|i| create(:user_course, :user => u, :user_id => u.id).course_id }
+    course_ids = (1..3).map {|i| create(:user_course, :user => @user, :user_id => @user.id).course_id }
     lambda {
-      make_post! :user_id => u.id, :course_ids => course_ids
+      make_post! :user_id => @user.id, :course_ids => course_ids
     }.should change(Post, :count).by(3)
   end
 
   describe "new post" do
-    before { @p = make_post! }
+    before { @p = make_post!(:user_id => @user.id) }
 
     it "is about a users course" do
       @p.should be_valid

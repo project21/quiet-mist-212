@@ -46,8 +46,9 @@ FactoryGirl.define do
 end
 
 def make_post! post_attributes = {}
-  cids = post_attributes.delete(:course_ids) || (uc = FactoryGirl.create(:user_course)).id
-  FactoryGirl.create(:post, { :user_id => post_attributes.delete(:user_id) || uc.user_id,
+  user_id = post_attributes.delete(:user_id) 
+  cids = post_attributes.delete(:course_ids) || (uc = FactoryGirl.create(:user_course, :user_id => user_id)).course_id
+  FactoryGirl.create(:post, { :user_id => user_id || uc.user_id,
                :course_id => cids
              }.merge(post_attributes))
 end
