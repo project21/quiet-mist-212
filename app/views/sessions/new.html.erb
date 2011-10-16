@@ -1,73 +1,82 @@
 <div style="height:100%">
-<div class="root-header">
-<!--<span style="color:#CC3624;top:45px;position:absolute;font-weight:bold;">Beta</span>-->
-<span style="margin-left:35px;">
-<%= image_tag("Campus_Machine-01.png", :alt => "camp",:class=>"logo-png") %></span>
-<span style="float:right;">
-<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
-<table>
-<tr>
- <td> <%= f.label :email%></td>  <td> <%= f.label :password %></td>
-</tr> 
-<tr><td> <%= f.email_field :email ,:class=>"sign-field"  %></td>
+  <div class="root-header">
+    <span style="color:#CC3624;top:45px;position:absolute;font-weight:bold;">Beta</span>
+    <span style="margin-left:35px;">
+      <%= image_tag("Campus_Machine-01.png", :alt => "camp",:class=>"logo-png") %>
+    </span>
+    <span style="float:right;">
+      <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+        <table>
+          <tr>
+            <td> <%= f.label :email%></td>  <td> <%= f.label :password %></td>
+          </tr> 
+          <tr>
+            <td> <%= f.email_field :email ,:class=>"sign-field"  %></td>
+            <td> <%= f.password_field :password ,:class=>"sign-field"%></td>
+            <td> <%= f.submit "Sign in", :class=>"sign_in_button" %></td>
+          </tr>  
+          <tr> 
+            <td>
+              <% if devise_mapping.rememberable? -%>
+                <span><%= f.check_box :remember_me %> <%= f.label :remember_me %></span>
+              <% end -%>
+            </td>
+            <td><%= render :partial => "devise/shared/links" %> </td>
+          </tr>
+        </table>
+      <% end %>
+    </span>
+  </div>
 
-    <td> <%= f.password_field :password ,:class=>"sign-field"%></td>
-    <td> <%= f.submit "Sign in", :class=>"sign_in_button" %></td>
- </tr>  
- <tr> 
-     <td> <% if devise_mapping.rememberable? -%>
-    <span><%= f.check_box :remember_me %> <%= f.label :remember_me %></span>
-    <% end -%>
- 
-    <% end %></td>
-    <td><%= render :partial => "devise/shared/links" %> </td>
-</tr>
-</table>
-</span>
-</div>
-<div class="clear"></div>
+  <div class="clear"></div>
 
-<!--
-<%=link_to image_tag("fb_login_icon.gif",:class=>"fblogin")%>
-<%=link_to image_tag("twitter_login.png",:class=>"fblogin") %>-->
-<br/>
-<div class="diagrams">
-<span class="login-bold-text">Makes learning & campus life easier and social!</span><br/>
-<%=image_tag("Diagram-new.jpg",:class=>"network") %>
+  <!--
+  <%= link_to image_tag("fb_login_icon.gif",:class=>"fblogin") %>
+  <%= link_to image_tag("twitter_login.png",:class=>"fblogin") %>
+  -->
 
-<%=image_tag("iStock_000002945938XSmall.jpg",:class=>"girl-laptop") %>
+  <br/>
 
-</div>
-<div class="clear"></div>
-<div style="float:right;">
- <br/>
+  <div class="diagrams">
+    <span class="login-bold-text">Makes learning & campus life easier and social!</span><br/>
+    <%=image_tag("Diagram-new.jpg",:class=>"network") %>
 
+    <%=image_tag("iStock_000002945938XSmall.jpg",:class=>"girl-laptop") %>
+  </div>
 
-</div>
-<div class="clear"></div>
-<div class="sign-background">
+  <div class="clear"></div>
 
-<div class="sales-pitch">
-<span class="inline_table"><%=image_tag("1315363317_message.png")%></span>
-<span class="inline_table"> <h3>Get connected</h3> Ask your  classmates questions, <br/> work together on Homework<br/> assignments,organize <br/>and get invited in class study group </span>
+  <div style="float:right;">
+    <br/>
+  </div>
 
-<span class="inline_table"><%=image_tag("1315363843_bookcase.png")%></span>
-<span class="inline_table"> <h3>Exchange books</h3>Reserve textbooks from your peers <br/> prior to class semester,<br/>sell your textbooks, access and share <br/>other studying materials </span>
+  <div class="clear"></div>
 
-<span class="inline_table"><%=image_tag("1315364431_audio-file.png")%></span><span class="inline_table"><h3>Lectures</h3> Access to recorded <br/>enrolled class lectures<br/>  shared by your classmates<br/> and instructors.</span>
+  <div class="sign-background">
+    <div class="sales-pitch">
+      <span class="inline_table"><%=image_tag("1315363317_message.png")%></span>
+      <span class="inline_table">
+        <h3>Get connected</h3>
+         Ask your  classmates questions, <br/>
+         work together on Homework<br/>
+         assignments,organize <br/>
+         and get invited in class study group
+      </span>
 
-<span class="inline_table"><%=image_tag("1315365276_amor.png ")%></span><span class="inline_table"><h3>Succeed!</h3> Get to know your schoolmates<br/>co-operate with your classmates<br/>in campus and succeed.</span>
-</div>
+      <span class="inline_table"><%=image_tag("1315363843_bookcase.png")%></span>
+      <span class="inline_table"> <h3>Exchange books</h3>Reserve textbooks from your peers <br/> prior to class semester,<br/>sell your textbooks, access and share <br/>other studying materials </span>
 
-</div>
+      <span class="inline_table"><%=image_tag("1315364431_audio-file.png")%></span><span class="inline_table"><h3>Lectures</h3> Access to recorded <br/>enrolled class lectures<br/>  shared by your classmates<br/> and instructors.</span>
+
+      <span class="inline_table"><%=image_tag("1315365276_amor.png ")%></span><span class="inline_table"><h3>Succeed!</h3> Get to know your schoolmates<br/>co-operate with your classmates<br/>in campus and succeed.</span>
+    </div>
+  </div>
 
 
 
-<!--
-<div style="position:absolute;left:15%;top:30%;">
+  <!-- <div style="position:absolute;left:15%;top:30%;"> </div>-->
 
-</div>-->
-<div class="sign-footer">
-<span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
-<div>
+  <div class="sign-footer">
+    <span style="color:#808080;font-size:11px;margin-left:18%;">&copy; 2011 campusmachine.com</span>
+  <div>
 </div>
