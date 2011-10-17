@@ -63,6 +63,6 @@ group :test do
   gem 'factory_girl', '~>2.0'
   gem 'rr'
   gem 'ghostbuster', #'0.3.6'
-    path: '../ghostbuster'
-    #git: 'https://github.com/joshbuddy/ghostbuster'
+    #path: '../ghostbuster'
+    git: 'https://github.com/joshbuddy/ghostbuster'
 end

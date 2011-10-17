@@ -7,10 +7,12 @@ phantom.test.add "Register", ->         # this adds a test
     @body.input '#user_email', 'test@example.com'
     @body.input '#user_password', 'secret'
     @body.input '#user_password_confirmation', 'secret'
-    #@body.clickFollow '.sign_up_button'
+    @body.clickFollow '.sign_up_button'
+    @body.assertFirst 'p', (p) ->           # this asserts the first paragraph's inner text
+      p.innerHTML == 'This is my paragraph' # is 'This is my paragraph'
     #@assertContains('Welcome, Tester')
-    #@succeed()
-    @follow_link '.sign_up_button', () =>
-      console.log( @page.content )
-      @assertContains('Welcome, Tester')
-      @succeed()
+    @succeed()
+    #@follow_link '.sign_up_button', () =>
+      #console.log( @page.content )
+      #@assertContains('Welcome, Tester')
+      #@succeed()
