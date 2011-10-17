@@ -62,4 +62,7 @@ group :test do
   gem 'database_cleaner'
   gem 'factory_girl', '~>2.0'
   gem 'rr'
+  gem 'ghostbuster', #'0.3.6'
+    path: '../ghostbuster'
+    #git: 'https://github.com/joshbuddy/ghostbuster'
 end

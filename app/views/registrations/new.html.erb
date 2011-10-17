@@ -28,7 +28,7 @@
       <td><%= f.text_field :lastname,:class=>"round" %></td></tr>
 
       <% if @user.email_required? %>  
-        <tr><td><label>Email</label></td>
+        <tr><td><label for="user_email">Email</label></td>
         <td><%= f.text_field :email,:class=>"round" %></td></tr>
       <% end %>
 

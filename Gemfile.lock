@@ -1,3 +1,8 @@
+PATH
+  remote: ../ghostbuster
+  specs:
+    ghostbuster (0.3.6)
+
 GEM
   remote: http://rubygems.org/
   specs:
@@ -325,6 +330,7 @@ DEPENDENCIES
   factory_girl (~> 2.0)
   fog
   foreigner
+  ghostbuster!
   google-book
   guard
   guard-bundler

@@ -1,4 +1,13 @@
-# Campus Machine!
+# Test suite
+
+## unit tests
+
+    bundle exec rspec spec/models
+
+## integration tests
+
+    cd ghost_tests
+    bundle exec ghostbuster
 
 # TODO:
 David:
@@ -10,16 +19,12 @@ David:
   * Improve class selection buttons a little more
 
 Greg
-  * make sure post reply shows up
   * book reserve requests
-  * After reserving a book return back a post table
-  * upload a file on a post
-
  
 Prodution
+  * test uploader on production
   * SSL
   * test facebook login
-  * test uploader on production
 
 BUG fixes
   * Edit Profile section clicking messed up
@@ -28,7 +33,6 @@ BUG fixes
   * Save & Continue should auto add a course
 
 FUTURE
-*picture upload doesnt work in production
 *sanitize - xss_terminate
 *mypost to include the original post
 * Modernizr

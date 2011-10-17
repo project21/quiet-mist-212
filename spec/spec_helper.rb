@@ -15,6 +15,7 @@ require 'blueprints'
 DatabaseCleaner[:active_record].strategy = :transaction
 
 RSpec.configure do |c|
+  c.include(Capybara, :type => :integration) 
   c.include Factory::Syntax::Methods
   # == Mock Framework
   #
