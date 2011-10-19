@@ -41,7 +41,7 @@ class PhotoUploader < CampusUploader
   # required to convert to jpg
   def filename
     return unless super
-    super.chomp(File.extname(super))
+    super.chomp(File.extname(super)) + '.jpg'
   end
 
   # B
