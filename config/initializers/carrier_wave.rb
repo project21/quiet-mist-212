@@ -11,9 +11,11 @@ CarrierWave.configure do |config|
     # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
   }
   config.fog_directory  = 'uploads.campusmachine.com'                     # required
-  #config.fog_host       = 'https://assets.example.com'            # optional, defaults to nil
-  config.fog_public     = false                                   # optional, defaults to true
+
+  # TODO: change this!
+  config.fog_public     = true                                   # optional, defaults to true
   config.fog_attributes = {'Cache-Control'=>'max-age=315576000'}  # optional, defaults to {}
+  config.s3_use_ssl = false
 end
 
 class CampusUploader < CarrierWave::Uploader::Base
