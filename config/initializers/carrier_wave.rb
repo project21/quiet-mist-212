@@ -10,7 +10,7 @@ CarrierWave.configure do |config|
     :aws_secret_access_key  => 'MMtC8ziThG4WFap05xh3zrrFP+xuCAGQvwGHUcaV',       # required
     # :region                 => 'eu-west-1'  # optional, defaults to 'us-east-1'
   }
-  config.fog_directory  = 'uploads.campusmachine.com'                     # required
+  config.fog_directory  = '1.campusmachine.com'                     # required
 
   # TODO: change this!
   config.fog_public     = true                                   # optional, defaults to true
