@@ -78,3 +78,18 @@ class PhotoUploader < CampusUploader
   # end
 
 end
+
+# SSL no worky
+module CarrierWave
+  module Storage
+    class File
+      def public_url
+        if host = @uploader.fog_host
+          "#{host}/#{path}"
+        else
+          "https://s3.amazonaws.com/#{@uploader.fog_directory}/#{path}"
+        end
+      end
+    end
+  end
+end
