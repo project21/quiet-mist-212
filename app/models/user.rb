@@ -1,4 +1,28 @@
 class User < ActiveRecord::Base
+  col :email,                as: :string
+  col :encrypted_password,   as: :string,   null:false
+  col :password_salt,        as: :string,   null:false
+  col :reset_password_token, as: :string
+  col :remember_token,       as: :string
+  col :remember_created_at,  as: :timestamp
+  col :sign_in_count,        as: :integer,  default: 0
+  col :current_sign_in_at,   as: :timestamp
+  col :current_sign_in_ip,   as: :string
+  col :last_sign_in_ip,      as: :string
+  col :created_at,           as: :timestamp
+  col :updated_at,           as: :timestamp
+  col :firstname,            as: :string
+  col :lastname,             as: :string
+  col :major,                as: :string
+  col :sex,                  as: :string
+  col :zipcode,              as: :integer
+  col :highschool,           as: :string
+  col :registered,           as: :boolean
+  col :school_id,            as: :integer
+  col :image_url,            as: :string
+  col :photo,                as: :string
+  col :confirmed_at,         as: :timestamp
+
   belongs_to :school
   delegate :name, :to => :school, :prefix => true, :allow_nil => true
 
@@ -24,7 +48,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
-  devise :database_authenticatable, :registerable, :omniauthable,
+  devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   def email_required?; password_required? end
