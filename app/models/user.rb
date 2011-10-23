@@ -22,6 +22,8 @@ class User < ActiveRecord::Base
   col :image_url,            as: :string
   col :photo,                as: :string
   col :confirmed_at,         as: :timestamp
+  col :confirmation_sent_at, as: :timestamp
+  col :confirmation_token,   as: :string
 
   belongs_to :school
   delegate :name, :to => :school, :prefix => true, :allow_nil => true
