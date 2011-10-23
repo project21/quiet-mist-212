@@ -1,7 +1,4 @@
 Campus::Application.configure do
-  #TODO: setup email
-  config.action_mailer.perform_deliveries = false
-
   # TODO: turn on SSL
   #config.force_ssl = true
   # Settings specified here will take precedence over those in config/application.rb
@@ -42,7 +39,6 @@ Campus::Application.configure do
   # config.action_controller.asset_host = "http://assets.example.com"
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -53,5 +49,8 @@ Campus::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.perform_deliveries = true
   config.action_mailer.default_url_options = {host: 'quiet-mist-211.herokuapp.com'}
 end
