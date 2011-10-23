@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111023214602) do
+ActiveRecord::Schema.define(:version => 20111023214603) do
 
   create_table "authentications", :force => true do |t|
     t.integer "user_id",  :null => false
@@ -149,6 +149,7 @@ ActiveRecord::Schema.define(:version => 20111023214602) do
     t.datetime "confirmed_at"
     t.datetime "confirmation_sent_at"
     t.string   "confirmation_token"
+    t.datetime "last_sign_in_at"
   end
 
 end

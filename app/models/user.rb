@@ -8,6 +8,7 @@ class User < ActiveRecord::Base
   col :sign_in_count,        as: :integer,  default: 0
   col :current_sign_in_at,   as: :timestamp
   col :current_sign_in_ip,   as: :string
+  col :last_sign_in_at,      as: :timestamp
   col :last_sign_in_ip,      as: :string
   col :created_at,           as: :timestamp
   col :updated_at,           as: :timestamp
@@ -50,7 +51,7 @@ class User < ActiveRecord::Base
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :lockable, :timeoutable and :activatable
-  devise :database_authenticatable, :registerable, :omniauthable, # :confirmable,
+  devise :database_authenticatable, :registerable, :omniauthable, :confirmable,
          :recoverable, :rememberable, :trackable, :validatable
 
   def email_required?; password_required? end
