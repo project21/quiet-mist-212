@@ -1,4 +1,5 @@
 Campus::Application.configure do
+  config.assets.initialize_on_precompile = false
   # TODO: turn on SSL
   #config.force_ssl = true
   # Settings specified here will take precedence over those in config/application.rb
