@@ -26,7 +26,6 @@ ActiveRecord::Schema.define(:version => 20111023214603) do
     t.integer  "user_id",                                                                 :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "integer"
     t.integer  "reserver_id"
     t.string   "condition",                                           :default => "used", :null => false
     t.text     "condition_description"
@@ -47,12 +46,6 @@ ActiveRecord::Schema.define(:version => 20111023214603) do
   end
 
   add_index "books", ["isbn"], :name => "index_books_on_isbn", :unique => true
-
-  create_table "campuses", :force => true do |t|
-    t.string  "name"
-    t.integer "postal_code"
-    t.integer "location_id"
-  end
 
   create_table "class_takens", :force => true do |t|
     t.string   "class_name"
@@ -126,12 +119,12 @@ ActiveRecord::Schema.define(:version => 20111023214603) do
   create_table "users", :force => true do |t|
     t.string   "email"
     t.string   "encrypted_password",   :default => "", :null => false
-    t.string   "password_salt",        :default => "", :null => false
     t.string   "reset_password_token"
     t.string   "remember_token"
     t.datetime "remember_created_at"
     t.integer  "sign_in_count",        :default => 0
     t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
     t.datetime "created_at"
@@ -146,10 +139,10 @@ ActiveRecord::Schema.define(:version => 20111023214603) do
     t.integer  "school_id"
     t.string   "image_url"
     t.string   "photo"
-    t.datetime "confirmed_at"
+    t.string   "password_salt",                        :null => false
     t.datetime "confirmation_sent_at"
     t.string   "confirmation_token"
-    t.datetime "last_sign_in_at"
+    t.datetime "confirmed_at"
   end
 
 end
