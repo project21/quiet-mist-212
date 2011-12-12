@@ -1,7 +1,7 @@
 class User < ActiveRecord::Base
   col :email,                as: :string
   col :encrypted_password,   as: :string,   null:false
-  col :password_salt,        as: :string,   null:false
+  #col :password_salt,        as: :string,   null:false
   col :reset_password_token, as: :string
   col :remember_token,       as: :string
   col :remember_created_at,  as: :timestamp
