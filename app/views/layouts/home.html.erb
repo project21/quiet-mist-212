@@ -41,31 +41,9 @@
  <div ><%=link_to image_tag("group.png")+'Math41 group',mygroup_group_url,{:class=>"sidebox-content"}%></div>  
   
  <div class="line_separator"></div>
-  <div class="start"> <%=link_to "Start Class group",{:controller=>"books",:action=>"new"},:class=>"group"%> </div>    
+  <div class="start"> <%=link_to "Start Class group",{:controller=>"class_groups",:action=>"new"}%> </div>    
 <form class="ui-helper-hidden group-form">
-<input type="checkbox" />Math41 <input type="checkbox" />Psych101 <input type="checkbox" />Chem1A <br/>
- <label>Professor</label><input type="text"/><br/>
- <label>Crn</label><input type="text"/><br/>
- <label>Group Objectives</label><textarea cols="35" ></textarea >
-<br/> 
-
- <div class="nested-group ui-helper-hidden">
- <table>
-<tr>
-<td><label>group name</label> </td><td><input type="text" ></td>
-</tr>
-<br/>
-<tr><td>group description</td><td><input type="text" ></td></tr>
-<br/>
-<tr><td>max No:</td><td><input type="text" ></td></tr>
-</table>
- <input type="radio" id="remote" name="communication">Remote 
-  <input type="radio" id="live" name="communication">Live meet up <br/>
-  
- </div>
- 
-<button id="create">create</button>
-</form>
+ <%=render :template=>'class_groups/new'%>
 <div class="ui-helper-hidden classmates" title="Invite your classmates" list of classmates> <span class="mock"><%=image_tag('d.jpg')%> </span><button>invite</button><br/> 
 <span><%=image_tag('spencer.jpg')%> </span> <button>invite</button><br/>
 <span ><%=image_tag('down.jpg')%> </span><button >invite</button> <br/> 

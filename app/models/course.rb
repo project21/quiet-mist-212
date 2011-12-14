@@ -8,5 +8,6 @@ class Course < ActiveRecord::Base
   validates_uniqueness_of :name, :scope => :school_id
 
   has_many :user_courses
+  has_many :class_groups
   belongs_to :school
 end

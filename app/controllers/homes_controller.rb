@@ -5,7 +5,7 @@
 
   def show
     @javascript = ['application'] 
-    
+     @class_group=ClassGroup.new
   end
   
   def profile

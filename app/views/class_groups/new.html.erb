@@ -1,0 +1,33 @@
+
+<p>Find me in app/views/class_groups/new.html.erb</p>
+<%= form_for @class_group ,:url=>{:action =>"create"} do |f| %>
+ <% current_user.active_courses.each do |course|%>
+ <%= f.radio_button :course_id,course.id %> <%=course.name%>
+ <br/>
+ <%end%>
+ <label>Professor</label><%=f.text_field :professor%><br/>
+ <label>Crn</label><%=f.text_field :crn %><br/>
+ <label>Class Objectives</label><%=f.text_area :objective,:rows=>"3"%>
+  
+   <%=f.fields_for :users do |c|%>
+   <%=c.text_field :major %>
+   <%end%>
+ 
+ <%=f.submit "create" %>
+ <%end%>
+ 
+
+ <div class="nested-group ui-helper-hidden">
+ <table>
+<tr>
+<td><label>group name</label> </td><td><input type="text" ></td>
+</tr>
+<br/>
+<tr><td>group description</td><td><input type="text" ></td></tr>
+<br/>
+<tr><td>max No:</td><td><input type="text" ></td></tr>
+</table>
+ <input type="radio" id="remote" name="communication">Remote 
+  <input type="radio" id="live" name="communication">Live meet up <br/>
+
+  </div>

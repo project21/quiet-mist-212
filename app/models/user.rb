@@ -42,6 +42,8 @@ class User < ActiveRecord::Base
 
   has_many :strengths
   has_many :weaknesses
+  has_many :class_groups ,:through=>:class_memberships
+  has_many :class_memberships
   mount_uploader :photo,PhotoUploader
   #has_and_belongs_to_many :courses
   validates_presence_of :firstname, :lastname
@@ -61,7 +63,7 @@ class User < ActiveRecord::Base
   end  
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:image_url,:photo, :highschool, :remember_me
+  #attr_accessible :email, :password, :password_confirmation,:firstname,:lastname,:major,:image_url,:photo, :highschool,:remember_me,:sex
 
   # for form
   attr_reader :major_id

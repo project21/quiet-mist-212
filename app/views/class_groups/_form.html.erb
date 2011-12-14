@@ -1,0 +1,29 @@
+<%= form_for ClassGroup.new ,:url=>{:controller=>"class_groups",:action =>"create"} do |f| %>
+ <% current_user.active_courses.each do |course|%>
+ <%= f.radio_button :course_id,course.id %> <%=course.name%>
+ <br/>
+ <%end%>
+ <label>Professor</label><%=f.text_field :professor%><br/>
+ <label>Crn</label><input type="text"/><br/>
+ <label>Group Objectives</label><textarea cols="35" ></textarea >
+
+<br/> 
+
+ <div class="nested-group ui-helper-hidden">
+ <table>
+<tr>
+<td><label>group name</label> </td><td><input type="text" ></td>
+</tr>
+<br/>
+<tr><td>group description</td><td><input type="text" ></td></tr>
+<br/>
+<tr><td>max No:</td><td><input type="text" ></td></tr>
+</table>
+ <input type="radio" id="remote" name="communication">Remote 
+  <input type="radio" id="live" name="communication">Live meet up <br/>
+  
+ </div>
+ 
+<%=f.submit "create" %>
+</form>
+ <%end%>	
